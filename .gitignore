@@ -4,4 +4,4 @@
 *.aux
 *.toc
 
-!images/*
+!images
