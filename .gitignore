@@ -5,3 +5,6 @@
 *.toc
 
 !images
+*.bbl
+
+*.blg
