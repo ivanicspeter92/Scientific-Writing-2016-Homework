@@ -2,5 +2,6 @@
 *.gz
 *.log
 *.aux
-
 *.toc
+
+!images/*
