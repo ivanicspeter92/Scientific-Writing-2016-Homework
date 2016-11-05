@@ -22,7 +22,7 @@
 \section{Location-based Services} 
 	In the following subchapters, four Location Based Services (hereinafter LBSs) are introduced briefly. The first three - Commuter, Sports Tracker and Frank - are consumer applications. They show some similarities in their business model and targeted audience as they freely available for everyone on today's popular mobile platform (iOS, Android and Windows Phone). However, they differ in their functionality as Commuter supports the usage of public transportation, Sports Tracker encourages the community to do physical exercises, while the Frank is an application that helps students getting around and claim discounts in Finland. The reason for describing these applications is their popularity, different focus and application area. As an active end-user, I have hands-on experience in all of them. In my opinion these applications are great specimen for this assignment.
 	
-	The last example is a mobile workforce management platform called Reslink. The reason of choosing this platform is its wide applicability, rich data and different focus compared to the other examples. In comparison to the previous examples, Reslink is a business-to-business platform operating in multiple business verticals. As one of the developers of the Reslink platform I believe that it serves as a splendid example of a LBS in the business field of workforce management. 
+	The last example is a mobile workforce management platform called Reslink. The reason of choosing this platform is its wide applicability, rich data and different focus compared to the other examples. In comparison to the previous examples, Reslink is a business-to-business platform operating in multiple business verticals. As one of the developers of the Reslink platform I believe that it serves as a splendid example of a LBS in the business field of workforce management.
 	
 	\subsubsection{Commuter}
 		% What is this solution briefly? Who is the targeted audience? 
@@ -97,15 +97,19 @@
 		
 	\subsubsection{Reslink}
 		% What is this solution briefly? Who is the targeted audience?
-		Reslink \cite{res16}
+		Reslink \cite{res16} is targeting organizations that utilize workforce at various locations. The offering is not limited to an application or LBS, but extends to a complete workforce management platform. Customers of Reslink can design their own business application, which is then installed on the employees' mobile devices in order to allow them performing their job on the field. The platform is flexible enough to serve the needs of different business verticals, such as security guarding, home care, cleaning, technical maintenance, brewery or facility management. In essence, the mobile applications aim to replace paper-based work and collect rich digital data from the field of operations. The data may include both qualitative and quantitative types, such as textual, numerical, location data or photos, audio and video recordings. The service supports mainly Android and iOS platforms but has limited capabilities on Windows Phones as well.
+		
 		% How this solution uses location awareness? 
+		Location awareness is utilized through this service in various ways. Employees can plan their workday and navigate between locations easily as the day goes on. In addition, managers can control and monitor their workforce from the back-office, while employees use a single device to move on the field and to perform their job. Ultimately, it is possible to supervise where the employees are, as well as to get immediate feedback if something unexpected happens on the work-field. As an example, imagine a security guard reporting vandalism in one of the facilities by uploading a video or picture. In such situation, supervisors are notified via e-mail or text messages that allows them to immediately delegate resources to the location where the incident has happened. The solution also offers many additional features like Geo Fencing, GPS position tracking, locationing through NFC tags and barcodes. 
+		
 		% How does this solution address the challenges? Lack of standards, Positioning, Power consumption, Privacy
-	\begin{itemize}
-		\item Lack of standards: 
-		\item Positioning:
-		\item Power consumption:
-		\item Privacy:
-	\end{itemize}	
+		Plenty of challenges arise in such platform. Some of them are, as follows:
+		\begin{itemize}
+			\item Lack of standards: supporting all three mobile platforms is a major challenge. Despite the fact that communication protocols between the clients and the back-office are standard, the mobile clients face some limitations due to the inconsistency between the mobile operating systems. 
+			\item Positioning: depending on the customer cases, accurate positioning may have different level of importance. In some cases, positioning may be challenging due to weak network signal strength. For example, if a technician is working at a customer location in the basement, the device might go completely offline but reporting that the work was done at exaclty this location is crucial. Reslink overcomes this challenge by providing full offline-mode support and storing all transactions in the memory of the device. As soon as the device retrieves stable internet connection, the data is sent to the back-office, which embeds indicators concerning the accuracy of the data. 
+			\item Power consumption: depending on the utilized features, Reslink mobile clients may consume lot of battery power. For instance the GPS tracking feature can be configured in a way to poll the location of the device every minute, which drains lots of energy from the power source. For this reason, the employees' and applicaitons' settings are fully customizable which allows control on this matter. 
+			\item Privacy: as a lot of data is collected from the employees while performing their job, privacy is another major question for Reslink. In some customer cases governmental regulations limit the set of information that can be retrieved about the employees' performance. For this reason, the platform is designed in a way to be possible to turn on and off features and to configure what kind of data the mobile clients report directly from the back-office.  
+		\end{itemize}	
 		
 \section{Privacy}
 	
