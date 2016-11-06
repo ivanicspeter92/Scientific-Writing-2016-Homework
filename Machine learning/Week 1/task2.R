@@ -15,8 +15,9 @@ mse = function(points, func, numbers) {
 set.seed(20)
 degree = 10 
 interval = c(-3, 3)
+points = 30
 
-points = createRandomPointsWithErrorsForTargetFunction(numberOfPoints = 30, interval)
+points = createRandomPointsWithErrorsForTargetFunction(numberOfPoints = points, interval)
 x = points[,1]
 y = points[,2]
 plot(x, y, pch=16) 
@@ -33,7 +34,9 @@ mse_value = mean(regression$residuals^2)
 sprintf("MSE: %f", mse_value)
 
 # task 2
-points = createRandomPointsWithErrorsForTargetFunction(numberOfPoints = 1000, interval)
+points = 1000
+
+points = createRandomPointsWithErrorsForTargetFunction(numberOfPoints = points, interval)
 x = points[,1]
 y = points[,2]
 
@@ -42,5 +45,5 @@ points(x = x, y = y, col="red")
 values = seq(interval[1], interval[2], length.out = numbers)
 newprediction = predict(regression, data.frame(x = values), interval = "confidence", level = 0.95)
 
-new_mse_value = mse(points = newprediction[,1], func = y, numbers = 1000)
+new_mse_value = mse(points = newprediction[,1], func = y, numbers = points)
 sprintf("MSE: %f", new_mse_value)
