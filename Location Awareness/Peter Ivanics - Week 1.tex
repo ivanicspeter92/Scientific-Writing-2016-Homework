@@ -2,6 +2,9 @@
 \usepackage[pdftex]{graphicx}
 \usepackage{subfigure}
 \usepackage{url}
+\usepackage{amsmath}
+\usepackage{algorithm}
+\usepackage[noend]{algpseudocode}
 
 \newcommand\floor[1]{\lfloor#1\rfloor}
 \newcommand\ceil[1]{\lceil#1\rceil}
@@ -133,6 +136,26 @@
 			r <= \sqrt{(x - u)^2 + (y - v)^2}
 		\end{equation}
 		we can conclude that the investigated point is in the given radius. The number of such points then gives the $k$ value for the anonymity region at all times.
+		
+		The algorithm below can be used to calculate the k-anonymity values for a set of points (users) with defined central point (user) and radius values. The value of the $counter$ variable will be returned, which indicates the $k$-value of the zone.
+		
+		\begin{algorithm}
+			\caption{K-anonimity}\label{k-anonimity}
+				\begin{algorithmic}[1]
+					\Procedure{K-anonimity$(points[n], middle\_point, circle\_radius)$}{}
+						\State $\textit{counter} \gets \text{0}$
+						\For{p in points} 
+							\If {\textit{p} in \textit{circle(middle\_point, radius)}}
+								\State $counter++$.
+							\EndIf
+						\EndFor
+						\State \Return $counter$
+						
+					\EndProcedure
+			\end{algorithmic}
+		\end{algorithm}
+		
+		An implementation of this algorithm in R language was developed for this task. The corresponding R script file can be found as an attachment to this document. 
 		
 \section{Energy-efficiency}
 	\subsection{Duty cycle}
