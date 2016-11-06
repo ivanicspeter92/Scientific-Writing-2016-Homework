@@ -2,6 +2,11 @@
 \usepackage[pdftex]{graphicx}
 \usepackage{subfigure}
 \usepackage{url}
+
+\newcommand\floor[1]{\lfloor#1\rfloor}
+\newcommand\ceil[1]{\lceil#1\rceil}
+\def\doubleunderline#1{\underline{\underline{#1}}}
+
 \begin{document}
 \onehalfspacing
 
@@ -130,7 +135,39 @@
 		we can conclude that the investigated point is in the given radius. The number of such points then gives the $k$ value for the anonymity region at all times.
 		
 \section{Energy-efficiency}
-
+	\subsection{Duty cycle}
+	Solving the first task requires the following equations: 
+	\begin{eqnarray} 
+		\Delta t &=& \frac{min(E_{Position}, E_{Trajectory}) - e_{model}}{V_{estimate}} \\
+		D &=& \frac{T}{P}
+	\end{eqnarray}
+	
+	Deriving from the description of the task we can see that $v = 3.5 \frac{m}{s}$, $E_{Position} = 50 \, m$, $e = 0 m$. Accordingly, the cycle of refreshing the GPS location of the device is
+	
+	\begin{eqnarray*}
+		\Delta t = \frac{50 m}{3.5 \frac{m}{s}} = \doubleunderline{14.285 \, m}
+	\end{eqnarray*}
+	
+	If the tracking is performed for $P = 10 min = 600 \, s$, and reading the GPS coordinates takes $r = 70 ms = 0,07 \, s$, the GPS location will be refreshed
+	
+	\begin{eqnarray*}
+		n = \floor{\frac{P}{n + r}} = \floor{\frac{600 \, s}{14,285 + 0,7}} = 41
+	\end{eqnarray*}
+	
+	times during the given lifecycle. This yields, that the total active time $T = 41 * 0.07 = 2,87 \, s$. Utilizing the second equation above we can conclude that the duty cycle is
+	
+	\begin{eqnarray*}
+		D = \frac{T}{P} = \frac{2,87}{600} = \doubleunderline{0,47 \%}
+	\end{eqnarray*}
+	
+	If we modify the threshold to $e = 150 \, m$, the calculations modify as follows: 
+	
+	\begin{eqnarray*}
+		\Delta t = \frac{150 \, m}{3.5 \frac{m}{s}} = \doubleunderline{42,85 \, s} \\ \\
+		n = \floor{\frac{P}{n + r}} = \floor{\frac{600 \, s}{42,85 + 0,7}} = 13 \\ \\
+		T = 13 * 0.07 = 0,91 \, s \\ \\
+		D = \frac{T}{P} = \frac{0,91}{600} = \doubleunderline{0,15 \, \%}
+	\end{eqnarray*}
 \pagebreak
 
 \nocite{*}
