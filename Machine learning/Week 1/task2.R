@@ -1,41 +1,46 @@
+createRandomPointsWithErrorsForTargetFunction = function(numberOfPoints, interval) {
+  x = runif(numberOfPoints, interval[1], interval[2])
+  y = 2 + x - 0.5 * x ^ 2
+  errors = rnorm(n = numberOfPoints, mean = 0, sd = 0.4)
+  ywitherrors = y + errors # adding errors to the function values
+  
+  return(matrix(c(x, ywitherrors),ncol = 2, nrow = length(x)))
+}
+
 mse = function(points, func, numbers) {
   return(sum((points - func) ^ 2) / numbers)
 } 
 
+# configuration
 set.seed(20)
-
-degree = 10
-numbers = 30
+degree = 10 
 interval = c(-3, 3)
 
-x = runif(numbers, interval[1], interval[2])
-y = 2 + x - 0.5 * x ^ 2
-errors = rnorm(n = numbers, mean = 0, sd = 0.4)
-ywitherrors = y + errors
+points = createRandomPointsWithErrorsForTargetFunction(numberOfPoints = 30, interval)
+x = points[,1]
+y = points[,2]
+plot(x, y, pch=16) 
 
-plot(x, ywitherrors, pch=16)
-
-regression = lm(ywitherrors ~ poly(x, degree))
+# creating model with the give degree
+regression = lm(y ~ poly(x, degree))
 values = seq(interval[1], interval[2], by = 0.1)
 model = predict(regression, data.frame(x = values), interval = "confidence", level = 0.95)
 
+# adding mode to the plot
 lines(values, model[,1], col='green', lwd=5)
 
 mse_value = mean(regression$residuals^2)
-#mse_value = mse()
 sprintf("MSE: %f", mse_value)
 
 # task 2
-numbers = 1000
-x = runif(numbers, interval[1], interval[2])
-y = 2 + x - 0.5 * x ^ 2
-errors = rnorm(n = numbers, mean = 0, sd = 0.4)
-ywitherrors = y + errors
+points = createRandomPointsWithErrorsForTargetFunction(numberOfPoints = 1000, interval)
+x = points[,1]
+y = points[,2]
 
-points(x, y = ywitherrors, col="red")
+points(x = x, y = y, col="red")
 
 values = seq(interval[1], interval[2], length.out = numbers)
 newprediction = predict(regression, data.frame(x = values), interval = "confidence", level = 0.95)
 
-new_mse_value = mse(points = newprediction[,1], func = ywitherrors, numbers = numbers)
+new_mse_value = mse(points = newprediction[,1], func = y, numbers = 1000)
 sprintf("MSE: %f", new_mse_value)
