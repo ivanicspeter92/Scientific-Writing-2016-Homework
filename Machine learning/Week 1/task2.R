@@ -1,18 +1,18 @@
-fitModel = function(x, y, degree) {
-  if(degree == 1) {
-    regression = lm(x ~ y)
-    coefficients = coef(regression)
-    
-    return(coefficients[1] + coefficients[2] * x)
-  }
-}
+set.seed(20)
 
-x = runif(30, -3, 3)
+degree = 10
+numbers = 30
+interval = c(-3, 3)
+
+x = runif(numbers, interval[1], interval[2])
 y = 2 + x - 0.5 * x ^ 2
 errors = rnorm(n = 30, mean = 0, sd = 0.4)
 y = y + errors
 
 plot(x, y)
 
-linearmodel = fitModel(x = x, y = y, degree = 1)
-lines(x, linearmodel, col='green', lwd=5)
+regression = lm(y ~ poly(x, degree))
+values = seq(interval[1], interval[2], by = 0.1)
+model = predict(regression, data.frame(x = values), interval = "confidence", level = 0.95)
+
+lines(values, model[,1], col='green', lwd=5)
