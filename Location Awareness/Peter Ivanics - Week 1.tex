@@ -156,7 +156,31 @@
 		\end{algorithm}
 		
 		An implementation of this algorithm in R language was developed for this task. The corresponding R script file can be found as an attachment to this document. 
-		
+	\subsection{Pseudonyms}
+	To clarify the given problem, the following observations are made. Each device is expected to have a matching pseudonym, that is
+	\begin{itemize}
+		\item unique to the device,
+		\item does not change over time,
+		\item does not change as the software configuration of the device changes (in other words remains the same after performing operating system upgrades or factory reset)
+		\item can be retrieved/calculated without internet connection,
+		\item hides information concerning the model, manufacturer and software configuration of the device,
+		\item hides information about the user of the device.
+	\end{itemize}
+	
+	The above requirements suggest the utilization of hardware parameters for creating such pseudonyms. Accordingly, to guarantee the above requirements, we have to define a device-wide scope and FDR-persistent method for the pseudonyms. Furthermore, the last two items indicate that the pseudonym should not contain any information concerning the device as human-readable, plain text. This indicates some kind of encryption of the previously generated identifier. 
+	
+	Ensuring the first set of requirements, multiple pieces of information concerning the hardware configuration of the device can be combined as a string. Naturally, the operating system may not have access to all of this information, but this may include:
+	\begin{itemize}
+		\item the manufacturer of the device (e.g. Samsung, LG, Huawei, etc.),
+		\item the model of the device	(e.g. Galaxy S7, Nexus 5s, P9, etc.),
+		\item the IMEI (International Mobile Station Equipment Identity) of the device,
+		\item the UUID (Universally Unique Identifier) of the device,
+		\item the year of manufacturing,
+		\item the MAC (Media Access Control) address of the WiFi and/or Bluetooth adapter(s).
+	\end{itemize}
+	
+	To have the best possible outcome, the biggest subset of the available information should be combined universally among the devices. To fulfill the second set of requirements, this information should be encoded. In order to do so, an appropriate encryption algorithm should be selected. For convenience, it would make sense to select a method, that generates a fixed-length string as output. For instance, MD5 generates a 128-bit, SHA-1 generates a 160-bit hash value for every input. Applying one of these or similar encryption methods on the data above hides the human-readable information about the devices. 
+	
 \section{Energy-efficiency}
 	\subsection{Duty cycle}
 	Solving the first task requires the following equations: 
