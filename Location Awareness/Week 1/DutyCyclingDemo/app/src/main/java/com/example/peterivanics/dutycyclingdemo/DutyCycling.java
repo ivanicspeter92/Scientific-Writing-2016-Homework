@@ -115,7 +115,18 @@ public class DutyCycling {
      */
     private void refreshTrackingVariables() {
         this.lastPollingTimestamp = Calendar.getInstance();
-        //this.movementSpeed = this.currentLocation.getSpeed(); //\TODO
         //this.estimatedError = this.currentLocation.getError(); //\TODO
+
+        //\TODO
+        // double newSpeed = this.currentLocation.getSpeed();
+        // if (this.movementSpeed != newSpeed) { // the movement speed changed, timer should be rescheduled
+        //      this.movementSpeed = newSpeed;
+        //      this.timer.schedule(new TimerTask() {
+        //          @Override
+        //          public void run() {
+        //           refreshCoordinatesIfTimeHasElapsed();
+        //          }
+        //          }, 0, (int)(this.getDeltaTimeSeconds()) * 1000);
+        // }
     }
 }
