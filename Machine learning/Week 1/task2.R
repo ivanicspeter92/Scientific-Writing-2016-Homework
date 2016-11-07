@@ -13,7 +13,7 @@ mse = function(points, func, numbers) {
 
 # configuration
 set.seed(20)
-degree = 10 
+degree = 8
 interval = c(-3, 3)
 points = 30
 
@@ -24,7 +24,7 @@ plot(x, y, pch=16)
 
 # creating model with the give degree
 regression = lm(y ~ poly(x, degree))
-values = seq(interval[1], interval[2], by = 0.1)
+values = seq(from = interval[1], to = interval[2], by = 0.1)
 model = predict(regression, data.frame(x = values), interval = "confidence", level = 0.95)
 
 # adding mode to the plot
@@ -36,13 +36,13 @@ sprintf("MSE: %f", mse_value)
 # task 2
 points = 1000
 
-points = createRandomPointsWithErrorsForTargetFunction(numberOfPoints = points, interval)
-x = points[,1]
-y = points[,2]
+values = createRandomPointsWithErrorsForTargetFunction(numberOfPoints = points, interval)
+x = values[,1]
+y = values[,2]
 
 points(x = x, y = y, col="red")
 
-values = seq(interval[1], interval[2], length.out = numbers)
+values = seq(interval[1], interval[2], length.out = number)
 newprediction = predict(regression, data.frame(x = values), interval = "confidence", level = 0.95)
 
 new_mse_value = mse(points = newprediction[,1], func = y, numbers = points)
