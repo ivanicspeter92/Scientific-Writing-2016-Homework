@@ -80,7 +80,7 @@ public class DutyCycling {
 
     private void refreshTrackingVariables() {
         this.lastPollingDate = Calendar.getInstance();
-        //this.movementSpeed = this.currentLocation.getSpeed();
-        //this.estimatedError = ;
+        //this.movementSpeed = this.currentLocation.getSpeed(); //\TODO
+        //this.estimatedError = this.currentLocation.getError(); //\TODO
     }
 }
