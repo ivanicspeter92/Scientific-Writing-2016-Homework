@@ -13,14 +13,30 @@ import android.util.Log;
  */
 
 public class DutyCycling {
+    /**
+     * The last known movement speed of the user in [m/s].
+     */
     private double movementSpeed;
+    /**
+     * The error treshold [meters].
+     */
     private double treshold;
-
+    /**
+     * The Location object retrieved from the service provider. Performing calls on this object will communicate with the provider and should be done only during the duty cycle.
+     */
     private Location currentLocation = new Location(LocationManager.GPS_PROVIDER);
-    private Calendar lastPollingDate;
+    /**
+     * The timestamp when the last coordinates were retrieved.
+     */
+    private Calendar lastPollingTimestamp;
+    /**
+     * The last known coordinates of the device.
+     */
     private GPSCoordinates coordinates;
+    /**
+     * The estimated error of the last known location [meters].
+     */
     private double estimatedError = 0;
-
     private Timer timer = new Timer();
 
     public DutyCycling(double movementSpeed, double treshold) {
@@ -29,14 +45,27 @@ public class DutyCycling {
         this.treshold = treshold;
     }
 
+    /**
+     * Getter method for the coordinates field.
+     *
+     * @return The value of the coordinates field.
+     */
     public GPSCoordinates getCoordinates() {
         return this.coordinates;
     }
 
+    /**
+     * Calculates how often the GPS coordinates should be refreshed using the formula (treshold - estimated error) / movement speed [seconds].
+     *
+     * @return The delta t value which is equivalent to the polling time of the GPS coordinates.
+     */
     public double getDeltaTimeSeconds() {
         return (this.treshold - this.estimatedError) / this.movementSpeed;
     }
 
+    /**
+     * Starts the timer for the DutyCycling.
+     */
     public void start() {
         this.refreshCoordinates();
         Log.d("STATE", "Duty cycling started! Frequency: " + this.getDeltaTimeSeconds());
@@ -48,6 +77,9 @@ public class DutyCycling {
         }, 0, (int)(this.getDeltaTimeSeconds()) * 1000);
     }
 
+    /**
+     * Stops the timer for the DutyCycling.
+     */
     public void stop(){
         this.timer.cancel();
     }
@@ -65,7 +97,7 @@ public class DutyCycling {
         Calendar currentDate = Calendar.getInstance();
         currentDate.add(Calendar.SECOND, -1 * (int)this.getDeltaTimeSeconds());
 
-        if (currentDate.after(this.lastPollingDate)) {
+        if (currentDate.after(this.lastPollingTimestamp)) {
             return true;
         }
         return false;
@@ -78,8 +110,11 @@ public class DutyCycling {
         Log.d("STATE", "Coordinates refreshed! New coordinates: (" + this.coordinates.latitude + ", " + this.coordinates.longitude + ")");
     }
 
+    /**
+     * Refreshes the tracking variables after a successful location update.
+     */
     private void refreshTrackingVariables() {
-        this.lastPollingDate = Calendar.getInstance();
+        this.lastPollingTimestamp = Calendar.getInstance();
         //this.movementSpeed = this.currentLocation.getSpeed(); //\TODO
         //this.estimatedError = this.currentLocation.getError(); //\TODO
     }
