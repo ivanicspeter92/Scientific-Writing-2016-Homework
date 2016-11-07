@@ -23,10 +23,7 @@
 \numberofpagesinformation{\numberofpages\ pages}
 
 \mytableofcontents
-
-\section{Introduction}
-	 
-	 
+ 
 \section{Location-based Services} 
 	In the following subchapters, four Location Based Services (hereinafter LBSs) are introduced briefly. The first three - Commuter, Sports Tracker and Frank - are consumer applications. They show some similarities in their business model and targeted audience as they freely available for everyone on today's popular mobile platform (iOS, Android and Windows Phone). However, they differ in their functionality as Commuter supports the usage of public transportation, Sports Tracker encourages the community to do physical exercises, while the Frank is an application that helps students getting around and claim discounts in Finland. The reason for describing these applications is their popularity, different focus and application area. As an active end-user, I have hands-on experience in all of them. In my opinion these applications are great specimen for this assignment.
 	
@@ -217,6 +214,11 @@
 	\end{eqnarray*}
 	
 	\subsection{Android Location API}
+	The attached $DutyCycling.java$ file contains some the basics of the implementation for the duty cycling using the Android Location API functions. The attached file is a simple Java class that implements the explained duty cycling mechanism using the Android Location API's functions. The high-level principles of the class are as follows.
+	
+	The class can be instantiated by passing a $movementSpeed$ and a $treshdold$ value (both are $double$ types). The duty cycling can be started by calling the $start()$ method and stopped by calling the $stop()$ method on the object. The former fires up a timer, which will request the current location coordinates from the service provider, if "sufficient" amount of time has elapsed. The delta time between the refresh-intervals are calculated by the $getDeltaTimeSeconds()$, that relies on the actual value of the $movementSpeed$ class variable (noting that it might change over time). 
+	
+	As soon as the timer fires up, the algorithm validates if the sufficient time has elapsed. If yes, a request is made to the service provider to query the new coordinates, which is then stored to the $coordinates$ class variable as GIS coordinates in the $refreshCoordinates()$ function. Otherwise, the timer sleeps until the next tick. When the location is refreshed, the $refreshTrackingVariables()$ function is called, which refreshes the $movementSpeed$ and $estimatedError$ variables in order to keep up the duty cycling appropriate to the environmental changes.
 	
 \pagebreak
 
