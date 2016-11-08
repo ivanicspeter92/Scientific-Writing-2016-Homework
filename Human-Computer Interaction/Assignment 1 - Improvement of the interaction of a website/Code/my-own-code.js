@@ -1,0 +1,57 @@
+/*
+ * University of Helsinki
+ * Department of Computer Science
+ * 582201 Human-Computer Interaction
+ * Autumn 2016
+ * Assignment 1: Improvement of the interaction of a website
+ * Copyright of this assignment: (c) Antti Salovaara, antti.salovaara@helsinki.fi
+ * Feel free to modify and adapt to your own teaching - attribution is not required but is appreciated
+ */
+
+ /*
+  * This JavaScript code uses jQuery. All functions that have "$" are jQuery functions.
+  * Learn about JavaScript here: http://www.w3schools.com/js/default.asp
+  * Learn about jQuery here: http://jquery.com and http://www.w3schools.com/jquery/default.asp
+  *
+  * Feel free to add more 3rd party JavaScript libraries (in addition to jQuery) if you want!
+  */
+
+/* ready():
+ * Commands within this function are launched when the browser has fully
+ * loaded the contents of the page
+ */
+$(document).ready(function() {
+
+  // This is an example how you can get a list of valid city names from the "server".
+  // In your code, you can use this call to validate that the user's input in City field is valid.
+  backendsimulator.cityExists( "helsinki",function(result) {
+    alert("Callback function called, answer is: "+result);
+  });
+  // Note: there is a also getCities(). You can use that to gather all the city
+  // names to your javascript code.
+  // Try this: backendsimulator.getCities( function(cityList) { // add code here });
+
+
+  // click(): The commands within this function are run when the given #id is clicked:
+  // See https://api.jquery.com/click/
+  $("#submit").click( function() {
+
+    // Add text after the submit button:
+    // See http://api.jquery.com/after/
+    $("#submit").after("<span id=\"notification\">Click!</span>");
+
+    // Add an animation that makes the click slowly fade away in 1000 ms:
+    // See http://api.jquery.com/fadeOut/
+    $("#notification").fadeOut(1000);
+
+
+    var contentsAreValid = true;
+    if (contentsAreValid) {
+        alert("Thanks for your input!\n\n(This is the text that user should see if s/he has given valid content to all the fields in this form. Remove this text in the parentheses.)");
+    }
+  });
+
+
+
+
+});

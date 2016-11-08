@@ -1,0 +1,22 @@
+[copy this to Word, LaTeX or any other word processor of your choice, and return the report in PDF]
+
+
+
+Assignment 1:  Improvement of the interaction of a website
+
+Student: YOUR NAME HERE
+
+
+1. Heuristic evaluation
+
+[description of the usability characteristics used, and UI improvements planned based on them]
+
+2. Implementation
+
+[description that helps the lecturer(s) to understand your solution; does not need to be long]
+
+3. Unimplemented features
+
+[describe here the solutions that your web site does not have but which would be useful and important]
+
+4. References
