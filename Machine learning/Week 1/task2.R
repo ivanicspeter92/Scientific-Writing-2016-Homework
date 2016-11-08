@@ -8,7 +8,8 @@ createRandomPointsWithErrorsForTargetFunction = function(numberOfPoints, interva
 }
 
 mse = function(points, func, numbers) {
-  return(sum((points - func) ^ 2) / numbers)
+  #return(sum((points - func) ^ 2) / numbers)
+  return(mean((points - func) ^ 2))
 } 
 
 # configuration
