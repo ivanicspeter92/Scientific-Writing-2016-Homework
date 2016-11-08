@@ -1,5 +1,6 @@
 plotOutstateVSPrivate = function(data) {
-  boxplot(data$Outstate, data$Private, names = c("Outstage", "Private"), log = "y")
+  plot(data$Private, data$Outstate)
+  title(main = "Outstate vs. Private")
 }
 
 plotOutstateVSElite = function(data) {
