@@ -7,52 +7,47 @@
  * Autumn 2016
  * Assignment 1: Improvement of the interaction of a website
  * Copyright (c) Antti Salovaara, antti.salovaara@helsinki.fi
- * Feel free to modify and adapt to your own teaching - no attribution required
+ * Modified by Peter Ivanics, peter.ivanics@helsinki.fi
 -->
 
 <html>
 <head>
-<title>Online Shop -- Registration</title>
+    <title>Online Shop -- Registration</title>
 
-<!-- Don't change these: -->
-<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-<script src="http://cs.helsinki.fi/u/aksalova/582201/backend-simulator.js"></script>
+    <!-- Don't change these: -->
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src="http://cs.helsinki.fi/u/aksalova/582201/backend-simulator.js"></script>
 
-<!-- INSTRUCTIONS
-
-Edit this html file as well the two following files' contents as much as you find necessary:
--->
-<script src="./my-own-code.js"></script>
-<link rel="stylesheet" href="./my-stylesheet.css" />
-
+    <script src="./my-own-code.js"></script>
+    <link rel="stylesheet" href="./my-stylesheet.css" />
 </head>
 <body>
+    <h1>Signup</h1>
 
-<h1>Signup</h1>
+    <form>
+        <p>First name:
+        <input type="text" id="firstname" class="userinput"></input>
+        </p>
 
-<p>First name:
-<input type="text" id="firstname" class="userinput"></input>
-</p>
+        <p>Family name:
+        <input type="text" id="familyname" class="userinput"></input>
+        </p>
 
-<p>Family name:
-<input type="text" id="familyname" class="userinput"></input>
-</p>
+        <p>Street address:
+        <input type="text" id="streetaddress" class="userinput"></input>
+        </p>
 
-<p>Street address:
-<input type="text" id="streetaddress" class="userinput"></input>
-</p>
+        <p>Post code:
+        <input type="text" id="postcode" class="userinput"></input>
+        </p>
 
-<p>Post code:
-<input type="text" id="postcode" class="userinput"></input>
-</p>
+        <p>City:
+        <input type="text" id="city" class="userinput"></input>
+        </p>
 
-<p>City:
-<input type="text" id="city" class="userinput"></input>
-</p>
-
-<p>
-<button type="button" id="submit">Send data</button>
-</p>
-
+        <p>
+        <button type="button" id="submit">Send data</button>
+        </p>
+    </form>
 </body>
 </html>

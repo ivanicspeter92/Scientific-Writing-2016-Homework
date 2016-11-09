@@ -5,7 +5,7 @@
  * Autumn 2016
  * Assignment 1: Improvement of the interaction of a website
  * Copyright of this assignment: (c) Antti Salovaara, antti.salovaara@helsinki.fi
- * Feel free to modify and adapt to your own teaching - attribution is not required but is appreciated
+ * Modified by Peter Ivanics, peter.ivanics@helsinki.fi
  */
 
  /*
@@ -50,8 +50,4 @@ $(document).ready(function() {
         alert("Thanks for your input!\n\n(This is the text that user should see if s/he has given valid content to all the fields in this form. Remove this text in the parentheses.)");
     }
   });
-
-
-
-
 });
