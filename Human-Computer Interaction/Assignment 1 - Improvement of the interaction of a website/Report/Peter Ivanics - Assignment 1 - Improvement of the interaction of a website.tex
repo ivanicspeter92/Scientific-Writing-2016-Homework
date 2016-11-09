@@ -38,18 +38,24 @@
 	
 	 To begin the analysis with, the original form displayed on Figure \ref{original_webpage} is as minimalistic as possible. In general this should not be considered as a problem, but rather as a possibility, because this observation gives a lot of room for improvements. Taking the first look at the original webpage, one can immediately see what it is about - the user is expected to provide certain information about him/herself to sign up for a service. Nevertheless, one notices soon that this page does not correspond to today's standards, the page is not optimized for mobile devices and usability can be greatly enhanced by applying some simple modifications. Due to the simplicity of the page, too many use-case scenarios cannot be investigated and therefore only the inspection of this screen is explained. The suggestions to follow are explained in importance order (from the most important to the least important). 
 	 
-	 The most important principle to point out during the improvement of a web page is the "Don't make me think" principle \cite{SK14}. To summarize in one sentence, the meaning is to keep the webpage as self-evident and obvious as possible. When a user is presented this page, they should immediately understand that 
+	 The most important principle to point out during the improvement of a web page is the "Don't make me think" principle \cite{SK14}. To summarize in one sentence, the meaning is to keep the webpage as self-evident and obvious as possible. As suggestions are made for improving the look \& feel of the site, the aspects below should be kept in mind all the time. When a user is presented this page, they should immediately understand that 
 	 
 	\begin{enumerate}
 		\item they are on a registration form, 
 		\item what are they signing up for,
 		\item what information are they required to give,
-		\item what subset of the information is mandatory (i.e. which are the mandatory fields and which ones can be skipped),
 		\item how do they submit that information,
-		\item what happens after the information is submitted.
+		\item what happens after the information is submitted/where the data is going to be go,
+		\item what subset of the information is mandatory (i.e. which are the mandatory fields and which ones can be skipped).
 	\end{enumerate}
 	
+	The next suggestion would be to ensure users will know how to use the form. Naturally, this strongly correlates with the previous "Don't make me think" principle \cite{SK14}. To be more specific, the form should have standard controls, use common conventions, metaphors and keep up the clarity and consistency. This would mean maintaining the same elements size of the elements on the screen, usage of the same colors, font size and type consistently. The content should be organized in a logical manner, for instance the items in the form should be in a reasonable order and the submit button should stay on the bottom of the form.
 	
+	To increase user attention and have a good first impression, the page could have some lively colors while keeping up an aesthetic and minimalistic design. This also means that the text should remain legible, the more important content should be emphasized using larger font size and there should be contrast between the text and the background's color. 
+	
+	Next up, as the user starts filling the form, he/she should get immediate feedback about the correctness of the information. For instance, when one of the textboxes looses focus, the borders of the control could turn green, if the given information is correct or red, if the entered value is invalid. This will give immediate feedback to the user about the input and help to avoid errors. An additional aim is to avoid potential errors as much as possible, for instance using dropdown selection or checkboxes rather than open text fields whenever possible \cite{SK14}. In case one of the values is incorrect, helpful error messages should indicate the cause of the problem and help the user to make proper corrections.
+	
+	Last but not least, to keep up to today's standards, the page should support mobile devices. Supporting multiple screen sizes and browsers would add value to the site and greatly enhance user experience along various platforms and therefore should be kept in mind during the implementation. Fortunately, there are many popular and ready-made solutions that provide wide support for all screen sizes. 
 
 \section{Implementation}
 
