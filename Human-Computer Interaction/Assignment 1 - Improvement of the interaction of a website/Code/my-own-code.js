@@ -43,7 +43,7 @@ $(document).ready(function() {
   $("#submit").click( function() {
     var contentsAreValid = true;
     if (contentsAreValid) {
-        alert("Thanks for your input!\n\n(This is the text that user should see if s/he has given valid content to all the fields in this form. Remove this text in the parentheses.)");
+        alert("Thanks for your input!");
     }
   });
 });
