@@ -21,10 +21,6 @@
  * loaded the contents of the page
  */
 $(document).ready(function() {
-  // In your code, you can use this call to validate that the user's input in City field is valid.
-  // backendsimulator.cityExists("helsinki", function(result) {
-  //   alert("Callback function called, answer is: " + result);
-  // });
   var $citiesDropdown = $("#cities");
   backendsimulator.getCities(function(cityList) { 
       $citiesDropdown.empty();
@@ -38,12 +34,11 @@ $(document).ready(function() {
       });
   };
 
-  // click(): The commands within this function are run when the given #id is clicked:
-  // See https://api.jquery.com/click/
   $("#submit").click( function() {
-    var contentsAreValid = true;
     if (contentsAreValid) {
         alert("Thanks for your input!");
+    } else {
+      alert("Oops, it seems like something is wrong! Please review the form and submit again");
     }
   });
 });
