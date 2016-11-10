@@ -7,19 +7,6 @@
  * Copyright of this assignment: (c) Antti Salovaara, antti.salovaara@helsinki.fi
  * Modified by Peter Ivanics, peter.ivanics@helsinki.fi
  */
-
- /*
-  * This JavaScript code uses jQuery. All functions that have "$" are jQuery functions.
-  * Learn about JavaScript here: http://www.w3schools.com/js/default.asp
-  * Learn about jQuery here: http://jquery.com and http://www.w3schools.com/jquery/default.asp
-  *
-  * Feel free to add more 3rd party JavaScript libraries (in addition to jQuery) if you want!
-  */
-
-/* ready():
- * Commands within this function are launched when the browser has fully
- * loaded the contents of the page
- */
 $(document).ready(function() {
   var $citiesDropdown = $("#cities");
   backendsimulator.getCities(function(cityList) { 
@@ -35,7 +22,7 @@ $(document).ready(function() {
   };
 
   $("#submit").click( function() {
-    var contentsAreValid = true;
+    var contentsAreValid = true; // TODO add form validation
     if (contentsAreValid) {
         alert("Thanks for your input!");
     } else {
