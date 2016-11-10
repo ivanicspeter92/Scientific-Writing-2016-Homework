@@ -35,6 +35,7 @@ $(document).ready(function() {
   };
 
   $("#submit").click( function() {
+    var contentsAreValid = true;
     if (contentsAreValid) {
         alert("Thanks for your input!");
     } else {
