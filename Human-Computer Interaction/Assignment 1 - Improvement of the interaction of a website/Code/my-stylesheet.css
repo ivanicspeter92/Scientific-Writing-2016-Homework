@@ -21,6 +21,10 @@ h1 {
   text-align: center;
 }
 
+#registration-form img {
+  min-width: 250px;
+}
+
 .userinput {
   color: black;
   font-size: 18px;
@@ -34,10 +38,6 @@ h1 {
 
 .userinput:valid {
   border: 2px solid green;
-}
-
-.progress-ring {
-  max-height: 150px;
 }
 
 fieldset {
