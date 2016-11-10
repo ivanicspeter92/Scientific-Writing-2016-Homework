@@ -23,7 +23,7 @@
 	
 	\begin{figure}[h] 
 		\begin{center}
-			\includegraphics[height=0.6\textwidth]{images/original_webpage.png}
+			\includegraphics[height=0.4\textwidth]{images/original_webpage.png}
 			\caption{The webpage of discussion in its original state, that is going to be analyzed and improved in this report.}
 			\label{original_webpage}
 		\end{center}
@@ -53,11 +53,9 @@
 	
 	To increase user attention and have a good first impression, the page could have some lively colors while keeping up an aesthetic and minimalistic design. This also means that the text should remain legible, the more important content should be emphasized using larger font size and there should be contrast between the text and the background's color. 
 	
-	Next up, as the user starts filling the form, he/she should get immediate feedback about the correctness of the information. For instance, when one of the textboxes looses focus, the borders of the control could turn green, if the given information is correct or red, if the entered value is invalid. This will give immediate feedback to the user about the input and help to avoid errors. An additional aim is to avoid potential errors as much as possible, for instance using dropdown selection or checkboxes rather than open text fields whenever possible \cite{SK14}. In case open text fields expect to have an input of a pre-defined format, the interface should intuitively help the user as suggested by Kim \cite{KIM15}. In case one of the values is incorrect, helpful error messages should indicate the cause of the problem and help the user to make proper corrections.
+	Next up, as the user starts filling the form, he/she should get immediate feedback about the correctness of the information. For instance, when one of the textboxes looses focus, the borders of the control could turn green, if the given information is correct or red, if the entered value is invalid. This will give immediate feedback to the user about the input and help to avoid errors. An additional aim is to avoid potential errors as much as possible, for instance using dropdown selection for the city field rather than open text fields whenever possible \cite{SK14}. In case open text fields expect to have an input of a pre-defined format, the interface should intuitively help the user as suggested by Kim \cite{KIM15}. In case one of the values is incorrect, helpful error messages should indicate the cause of the problem and help the user to make proper corrections.
 	
 	Last but not least, to keep up to today's standards, the page should support mobile devices. Supporting multiple screen sizes and browsers would add value to the site and greatly enhance user experience along various platforms and therefore should be kept in mind during the implementation. Of course, in a real scenario this may not be necessary depending on the targeted audience, however it is good to be on the save side in this matter. Fortunately, there are many popular and ready-made solutions that provide wide support for all screen sizes. 
-	
-	To summarize the suggestions in preference order, they are listed in Table  \ref{usability_characteristics_table} below. During the implementation these aspects are going to be kept in mind as indicated with their priority order. 
 	
 	\begin{table}[]
 		\centering
@@ -74,15 +72,47 @@
 			7        & Error prevention and recovery              \\
 			8        & Support for mobile                        
 		\end{tabular}
-	\end{table}
+	\end{table}		
+	
+	To summarize the suggestions in preference order, they are listed in Table  \ref{usability_characteristics_table} below. During the implementation these aspects are going to be kept in mind as indicated with their priority order. 
 	
 \section{Implementation}
-% [description that helps the lecturer(s) to understand your solution; does not need to be long]
+	% [description that helps the lecturer(s) to understand your solution; does not need to be long]
+	To begin with, a logo was added on the top of the screen so users understand which company's/brand's webpage they are browsing and what kind of service they are signing up for. Secondly, the labels from the textboxes were moved to placeholders to save some of the space and reduce the needless words on the screen.  The title was renamed to "Registration form" and the button's label was changed to "Submit". These indicate a bit more clearly what is happening on the page.
+	
+	\begin{figure}[h] 
+		\begin{center}
+			\includegraphics[height=0.4\textwidth]{images/webpage_halfway.png}
+			\caption{The Webpage after small adjustments to the form.}
+			\label{webpage_halfway}
+		\end{center}
+	\end{figure}
+	
+	Next, the city field was changed to a dropdown list. The items in the dropdown list are populated using the given $backendsimulator.getCities()$ function. This greatly enhances usability and avoids many potential errors. The street address input field was moved below the city. The reason behind this decision is the logical order of the fields. Finally, each field was made required. On top of that, the CSS settings were configured in a way that each field has a reddish border if the inserted values are invalid and green if the inserted values are valid. This gives immediate feedback to the users as they are typing so errors can be corrected accordingly. At this point of time, the page looked like as displayed on Figure \ref{webpage_halfway}. 
+	
+	Next, regular expressions were applied to ensure validation. Afterwards, Bootstrap was added to the page to support mobile devices and multiple screen sizes. At the same time, layout adjustments were made. Finally, colors were added to the CSS so the page became more attractive and lively. The final result is shown on Figure \ref{improved_webpage}. 
+	
+	\begin{figure}[h] 
+		\begin{center}
+			\includegraphics[height=0.4\textwidth]{images/final_webpage.png}
+			\caption{The improved webpage right after opening.}
+			\label{improved_webpage}
+		\end{center}
+	\end{figure}
 
 \section{Unimplemented features}
-
-% [describe here the solutions that your web site does not have but which would be useful and important]
-
+	% [describe here the solutions that your web site does not have but which would be useful and important]
+	Due to the short time-frame, only a subset of the proposals were implemented. To further increase usability, the following features/improvements should be addressed: 
+	
+	\begin{itemize}
+		\item validating and sending the form upon the Submit button is pressed,
+		\item displaying meaningful error messages pointing at the problematic text fields, e.g. "The postal code can contain only numerical characters", 
+		\item confirmation screen after a successful registration, 
+		\item auto-complete for the street address as the user is typing,
+		\item selecting street address from a map.
+	\end{itemize}
+	
+\pagebreak
 \nocite{*}
 \bibliographystyle{tktl}
 \bibliography{bibliography}
