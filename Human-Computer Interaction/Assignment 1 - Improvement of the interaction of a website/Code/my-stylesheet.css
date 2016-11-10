@@ -13,9 +13,19 @@ body {
   font-family: sans-serif;
 }
 
+h1 {
+  padding-bottom: 24px;
+}
+
+#registration-form {
+  text-align: center;
+}
+
 .userinput {
   color: black;
-  border:1px dashed blue;
+  font-size: 18px;
+  height: 50px;
+  width: 100%;
 }
 
 .userinput:invalid {
@@ -24,4 +34,17 @@ body {
 
 .userinput:valid {
   border: 2px solid green;
+}
+
+.progress-ring {
+  max-height: 150px;
+}
+
+fieldset {
+  padding: 10px;
+}
+
+.btn-primary {
+  height: 100px;
+  font-size: 24px;
 }

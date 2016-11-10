@@ -30,7 +30,6 @@ $(document).ready(function() {
       $citiesDropdown.empty();
       $citiesDropdown.append("<option disabled selected>Please select...</option>");
       loadCitiesToDropdown(cityList);
-      $("#loading-cities").fadeOut(1000);
   });
 
   function loadCitiesToDropdown(cityList) {
@@ -42,15 +41,6 @@ $(document).ready(function() {
   // click(): The commands within this function are run when the given #id is clicked:
   // See https://api.jquery.com/click/
   $("#submit").click( function() {
-    // Add text after the submit button:
-    // See http://api.jquery.com/after/
-    $("#submit").after("<span id=\"notification\">Click!</span>");
-
-    // Add an animation that makes the click slowly fade away in 1000 ms:
-    // See http://api.jquery.com/fadeOut/
-    $("#notification").fadeOut(1000);
-
-
     var contentsAreValid = true;
     if (contentsAreValid) {
         alert("Thanks for your input!\n\n(This is the text that user should see if s/he has given valid content to all the fields in this form. Remove this text in the parentheses.)");

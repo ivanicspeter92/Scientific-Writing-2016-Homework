@@ -17,37 +17,41 @@
     <!-- Don't change these: -->
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
     <script src="http://cs.helsinki.fi/u/aksalova/582201/backend-simulator.js"></script>
-
     <script src="./my-own-code.js"></script>
+
+    <link rel='stylesheet prefetch' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css'>
     <link rel="stylesheet" href="./my-stylesheet.css" />
 </head>
 <body>
-    <img src = "images/logo.png"/>
-    <h1>Registration form</h1>
-    <form>
-        <p>
-            <input placeholder="First name" type="text" id="firstname" class="userinput" required></input>
-        </p>
+    <div id="registration-form" class="container content-wrapper">
+        <img src="images/logo.png" class="img-responsive center-block"/>
+        <h1>Registration form</h1>
 
-        <p>
-            <input placeholder="Family name" type="text" id="familyname" class="userinput" required></input>
-        </p>
+        <form>
+            <fieldset>
+                <input class="form-control userinput" placeholder="First name" type="text" id="firstname" pattern="[\D]{3,}" required></input>
+            </fieldset>
 
-        <p>
-            <input placeholder="Street address" type="text" id="streetaddress" class="userinput" required></input>
-        </p>
+            <fieldset>
+                <input class="form-control userinput" placeholder="Family name" type="text" id="familyname" pattern="[a-z|A-Z]{3,}" required></input>
+            </fieldset>
 
-        <p>
-            <input placeholder="Post code" type="text" id="postcode" class="userinput" pattern="[0-9.]+" required></input>
-        </p>
+            <fieldset>
+                <input class="form-control userinput" placeholder="Post code" type="text" id="postcode" pattern="[0-9.]+" required></input>
+            </fieldset>
 
-        <div>
-            <select id="cities" class="userinput" required></select> 
-            <span id="loading-cities"><img src="images/loading.gif"></img></span>
-        </div>
-        <p>
-            <button type="button" id="submit">Submit</button>
-        </p>
-    </form>
+            <fieldset>
+                <select class="form-control userinput" id="cities" required></select> </span>
+            </fieldset>
+
+            <fieldset>
+                <input class="form-control userinput" placeholder="Street address" type="text" id="streetaddress" required></input>
+            </fieldset>
+
+            <fieldset>
+                <button class="btn btn-primary btn-block" type="button" id="submit">Submit</button>
+            </fieldset>
+        </form>
+    </div>
 </body>
 </html>
