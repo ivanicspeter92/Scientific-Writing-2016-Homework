@@ -21,21 +21,27 @@
  * loaded the contents of the page
  */
 $(document).ready(function() {
-
-  // This is an example how you can get a list of valid city names from the "server".
   // In your code, you can use this call to validate that the user's input in City field is valid.
-  backendsimulator.cityExists( "helsinki",function(result) {
-    alert("Callback function called, answer is: "+result);
+  // backendsimulator.cityExists("helsinki", function(result) {
+  //   alert("Callback function called, answer is: " + result);
+  // });
+  var $citiesDropdown = $("#cities");
+  backendsimulator.getCities(function(cityList) { 
+      $citiesDropdown.empty();
+      $citiesDropdown.append("<option disabled selected>Please select...</option>");
+      loadCitiesToDropdown(cityList);
+      $("#loading-cities").fadeOut(1000);
   });
-  // Note: there is a also getCities(). You can use that to gather all the city
-  // names to your javascript code.
-  // Try this: backendsimulator.getCities( function(cityList) { // add code here });
 
+  function loadCitiesToDropdown(cityList) {
+      $.each(cityList, function(index, value) {
+        $citiesDropdown.append("<option value=\"" + value +  "\">" + value + "</option>");
+      });
+  };
 
   // click(): The commands within this function are run when the given #id is clicked:
   // See https://api.jquery.com/click/
   $("#submit").click( function() {
-
     // Add text after the submit button:
     // See http://api.jquery.com/after/
     $("#submit").after("<span id=\"notification\">Click!</span>");
