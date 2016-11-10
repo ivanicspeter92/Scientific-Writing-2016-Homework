@@ -14,6 +14,14 @@ body {
 }
 
 .userinput {
-  color: red;
+  color: black;
   border:1px dashed blue;
+}
+
+.userinput:invalid {
+  border: 2px solid red;
+}
+
+.userinput:valid {
+  border: 2px solid green;
 }
