@@ -37,7 +37,13 @@
 		\item distance distortion refers to the error in the distance between two points caused by the distortion, for instance appears to be 2.5 kilometers when in reality is 5 kilometers,
 		\item angular distortion means the change in a shape after the map projection, for instance when a circle appears as an ellipse.
 	\end{itemize}
-	\item 
+	\item The Mercator and the Transverse Mercator projections are both Cylindrical map projection methods. The main difference between them is caused by the fact that the former creates the projection with the Earth's equator touching the cylinder, while the latter rotates the cylinder by 90° with respect to rotation axis of the planet. This yields in different types of distortions for bot projections: 
+	\begin{itemize}
+		\item the Mercator suffers large objects with respect to their scale (e.g. the poles appear larger than they actually are),
+		\item the Transverse Mercator distorts shapes and areas at extreme longitudes (e.g. South America appears larger).
+	\end{itemize}
+	
+	Both projections are conformal. The former is the most known and used technique to project the map of the Earth.
 \end{enumerate}
 
 \section{KML Visualization}
