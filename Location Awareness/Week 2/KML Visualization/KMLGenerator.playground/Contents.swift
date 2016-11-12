@@ -13,5 +13,6 @@ func readLines(fileURL: URL) -> [String]? {
 if let fileURL = Bundle.main.url(forResource: "tokyo-lon-lat", withExtension: "csv"), let coordinates = readLines(fileURL: fileURL) {
     let kml = KML(coordinatesStringArray: coordinates)
     
-    print(kml.xmlString())
+    kml.xmlString()
+    kml.xmlString(representation: .line)
 }

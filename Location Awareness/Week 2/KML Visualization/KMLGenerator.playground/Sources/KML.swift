@@ -3,6 +3,9 @@ import Foundation
 public struct KML {
     // MARK: - Variables
     public var coordinates = [Coordinates]()
+    public var xmlString: String {
+        return self.xmlString()
+    }
     
     // MARK: - Initializers
     public init(coordinatesStringArray: [String]) {
@@ -16,15 +19,22 @@ public struct KML {
     public init(coordinates: [Coordinates]) {
         self.coordinates = coordinates
     }
+    
     // MARK: - Public
-    public func xmlString() -> String {
+    public func xmlString(representation: KMLRepresentation = .markers) -> String {
         let root = XMLElement(name: KMLTag.root.rawValue)
         let rootAttribute = XMLNode.attribute(withName: "xmlns", stringValue: "http://www.opengis.net/kml/2.2") as! XMLNode
         root.addAttribute(rootAttribute)
         let xml = XMLDocument(rootElement: root)
         let document = XMLElement(name: KMLTag.document.rawValue)
         
-        document.addChildren(self.pointsAsPlacemarkElements())
+        switch representation {
+        case .line:
+            document.addChild(self.pointsAsLineStringPlacemark())
+        case .markers:
+            document.addChildren(self.pointsAsPlacemarkElements())
+        }
+        
         root.addChild(document)
         
         return "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" + xml.xmlString
