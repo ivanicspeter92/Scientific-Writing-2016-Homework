@@ -16,7 +16,7 @@ public struct KML {
     public init(coordinates: [Coordinates]) {
         self.coordinates = coordinates
     }
-    // MARK: - Custom logic
+    // MARK: - Public
     public func xmlString() -> String {
         let root = XMLElement(name: KMLTag.root.rawValue)
         let rootAttribute = XMLNode.attribute(withName: "xmlns", stringValue: "http://www.opengis.net/kml/2.2") as! XMLNode
@@ -24,6 +24,15 @@ public struct KML {
         let xml = XMLDocument(rootElement: root)
         let document = XMLElement(name: KMLTag.document.rawValue)
         
+        document.addChildren(self.pointsAsPlacemarkElements())
+        root.addChild(document)
+        
+        return "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" + xml.xmlString
+    }
+    
+    // MARK: - Private
+    private func pointsAsPlacemarkElements() -> [XMLElement] {
+        var placemarks = [XMLElement]()
         for coordinate in self.coordinates {
             let placemark = XMLElement(name: KMLTag.placemark.rawValue)
             placemark.addChild(XMLElement(name: KMLTag.name.rawValue, stringValue: nil))
@@ -31,11 +40,9 @@ public struct KML {
             
             point.addChild(XMLElement(name: KMLTag.coordinates.rawValue, stringValue: coordinate.description))
             placemark.addChild(point)
-            
-            document.addChild(placemark)
+            placemarks.append(placemark)
         }
-        root.addChild(document)
         
-        return "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" + xml.xmlString
+        return placemarks
     }
 }
