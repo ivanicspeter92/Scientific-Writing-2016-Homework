@@ -43,14 +43,17 @@ public struct KML {
     // MARK: - Private
     private func pointsAsPlacemarkElements() -> [XMLElement] {
         var placemarks = [XMLElement]()
+        
+        var counter = 1
         for coordinate in self.coordinates {
             let placemark = XMLElement(name: KMLTag.placemark.rawValue)
-            placemark.addChild(XMLElement(name: KMLTag.name.rawValue, stringValue: nil))
+            placemark.addChild(XMLElement(name: KMLTag.name.rawValue, stringValue: "#" + counter.description))
             let point = XMLElement(name: KMLTag.point.rawValue)
             
             point.addChild(XMLElement(name: KMLTag.coordinates.rawValue, stringValue: coordinate.description))
             placemark.addChild(point)
             placemarks.append(placemark)
+            counter += 1
         }
         
         return placemarks
