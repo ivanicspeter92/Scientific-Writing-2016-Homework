@@ -45,4 +45,20 @@ public struct KML {
         
         return placemarks
     }
+    
+    private func pointsAsLineStringPlacemark() -> XMLElement {
+        let placemark = XMLElement(name: KMLTag.placemark.rawValue)
+        
+        var coordinateString = ""
+        for coordinate in self.coordinates {
+            coordinateString += coordinate.description + " "
+        }
+        coordinateString.removeLastCharacter()
+        
+        let lineString = XMLElement(name: KMLTag.lineString.rawValue)
+        lineString.addChild(XMLElement(name: KMLTag.coordinates.rawValue, stringValue: coordinateString))
+        placemark.addChild(lineString)
+        
+        return placemark
+    }
 }

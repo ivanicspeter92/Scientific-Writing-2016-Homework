@@ -5,4 +5,5 @@ public enum KMLTag: String {
     case name = "name"
     case point = "Point"
     case coordinates = "coordinates"
+    case lineString = "LineString"
 }
