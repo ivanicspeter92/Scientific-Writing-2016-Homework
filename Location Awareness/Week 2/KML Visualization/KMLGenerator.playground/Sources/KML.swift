@@ -2,7 +2,22 @@ import Foundation
 
 public struct KML {
     // MARK: - Variables
-    public var xmlString: String {
+    public var coordinates = [Coordinates]()
+    
+    // MARK: - Initializers
+    public init(coordinatesStringArray: [String]) {
+        for coordinateString in coordinatesStringArray where !coordinateString.isEmpty {
+            if let coordinate = Coordinates(string: coordinateString) {
+                self.coordinates.append(coordinate)
+            }
+        }
+    }
+    
+    public init(coordinates: [Coordinates]) {
+        self.coordinates = coordinates
+    }
+    // MARK: - Custom logic
+    public func xmlString() -> String {
         let root = XMLElement(name: KMLTag.root.rawValue)
         let rootAttribute = XMLNode.attribute(withName: "xmlns", stringValue: "http://www.opengis.net/kml/2.2") as! XMLNode
         root.addAttribute(rootAttribute)
@@ -22,24 +37,5 @@ public struct KML {
         root.addChild(document)
         
         return "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" + xml.xmlString
-    }
-    
-    public var coordinates = [Coordinates]()
-    
-    // MARK: - Initializers
-//    public init() {
-//        
-//    }
-    
-    public init(coordinatesStringArray: [String]) {
-        for coordinateString in coordinatesStringArray where !coordinateString.isEmpty {
-            if let coordinate = Coordinates(string: coordinateString) {
-                self.coordinates.append(coordinate)
-            }
-        }
-    }
-    
-    public init(coordinates: [Coordinates]) {
-        self.coordinates = coordinates
     }
 }
