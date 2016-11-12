@@ -6,8 +6,8 @@ public struct KML {
         return "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" + self.xml.xmlString
     }
     
-    private let root = XMLElement(name: "kml")
-    private let document = XMLElement(name: "Document")
+    private let root = XMLElement(name: KMLTag.root.rawValue)
+    private let document = XMLElement(name: KMLTag.document.rawValue)
     private let xml: XMLDocument
     
     // MARK: - Initializers
@@ -29,11 +29,11 @@ public struct KML {
     }
     
     public func addPlacemark(name: String, coordinate: String) {
-        let placemark = XMLElement(name: "Placemark")
-        placemark.addChild(XMLElement(name: "name", stringValue: name))
-        let point = XMLElement(name: "Point")
+        let placemark = XMLElement(name: KMLTag.placemark.rawValue)
+        placemark.addChild(XMLElement(name: KMLTag.name.rawValue, stringValue: name))
+        let point = XMLElement(name: KMLTag.point.rawValue)
         
-        point.addChild(XMLElement(name: "coordinates", stringValue: coordinate))
+        point.addChild(XMLElement(name: KMLTag.coordinates.rawValue, stringValue: coordinate))
         placemark.addChild(point)
         
         self.document.addChild(placemark)
