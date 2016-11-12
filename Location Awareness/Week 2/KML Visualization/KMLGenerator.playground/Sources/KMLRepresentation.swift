@@ -1,6 +1,6 @@
 import Foundation
 
-enum KMLRemresentation {
+enum KMLRepresentation {
     case markers
     case line
 }
