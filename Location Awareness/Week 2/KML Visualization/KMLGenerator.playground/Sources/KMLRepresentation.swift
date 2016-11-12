@@ -1,6 +1,4 @@
-import Foundation
-
-enum KMLRepresentation {
+public enum KMLRepresentation {
     case markers
     case line
 }
