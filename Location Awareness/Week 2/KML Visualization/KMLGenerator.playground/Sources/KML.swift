@@ -3,39 +3,43 @@ import Foundation
 public struct KML {
     // MARK: - Variables
     public var xmlString: String {
-        return "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" + self.xml.xmlString
+        let root = XMLElement(name: KMLTag.root.rawValue)
+        let rootAttribute = XMLNode.attribute(withName: "xmlns", stringValue: "http://www.opengis.net/kml/2.2") as! XMLNode
+        root.addAttribute(rootAttribute)
+        let xml = XMLDocument(rootElement: root)
+        let document = XMLElement(name: KMLTag.document.rawValue)
+        
+        for coordinate in self.coordinates {
+            let placemark = XMLElement(name: KMLTag.placemark.rawValue)
+            placemark.addChild(XMLElement(name: KMLTag.name.rawValue, stringValue: nil))
+            let point = XMLElement(name: KMLTag.point.rawValue)
+            
+            point.addChild(XMLElement(name: KMLTag.coordinates.rawValue, stringValue: coordinate.description))
+            placemark.addChild(point)
+            
+            document.addChild(placemark)
+        }
+        root.addChild(document)
+        
+        return "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" + xml.xmlString
     }
     
-    private let root = XMLElement(name: KMLTag.root.rawValue)
-    private let document = XMLElement(name: KMLTag.document.rawValue)
-    private let xml: XMLDocument
+    public var coordinates = [Coordinates]()
     
     // MARK: - Initializers
-    public init() {
-        let rootAttribute = XMLNode.attribute(withName: "xmlns", stringValue: "http://www.opengis.net/kml/2.2") as! XMLNode
-        self.root.addAttribute(rootAttribute)
-        self.xml = XMLDocument(rootElement: self.root)
-        root.addChild(document)
-    }
+//    public init() {
+//        
+//    }
     
-    public init(coordinates: [String]) {
-        self.init()
-        var counter = 1
-        
-        for coordinate in coordinates where !coordinate.isEmpty {
-            self.addPlacemark(name: "#" + counter.description, coordinate: coordinate)
-            counter += 1
+    public init(coordinatesStringArray: [String]) {
+        for coordinateString in coordinatesStringArray where !coordinateString.isEmpty {
+            if let coordinate = Coordinates(string: coordinateString) {
+                self.coordinates.append(coordinate)
+            }
         }
     }
     
-    public func addPlacemark(name: String, coordinate: String) {
-        let placemark = XMLElement(name: KMLTag.placemark.rawValue)
-        placemark.addChild(XMLElement(name: KMLTag.name.rawValue, stringValue: name))
-        let point = XMLElement(name: KMLTag.point.rawValue)
-        
-        point.addChild(XMLElement(name: KMLTag.coordinates.rawValue, stringValue: coordinate))
-        placemark.addChild(point)
-        
-        self.document.addChild(placemark)
+    public init(coordinates: [Coordinates]) {
+        self.coordinates = coordinates
     }
 }
