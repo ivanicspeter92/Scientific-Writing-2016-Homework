@@ -1,7 +1,7 @@
 kNearestNeighbours = function(signalStrength, points, k = 1, weighted = FALSE) {
   differences = matrix(c(points$SS1 - signalStrength[1], points$SS2 - signalStrength[2]), ncol = 2)
   
-  averageDifferences = matrix(data = c(1:nrow(differences), rowMeans(differences)), ncol = 2)
+  averageDifferences = matrix(data = c(points$Point, rowMeans(differences)), ncol = 2)
   averageDifferences = averageDifferences[order(averageDifferences[,2]),] # sorting measurements by differences
   
   indexOfClosestKmeasurements = head(averageDifferences[,1], k)
