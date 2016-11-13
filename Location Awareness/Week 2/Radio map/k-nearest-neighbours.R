@@ -32,9 +32,11 @@ mySinglalStrength = c(-74, -80)
 
 myPosition = estimatePosition(signalStrength = mySinglalStrength, points = measurements, k = k, highlightNeighboursOnPlot = TRUE)
 points(x = myPosition[1], y = myPosition[2], col = "red", pch = 4)
+myPosition
 
 k = 4
 
 plot(x = measurements$X, y = measurements$Y, xlab = "X", ylab = "Y")
 myPosition = estimatePosition(signalStrength = mySinglalStrength, points = measurements, k = k, weighted = TRUE,  highlightNeighboursOnPlot = TRUE)
 points(x = myPosition[1], y = myPosition[2], col = "red", pch = 4)
+myPosition
