@@ -47,13 +47,31 @@
 \end{enumerate}
 
 \section{KML Visualization}
+	For solving this task, two small programs were developed. For the a) and b) parts, the attached $KMLGenerator.playground$ was implemented in Swift language. This program loads the points of the given CSV file and converts them into a valid KML file. The attached $points\_as\_placemarks.kml$ file contains the points for the a) part. A visual representation of the points is displayed on Figure \ref{points-as-placemarks}. The attached $points\_as\_linestring.kml$ file contains the output of the program. A visual representation of the points is displayed on Figure \ref{points-as-line}.
+	
+	\begin{figure}
+		\begin{center}
+			\includegraphics[width=0.9\textwidth]{images/points-as-placemarks.png}
+			\caption{The given points represented on the Google Maps.}
+			\label{points-as-placemarks} 
+			
+			\includegraphics[width=0.9\textwidth]{images/points-as-line.png}
+			\caption{The given points represented on the Google Maps connected with a line in their order of appearance.}
+			\label{points-as-line}
+		\end{center}
+	\end{figure}
+	
+	For the c) part, the attached $add\_gaussian\_white\_noise.R$ was implemented in R language. A visual representation of the points is displayed on Figure \ref{points_with_white_noise}. On the left side the original points without noise are displayed, while on the right side the original points (with black dots) and the new points or noise is displayed (with red dots).
 
+	\begin{figure}[h]
+		\begin{center}
+			\includegraphics[width=0.9\textwidth]{images/points_with_white_noise.png}
+			\caption{The given points represented in a standard plot (left) and the same points with randomly added zero-mean white noise (right, the noise displayed with red dots).}
+			\label{points_with_white_noise}
+		\end{center}
+	\end{figure}
 
-\begin{enumerate}[a)]
-	\item 
-	\item 
-	\item 
-\end{enumerate}
+\pagebreak
 
 \section{Fingerprint-based positioning}
 
@@ -83,5 +101,3 @@
 %This means that an appendix cannot be just an image or a piece of programming, but the appendix must explain its contents and meaning.
 
 \end{document}
-
-
