@@ -74,11 +74,17 @@
 \pagebreak
 
 \section{Fingerprint-based positioning}
+	The attached $k\-nearest\-neightbours.R$ script was developed to estimate the coordinates based on the information described in the task. If $k = 3$ the estimated position is $(74.1000, 112.3933)$ using the k Nearest Neighbor (kNN) method. If $k = 4$ the estimated position is $(76.9775, 140.2900)$ using the Weighted k Nearest Neighbor (WkNN) method. The results are also visualized on Figure \ref{k_nearest_neighbours.png}. 
 
-\begin{enumerate}[a)]
-	\item 
-	\item 
-\end{enumerate}
+	\begin{figure}[h]
+		\begin{center}
+			\includegraphics[width=0.9\textwidth]{images/k_nearest_neighbours.png}
+			\caption{The estimated positions using the k Nearest Neighbors (left) and the Weighted k Nearest Neighbors (right) method. The given points are shown with black circles, the k nearest neighbors with green circles and the estimated position with a red cross.}
+			\label{k_nearest_neighbours.png}
+		\end{center}
+	\end{figure}
+	
+\pagebreak
 
 \section{Positioning implementation}
 
