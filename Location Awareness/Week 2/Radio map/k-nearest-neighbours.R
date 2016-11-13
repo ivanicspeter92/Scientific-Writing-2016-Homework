@@ -24,6 +24,7 @@ estimatePosition = function(signalStrength, points, k = 1, weighted = FALSE, hig
 } 
 
 measurements = read.csv("radio_map.csv", header = TRUE, sep = ";")
+par(mfrow=c(1, 2))
 plot(x = measurements$X, y = measurements$Y, xlab = "X", ylab = "Y")
 
 k = 3
@@ -34,5 +35,6 @@ points(x = myPosition[1], y = myPosition[2], col = "red", pch = 4)
 
 k = 4
 
-myPosition = estimatePosition(signalStrength = mySinglalStrength, points = measurements, k = k, weighted = TRUE)
-points(x = myPosition[1], y = myPosition[2], col = "blue", pch = 4)
+plot(x = measurements$X, y = measurements$Y, xlab = "X", ylab = "Y")
+myPosition = estimatePosition(signalStrength = mySinglalStrength, points = measurements, k = k, weighted = TRUE,  highlightNeighboursOnPlot = TRUE)
+points(x = myPosition[1], y = myPosition[2], col = "red", pch = 4)
