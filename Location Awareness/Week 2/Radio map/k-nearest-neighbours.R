@@ -1,7 +1,11 @@
 kNearestNeighbours = function(signalStrength, points, k = 1, weighted = FALSE) {
-  differences = matrix(c(points$SS1 - signalStrength[1], points$SS2 - signalStrength[2]), ncol = 2)
+  distances = matrix(c(points$SS1 - signalStrength[1], points$SS2 - signalStrength[2]), ncol = 2)
   
-  averageDifferences = matrix(data = c(points$Point, rowMeans(differences)), ncol = 2)
+  if(weighted) {
+    distances = 1 / distances
+  } 
+
+  averageDifferences = matrix(data = c(points$Point, rowMeans(distances)), ncol = 2)
   averageDifferences = averageDifferences[order(averageDifferences[,2]),] # sorting measurements by differences
   
   indexOfClosestKmeasurements = head(averageDifferences[,1], k)
@@ -11,7 +15,7 @@ kNearestNeighbours = function(signalStrength, points, k = 1, weighted = FALSE) {
 }
 
 estimatePosition = function(signalStrength, points, k = 1, weighted = FALSE, highlightNeighboursOnPlot = FALSE, neighbourColor = "green") {
-  kNearestNeighbours = kNearestNeighbours(signalStrength = signalStrength, points = points, k = k, weighted = weigthed)
+  kNearestNeighbours = kNearestNeighbours(signalStrength = signalStrength, points = points, k = k, weighted = weighted)
   
   if (highlightNeighboursOnPlot) {
     points(x = kNearestNeighbours$X, y = kNearestNeighbours$Y, col = neighbourColor, pch = 16)
@@ -20,7 +24,7 @@ estimatePosition = function(signalStrength, points, k = 1, weighted = FALSE, hig
 } 
 
 measurements = read.csv("radio_map.csv", header = TRUE, sep = ";")
-plot(x = measurements$X, y = measurements$Y)
+plot(x = measurements$X, y = measurements$Y, xlab = "X", ylab = "Y")
 
 k = 3
 mySinglalStrength = c(-74, -80)
