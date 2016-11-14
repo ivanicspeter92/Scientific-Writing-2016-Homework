@@ -1,0 +1,52 @@
+preprocessTrainingSet = function(trainingSet) {
+  return(trainingSet)
+} 
+
+preprocessTestingSet = function(testingSet) {
+  return(testingSet)
+} 
+
+calculateAverageDistances = function(trainingSet) {
+  for (i in min(trainingSet[, 40]):max(trainingSet[, 40])) {
+    observationsForCurrentGrid = trainingSet[ which(trainingSet[,40] == i), ]
+    
+    if(i == 1) { # create container
+      averageDistances = abs(colMeans(observationsForCurrentGrid))
+    } else { # append to container
+      averageDistances = rbind(averageDistances, abs(colMeans(observationsForCurrentGrid)))
+    }
+  }
+  
+  return(averageDistances)
+}
+
+calculateClosestDistance = function(averageDistances) {
+  closestDistance = c() # will contain three columns: the minimum index of the antenna that is closest; the minimum distance to the antenna; and the grid index id
+  for (i in 1:nrow(averageDistances)) {
+    min = averageDistances[i, 1]
+    minIndex = 1
+    
+    for(j in 2:ncol(averageDistances) - 1) {
+      if(min > averageDistances[i, j]) {
+        min = averageDistances[i, j]
+        minIndex = j
+      }
+    }
+    
+    closestDistance = c(closestDistance, minIndex, min, i)
+  }
+  closestDistance = matrix(data = closestDistance, ncol = 3, byrow = TRUE)
+  colnames(closestDistance) <- c("ClosestAntenna","MinimumDistanceToAntenna", "GridIndex")
+  
+  return(closestDistance)
+}
+
+trainingSet = read.csv("training_set.csv", header = FALSE, sep = ",")
+trainingSet = preprocessTrainingSet(trainingSet)
+
+averageDistances = calculateAverageDistances(trainingSet)
+closestDistance = calculateClosestDistance(averageDistances)
+
+
+#testingSet = read.csv("testing_set.csv", header = FALSE, sep = ",")
+#testingSet = preprocessTestingSet(testingSet)
