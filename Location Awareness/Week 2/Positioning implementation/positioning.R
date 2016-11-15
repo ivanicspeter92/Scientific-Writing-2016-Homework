@@ -57,9 +57,13 @@ calculateClosestDistance = function(averageDistances) {
 trainingSet = read.csv("training_set.csv", header = FALSE, sep = ",")
 trainingSet = preprocessTrainingSet(trainingSet)
 
-#averageDistances = calculateAverageDistances(trainingSet)
-#closestDistance = calculateClosestDistance(averageDistances)
-
+averageDistances = calculateAverageDistances(trainingSet)
+closestDistance = calculateClosestDistance(averageDistances)
 
 testingSet = read.csv("testing_set.csv", header = FALSE, sep = ",")
 testingSet = preprocessTestingSet(testingSet, trainingSet)
+
+# loop through testing set data
+# check for each line which antenna is the closest
+# lookup the antenna from the closestDistance table
+# copy the value of the GridIndex variable to the result  
