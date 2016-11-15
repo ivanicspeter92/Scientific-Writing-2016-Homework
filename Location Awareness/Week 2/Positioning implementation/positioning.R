@@ -1,8 +1,21 @@
 preprocessTrainingSet = function(trainingSet) {
+  # replace observations with 0 values with the average of the observations for the same sensor
+  # for (i in 1:ncol(trainingSet) - 1) {
+  #  for (j in nrow(trainingSet)) {
+  #    if(trainingSet[j, i] == 0) {
+  #      trainingSet[j, i] = mean(trainingSet[, i])
+  #    }
+  #  }
+  #}
+  
   return(trainingSet)
 } 
 
-preprocessTestingSet = function(testingSet) {
+preprocessTestingSet = function(testingSet, trainingSet) {
+  # replace observations with 0 values with the average of the observations in the training data
+  # average = mean(trainingSet)
+  # testingSet[testingSet == 0] = average
+  
   return(testingSet)
 } 
 
@@ -44,9 +57,9 @@ calculateClosestDistance = function(averageDistances) {
 trainingSet = read.csv("training_set.csv", header = FALSE, sep = ",")
 trainingSet = preprocessTrainingSet(trainingSet)
 
-averageDistances = calculateAverageDistances(trainingSet)
-closestDistance = calculateClosestDistance(averageDistances)
+#averageDistances = calculateAverageDistances(trainingSet)
+#closestDistance = calculateClosestDistance(averageDistances)
 
 
-#testingSet = read.csv("testing_set.csv", header = FALSE, sep = ",")
-#testingSet = preprocessTestingSet(testingSet)
+testingSet = read.csv("testing_set.csv", header = FALSE, sep = ",")
+testingSet = preprocessTestingSet(testingSet, trainingSet)
