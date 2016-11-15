@@ -87,6 +87,18 @@
 \pagebreak
 
 \section{Positioning implementation}
+	For the positioning implementation, R language was selected. Some brief ideas of the algorithm are, as follows: 
+	
+	\begin{itemize}
+		\item pre-processing the training data set would mean to replace every incorrect cell (where the value is 0) with the average of the values in the same column, excluding the invalid cells,
+		\item pre-processing the  test data set would mean to replace every incorrect cell (where the value is 0) with the mean value of the corrected training data set,
+		\item first we identify which sensor is located in which grid segment (performed by the $calculateAverageDistances()$ and $calculateClosestDistance()$ functions),
+		\item this generates a table in which the grid indexes and their closest antennas are stored, 
+		 \item for each row in the test data we identify which antenna is the closest
+		 \item we take the grid index from the previously created table and assign it to the solution. 
+	\end{itemize}
+	
+	The implementation can be found in the attached $positioning.R$ script. Note that the algorithm is not complete and some parts of the implementation is missing. 
 
 \nocite{*}
 \bibliographystyle{tktl}
