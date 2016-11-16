@@ -38,3 +38,5 @@ load_mnist <- function() {
 show_digit <- function(arr784, col=gray(12:1/12), ...) {
   image(matrix(arr784, nrow=28)[,28:1], col=col, ...)
 }
+
+load_mnist()
