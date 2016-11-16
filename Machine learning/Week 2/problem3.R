@@ -17,8 +17,8 @@ train$y[5] # printing the correct value
 train = reduceData(train, 5000)
 test = reduceData(test, 1000)
 
-#eucledianDistances = dist(train$x, test$x)
-#eucledianDistances[1,1]
+eucledianDistances = dist(train$x, test$x)
+eucledianDistances[1,1]
 
 # c
 accuracies = c()
