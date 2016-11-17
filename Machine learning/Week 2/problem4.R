@@ -1,4 +1,6 @@
 require(ISLR)
+library(MASS)
+library(class)
 data("Weekly")
 
 getConfusionMatrix = function(predictions) {
@@ -7,6 +9,10 @@ getConfusionMatrix = function(predictions) {
   confusionMatrix = table(confusionMatrix)
   
   return(confusionMatrix)
+}
+
+printConfusionMatrix = function(confusionMatrix) {
+  sprintf("%f of the observations are Yes, %f of the observations are No instances", confusionMatrix[2] / sum(confusionMatrix) * 100,confusionMatrix[1] / sum(confusionMatrix) * 100)
 }
 
 # a)
@@ -29,4 +35,28 @@ coef(model)
 # c)
 predictions = predict(model, type="response")
 confusionMatrix = getConfusionMatrix(predictions)
-sprintf("%f of the observations are Yes, %f of the observations are No instances", confusionMatrix[2] / length(predictions) * 100,confusionMatrix[1] / length(predictions) * 100)
+printConfusionMatrix(confusionMatrix)
+
+# d) 
+reducedWeekly = Weekly[(Weekly$Year >= 1990 & Weekly$Year <= 2008),]
+model = glm(Direction ~ Lag2, data = reducedWeekly, family = binomial)
+predictions = predict(model, type="response")
+confusionMatrix = getConfusionMatrix(predictions)
+printConfusionMatrix(confusionMatrix)
+
+# e)
+model = lda(Direction ~ Lag2, data = reducedWeekly)
+predictions = predict(model)
+confusionMatrix = table(predictions$class)
+printConfusionMatrix(confusionMatrix)
+
+# f)
+model = qda(Direction ~ Lag2, data = reducedWeekly)
+predictions = predict(model)
+confusionMatrix = table(predictions$class)
+printConfusionMatrix(confusionMatrix)
+
+# g) 
+#model = knn(reducedWeekly,  k = 1)
+#confusionMatrix = table(model)
+#printConfusionMatrix(confusionMatrix)
