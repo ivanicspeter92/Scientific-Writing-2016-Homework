@@ -32,8 +32,8 @@ for (k in 1:50) { # looping through finding the kNNs
     indexOfKNearestNeighbours = indexVector[1:k]
     classesOfNearNeighbours = train$y[indexOfKNearestNeighbours]
     
-    majorityClass = names(sort(table(classesOfNearNeighbours), decreasing=TRUE))[1]
-    if (majorityClass == test$y[j]) {
+    majorityClass = names(sort(table(classesOfNearNeighbours), decreasing=TRUE))[1] # selecting the "most likely class"
+    if (majorityClass == test$y[j]) { # chech if the classification was correct
       correctClassifications[k] = correctClassifications[k] + 1
     }
   }
