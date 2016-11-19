@@ -10,6 +10,12 @@ getDOPMatrix = function(receiver_coordinates, satellite_coordinates) {
     dop = c(dop,(satellite_coordinates[i,2] - receiver_coordinates[2]) / r)
     dop = c(dop,(satellite_coordinates[i,3] - receiver_coordinates[3]) / r)
     dop = c(dop, -1)
+    
+    # the first line converts the matrix into a list for some reason which breaks the later indexing :( 
+    #dop[i, 1] = (satellite_coordinates[i,1] - receiver_coordinates[1]) / r
+    #dop[i, 2] = (satellite_coordinates[i,2] - receiver_coordinates[2]) / r
+    #dop[i, 3] = (satellite_coordinates[i,3] - receiver_coordinates[3]) / r
+    #dop[i, 4] = -1
   }
   
   dop = matrix(unlist(dop), ncol = 4, byrow = TRUE)
