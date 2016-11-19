@@ -20,16 +20,16 @@ getDOPMatrix = function(receiver_coordinates, satellite_coordinates) {
   }
   
   dop = matrix(unlist(dop), ncol = 4, byrow = TRUE)
-  dop = ((t(dop) * dop) ^ -1) # inverse matrix Q incorrect
+  dop = solve((t(dop) * dop)) # inverse matrix Q incorrect
   return(dop)
 }
 
 ecef_coordinates = read.csv("ecef_coordinates.csv", header = FALSE, sep = ",")
 receiver_coordinates = ecef_coordinates[1, ]
-satellite_coordinates = ecef_coordinates[3:6, ]
+satellite_coordinates = ecef_coordinates[2:6, ]
 
 # a) 
-dopMatrix = getDOPMatrix(receiver_coordinates, satellite_coordinates)
+dopMatrix = getDOPMatrix(receiver_coordinates, satellite_coordinates[2:5,])
 
 # b) 
 #gdop = sqrt(trace(dopMatrix))
@@ -40,4 +40,3 @@ vdop = sqrt(dopMatrix[3,3])
 
 
 particles = read.csv("particles.csv", header = TRUE, sep = ",")
-
