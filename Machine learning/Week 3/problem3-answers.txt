@@ -1,0 +1,12 @@
+Problem 3) 
+----------
+a) 
+The authors claim that the belief of generally preferring discriminative classifiers are not always true. They say that according to other researches and their own observations there are two findings. They indicate that none of the methods is clearly better in every situation than the other. These facts are: 
+1) the generative model has a higher asymptotic error as the number of training samples increases,
+2) the generative model approaches its asymptotic error much faster than the discriminative model.
+
+This allows the conclusion that two regimes dominate the performance:
+1) in case the generative model approaches its asymptotic error, it will perform better.
+2) in case the discriminative model approaches its lower asymptotic error, it will perform better.
+
+b) 
