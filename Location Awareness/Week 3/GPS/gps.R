@@ -20,7 +20,7 @@ getDOPMatrix = function(receiver_coordinates, satellite_coordinates) {
   }
   
   dop = matrix(unlist(dop), ncol = 4, byrow = TRUE)
-  dop = solve((t(dop) * dop)) # inverse matrix Q incorrect
+  # dop = solve((t(dop) * dop)) # inverse matrix Q incorrect
   return(dop)
 }
 
@@ -37,6 +37,3 @@ tdop = sqrt(dopMatrix[4,4])
 pdop = sqrt(dopMatrix[1,1] + dopMatrix[2, 2] + dopMatrix[3, 3])
 hdop = sqrt(dopMatrix[1,1] + dopMatrix[2, 2])
 vdop = sqrt(dopMatrix[3,3]) 
-
-
-particles = read.csv("particles.csv", header = TRUE, sep = ",")
