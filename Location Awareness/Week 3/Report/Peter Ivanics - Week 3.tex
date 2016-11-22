@@ -3,6 +3,7 @@
 \usepackage{subfigure}
 \usepackage{url}
 \usepackage{enumerate}
+\usepackage{amsmath}
 \begin{document}
 \onehalfspacing
 
@@ -52,6 +53,37 @@
 		
 	\end{enumerate}
 \section{GPS}
+	The attached $gps.R$ script was developed to calculate the matrix and Delusion of Precision (DOP) values. 
+	\begin{enumerate}[a)]
+		\item The DOP matrix (as noted by A in the lecture slide) was calculated using the given receiver coordinates $(2884008, 1341225, 5509960)$ and the last three satellite coordinates [$(1822872, 1385835, 6811632), (3564658, 1023739, 6111277) and (2298939, 2257674, 6224440)$]. The following matrix was calculated as a result:
+			
+		\[
+		A=
+		\begin{bmatrix}
+			-0.5348531 & -0.38981724 & 0.7496497 &  -1 \\
+			-0.6316342 & 0.02655381 & 0.7748117 &  -1 \\
+			0.7074523 &  -0.32998782 & 0.6249954 &  -1 \\
+			-0.4496985 & 0.70440535 & 0.5491670  & -1
+		\end{bmatrix}		
+		\]	
+		 
+		\item The calculated DOP values are, as follows: 
+				\[
+				Q = (A^T * A)^{-1} = 
+				\begin{bmatrix}
+					4.33 & 5.48 & 26.44 & 16.87 \\
+					5.48 & 9.04 & 39.59 & 25.49 \\
+					26.44 & 39.59 & 208.92 & 134.99 \\
+					16.87 & 25.49 & 134.99 & 87.56
+				\end{bmatrix}	
+				\]	
+			\begin{eqnarray*}
+				HDOP = \sqrt((Q_{11} + Q_{22})) = 3.7 \\
+				VDOP = \sqrt(Q_{33}) = 14.5 \\
+				PDOP = \sqrt((Q_{11} + Q_{22} + Q_{33})) = 14.9 \\
+			\end{eqnarray*}
+		\item
+	\end{enumerate}
 
 \section{Particle Filter}
 
