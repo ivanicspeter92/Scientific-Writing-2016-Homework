@@ -10,3 +10,6 @@ This allows the conclusion that two regimes dominate the performance:
 2) in case the discriminative model approaches its lower asymptotic error, it will perform better.
 
 b) 
+
+c)
+From Figure 1 it is visible that in most cases the generative naive Bayes method performs better. However, as the sample size increases, often the discriminative logistic regression method outperforms the Bayes and provides a better error-rate on the estimation.  
