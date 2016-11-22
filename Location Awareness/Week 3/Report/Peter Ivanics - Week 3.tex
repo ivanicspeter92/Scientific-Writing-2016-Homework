@@ -4,6 +4,7 @@
 \usepackage{url}
 \usepackage{enumerate}
 \usepackage{amsmath}
+\usepackage{hyperref}
 \begin{document}
 \onehalfspacing
 
@@ -53,7 +54,7 @@
 		
 	\end{enumerate}
 \section{GPS}
-	The attached $gps.R$ script was developed to calculate the matrix and Delusion of Precision (DOP) values. 
+	The attached $gps.R$ script was developed to calculate the matrix and Delution of Precision (DOP) values. 
 	\begin{enumerate}[a)]
 		\item The DOP matrix (as noted by A in the lecture slide) was calculated using the given receiver coordinates $(2884008, 1341225, 5509960)$ and the last three satellite coordinates [$(1822872, 1385835, 6811632), (3564658, 1023739, 6111277) and (2298939, 2257674, 6224440)$]. The following matrix was calculated as a result:
 			
@@ -82,7 +83,7 @@
 				VDOP = \sqrt(Q_{33}) = 14.5 \\
 				PDOP = \sqrt((Q_{11} + Q_{22} + Q_{33})) = 14.9 \\
 			\end{eqnarray*}
-		\item
+		\item The most reliable component of the three above is the horizontal precision (HDOP) as it has the lowest value, while the least reliable component is the Positional precision (3D position, PDOP) as it has the highest value. According to the  \href{https://en.wikipedia.org/wiki/Dilution_of_precision_(navigation)}{Wikipedia article on Delution of precision}, the DOP values above 10 are considered poor and are classified as \textit{"Represents a low confidence level. Positional measurements should be discarded or used only to indicate a very rough estimate of the current location."}
 	\end{enumerate}
 
 \section{Particle Filter}
@@ -94,8 +95,6 @@
 \bibliography{lahteet}
 
 \lastpage
-
-\appendices
 
 \pagestyle{empty}
 
