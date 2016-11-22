@@ -87,6 +87,32 @@
 	\end{enumerate}
 
 \section{Particle Filter}
+	The implementation of the particle filter can be found in the attached $particleFilter.R$ file. I was uncertain how to create the new weights for the part a) and therefore the $getUpdatedWeigth()$ implementation may be incorrect. Nevertheless, my results are as follows. 
+	
+	\begin{enumerate}[a)]
+		\item The new weights are displayed in Table \ref{derived-new-weights} below. 
+		
+		\begin{table}[]
+		\centering
+		\caption{The derived new weights for the particles using the given movement model.}
+		\label{derived-new-weights}
+		\begin{tabular}{lll}
+			1 & 0.003221160 & 0.1932696 \\ 
+			2 & 0.054417701 & 0.9603124 \\
+			3 & 0.024464570 & 1.6309713 \\
+			4 & 0.037790352 & 0.4723794 \\
+			5 & 0.056461305 & 1.1292261 \\
+			6 & 0.029251637 & 0.4618680 \\
+			7 & 0.005681845 & 1.1363689 \\
+			8 & 0.139041020 & 1.7380128 \\
+			9 & 0.014935316 & 2.2402975 \\
+			10 & 0.251534526 & 2.6477319
+		\end{tabular}
+		\end{table}
+		
+		\item The $needsResampling()$ function returns the response as a boolean if resampling is needed for the actual weights of the particles. 
+		\item 
+	\end{enumerate}
 
 \section{Kalman Filter}
 
