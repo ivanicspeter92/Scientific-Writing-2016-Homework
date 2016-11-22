@@ -1,5 +1,6 @@
 require(proxy)
 require(MASS)
+require(psych)
 
 getDOPMatrix = function(receiver_coordinates, satellite_coordinates) {
   A = c()
@@ -31,9 +32,9 @@ satellite_coordinates = ecef_coordinates[2:6, ]
 A = getDOPMatrix(receiver_coordinates, satellite_coordinates[2:5,])
 
 # b) 
-dopMatrix = solve(t(A) * A) # inverse matrix Q incorrect
+dopMatrix = (t(A) * A) ^ -1
 
-#gdop = sqrt(trace(dopMatrix))
+gdop = sqrt(tr(dopMatrix))
 tdop = sqrt(dopMatrix[4,4])
 pdop = sqrt(dopMatrix[1,1] + dopMatrix[2, 2] + dopMatrix[3, 3])
 hdop = sqrt(dopMatrix[1,1] + dopMatrix[2, 2])
