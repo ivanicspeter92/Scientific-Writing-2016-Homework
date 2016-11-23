@@ -29,10 +29,10 @@ receiver_coordinates = ecef_coordinates[1, ]
 satellite_coordinates = ecef_coordinates[2:6, ]
 
 # a) 
-A = getDOPMatrix(receiver_coordinates, satellite_coordinates[2:5,])
+A = getDOPMatrix(receiver_coordinates, satellite_coordinates[1:5,])
 
-# b) 
-dopMatrix = (t(A) * A) ^ -1
+# b)
+dopMatrix = solve(t(A) %*% A)
 
 gdop = sqrt(tr(dopMatrix))
 tdop = sqrt(dopMatrix[4,4])
