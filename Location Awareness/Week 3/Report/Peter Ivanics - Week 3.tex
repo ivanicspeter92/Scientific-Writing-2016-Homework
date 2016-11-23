@@ -40,7 +40,7 @@
 			100-percentile & 18.935   & 28.837   \\
 			99-percentile  & 13.568   & 15.442   \\
 			95-percentile  & 11.067   & 12.817   \\
-			50-percentile  & 4.0117   & 4.6446  
+			50-percentile  & 4.0117   & 4.6446
 		\end{tabular}
 		\end{table}
 				
@@ -56,7 +56,7 @@
 \section{GPS}
 	The attached $gps.R$ script was developed to calculate the matrix and Delution of Precision (DOP) values. 
 	\begin{enumerate}[a)]
-		\item The DOP matrix (as noted by A in the lecture slide) was calculated using the given receiver coordinates $(2884008, 1341225, 5509960)$ and the last three satellite coordinates [$(1822872, 1385835, 6811632), (3564658, 1023739, 6111277) and (2298939, 2257674, 6224440)$]. The following matrix was calculated as a result:
+		\item The DOP matrix (as noted by A in the lecture slide) was calculated using the given receiver coordinates $(2884008, 1341225, 5509960)$ and the last three satellite coordinates [$(1822872, 1385835, 6811632), (3564658, 1023739, 6111277)$ and \\ $(2298939, 2257674, 6224440)$]. The following matrix was calculated as a result:
 			
 		\[
 		A=
@@ -72,18 +72,18 @@
 				\[
 				Q = (A^T * A)^{-1} = 
 				\begin{bmatrix}
-					4.33 & 5.48 & 26.44 & 16.87 \\
-					5.48 & 9.04 & 39.59 & 25.49 \\
-					26.44 & 39.59 & 208.92 & 134.99 \\
-					16.87 & 25.49 & 134.99 & 87.56
+					1.165599 & 1.033347 & 5.024915 & 2.935933 \\
+					1.033347 & 2.813616 & 9.561435 & 5.954195 \\
+					5.024915 & 9.561435 & 64.074904 & 40.814138 \\
+					2.935933 & 5.954195 & 40.814138 & 26.289674
 				\end{bmatrix}	
 				\]	
 			\begin{eqnarray*}
-				HDOP = \sqrt((Q_{11} + Q_{22})) = 3.7 \\
-				VDOP = \sqrt(Q_{33}) = 14.5 \\
-				PDOP = \sqrt((Q_{11} + Q_{22} + Q_{33})) = 14.9 \\
+				HDOP = \sqrt((Q_{11} + Q_{22})) = 1.995 \\
+				VDOP = \sqrt(Q_{33}) = 8 \\
+				PDOP = \sqrt((Q_{11} + Q_{22} + Q_{33})) = 8.25
 			\end{eqnarray*}
-		\item The most reliable component of the three above is the horizontal precision (HDOP) as it has the lowest value, while the least reliable component is the Positional precision (3D position, PDOP) as it has the highest value. According to the  \href{https://en.wikipedia.org/wiki/Dilution_of_precision_(navigation)}{Wikipedia article on Delution of precision}, the DOP values above 10 are considered poor and are classified as \textit{"Represents a low confidence level. Positional measurements should be discarded or used only to indicate a very rough estimate of the current location."}
+		\item The most reliable component of the three above is the horizontal precision (HDOP) as it has the lowest value, while the least reliable component is the Positional precision (3D position, PDOP) as it has the highest value. According to the  \href{https://en.wikipedia.org/wiki/Dilution_of_precision_(navigation)}{Wikipedia article on Delution of precision}, the DOP values above 10 are considered moderately good and are classified as \textit{"Positional measurements could be used for calculations, but the fix quality could still be improved. A more open view of the sky is recommended."}
 	\end{enumerate}
 
 \section{Particle Filter}
@@ -113,9 +113,7 @@
 		\item The $needsResampling()$ function returns the response as a boolean if resampling is needed for the actual weights of the particles. 
 		\item 
 	\end{enumerate}
-
-\section{Kalman Filter}
-
+	
 \nocite{*}
 \bibliographystyle{tktl}
 \bibliography{lahteet}
