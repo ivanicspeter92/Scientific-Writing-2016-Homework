@@ -83,35 +83,52 @@
 				VDOP = \sqrt(Q_{33}) = 8 \\
 				PDOP = \sqrt((Q_{11} + Q_{22} + Q_{33})) = 8.25
 			\end{eqnarray*}
-		\item The most reliable component of the three above is the horizontal precision (HDOP) as it has the lowest value, while the least reliable component is the Positional precision (3D position, PDOP) as it has the highest value. According to the  \href{https://en.wikipedia.org/wiki/Dilution_of_precision_(navigation)}{Wikipedia article on Delution of precision}, the DOP values above 10 are considered moderately good and are classified as \textit{"Positional measurements could be used for calculations, but the fix quality could still be improved. A more open view of the sky is recommended."}
+		\item The most reliable component of the three above is the horizontal precision (HDOP) as it has the lowest value, while the least reliable component is the Positional precision (3D position, PDOP) as it has the highest value. According to the  \href{https://en.wikipedia.org/wiki/Dilution_of_precision_(navigation)}{\textbf{Wikipedia article on Delution of precision}}, the DOP values above 10 are considered moderately good and are classified as \textit{"Positional measurements could be used for calculations, but the fix quality could still be improved. A more open view of the sky is recommended."}
 	\end{enumerate}
 
 \section{Particle Filter}
-	The implementation of the particle filter can be found in the attached $particleFilter.R$ file. I was uncertain how to create the new weights for the part a) and therefore the $getUpdatedWeigth()$ implementation may be incorrect. Nevertheless, my results are as follows. 
+	The implementation of the particle filter can be found in the attached $particleFilter.R$ file. 
 	
 	\begin{enumerate}[a)]
-		\item The new weights are displayed in Table \ref{derived-new-weights} below. 
+		\item The particles' weight values are updated by the $getUpdatedWeight()$ and the values are normalized by the $normalizeWeights()$ function. The results are displayed in Table \ref{derived-new-weights} both before and after normalization.
 		
-		\begin{table}[]
+		\item The $needsResampling()$ function returns the response as a boolean if resampling is needed for the actual weights of the particles. As the number of effective particles (inverted squared sum) of the normalized weights in Table \ref{derived-new-weights} equals to $N_{eff}=6.281596$, the threshold of $N_{treshold}=2$ is exceeded and therefore resampling is not needed.
+		\item The derived weights before and after normalization are displayed in Table \ref{derived-new-weights2}. As the number of effective particles (inverted squared sum) of the normalized weights in Table \ref{derived-new-weights2} equals to $N_{eff}=1.232329$, the threshold of $N_{treshold}=2$ is not exceeded and therefore resampling is needed.
+		
+	\begin{table}[]
 		\centering
-		\caption{The derived new weights for the particles using the given movement model.}
+		\caption{The derived new weights for the particles using the given movement model on item a).}
 		\label{derived-new-weights}
 		\begin{tabular}{lll}
-			1 & 0.003221160 & 0.1932696 \\ 
-			2 & 0.054417701 & 0.9603124 \\
-			3 & 0.024464570 & 1.6309713 \\
-			4 & 0.037790352 & 0.4723794 \\
-			5 & 0.056461305 & 1.1292261 \\
-			6 & 0.029251637 & 0.4618680 \\
-			7 & 0.005681845 & 1.1363689 \\
-			8 & 0.139041020 & 1.7380128 \\
-			9 & 0.014935316 & 2.2402975 \\
-			10 & 0.251534526 & 2.6477319
+			Weight index & Before normalizing & After normalizing \\ \hline
+			1 & 0.003315905 & 0.02596887 \\
+			2 & 0.011274076 & 0.08829417 \\
+			3 & 0.004839414 & 0.03790041 \\
+			4 & 0.025810211 & 0.20213552 \\
+			5 & 0.016131382 & 0.12633470 \\
+			6 & 0.012600438 & 0.09868172 \\
+			7 & 0.001613138 & 0.01263347 \\ 
+			8 & 0.020127105 & 0.15762765 \\
+			9 & 0.001326362 & 0.01038755 \\
+			10 & 0.030649625 & 0.24003593
+		\end{tabular}
+		
+		\caption{The derived new weights for the particles using the given movement model on item c).}
+		\label{derived-new-weights2}
+		\begin{tabular}{lll}
+			Weight index & Before normalizing & After normalizing \\ \hline
+			1 & 0.0001 & 0.0001 \\
+			2 & 0.0001 & 0.0001 \\
+			3 & 0.0003 & 0.0062 \\
+			4 & 0.0014 & 0.0329 \\
+			5 & 0.0009 & 0.0206 \\
+			6 & 0.0001 & 0.0001 \\
+			7 & 0.0001 & 0.0021 \\
+			8 & 0.0387 & 0.8991 \\
+			9 & 0.0001 & 0.0001 \\
+			10 & 0.0017 & 0.0391
 		\end{tabular}
 		\end{table}
-		
-		\item The $needsResampling()$ function returns the response as a boolean if resampling is needed for the actual weights of the particles. 
-		\item 
 	\end{enumerate}
 	
 \nocite{*}
