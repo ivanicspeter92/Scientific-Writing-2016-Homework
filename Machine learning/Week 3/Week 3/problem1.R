@@ -6,6 +6,13 @@ getCorrelationCoefficient = function(xr, xs) {
   return(result)
 }
 
+#x is an n by p matrix, mu should be 1 by p, szigma is p by p. 
+gaussianDensity = function(x,mu,szigma) { 
+  p = dim(szigma)[1]; 
+  return( diag( 1/( (2*pi)^(p/2) * det(szigma)^(1/2) ) * exp( (-1/2)* (x-mu)%*%solve(szigma)%*%t(x-mu) ) ) ) 
+  # constant so far #this gives a huge matrix but we only need the diagonals 
+}
+
 p = 2
 variances = c(2.0, 3.0)
 means = c(0, 0)
@@ -25,11 +32,12 @@ persp(dataDensity)
 contour(dataDensity)
 
 #c)
-grid = expand.grid(0.25 * (-20:20), 0.25 * (-20:20))
+grid = as.matrix(expand.grid(0.25 * (-20:20), 0.25 * (-20:20)))
 matrix = c()
 
-for (i in nrow(grid)) {
-  d = (1 / (((2 * pi) ^ (p / 2)) * sqrt(det(covarianceMatrix)) )) * exp(-0.5 * as.vector(t(grid[i,] - means)) %*% solve(covarianceMatrix) %*% as.vector(t(grid[i,] - means)))
-  matrix = c(matrix, d)
-}
-matrix = matrix(matrix, nrow = 41, ncol = 41)
+groundTruthDensity = gaussianDensity(grid,means,covarianceMatrix)
+kernelDensity = matrix(groundTruthDensity,nrow = 41)
+
+contour(kernelDensity)
+image(kernelDensity)
+persp(kernelDensity)
