@@ -23,3 +23,13 @@ dataDensity = kde2d(x[,1], x[,2])
 image(dataDensity)
 persp(dataDensity)
 contour(dataDensity)
+
+#c)
+grid = expand.grid(0.25 * (-20:20), 0.25 * (-20:20))
+matrix = c()
+
+for (i in nrow(grid)) {
+  d = (1 / (((2 * pi) ^ (p / 2)) * sqrt(det(covarianceMatrix)) )) * exp(-0.5 * as.vector(t(grid[i,] - means)) %*% solve(covarianceMatrix) %*% as.vector(t(grid[i,] - means)))
+  matrix = c(matrix, d)
+}
+matrix = matrix(matrix, nrow = 41, ncol = 41)
