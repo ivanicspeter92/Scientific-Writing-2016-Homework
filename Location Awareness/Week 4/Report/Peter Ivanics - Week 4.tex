@@ -34,8 +34,11 @@
 				\label{velocity_pruning}
 			\end{center}
 		\end{figure}
+	\item The $q$ value in the Markov chain refers to the order/memory of the model. The probability of state $x_k$ is given by the probability $p(x_k | x_{1:k-1})=p(x_k | x_{k-q-1:k-1})$	, where $x_k$ is the state of the system at time $k$, $q$ is the order of the model. In other words this means, to estimate the probability $k^{th}$ system state, $q$ number of previous observations observations are utilized. Accordingly, the first order Markov model relies only on the last two observations, while a model of the $q^{th}$ order would extend the estimations with previously collected data.
+		
 	\end{enumerate}
 
+	
 
 \section{Fingerprint-Based Place Detection}
 
