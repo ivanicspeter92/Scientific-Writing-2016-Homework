@@ -6,13 +6,25 @@ getProbabilityMatrix = function(sequence, symbols, q = 1) {
 }
 
 countOccurrances = function(sequence, symbols, q = 1) {
-  matrix = matrix(data = 0, nrow = length(symbols), ncol = length(symbols))
+  matrix = matrix(data = 0, nrow = length(symbols) ^ q, ncol = length(symbols))
+  previousStrings = symbols
+  currentStrings = c()
+  if(q > 1) { 
+    for(i in 1:(q - 1)) {
+      for(j in 1:length(previousStrings)) {
+        for(k in 1:length(symbols)) {
+          currentStrings = c(currentStrings, paste(previousStrings[j], symbols[k], sep = ""))
+        }
+      }
+    }
+    previousStrings = currentStrings
+  }
   
-  for (i in 2:nchar(sequence)) {
-    previousState = substr(sequence, i - q, i - q)
+  for (i in (1 + q):nchar(sequence)) {
+    previousState = substr(sequence, i - q, i - 1)
     currentState = substr(sequence, i, i)
     
-    matrix[indexOf(previousState, symbols), indexOf(currentState, symbols)] = matrix[indexOf(previousState, symbols), indexOf(currentState, symbols)] + 1
+    matrix[indexOf(previousState, previousStrings), indexOf(currentState, symbols)] = matrix[indexOf(previousState, previousStrings), indexOf(currentState, symbols)] + 1
   }
   
   return(matrix)
@@ -20,7 +32,10 @@ countOccurrances = function(sequence, symbols, q = 1) {
 
 normalizeByRow = function(matrix) {
   for (i in 1:nrow(matrix)) {
-    matrix[i, ] = matrix[i, ] / sum(matrix[i, ])
+    sum = sum(matrix[i, ])
+    if(sum != 0) {
+      matrix[i, ] = matrix[i, ] / sum
+    }
   }
   
   return(matrix)
