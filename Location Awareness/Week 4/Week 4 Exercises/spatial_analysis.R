@@ -3,6 +3,7 @@ library(geosphere)
 preprocessData = function(data) {
   minimumSatellites = 3
   maximumHDOP = 6
+  rangeTreshold = 500 #meters
   
   par(mfrow=c(2, 2))
   plot(x = data[1:2])
@@ -16,15 +17,14 @@ preprocessData = function(data) {
   plot(x = data[1:2])
   write.csv(as.vector(data[,1:2]), file = "output/points3.csv", row.names = FALSE)
   
-  data = removeOutliers(data)
+  data = removeOutliers(data, rangeTreshold)
   plot(x = data[1:2])
   write.csv(as.vector(data[,1:2]), file = "output/points4.csv", row.names = FALSE)
   
   return(data)
 }
 
-removeOutliers = function(data) {
-  rangeTreshold = 500 #meters
+removeOutliers = function(data, rangeTreshold) {
   booleanIndicators = rep(FALSE, nrow(data)) # for each index contains TRUE if the point has a neighbour in the given treshold, FALSE otherwise
   
   for(i in 1:nrow(data)) {
