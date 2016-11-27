@@ -6,12 +6,19 @@ preprocessData = function(data) {
   
   par(mfrow=c(2, 2))
   plot(x = data[1:2])
+  write.csv(as.vector(data[,1:2]), file = "output/points1.csv", row.names = FALSE)
+  
   data = data[which(data[,4] >= minimumSatellites),]
   plot(x = data[1:2])
+  write.csv(as.vector(data[,1:2]), file = "output/points2.csv", row.names = FALSE)
+  
   data = data[which(data[,5] <= maximumHDOP),]
   plot(x = data[1:2])
+  write.csv(as.vector(data[,1:2]), file = "output/points3.csv", row.names = FALSE)
+  
   data = removeOutliers(data)
   plot(x = data[1:2])
+  write.csv(as.vector(data[,1:2]), file = "output/points4.csv", row.names = FALSE)
   
   return(data)
 }
