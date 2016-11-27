@@ -133,7 +133,20 @@
 	\end{eqnarray*}
 
 \section{Spatial Analysis: Preprocessing and Place Detection}
+	The attached $spatial\_analysis.R$ file performs the preprocessing on the data. The rules to process the data are, as follows: 
+	\begin{enumerate}
+		\item measurements where the number of satellites is less than or equal to 3, are removed,
+		\item measurements where the HDOP is greater than 6.0, are removed,
+		\item points, which have no other points in their 500 meter neighborhood are considered as outliers and therefore removed. 
+	\end{enumerate}
 	
+	The parameters are set up and can be modified in the $preprocessData()$ function. Figure \ref{spatial_analysis_preprocessing_steps} displays the points after each step in an R plot (unfortunately Google's KML visualization service could import only up to 2000 points, but the output KML files are attached to this report).
+
+	\begin{figure}[h]
+				\includegraphics[width=0.75\textwidth]{images/spatial_analysis_preprocessing_steps.png}
+				\caption{The data points for the Spatial Analysis task. The top left plot shows the unprocessed data set, the top right shows the poitns after removing points observed by 3 or less satellites, the bottom left shows the points whose HDOP value was too high and the bottom right shows the points after removing outliars. }
+				\label{spatial_analysis_preprocessing_steps}
+		\end{figure}
 	
 \nocite{*}
 \bibliographystyle{tktl}
