@@ -20,12 +20,14 @@ getResponseRateVector = function(data) {
   result = c()
   j = 1
   for(i in seq(from = 1, to = nrow(data), by = 2)) {
-    n = length(data[i,]) + length(data[i + 1,])
-    ni = length(data[i,][which(data[i,] != 0)]) + length(data[i + 1,][which(data[i + 1,] != 0)])
-    
-    result = c(result, ni / n)
+    for (j in 1:ncol(data)) {
+      n = length(data[i,j]) + length(data[i + 1,j])
+      ni = length(data[i,j][which(data[i,j] != 0)]) + length(data[i + 1,j][which(data[i + 1,j] != 0)])
+      
+      result = c(result, ni / n) 
+    }
   }
-  return(as.vector(result))
+  return(matrix(result, ncol = ncol(data)))
 }
 
 # a)
