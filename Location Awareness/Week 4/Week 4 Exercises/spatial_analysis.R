@@ -1,4 +1,5 @@
 library(geosphere)
+library(ggmap)
 
 preprocessData = function(data) {
   minimumSatellites = 3
@@ -49,3 +50,9 @@ removeOutliers = function(data, rangeTreshold) {
 
 data = read.csv("tokyo.csv", header = FALSE, sep = ",")
 data = preprocessData(data)
+
+points <- data.frame(lat=data[, 2], lon = data[, 1])
+
+map = ggmap(get_map(location = c(lon = points[1,]$lon, lat = points[1,]$lat), zoom = 12))
+map = map + geom_point(data = points, aes(x = lon, y = lat), size = 1)
+map
