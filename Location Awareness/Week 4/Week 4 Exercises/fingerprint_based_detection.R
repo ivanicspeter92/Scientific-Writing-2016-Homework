@@ -36,3 +36,4 @@ likelihoods = getLikelihoods(data)
 
 # b) 
 responseRateVector = getResponseRateVector(data)
+rateVectorLikelihoods = getLikelihoods(responseRateVector)

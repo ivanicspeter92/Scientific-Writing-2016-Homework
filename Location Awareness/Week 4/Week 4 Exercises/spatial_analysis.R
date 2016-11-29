@@ -53,6 +53,10 @@ data = preprocessData(data)
 
 points <- data.frame(lat=data[, 2], lon = data[, 1])
 
+clusters = kmeans(points, 3)
+clusters = data.frame(lat = clusters$centers[, 1], lon = clusters$centers[, 2])
+
 map = ggmap(get_map(location = c(lon = points[1,]$lon, lat = points[1,]$lat), zoom = 12))
 map = map + geom_point(data = points, aes(x = lon, y = lat), size = 1)
+map = map + geom_point(data = clusters, aes(x = lon, y = lat), size = 3, color = "red")
 map
