@@ -67,10 +67,29 @@
 		 	|P_v| = 39 \rightarrow VCR = |P_v| / d = 119.2171
 		\end{eqnarray*}
 		
-		\item 
+		\item To tell the motion of the measurements, the mean variance and intensity was calculated. The findings suggest that the data in $mode1.csv$ was recorded while the user was standing still and the data in $mode2.csv$ was recorded on the tram while moving. Table \ref{Intensity-and-variance} summarizes the findings.
+		
+		\begin{table}[]
+			\centering
+			\caption{The mean intensity and variance of the provided measurements.} 
+			\label{Intensity-and-variance}
+			\begin{tabular}{llll}
+			\\
+			\hline
+          & Mean intensity & Mean variance & Conclusion     \\ \hline
+			mode1.csv & 1884.4         & 11.90095      & Standing still \\
+			mode2.csv & 1830.4         & 14.21143      & Moving         \\ \hline
+			\end{tabular}
+		\end{table}
+		
 	\end{enumerate}
 
 \section{Temporal modeling}
+	\begin{enumerate}[a)]
+		\item The solution is implemented in the attached $temporal\_modelling.R$ script file. More specifically, the $discretizeData()$ function performs the calculation of seconds since midnight for each timestamp and performs the bin-categorization accordingly based on 15-minute slots. 
+		\item 
+		\item
+	\end{enumerate}
 	
 \nocite{*}
 \bibliographystyle{tktl}
