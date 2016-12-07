@@ -17,7 +17,7 @@ countSegments = function(differences) {
   count = 0
   
   for (i in 1:(length(differences) - 1)) {
-    if(differences[i] == differences[i + 1]) {
+    if(differences[i] != differences[i + 1]) {
       count = count + 1
     }
   }
