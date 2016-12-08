@@ -67,6 +67,7 @@ nb <- function(Y, X, n_class = 3, n_class_x = c(2,3), m = 0) {
     }
   }
   
+  prior = c(0.4,0.3,0.3);
   ret <- list(prior = prior, likelihood = likelihood, n_class = n_class, n_class_x = n_class_x, jointlikelihood = getJointLikelihood())
   class(ret) <- 'nb' 
   ret
