@@ -5,7 +5,7 @@ discretizeData = function(data) {
     epochTimestamp = data[i,]$arrival
     
     data[i,]$secondsSinceMidnight = getSecondsFromMidnight(epochTimestamp)
-    data[i,]$timeSlot = round(data[i,]$secondsSinceMidnight / (15 * 60) + 1)
+    data[i,]$timeSlot = floor(data[i,]$secondsSinceMidnight / (15 * 60))
   }
   return(data)
 }
