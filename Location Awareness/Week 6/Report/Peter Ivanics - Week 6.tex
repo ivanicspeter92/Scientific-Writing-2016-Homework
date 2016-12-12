@@ -112,7 +112,7 @@
 
 \section{Trajectory Clustering}
 	\begin{enumerate}[a)]
-		\item The $loadPrunedMeasurements()$ function in the attached $trajectory\_clustering.R$ script performs the pruning of the points. The pruned points (6806) in total are visualized Figure \ref{coordinates}.
+		\item The $loadPrunedMeasurements()$ function in the attached $trajectory\_clustering.R$ script performs the pruning of the points. The pruned points (6806) in total are visualized Figure \ref{coordinates}. This way the data is very difficult to analyze and is not too meaningful. It seems most of the lines in the store are visited except four "horizontal" ones in the middle of the store. 
 
 		\begin{figure}[h] 
 		\begin{center}
@@ -121,6 +121,8 @@
 			\label{coordinates}
 		\end{center}
 	\end{figure}			
+		
+		It would be interesting to see, for instance which are the first destinations once a customer enters the shop. For this reason to cluster the trajectories, I would first determine their similarities using DTW technique. Based on the results, I would seek clusters using agglomerative clustering or K-medoids method in the first part of the measurements for each trajectory. By doing so it would be possible to discover the most common cluster(s) that is (are) visited by the customers once entering the store.  
 		
 		\item 
 	\end{enumerate}
