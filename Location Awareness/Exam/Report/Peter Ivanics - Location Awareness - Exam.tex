@@ -1,0 +1,84 @@
+\documentclass[english]{tktltiki}
+\usepackage[pdftex]{graphicx}
+\usepackage{subfigure}
+\usepackage{enumerate}
+\usepackage[table,xcdraw]{xcolor}
+\usepackage{url}
+\usepackage{mathtools}  
+\mathtoolsset{showonlyrefs}  
+\begin{document}
+\onehalfspacing
+
+\title{Location Awareness - Home Exam}
+\author{Péter Ivanics}
+\date{\today}
+
+\maketitle
+
+\numberofpagesinformation{\numberofpages\ pages + \numberofappendixpages\ appendices}
+\keywords{}
+
+\mytableofcontents
+
+\section{Concepts}
+	\begin{enumerate}[a)]
+		\item Let us donate the length of the semi-major axis with $a = 6378137$ and the inverse flattening $1/f \approx 298.26$. Calculating the actual flattening we get $f = \frac{1}{298.26} \approx 3.35 * 10^{-3}$.  Then we use the equation of flattening to calculate $b$ as follows: 
+		\begin{eqnarray*}
+			f = \frac{a - b}{a} \\ \\
+			3.35 * 10^{-3} = \frac{6378137 - b}{6378137} \\ \\
+			3.35 * 10^{-3} * 6378137 = 6378137 - b \\ \\ 
+			- 3.35 * 10^{-3} * 6378137 + 6378137 = b \\ \\ 
+			b \approx 6356753
+		\end{eqnarray*}
+		
+	\item To obtain the answer we shall calculate the Helsinki-Santiago and the Helsinki-Auckland distance. We use the Haversine formula \footnote{\url{https://en.wikipedia.org/wiki/Haversine_formula}} 
+	\begin{gather}
+		Dist([\phi_1, \lambda_1], [\phi_2, \lambda_2]) = 2 r \arcsin \sqrt{\sin^2 (\frac{\phi_2 - \phi_1}{2}) + \cos (\phi_1) * \cos (\phi_2) * \sin^2 (\frac{\lambda_2 - \lambda_1}{2})}
+	\end{gather}
+	to calculate the distances as follows (in kilometers) using $r = 6371$ kilometers and coordinates retrieved from Google:
+	\begin{eqnarray*}
+		Dist(Hel, San) = Dist([60.1699° N, 24.9384° E], [33.4489° S, 70.6693° W]) = 13480 \\
+		Dist(Hel, Auc) = Dist([60.1699° N, 24.9384° E], [36.8485° S, 174.7633° E]) = 16660
+	\end{eqnarray*}
+	
+	If the flying range of the plane is $r = 15190$ kilometers, it can reach Santiago without refueling and still have fuel for approximately $15190 - 13480 = 1710$ kilometers. However, it cannot reach Auckland without refueling as it would run out of fuel around $|15190 - 16660| = 1470$ kilometers before reaching the destination. 
+	
+	\item The attached $k-anonimity.R$ file contains an implementation for retrieving the answer for item c) and d). The calculated Euclidean distances between the given points are displayed in the table below. The $4^{th}$ smallest distance in the table is $d = 0.08331873$ which means to ensure k-anonymity of $k=4$, this value should be used as threshold. 
+	
+	\begin{table}[ht]
+		\centering
+		\begin{tabular}{rrrrrrrrrrr}
+ 		 \hline
+ 		& 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 \\ 
+  		\hline
+		1 & 0.00 & 0.26 & 0.27 & 0.11 & 0.17 & 0.18 & 0.15 & 0.21 & 0.16 & 0.24 \\ 
+		 2 & & 0.00 & 0.28 & 0.26 & 0.18 & 0.34 & 0.27 & 0.13 & 0.16 & 0.04 \\ 
+		 3 & & & 0.00 & 0.23 & 0.14 & 0.21 & 0.14 & 0.16 & 0.22 & 0.27 \\ 
+		 4 & & & & 0.00 & 0.12 & 0.23 & 0.17 & 0.20 & 0.10 & 0.22 \\ 
+		 5 & & & & & 0.00 & 0.21 & 0.13 & 0.08 & 0.08 & 0.16 \\ 
+		 6 & & & & & & 0.00 & 0.08 & 0.24 & 0.27 & 0.33 \\ 
+ 		 7 & & & & & & & 0.00 & 0.17 & 0.19 & 0.26 \\ 
+ 		 8 & & & & & & & & 0.00 & 0.13 & 0.12 \\ 
+ 		 9 & & & & & & & & & 0.00 & 0.13 \\ 
+  		10 & & & & & & & & & & 0.00 \\ 
+   		\hline
+		\end{tabular}
+	\end{table}
+	
+	\item Using the given parameter the program outputs the following: \textit{"Parameters: eps = 0.15, minPts = 4. The clustering contains 1 cluster(s) and 0 noise points"}. This means that all points are grouped under the same cluster and all of them have dense neighborhoods. 
+	\end{enumerate}
+\section{Fingerprinting}
+\section{Position Estimation}
+\section{Spatial Analysis}
+\section{Trajectory Preprocessing and Analysis}
+\section{Map Matching}
+
+\nocite{*}
+\bibliographystyle{tktl}
+\bibliography{lahteet}
+
+\lastpage
+
+\pagestyle{empty}
+
+\end{document}
