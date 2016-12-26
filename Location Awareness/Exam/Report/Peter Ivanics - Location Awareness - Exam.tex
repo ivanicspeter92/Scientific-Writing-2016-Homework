@@ -5,6 +5,7 @@
 \usepackage[table,xcdraw]{xcolor}
 \usepackage{url}
 \usepackage{mathtools}  
+\usepackage{multirow}
 \mathtoolsset{showonlyrefs}  
 \begin{document}
 \onehalfspacing
@@ -69,6 +70,59 @@
 	\end{enumerate}
 \section{Fingerprinting}
 \section{Position Estimation}
+	\begin{enumerate}[a)]
+		\item As displayed on Figure \ref{user_position} below, the two circles of 7 meters intersect around the towers at points (14.42,4.57) and (7.58,3.43). Accordingly, the user can be located at one of these points or in their error prone. 
+		
+	\begin{figure}[h] 
+		\begin{center}
+			\caption{The intersection points of the 7-meter radius circles around the towers (up) and the uncertainty regions (down) of Exercise 3. }
+			\includegraphics[width=0.8\textwidth]{images/user_position.png}
+			\includegraphics[width=0.8\textwidth]{images/user_position_with_error.png}
+			\label{user_position}
+		\end{center}
+	\end{figure}
+	
+	\item Table \ref{intersection_points} lists the coordinates of the bounding points of the uncertainty regions with the given 10 \% error rate. 
+	
+	\begin{table}[]
+		\centering
+		\caption{The bounding coordinates of the uncertainty regions on Figure \ref{user_position} of Exercise 3. }
+		\label{intersection_points}
+		\begin{tabular}{lll}
+			\hline
+			\textbf{Error area} & \textbf{X} & \textbf{Y}    \\
+			\hline 
+			\multirow{4}{*}{Left} & 6.34  & 3.22 \\
+					 							& 7.47  & 4.23 \\
+			 									& 7.74  & 2.64 \\
+			 									& 9.38  & 3.73 \\
+			 \hline
+			\multirow{4}{*}{Right} & 12.62 & 4.27 \\
+												 & 14.26 & 5.36 \\
+					 							& 14.53 & 3.77 \\
+					 							& 15.66 & 4.78 \\
+			\hline
+		\end{tabular}
+		\end{table}
+		
+		\item To calculate the maximum error rate, we calculate the size of the two error regions as follows. This way the Dilution of Precision (DoP) value is retrieved as the sum of the areas. To calculate the area of the polygons, the 
+		$A = |\frac{(x_1 y_2 - y_1 x_2) + (x_2 y_3 - y_2 x_3) + ... + (x_n y_1 - y_n x_1)}{2}|$ 
+		formula is used.
+		
+		\begin{gather}
+			A_1 = |\frac{6.34 * 4.23 - 3.22 * 7.47 + ... 
+				% 7.47 * 2.64 - 4.23 * 7.74 + 7.74 * 3.73 - 2.64 * 9.38 
+				+ 9.38 * 3.22 - 3.73 * 6.34}{2}| 
+			= \frac{0.4078}{2} = 0.2039 \\ 
+			\\
+			A_2 = |\frac{12.62 * 5.36 - 4.27 * 14.26 + ... 
+			% 14.26 * 3.77 - 5.36 * 14.53 + 14.53 * 4.78 - 3.77 * 15.66 
+			+ 15.66 * 4.27 - 4.78 * 12.62}{2}| = |\frac{-0.4078}{2}| = 0.2039 \\
+			\\
+			A = A_1 + A_2 = 2 * 0.2039 = 0.4078
+		\end{gather}
+		
+	\end{enumerate}
 \section{Spatial Analysis}
 \section{Trajectory Preprocessing and Analysis}
 \section{Map Matching}
