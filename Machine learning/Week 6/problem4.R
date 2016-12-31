@@ -34,7 +34,7 @@ getClusterMiddlePoints = function(data, clusterAssignments) {
   clusterMiddlePoints = matrix(data = NA, ncol = 2, nrow = numberOfUniqueClusters)
   
   for (i in 1:numberOfUniqueClusters) {
-    clusterPoints = datapoints[which(clusterAssignments == i),]
+    clusterPoints = data[which(clusterAssignments == i),]
     clusterMiddlePoints[i,] = getMiddlePoint(clusterPoints)
   }
   
@@ -51,7 +51,7 @@ getClosestClusterIndexes = function(data, clusterMiddlePoints) {
   clusterAssignments = rep(-1, nrow(data))
   
   for (i in 1:nrow(data)) {
-    distances = eucledianDistance(clusterMiddlePoints, datapoints[i,])
+    distances = eucledianDistance(clusterMiddlePoints, data[i,])
     clusterAssignments[i] = which.min(distances)
   }
   
