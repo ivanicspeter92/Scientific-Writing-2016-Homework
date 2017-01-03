@@ -69,7 +69,7 @@
 	\item Using the given parameter the program outputs the following: \textit{"Parameters: eps = 0.15, minPts = 4. The clustering contains 1 cluster(s) and 0 noise points"}. This means that all points are grouped under the same cluster and all of them have dense neighborhoods. 
 	\end{enumerate}
 \section{Fingerprinting}
-\section{Position Estimation}
+\section{Position Estimation [Exam]}
 	\begin{enumerate}[a)]
 		\item As displayed on Figure \ref{user_position} below, the two circles of 7 meters intersect around the towers at points (14.42,4.57) and (7.58,3.43). Accordingly, the user can be located at one of these points or in their error prone. 
 		
@@ -126,19 +126,21 @@
 \section{Spatial Analysis}
 \section{Trajectory Preprocessing and Analysis}
 	
-\section{Map Matching}
+\section{Map Matching [Exercise]}
 	\begin{enumerate}[a)]
-		\item Figure \ref{interpolated_points} displays the original points (black) and the new ones added using interpolation technique (red). Using 10 seconds sampling interval, 452 points are added in total. 
+		\item The attached $map\_matching.R$ file contains the partial solution of this task. Figure \ref{interpolated_points} displays the original points (black) and the new ones added using interpolation technique (red). Using 10 seconds sampling interval, 452 points are added in total. 
 		
 		\begin{figure}[h] 
 		\begin{center}
 			\caption{The 193 original measured points (black) in the $cabspotting_trace.csv$ and the 452 new points (red) added using interpolation. }
 			\includegraphics[width=0.8\textwidth]{images/interpolated_points.png}
+			\includegraphics[width=0.8\textwidth]{images/interpolated_points_on_map.png}
 			\label{interpolated_points}
 		\end{center}
 	\end{figure}
 
-	\item
+	\item The bounding box of the measurements is limited by the two points (-122.4673, 37.80543) (top left point) and (-122.4045, 37.7523) (bottom right item). Unfortunately, the exported OSM file did not load in R and I was unable to perform the analysis. Nevertheless, from the bottom item on Figure \ref{interpolated_points} we can clearly see, that the interpolated points (with red) match in most cases with the road segments, however in some cases they go through buildings as the user was probably taking sequential left and right turns at intersections.
+	
 	\item
 	\item	
 	\end{enumerate}	

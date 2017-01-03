@@ -49,6 +49,25 @@ plot(measurements$longitude, measurements$latitude, pch = 16)
 new_measurements = interpolate(measurements)
 points(x = new_measurements$longitude, y = new_measurements$latitude, col = "red", pch = 16)
 
-measurements = rbind(measurements, new_measurements) # concatenating measurements
-measurements = measurements[order(measurements$time_stamp),] # ordering data by time_stamp
-measurements = calculateIntervals(measurements)
+#measurements = rbind(measurements, new_measurements) # concatenating measurements
+#measurements = measurements[order(measurements$time_stamp),] # ordering data by time_stamp
+#measurements = calculateIntervals(measurements)
+
+#map = ggmap(get_map(location = c(lon = mean(measurements$longitude), lat = mean(measurements$latitude)), zoom = 13))
+#map = map + geom_point(data = measurements, aes(x = longitude, y = latitude), size = 1, col = "black")
+#map = map + geom_point(data = new_measurements, aes(x = longitude, y = latitude), size = 1, col = "red")
+#map
+
+# b)
+library(osmar)
+# src = osmsource_api()
+src = osmsource_file(file = "map.osm") # http://overpass.osm.rambler.ru/cgi/way?*[bbox=-122.4673,37.7523,-122.4045,37.80543]
+bb = corner_bbox(
+  left = min(measurements$longitude), right = max(measurements$longitude),
+  top = max(measurements$latitude), bottom = min(measurements$latitude)
+  )
+
+ctown <- get_osm(complete_file(), source = src) # this may take a while
+#ctown <- get_osm(bb, source = src) # this may take a while - exceeds 50000 query limit
+plot(ctown)
+points(x = new_measurements$longitude, y = new_measurements$latitude, col = "red", pch = 16)
