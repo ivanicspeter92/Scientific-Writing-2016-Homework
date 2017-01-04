@@ -123,7 +123,41 @@
 		\end{gather}
 		
 	\end{enumerate}
-\section{Spatial Analysis}
+\section{Spatial Analysis [Exam]}
+	The attached $spatial-analysis.R$ file was developed to carry out the solution for this task. 
+	
+	\begin{enumerate}[a)]
+		\item The $preprocessData()$ function is tailored to perform noise-reduction of the data. The parameters are configured by default as follows: 
+		\begin{itemize}
+			\item minimumSatellites = 3,
+			\item maximumHDOP = 6, '
+			\item rangeTreshold = 50 [meters]
+		\end{itemize}				
+		
+		The attached $buenosaires-KML-original.kml$ contains the original, while the $buenosaires-KML-pruned.kml$ contains the reduced points according to the rules above. There were 712 points which got reduced to 334 points once the preprocessing was performed using the default parameters above. Figure \ref{buenosaires} displays the original (top) and the pruned (bottom) points on the map. We can see that some of the points, for example the rightmost ones in the ocean could be still removed.
+		
+		\begin{figure}[h] 
+			\begin{center}
+				\caption{The original (top, in total 712) and the pruned points (bottom, in total 334) on the Buenos Aires dataset visualized by KML. } 
+				\includegraphics[width=0.8\textwidth]{images/buenosaires-original-kml.png} 
+				\includegraphics[width=0.8\textwidth]{images/buenosaires-pruned-kml.png}
+				\label{buenosaires}
+			\end{center}
+		\end{figure}
+	
+		\item To perform the place identification, I have chosen the K-means algorithm. The $kmeans()$ function in the attached file performs the k cluster assignments. A simple Eucledian distance is used as distance measure. After trying out various values for k, I could identify 4 places in the dataset. Figure \ref{buenosaires-kmeans} displays the clusters and their centers (with '+' marks) with different colors. We can see that the assignment of the black and green points is probably not perfect.
+		
+		\begin{figure}[h] 
+			\begin{center}
+				\caption{One result of the K-means algorithm using $k=4$ on the pruned points ($buenosaires-KML-pruned.kml$) of the Buenos Aires dataset.} 
+				\includegraphics[width=0.8\textwidth]{images/buenosaires-clusters.png} 
+				\label{buenosaires-kmeans}
+			\end{center}
+		\end{figure}
+		
+		\item 
+		\item 
+	\end{enumerate}	 
 \section{Trajectory Preprocessing and Analysis}
 	
 \section{Map Matching [Exercise]}

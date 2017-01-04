@@ -1,11 +1,7 @@
 library(geosphere)
 library(ggmap)
 
-preprocessData = function(data) {
-  minimumSatellites = 3
-  maximumHDOP = 6
-  rangeTreshold = 50 #meters
-  
+preprocessData = function(data, minimumSatellites = 3, maximumHDOP = 6, rangeTreshold = 50) {
   data = data[which(data$satellites >= minimumSatellites),]
   data = data[which(data$HDOP <= maximumHDOP),]
   data = removeOutliers(data, rangeTreshold)
