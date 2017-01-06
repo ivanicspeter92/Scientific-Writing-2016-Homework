@@ -68,8 +68,7 @@
 	
 	\item Using the given parameter the program outputs the following: \textit{"Parameters: eps = 0.15, minPts = 4. The clustering contains 1 cluster(s) and 0 noise points"}. This means that all points are grouped under the same cluster and all of them have dense neighborhoods. 
 	\end{enumerate}
-\section{Fingerprinting}
-\section{Position Estimation [Exam]}
+\section{Position Estimation}
 	\begin{enumerate}[a)]
 		\item As displayed on Figure \ref{user_position} below, the two circles of 7 meters intersect around the towers at points (14.42,4.57) and (7.58,3.43). Accordingly, the user can be located at one of these points or in their error prone. 
 		
@@ -123,14 +122,14 @@
 		\end{gather}
 		
 	\end{enumerate}
-\section{Spatial Analysis [Exam]}
+\section{Spatial Analysis}
 	The attached $spatial-analysis.R$ file was developed to carry out the solution for this task. 
 	
 	\begin{enumerate}[a)]
 		\item The $preprocessData()$ function is tailored to perform noise-reduction of the data. The parameters are configured by default as follows: 
 		\begin{itemize}
 			\item minimumSatellites = 3,
-			\item maximumHDOP = 6, '
+			\item maximumHDOP = 6,
 			\item rangeTreshold = 50 [meters]
 		\end{itemize}				
 		
@@ -155,12 +154,21 @@
 			\end{center}
 		\end{figure}
 		
-		\item 
-		\item 
-	\end{enumerate}	 
-\section{Trajectory Preprocessing and Analysis}
+		\item To begin the velocity pruning with, the $addVelocityBetweenPoints()$ function calculates the elapsed time between the measured points based on the differences between the timestamps. With the usage of velocity threshold $1 \frac{m}{s}$, the number of points is reduced from 334 to 292. The pruned points and their annotated clusters are displayed on Figure \ref{buenosaires-annottated-clusters}. 
+		
+		It is visible that the points which formed the previously detected places (clusters) remained in the dataset after the velocity pruning was performed. This further confirms the validity of these places, however some of the clusters on Figure \ref{buenosaires-kmeans} should probably be divided into multiple smaller clusters and yield in more than 4 POIs. 
 	
-\section{Map Matching [Exercise]}
+	\begin{figure}[h] 
+		\begin{center}
+			\caption{The 292 points after the velocity pruning was performed on the Buenos Aires dataset and seven clusters of the dataset which were annotated manually.}
+			\includegraphics[width=0.8\textwidth]{images/buenosaires-annoted_clusters_after_velocity_pruning.png}
+			\label{buenosaires-annottated-clusters}
+		\end{center}
+	\end{figure}
+	
+		\item 
+	\end{enumerate}
+\section{Map Matching}
 	\begin{enumerate}[a)]
 		\item The attached $map\_matching.R$ file contains the partial solution of this task. Figure \ref{interpolated_points} displays the original points (black) and the new ones added using interpolation technique (red). Using 10 seconds sampling interval, 452 points are added in total. 
 		
@@ -175,7 +183,7 @@
 
 	\item The bounding box of the measurements is limited by the two points (-122.4673, 37.80543) (top left point) and (-122.4045, 37.7523) (bottom right item). Unfortunately, the exported OSM file did not load in R and I was unable to perform the analysis. Nevertheless, from the bottom item on Figure \ref{interpolated_points} we can clearly see, that the interpolated points (with red) match in most cases with the road segments, however in some cases they go through buildings as the user was probably taking sequential left and right turns at intersections.
 	
-	\item
+	\item 
 	\item	
 	\end{enumerate}	
 	

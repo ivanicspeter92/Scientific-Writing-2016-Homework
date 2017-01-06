@@ -120,8 +120,11 @@ kmeans(temp, 3)
 rm(temp)
 
 # c)
-measurements = addVelocityBetweenPoints(measurements) 
-velocityTreshold = round(estimate_mode(measurements$velocity), 1)
+measurements = addVelocityBetweenPoints(measurements) # meters/sec
+
+velocityTreshold = 1  # meters/sec
+#velocityTreshold = round(estimate_mode(measurements$velocity), 1) # mode of observations, meters/sec
+
 prunedPoints = data.frame(matrix(data = c(measurements$longitude[ which(measurements$velocity < velocityTreshold)], measurements$latitude[ which(measurements$velocity < velocityTreshold)]),ncol = 2))
 names(prunedPoints) = c("longitude", "latitude")
 plot(x = prunedPoints$longitude, y = prunedPoints$latitude)
