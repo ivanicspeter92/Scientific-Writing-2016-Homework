@@ -1,0 +1,82 @@
+\documentclass[english]{tktltiki}
+\usepackage[pdftex]{graphicx}
+\usepackage{subfigure}
+\usepackage{url}
+\begin{document}
+%\doublespacing
+%\singlespacing
+\onehalfspacing
+
+\title{Location Awareness - Project work: Scratch Off Map}
+\author{Péter Ivanics}
+\date{\today}
+
+\maketitle
+
+\numberofpagesinformation{\numberofpages\ pages + \numberofappendixpages\ appendices}
+\keywords{}
+
+\mytableofcontents
+
+\section{Introduction}
+	This report is a summary of my project work for the Location Awareness course, which is a simple location-based game called Scratch-Off Map for iOS devices. The high level idea of the game is to provide a place for users to show which countries they visited so far. For instance, once a user enters a new country where he has not been to before, the application would recognize that based on the location and mark the country as visited. 
+	
+	The identification of the visited countries works based on GIS coordinates and their reverse geocoding to country names. As the users collect more and more coordinates by time, the list of points and therefore the list of visited countries grow as they travel around the world. 
+	
+	To utilize techniques learned throughout the course, the collection of points can be scheduled according to a Duty Cycling mechanism. Using this technique way the network traffic, reverse-geocoding queries and the battery life can be considerably reduced. 
+	
+	The measured points can be visualized and the visited countries can be colored on the world map. Based on the measured points in individual countries, the colors may differ and the user may be presented a leaderboard of his/her most visited countries. The user may want to create a "wish-list" of countries to visit next, that are also shown on the visual map with different color than the visited ones. 
+	
+	To achieve the data collection, reverse geocoding feature, the visualization of the map and the points, the API of Apple's MapKit \footnote{\url{https://developer.apple.com/reference/mapkit}} framework is utilized. By choosing this project I expect myself to 
+	
+	\begin{itemize}
+		\item gain hands-on experience in the field of Location Awareness,
+		\item implement Duty Cycling and potentially other techniques covered during the course inside the application,
+		\item learn the usage and the APIs of the MapKit framework as a specimen of a locationing-oriented framework,
+		\item improve my skills in iOS and Swift 3.0 development, Test Driven Development (TDD), Object-Oriented Programming (OOP) and in technical writing,
+		\item further explore the field of Location Awareness. 
+	\end{itemize}
+
+\section{Specifications and technical details}
+	To begin with, the specifications of the application are stated. 
+
+\subsection{Images}
+
+The image~\ref{kuvaesimerkki} shows how to present a figure. You must pay attention to the visibility of 
+figure parts and text, to the numbering of figures, and captions. 
+
+\begin{figure}[h]
+%\begin{figure}[tbh] t= top, b = bottom, h=here
+\ \newline
+\begin{center}
+\includegraphics[width=0.9\textwidth]{kuvaesimerkki.pdf}
+%\rotatebox{90}{\includegraphics[scale=.75]{kuvaesimerkki.pdf}}
+\caption{Figure elements.}
+\label{kuvaesimerkki}
+\end{center}
+\end{figure}
+
+\section{Conclusion}
+
+
+\nocite{*}
+\bibliographystyle{tktl}
+\bibliography{lahteet}
+
+\lastpage
+
+\appendices
+
+\pagestyle{empty}
+
+%\internalappendix{1}{Model ABC}
+%
+%The appendices here are just models of the table of contents and the presentation. Each appendix 
+%usually starts on its own page, with the name and number of the appendix at the top. Each appendix is paginated separately.
+%
+%In addition to complementing the main document, each appendix is also its own, independent entity. 
+%This means that an appendix cannot be just an image or a piece of programming, but the appendix must explain its contents and meaning.
+
+\end{document}
+
+
