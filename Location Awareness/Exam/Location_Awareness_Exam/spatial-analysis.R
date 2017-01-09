@@ -128,3 +128,21 @@ velocityTreshold = 1  # meters/sec
 prunedPoints = data.frame(matrix(data = c(measurements$longitude[ which(measurements$velocity < velocityTreshold)], measurements$latitude[ which(measurements$velocity < velocityTreshold)]),ncol = 2))
 names(prunedPoints) = c("longitude", "latitude")
 plot(x = prunedPoints$longitude, y = prunedPoints$latitude)
+
+# d)
+#library(osmar)
+#src = osmsource_api()
+#src = osmsource_file(file = "buenosaires.osm") 
+
+#bb = corner_bbox(
+#  left = min(prunedPoints$longitude), right = max(prunedPoints$longitude),
+#  top = max(prunedPoints$latitude), bottom = min(prunedPoints$latitude)
+#)
+#ctown <- get_osm(complete_file(), source = src) # this may take a while
+#plot(ctown)
+
+#d)
+library(OpenStreetMap)
+library(rgdal)
+map = openmap(upperLeft = c(max(prunedPoints$latitude), min(prunedPoints$longitude)), lowerRight = c(min(prunedPoints$latitude), max(prunedPoints$longitude)))
+plot(map)
