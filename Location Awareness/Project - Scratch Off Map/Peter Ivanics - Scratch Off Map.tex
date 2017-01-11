@@ -28,7 +28,7 @@
 	
 	The measured points can be visualized and the visited countries can be colored on the world map. Based on the measured points in individual countries, the colors may differ and the user may be presented a leaderboard of his/her most visited countries. The user may want to create a "wish-list" of countries to visit next, that are also shown on the visual map with different color than the visited ones. 
 	
-	To achieve the data collection, reverse geocoding feature, the visualization of the map and the points, the API of Apple's MapKit \footnote{\url{https://developer.apple.com/reference/mapkit}} framework is utilized. By choosing this project I expect to 
+	To achieve the data collection, reverse geocoding feature, the visualization of the map and the points, the API of Apple's MapKit \footnote{\url{https://developer.apple.com/reference/mapkit}} framework is utilized. My personal motivation behind choosing this project is to
 	
 	\begin{itemize}
 		\item gain hands-on experience in the field of Location Awareness,
@@ -38,27 +38,30 @@
 		\item further explore the field of Location Awareness. 
 	\end{itemize}
 
-\section{Specifications and technical details}
-	To begin with, the specifications of the application are stated in Table \ref{feature-list}. 
+\section{Development plans}
+	To begin the development with, the development plans are carried out, platform, development language and tools are chosen. First, the feature list of the application are stated in Table \ref{feature-list}. Naturally, the features which create the core of the software such as data collection, duty cycling, reverse-geocoding and basic data visualization are put on on higher priority (1) than other features, which may enhance the user experience, but not essential to demonstrate gains of the Location Awareness course. Therefore such features are marked as lower priority (3) and some of them are not even part of the final, working application.
 	
 	\begin{table}[]
-\caption{My caption}
+\caption{The planned features, their explanations and priority (1 = high priority, 3 = low priority) for the Scratch Off Map. }
 \label{feature-list}
-\begin{tabularx}{\textwidth}{ l X X p{.1cm}}
+\begin{tabularx}{\textwidth}{ l p{3.3cm} X p{.1cm}}
 \toprule
 \# & \textbf{Feature}                                              & \textbf{Explanation}                                                                                                                                                                                                                                                                                             & \textbf{Priority} \\ \midrule
-1  & Duty Cycling                                                  & The collection of data points should run according to a Duty Cycling schedule. The user should be able to modify this schedule as (s)he likes, for instance by choosing between 1/3/5/10 minute cycles or by inserting values manually.                                                                          & 1                 \\
-2  & Force new data point collection                               & The user should be able to manually initiate collection of a new longitude-latitude coordinate pair where (s)he is at currently.                                                                                                                                                                                 & 1                 \\
-3  & Manual data point insertion                                   & The user should be able to manually insert a longitude-latitude coordinate pair and add it to the database.                                                                                                                                                                                                      & 3                 \\
-4  & List of visited countries                                     & The user should be able to display the list of countries (s)he visited so far based on the collected points in the database.                                                                                                                                                                                     & 1                 \\
-5  & Number of points from individual countries                    & The user should see how many points from each country (s)he collected.                                                                                                                                                                                                                                           & 2                 \\
-6  & Reverse-geocoding of coordinates to country names {[}codes{]} & The application should be able to reverse the longitude-latitude coordinate pairs and tell the country to which the coordinates belong to. For instance, input (60.1699, 24.9384) would give the result of Finland {[}FI{]}.                                                                                     & 1                 \\
-7  & Visualization of visited countries on the world map           & The application should be able to color the visited countries on the world map. The color of the countries may differ based on the number of the points that were identified to be in that country (for instance countries with many points have dark, countries with small number of points have light colors). & 3                 \\
-8  & Visualization of the collected points on the world map        & The application should be able to visualize the collected points on the world map (for instance, by putting pins or points at the coordinates and displaying them on the screen).                                                                                                                                & 2                 \\
-9  & "Scratch-off" new countries                                   & Once a new country is visited, the user should be able to "scratch-off" the new country from the map. The map of the country is displayed in a full-screen view and the user can scratch/swipe the dust off from the country to make it visited (as on scratch-off lottery tickets).                             & 4                 \\ \bottomrule
+\textbf{1}  & \textbf{Duty Cycling}                                                  & The collection of data points should run according to a Duty Cycling schedule. The user should be able to modify this schedule as (s)he likes, for instance by choosing between 1/3/5/10 minute cycles or by inserting values manually.                                                                          & 1                 \\ \hline
+\textbf{2}  & \textbf{Force new data point collection}                               & The user should be able to manually initiate collection of a new longitude-latitude coordinate pair where (s)he is at currently.                                                                                                                                                                                 & 1                 \\ \hline
+\textbf{3}  & \textbf{Manual data point insertion}                                   & The user should be able to manually insert a longitude-latitude coordinate pair and add it to the database.                                                                                                                                                                                                      & 3                 \\ \hline
+\textbf{4}  & \textbf{List of visited countries}                                     & The user should be able to display the list of countries (s)he visited so far based on the collected points in the database.                                                                                                                                                                                     & 1                 \\ \hline
+\textbf{5}  & \textbf{Number of points from individual countries}                    & The user should see how many points from each country (s)he collected.                                                                                                                                                                                                                                           & 2                 \\ \hline
+\textbf{6}  & \textbf{Reverse-geocoding of coordinates to country names {[}codes{]}} & The application should be able to reverse the longitude-latitude coordinate pairs and tell the country to which the coordinates belong to. For instance, input (60.1699, 24.9384) would give the result of Finland {[}FI{]}.                                                                                     & 1                 \\ \hline
+\textbf{7}  & \textbf{Visualization of visited countries on the world map}           & The application should be able to color the visited countries on the world map. The color of the countries may differ based on the number of the points that were identified to be in that country (for instance countries with many points have dark, countries with small number of points have light colors). & 3                 \\ \hline
+\textbf{8}  & \textbf{Visualization of the collected points on the world map}        & The application should be able to visualize the collected points on the world map (for instance, by putting pins or points at the coordinates and displaying them on the screen).                                                                                                                                & 2                 \\ \hline
+\textbf{9}  & \textbf{"Scratch-off" new countries}                                   & Once a new country is visited, the user should be able to "scratch-off" the new country from the map. The map of the country is displayed in a full-screen view and the user can scratch/swipe the dust off from the country to make it visited (as on scratch-off lottery tickets).                             & 4                 \\ \bottomrule
 \end{tabularx}
 \end{table}
 	
+	The development target for the application are iOS 10.0-ready mobile devices. More specifically, this includes iPhones and iPads (mobile phone and tablet devices). The integrated developer environment (IDE) is chosen to be xCode 8.2.1 \footnote{\url{https://itunes.apple.com/fi/app/xcode/id497799835?mt=12}}, while the programming language is Swift 3.0 \footnote{\url{https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/}}.  On top of that, the project is put under version control (git) so the development process and debugging can be fluent and more efficient. The reason behind choosing this platform, developer environment, tools and programming language is their popularity, my personal interest and familiarity with them. 
+	
+	For development approach, Test Driven Development (TDD) is chosen, at least for the application's business logic layer. The reason behind this decision is the fact that it is simple to implement and strongly contributes to software quality and easy maintainability \cite{clean-coder}. 
 
 \subsection{Images}
 
@@ -98,5 +101,3 @@ figure parts and text, to the numbering of figures, and captions.
 %This means that an appendix cannot be just an image or a piece of programming, but the appendix must explain its contents and meaning.
 
 \end{document}
-
-
