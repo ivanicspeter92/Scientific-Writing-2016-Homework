@@ -7,7 +7,6 @@
 \begin{document}
 \onehalfspacing
 
-
 \title{Location Awareness - Project work: Scratch Off Map}
 \author{Péter Ivanics}
 \date{\today}
@@ -63,24 +62,122 @@
 	
 	For development approach, Test Driven Development (TDD) is chosen, at least for the application's business logic layer. The reason behind this decision is the fact that it is simple to implement and strongly contributes to software quality and easy maintainability \cite{clean-coder}. 
 
-\subsection{Images}
+\subsection{Architectural overview}
 
-The image~\ref{kuvaesimerkki} shows how to present a figure. You must pay attention to the visibility of 
-figure parts and text, to the numbering of figures, and captions. 
+To understand how the software works, the architectural design is explained shortly in this chapter. This includes the main components, UML (Unified Modeling Language) diagrams and their brief explanation. Activity and detailed diagrams are excluded from this report due to its small scope.
+
+The applications main design pattern follows the Model View Controller (MVC) approach in general. However, as suggested by several professionals (\cite{orl15}, \cite{per16}), this particular design has the risk of going into the Massive View Controller direction in case of iOS development and is not recommended. As the scope of this project for the time being is limited, other design patterns are not discussed nor included in the development. Nevertheless, this finding is kept in mind and the views of the application are kept minimal and the business logic is separated in different components as explained in the paragraphs to follow.
+
+The component diagram of the Scratch Off Map is displayed on Figure \ref{compontent-diagram}. The application's Model components at this point is very simple as it has only two classes: $Coordinates$ and $Country$. These classes formulate the tables of the database and the objects that will store the user data during the application's execution.
+
+The DatabaseManager class is part of the business logic and is responsible to serve as an interface between the main application Lifecycle Controller and the models. This component (which is actually reduced to a single class for now) is the main responsible for handling the business logic interacting with other components. On top of the data manipulation this means the maintenance of the CoordinateCollector and the GeoCoder services. The latter two service is also considered as an interfaces to the end-points of the MapKit library provided by Apple (using the Adapter pattern \footnote{\url{https://en.wikipedia.org/wiki/Adapter_pattern}}). The DatabaseManager component is designed exactly in the same manner to the end-points of the RealmSwift mobile database \footnote{\url{https://realm.io/}}, which is a community-build open source library. 
+
+Finally, the UIViewController classes represent the data that is retrieved through the LifecycleManager. As pointed out above, the logic in these classes is kept minimal and focused only on user interface-related issues. These classes also utilize the capabilities of the built-in MapKit and UIKit packages. 
 
 \begin{figure}[h]
-%\begin{figure}[tbh] t= top, b = bottom, h=here
 \ \newline
 \begin{center}
-\includegraphics[width=0.9\textwidth]{kuvaesimerkki.pdf}
-%\rotatebox{90}{\includegraphics[scale=.75]{kuvaesimerkki.pdf}}
-\caption{Figure elements.}
-\label{kuvaesimerkki}
+\includegraphics[width=0.9\textwidth]{images/ScratchOffMap-component_diagram.png}
+\caption{The component diagram of the Scratch Off Map application.}
+\label{component-diagram}
 \end{center}
 \end{figure}
 
-\section{Conclusion}
+\subsection{Implementation steps and challenges}
+After planning the features and the software architecture, the implementation of the software began. A Github repository \footnote{\url{https://github.com/ivanicspeter92/ScratchOffMap}} was created for the version tracking of the source code. Next, the Xcode project was set up and configured, including the test project. Next, the project structure was established to include the following folders to help understanding : 
 
+	\begin{enumerate}
+		\item Controllers
+		\item Extensions
+		\item Models
+		\item Protocols
+		\item Storyboards
+		\item Views
+	\end{enumerate}
+
+	\subsection{Models}	
+	As the first step of the development, the model classes $Country$ and $Coordinates$ were developed and tested. The latter included some more complex logic such as instantiating coordinates from using strings, the $CoordinatesTests$ class includes a couple of automated tests for this functionality.
+	
+	The classes above are very primitive and have only a couple of fields and initializers. Any type of complex business logic is stored in the controller classes and is not handled in the models. Naturally, this is a very sophisticated and simple set of model objects due to the simplicity of the application, however the architecture is yet open for extensions and further addition of functionality. 
+	
+	\subsection{Controllers}
+	Next, the $DutyCycling$ and its subclass, $CoordinateCollectorService$ was implemented. The former class is an abstract implementation of the duty cycling mechanism and designed in a way that it can be reused for other purposes. The latter is an extension of this functionality and performs the GIS data collection through the MapKit APIs. 
+	
+	\begin{figure}[h]
+	\ \newline
+	\begin{center}
+	\includegraphics[width=0.4\textwidth]{images/points_in_europe.png}
+	\includegraphics[width=0.4\textwidth]{images/buenos_aires.png}
+	\caption{A set of points in Europe (left) and Argentina (right) visualized on the world map in the application.}
+	\label{points_in_the_application}
+	\end{center}
+	\end{figure}	
+	
+	Afterwards, the $GeoCoder$ class was added and tested in $GeoCoderTests$. Integration with the API provided by MapKit was fairly straightforward, however I had to learn how to utilize closures and asynchronous testing to proceed with the efficient testing. I managed to get the reverse-geocoding working through the $decodeCountry()$ function of the $GeoCoder$ class. As the name suggests, this function is the main responsible for turning GPS coordinates and storing the unwrapped country to the database upon success. 
+	
+	During the testing it turned out that the reverse-geocoding service has the capability to retrieve more information than the country, for instance postal code, city or street name, if applicable. For this application, this data is dropped as only the country names were of interest. In some cases, typically while decoding high number of points, the API returned with an error message, which can be explained with the fact that the number of queries to the provider "are rate-limited for each app" according to the corresponding documentation \footnote{\url{https://developer.apple.com/reference/corelocation/clgeocoder/1423621-reversegeocodelocation}}. This problem was not resolved yet, because it appears only in a test environment, when huge set of points is added at once. In a real usage scenario the user collects only couple of points according to the duty cycle interval, and therefore the problem is not present.
+	
+	The country recognition in most cases is accurate, however in some cases the service recognized the country of the point to be an actual city (for instance in one case Hong Kong was returned as the country of a certain point). For this reason, such points are identified and hidden by default in the user interface. On top of that, the points that are collected without recognizing a country (e.g. if the point is in the middle of the ocean) are stored, but not presented to the user by default. The $DatabaseManager$ and the $LifecycleController$ is responsible jointly for handling such cases. 
+	
+	\subsection{Views}
+	The user interface of the application contains three simple views: the world map, the list of visited countries and the application settings. As pointed out above, the corresponding classes ($WorldMapViewController, CountriesTableViewController$ and $SettingsTableViewController$) deal only with user interface-related issues and delegate all tasks to the controllers explained above. 
+	
+	\begin{figure}[h]
+	\ \newline
+	\begin{center}
+	\includegraphics[width=0.4\textwidth]{images/point_addition.png}
+	\includegraphics[width=0.4\textwidth]{images/manual_point_addition.png}
+	\caption{Adding points by the current position of the device or by manual coordinate insertion.}
+	\label{points_in_the_application}
+	\end{center}
+	\end{figure}		
+	
+	The $WorldMapViewController$ embeds a map (as an instance of the $MKMapView$ class), which displays the collected points on the map. For testing purposes I added several random points from Hungary, Sweden and Finland and a subset of the points in the Buenos Aires dataset to the database. The view successfully visualized these points on the map as shown of Figure \ref{points_in_the_application}. The view includes a "continent selector" control on the top of the screen. The idea of this control was to position the map above the selected continent, however this functionality was not added to the application yet. 
+	
+	By tapping on the "Add" button on the top-right corner of the screen the user may add new points to the database. This can be done either manually or by forcing the coordinate collector to trigger the duty cycle action - which is the retrieval of the current position of the device and storing the point into the database (Figure \ref{point_addition}). 
+
+	Once the $GeoCoder$ service is enabled (through the $attemptDecodingCountriesInDatabase()$ function in the $LifecycleController$ class), the countries of the collected points are looked up and stored back in the database. Once a country is successfully recognized, it is displayed in list presented on the the $CountriesTableViewController$ as shown on Figure \ref{country_list}. Currently this view is limited to list the visited countries. Further improvement on this view could include displaying the number of points in each country on the right side, their clustering, analysis or statistics. 
+	
+	\begin{figure}[h]
+	\ \newline
+	\begin{center}
+	\includegraphics[width=0.4\textwidth]{images/country_list.png}
+	\caption{The list of collected points. It is visible that the user currently has visited four countries: Hungary, Finland, Argentina and Sweden. }
+	\label{country_list}
+	\end{center}
+	\end{figure}
+	
+	The $SettingsTableViewController$ provides a simple interface to manipulate the configuration of the application (Figure \ref{settings}). This includes changing the manipulation of the duty cycling interval (Figure \ref{modification_of_settings} left) of coordinate collection, displaying coordinates outside in the map, displaying countries without recognized country code in the list of visited countries and deletion of points from the database (Figure \ref{modification_of_settings} right). 
+
+	\begin{figure}[h]
+	\ \newline
+	\begin{center}
+	\includegraphics[width=0.4\textwidth]{images/settings.png}
+	\caption{The settings view in the application.}
+	\label{settings}
+	\end{center}
+	\end{figure}
+	
+	The settings are not stored to any temporal container and therefore are lost once the user exits the application. This feature was not part of the first iteration and therefore was not added, however it would be important and essential feature for further development.  
+
+\begin{figure}[h]
+	\ \newline
+	\begin{center}
+	\includegraphics[width=0.4\textwidth]{images/duty_cycling.png}
+	\includegraphics[width=0.4\textwidth]{images/point_deletion.png}
+	\caption{Modifying the duty cycling schedule (left) and deleting points from the database (right).}
+	\label{modification_of_settings}
+	\end{center}
+	\end{figure}
+
+\section{Conclusions and future plans}
+To summarize the project, the first version of the Scratch-Off Map application was developed for iOS devices as explained in the first chapter. Most of the features presented in Table \ref{feature-list} were developed: only feature \# 7 and \# 9 was not added due to their low priority and strong user interface oriented usage. These features can be added to the next version of the software. The rest of the features were more closely related to the contents of the Location Awareness course and therefore were ranked as higher priority and in the end are already parts of the application.
+
+To support software quality, the test project includes 21 automated tests already. These ensure the correctness of the business logic and serve as validity-check during any future development. 
+
+The main part of the business logic that is strongly related to the course is the duty cycling mechanism, the coordinate collection and the reverse-geocoding service. The first service was implemented in a manner that the code is reusable and can be ported to other applications. During the development of the other two services I had to study part of the MapKit API, which is a great tool for working with location data on the iOS platform. 
+
+Future development may include the improvement of the $GeoCoder$ service as there is still a small room for improvement. As pointed out above, the number of requests to the reverse-geocoding service is limited and the application should embed a schedule to make the queries fluent and more reliable. Additionally, the application could be extended with features such as connection to and sharing results on social media, gamification, analysis of the collected points, colorizing the visited countries on the map and so on. 
 
 \nocite{*}
 \bibliographystyle{tktl}

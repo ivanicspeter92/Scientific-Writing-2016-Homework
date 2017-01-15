@@ -141,8 +141,8 @@ plot(x = prunedPoints$longitude, y = prunedPoints$latitude)
 #ctown <- get_osm(complete_file(), source = src) # this may take a while
 #plot(ctown)
 
-#d)
-library(OpenStreetMap)
-library(rgdal)
-map = openmap(upperLeft = c(max(prunedPoints$latitude), min(prunedPoints$longitude)), lowerRight = c(min(prunedPoints$latitude), max(prunedPoints$longitude)))
-plot(map)
+#d) second attempt
+#library(OpenStreetMap)
+#library(rgdal)
+#map = openmap(upperLeft = c(max(prunedPoints$latitude), min(prunedPoints$longitude)), lowerRight = c(min(prunedPoints$latitude), max(prunedPoints$longitude)))
+#plot(map)
