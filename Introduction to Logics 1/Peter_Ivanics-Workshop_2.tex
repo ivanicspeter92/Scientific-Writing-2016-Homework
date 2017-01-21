@@ -216,9 +216,27 @@ We can also see that the two sets $[A]$ and $[B]$ contain the following two elem
 Using the union operation ($\cup$) on sets, we can see that $[A] \cup [B] = \{[1, 0], [1, 0], [1, 1]\}$, which is equal to $[A \vee B]$.
 \end{proof}
 
-\subsection{$[\neg A] = M - [A][\neg A] = M - [A],  X - Y =$ \{ $x \in X | x \notin Y$ \} }
-(the set in which all the elements of XX, that are in YY are taken away)
+\subsection{$[\neg A] = M - [A]$}
+\begin{proof}
+From the truth table below we can see that 
+\begin{eqnarray*}
+	[A] = \{A=1\}, [\neg A] = \{A = 0\} 
+\end{eqnarray*}
 
+We can also see that all possible valuations are $M = \{A = 0, A = 1\}$. 
+
+\begin{center}
+\begin{tabular}{c|c}
+\toprule
+A & \boldmath{$\neg A$} \\ 
+\midrule
+0 & 1 \\
+1 & 0
+\end{tabular}
+\end{center}
+
+Intuitively, using the given definition of the subtraction function of sets, we can see that $M - [\neg A] =  \{A = 0, A = 1\} - \{A = 0\} = \{A = 1\}$
+\end{proof}
 \subsection{$[A \rightarrow B] = M$ iff $[A]?[B][A]?[B]$}
 
 \subsection{$[A \iff B] = M$ iff $[A] = [B]$}
