@@ -194,7 +194,7 @@ Using the intersection operation ($\cap$) on sets, we can see that $[A] \cap [B]
 
 \subsection{$[A \vee B] = [A] \cup [B]$}
 \begin{proof}
-From the truth table of $A \vee B$ we can see that the only case where the proportional formula results in 1 (true) when $v(A) = 1$ or $v(B) = 1$. Consequently, $[A \vee B] = \{[1, 0], [0, 1], [1, 1]\}$.
+From the truth table of $A \vee B$ we can see that the only case where the propositional formula results in 1 (true) when $v(A) = 1$ or $v(B) = 1$. Consequently, $[A \vee B] = \{[1, 0], [0, 1], [1, 1]\}$.
 \begin{center}
     \begin{tabular}{c|c||c}
         \toprule
@@ -237,9 +237,50 @@ A & \boldmath{$\neg A$} \\
 
 Intuitively, using the given definition of the subtraction function of sets, we can see that $M - [\neg A] =  \{A = 0, A = 1\} - \{A = 0\} = \{A = 1\}$
 \end{proof}
-\subsection{$[A \rightarrow B] = M$ iff $[A]?[B][A]?[B]$}
+\subsection{$[A \rightarrow B] = M$ iff $[A] \subseteq [B]$}
+\begin{proof}
+From the truth table of $A \rightarrow B$ we can see that the only case where the propositional formula results in 0 (false) is when $v(A) = 1$ and $v(B) = 0$. Consequently, $[A \rightarrow B] = \{[0, 0], [0, 1], [1, 1]\}$.
+\begin{center}
+    \begin{tabular}{c|c||c}
+        \toprule
+        A & B & $A \rightarrow B$ \\ 
+        \midrule
+        0 & 0 & 1 \\
+        0 & 1 & 1 \\
+        1 & 0 & 0 \\ 
+        1 & 1 & 1
+    \end{tabular}
+\end{center}
+
+Intuitively, we can see that assignments $[0, 1] \subseteq  [B]$ and $[1, 1] \subseteq [A], [B]$. In other words, in order to satisfy $[A \rightarrow B]$, the valuation $[1, 0]$ have to be excluded from all the set of all possible valuations $M$, which yields $[A] \subseteq [B]$. This way the valuations in $[A \rightarrow B]$ always result in a true assignment and ensure that the formula is a tautology.  A visual explanation of the proof is displayed below through a Venn-diagram. 
+
+\begin{center}
+\includegraphics[width=0.75\textwidth]{images/A_implies_B.png}
+\end{center}
+\end{proof}
 
 \subsection{$[A \iff B] = M$ iff $[A] = [B]$}
+
+\begin{proof}
+From the truth table of $A \iff B$ we can see that the only case where the propositional formula results in 1 (true) is when $v(A) = 0$, $v(B) = 0$ or $v(A) = 1$, $v(B) = 1$. Consequently, $[A \iff B] = \{[0, 0], [1, 1]\}$.
+\begin{center}
+    \begin{tabular}{c|c||c}
+        \toprule
+        A & B & $A \iff B$ \\ 
+        \midrule
+        0 & 0 & 1 \\
+        0 & 1 & 0 \\
+        1 & 0 & 0 \\ 
+        1 & 1 & 1
+    \end{tabular}
+\end{center}
+
+Intuitively, we can see that assignments $[0, 0] \subseteq  [A], [B]$ and $[1, 1] \subseteq [A], [B]$. In other words, in order to satisfy $[A \iff B]$, the valuations $[1, 0]$ and $[0, 1]$ have to be excluded from all the set of all possible valuations $M$, which yields $[A] = [B]$. This way the valuations in $[A \iff B]$ always result in a true assignment and ensure that the formula is a tautology.  A visual explanation of the proof is displayed below through a Venn-diagram. 
+\begin{center}
+	\includegraphics[width=0.75\textwidth]{images/A_iff_B.png}
+\end{center}
+\end{proof}
+
 
 \section{Problem 5 - Exclusive disjunction (XOR, $\oplus$)}
 \begin{center}
@@ -257,5 +298,3 @@ Intuitively, using the given definition of the subtraction function of sets, we 
 \lastpage
 
 \end{document}
-
-
