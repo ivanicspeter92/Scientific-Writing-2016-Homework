@@ -1,0 +1,162 @@
+\documentclass[english]{tktltiki}
+\usepackage[pdftex]{graphicx}
+\usepackage{subfigure}
+\usepackage{booktabs}
+\usepackage{url}
+\usepackage{amsthm,amssymb}
+ \usepackage{amsmath}
+\begin{document}
+\onehalfspacing
+
+\title{Workshop 3}
+\author{Péter Ivanics}
+\date{\today}
+
+\maketitle
+
+\section{Problem 1}
+The truth table of the truth function defined by the given formula $(p_0 \iff p_1) \rightarrow (p_0 \vee p_1)$ is, as follows: 
+\begin{center}
+\begin{tabular}{c|c||c|c||c}
+\toprule
+$p_0$ & $p_1$ & $(p_0 \iff p_1)$ & $(p_0 \vee p_1)$ & $f(p_0, p_1) = (p_0 \iff p_1) \rightarrow (p_0 \vee p_1)$ \\ 
+\midrule
+0 & 0 & 1 & 0 & 0 \\
+0 & 1 & 0 & 1 & 1 \\
+1 & 0 & 0 & 1 & 1 \\
+1 & 1 & 1 & 1 & 1
+\end{tabular}
+\end{center}
+
+We can see that this function is the same as the OR ($\vee$) function, which means is equal to $(p_0 \vee p_1)$. 
+
+\section{Problem 2}
+
+
+
+\section{Problem 3}
+First let us draw the truth table of the NOR ($\downarrow$) function:
+\begin{center}
+\begin{tabular}{c|c||c}
+\toprule
+$p_0$ & $p_1$ & $(p_0 \downarrow p_1)$ \\ 
+\midrule
+0 & 0 & 1 \\
+0 & 1 & 0 \\
+1 & 0 & 0 \\
+1 & 1 & 0 
+\end{tabular}
+\end{center}
+
+To show that $\{ \downarrow \}$ is a universal set of connectives first we need to observe that the formula is satisfied if and only if all input variables are $0$, formally $f(0, 0, ..., 0) = 1$. Formally, this yields in the following function: 
+\begin{center}
+	$f(p_0, p_1) = 	
+	\begin{cases}
+	1, \mbox{if } p_0 = 0 \mbox{ and } p_1 = 0 \\
+	0, \mbox{ otherwise}
+	\end{cases}
+	$
+\end{center}
+
+\section{Problem 4}
+By definition, disjunctive normal form (DNF) is disjunction of $A_1 \vee A_2 ... \vee A_3$, where $A_n$ is the in the form of $p_1 \wedge p_2 ... \wedge p_m$. In other words, a sentence is in DNF if it is a disjunction and each of its disjuncts ($A_n$) is a conjunction of literals. Intuitively, this means $ (p_0 \wedge p_1 ... \wedge p_m) \vee (p_0 \wedge p_1 ... \wedge p_m) ... \vee (p_0 \wedge p_1 ... \wedge p_m) $ lookalike formulas. Negation of the symbols $p_1, p_2 ... p_m$ is allowed in the DNF. 
+
+According to this definition, the following formulas are evaluated as DNFs. 
+
+\begin{enumerate}
+	\item $p_1$: is a standalone variable and does not include any other connectives and only one literal. This formula is in DNF and considered to be a special case of DNF. 
+	\item $p_0 \vee p_1$: is similar to the function above but includes two symbols. Due to the fact that these symbols are connected with a single disjunction, it is also its main connective and therefore it is in DNF.
+	\item $\neg p_0 \wedge p_1$: this formula is in DNF. Despite the fact that its main connective is an AND ($\wedge$) operator, it is performed on two literals and creates a single clause of the DNF. This is another, special case of the DNF, where the formula contains only a single clause. 
+	\item $p_0 \iff p_2$: is not in DNF, because it contains an equivalence ($\iff$) operation. 
+	\item $(\neg p_0 \wedge p_1 \wedge p_2) \vee (p_0 \wedge \neg p_1 \wedge p_3) \vee (\neg p_0 \wedge p_2 \wedge p_3)$: is in DNF, because the formula contains only AND ($\wedge$) and OR ($\vee$) connectives in the right format. 
+	\item $(\neg p_0 \vee p_1 \vee p_2) \wedge (p_0 \vee \neg p_1 \vee p_3) \wedge (\neg p_0 \vee p_2 \vee p_3)$: is not in DNF. Despite the fact that it contains only the allowed connectives, the format of the formula is not correct, because the symbols are connected directly with OR ($\vee$) connective. These format of formulas are often referred to as as Conjunctive Normal Form (CMF).
+\end{enumerate}
+
+\section{Problem 5}
+\begin{enumerate}
+	\item $p_0 \vee p_1$: 
+	
+	\begin{center}
+		\begin{tabular}{c|c||c}
+		\toprule
+		$p_0$ & $p_1$ & $p_0 \vee p_1$ \\ 
+		\midrule
+		0 & 0 &  0 \\
+		0 & 1 &  1 \\
+		1 & 0 &  1 \\
+		1 & 1 &  1
+		\end{tabular}
+		\end{center}	
+		
+	In another DNF: $p_0 \vee p_1 = (\neg p_0 \wedge p_1) \vee (p_0 \wedge \neg p_1) \vee (p_0 \wedge p_1)$
+
+	\item $\neg (p_0 \vee p_1)$: to turn this formula into DNF, first we use the De Morgan rule 
+	\begin{eqnarray*}
+		\neg (A \vee B) = \neg A \wedge \neg B.
+	\end{eqnarray*}		
+	
+	We can easily see that $\neg (p_0 \vee p_1) = \neg p_0 \wedge \neg p_1$
+	
+		\begin{center}
+		\begin{tabular}{c|c||c}
+		\toprule
+		$p_0$ & $p_1$ & $\neg (p_0 \vee p_1) = \neg p_0 \wedge \neg p_1$ \\ 
+		\midrule
+		0 & 0 &  1 \\
+		0 & 1 &  0 \\
+		1 & 0 &  0 \\
+		1 & 1 &  0
+		\end{tabular}
+		\end{center}	
+		
+		In DNF: $(\neg p_0 \wedge p_1)$
+		
+		\item $(p_0 \vee p_1) \wedge (\neg p_0 \vee p_2)$:
+		
+		\begin{center}
+		\begin{tabular}{c|c|c||c|c|c}
+		\toprule
+		$p_0$ & $p_1$ & $p_2$ & $(p_0 \vee p_1)$ & $(\neg p_0 \vee p_2)$ & $(p_0 \vee p_1) \wedge (\neg p_0 \vee p_2)$ \\ 
+		\midrule
+		0 & 0 &  0 & 0 & 1 & 0 \\
+		0 & 0 &  1 & 0 & 1 & 0 \\
+		0 & 1 &  0 & 1 & 1 & 1 \\
+		0 & 1 &  1 & 1 & 1 & 1 \\
+		1 & 0 &  0 & 1 & 0 & 0 \\
+		1 & 0 &  1 & 1 & 1 & 1 \\
+		1 & 1 &  0 & 1 & 0 & 0 \\		
+		1 & 1 &  1 & 1 & 1 & 1
+		\end{tabular}
+		\end{center}
+		In DNF: $(\neg p_0 \wedge p_1 \wedge \neg p_2) \vee (\neg p_0 \wedge p_1 \wedge p_2) \vee (p_0 \wedge \neg p_1 \wedge p_2) \vee (p_0 \wedge p_1 \wedge p_2)$
+		
+	\item $(\neg p_0 \vee p_1 \vee p_2) \wedge (p_0 \vee \neg p_1 \vee p_3) \wedge (\neg p_0 \vee p_2 \vee p_3) $
+	
+	\begin{eqnarray*}
+	(\neg p_0 \vee p_1 \vee p_2) \wedge (p_0 \vee \neg p_1 \vee p_3) \wedge (\neg p_0 \vee p_2 \vee p_3) 
+	= \\
+	\neg (\neg (\neg p_0 \vee p_1 \vee p_2) 
+	\vee 
+	\neg (p_0 \vee \neg p_1 \vee p_3) 
+	\vee 
+	\neg (\neg p_0 \vee p_2 \vee p_3)) = \\
+	\neg ((p_0 \wedge \neg p_1 \wedge \neg p_2) 
+	\vee 
+	(\neg p_0 \wedge p_1 \wedge \neg p_3) 
+	\vee
+	( p_0 \wedge \neg p_2 \wedge \neg p_3)) = \\
+	\neg ((p_0 \neg p_1 \neg p_2) 
+	+ 
+	(\neg p_0 p_1 \neg p_3) 
+	+
+	( p_0 \neg p_2 \neg p_3)) = \\
+	\neg (p_0 [(\neg p_1 \neg p_2) + (\neg p_2 \neg p_3)] + (\neg p_0 p_1 \neg p_3)) =	
+	\end{eqnarray*}
+	\end{enumerate}
+
+\section{Problem 6}
+
+
+\lastpage
+
+\end{document}
