@@ -31,7 +31,11 @@ $p_0$ & $p_1$ & $(p_0 \iff p_1)$ & $(p_0 \vee p_1)$ & $f(p_0, p_1) = (p_0 \iff p
 We can see that this function is the same as the OR ($\vee$) function, which means is equal to $(p_0 \vee p_1)$. 
 
 \section{Problem 2}
+As the solution states, the set ${\wedge, \vee}$ are not universal, because there will be always a valuation $f(1,...,1) = 1$. In other words, under at least one valuation, any formula using these operations is satisfied. 
 
+This can be explained by the monotonic property of the OR ($\vee$) and the AND ($\wedge$) functions, which means that the output of these functions is always greater than the minimum value of their inputs. Formally, $ p_0 \wedge p_1 >= min(p_0, p_1) $ and $ p_0 \vee p_1 >= min(p_0, p_1)$ for every valuations.
+
+The monotonic property does not hold for the negation ($\neg$) function. Because the operators in the ${\wedge, \vee}$ are both monotonic they can not satisfy the negation function and thus the set is not universal. 
 
 
 \section{Problem 3}
@@ -39,7 +43,7 @@ First let us draw the truth table of the NOR ($\downarrow$) function:
 \begin{center}
 \begin{tabular}{c|c||c}
 \toprule
-$p_0$ & $p_1$ & $(p_0 \downarrow p_1)$ \\ 
+$p$ & $q$ & $(p \downarrow q)$ \\ 
 \midrule
 0 & 0 & 1 \\
 0 & 1 & 0 \\
@@ -48,14 +52,46 @@ $p_0$ & $p_1$ & $(p_0 \downarrow p_1)$ \\
 \end{tabular}
 \end{center}
 
-To show that $\{ \downarrow \}$ is a universal set of connectives first we need to observe that the formula is satisfied if and only if all input variables are $0$, formally $f(0, 0, ..., 0) = 1$. Formally, this yields in the following function: 
+To show that $\{ \downarrow \}$ is a universal set of connectives first we need to observe that the formula yields in the following function: 
 \begin{center}
-	$f(p_0, p_1) = 	
+	$f(p_, q) = 	
 	\begin{cases}
-	1, \mbox{if } p_0 = 0 \mbox{ and } p_1 = 0 \\
+	1, \mbox{if } p = 0 \mbox{ and } q = 0 \\
 	0, \mbox{ otherwise}
 	\end{cases}
 	$
+\end{center}
+
+Then we can see that the following functions are equal which proves the universality of the set $\{\downarrow\}$:
+
+\begin{center}
+\begin{tabular}{c||c|c}
+\toprule
+$p$ & $\neg p$ & $p \downarrow p$ \\ 
+\midrule
+0 & 1 & 1 \\
+1 & 0 & 0
+\end{tabular}
+
+\begin{tabular}{c|c||c|c}
+\toprule
+$p$ & $q$ & $p \wedge q$  & $(p \downarrow p) \downarrow (q \downarrow q)$  \\ 
+\midrule
+0 & 0 & 0 & 0 \\
+0 & 1 & 0 & 0 \\
+1 & 0 & 0 & 0 \\ 
+1 & 1 & 1 & 1
+\end{tabular}
+
+\begin{tabular}{c|c||c|c}
+\toprule
+$p$ & $q$ & $p \vee q$  &  $(p \downarrow q) \downarrow (p \downarrow q)$  \\ 
+\midrule
+0 & 0 & 0 & 0 \\
+0 & 1 & 1 & 1 \\
+1 & 0 & 1 & 1 \\ 
+1 & 1 & 1 & 1
+\end{tabular}
 \end{center}
 
 \section{Problem 4}
@@ -132,30 +168,42 @@ According to this definition, the following formulas are evaluated as DNFs.
 		
 	\item $(\neg p_0 \vee p_1 \vee p_2) \wedge (p_0 \vee \neg p_1 \vee p_3) \wedge (\neg p_0 \vee p_2 \vee p_3) $
 	
-	\begin{eqnarray*}
-	(\neg p_0 \vee p_1 \vee p_2) \wedge (p_0 \vee \neg p_1 \vee p_3) \wedge (\neg p_0 \vee p_2 \vee p_3) 
-	= \\
-	\neg (\neg (\neg p_0 \vee p_1 \vee p_2) 
-	\vee 
-	\neg (p_0 \vee \neg p_1 \vee p_3) 
-	\vee 
-	\neg (\neg p_0 \vee p_2 \vee p_3)) = \\
-	\neg ((p_0 \wedge \neg p_1 \wedge \neg p_2) 
-	\vee 
-	(\neg p_0 \wedge p_1 \wedge \neg p_3) 
-	\vee
-	( p_0 \wedge \neg p_2 \wedge \neg p_3)) = \\
-	\neg ((p_0 \neg p_1 \neg p_2) 
-	+ 
-	(\neg p_0 p_1 \neg p_3) 
-	+
-	( p_0 \neg p_2 \neg p_3)) = \\
-	\neg (p_0 [(\neg p_1 \neg p_2) + (\neg p_2 \neg p_3)] + (\neg p_0 p_1 \neg p_3)) =	
-	\end{eqnarray*}
+			\begin{center}
+		\begin{tabular}{c|c|c|c||c}
+		\toprule
+		$p_0$ & $p_1$ & $p_2$ & $p_3$ & $(\neg p_0 \vee p_1 \vee p_2) \wedge (p_0 \vee \neg p_1 \vee p_3) \wedge (\neg p_0 \vee p_2 \vee p_3) $ \\ 
+		\midrule
+		0 & 0 & 0 &  0 &  1 \\
+		0 & 0 & 0 &  1 & 1  \\ 
+		0 & 0 & 1 &  0 &  1\\
+		0 & 0 & 1 &  1 & 1 \\ 
+		0 & 1 & 0 &  0 & 0 \\
+		0 & 1 & 0 &  1 & 1 \\
+		0 & 1 & 1 &  0 & 0 \\		
+		0 & 1 & 1 &  1 & 1 \\
+		1 & 0 & 0 &  0 &  0 \\
+		1 & 0 & 0 &  1 &  0 \\
+		1 & 0 & 1 &  0 &  1 \\
+		1 & 0 & 1 &  1 &  1\\
+		1 & 1 & 0 &  0 &  0 \\
+		1 & 1 & 0 &  1 &  1\\
+		1 & 1 & 1 &  0 & 1\\		
+		1 & 1 & 1 &  1 & 1
+		\end{tabular}
+		\end{center}
 	\end{enumerate}
 
 \section{Problem 6}
-
+\begin{enumerate}
+	\item $\neg (( p_0 \wedge p_1) \vee p_2))^+$
+		\begin{eqnarray*}
+			( \neg (( p_0 \wedge p_1) \vee p_2))^+ = \\
+			(( p_0 \wedge p_1) \vee p_2)^- = \\
+			( p_0 \wedge p_1)^- \wedge p_2 ^- = \\
+			( p_0^- \vee p_1^-) \wedge p_2 ^- = \\
+			( \neg p_0 \vee \neg p_1) \wedge \neg p_2
+		\end{eqnarray*}
+\end{enumerate} 
 
 \lastpage
 
