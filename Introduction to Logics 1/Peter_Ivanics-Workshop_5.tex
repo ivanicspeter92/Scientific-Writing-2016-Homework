@@ -1,0 +1,55 @@
+\documentclass[english]{tktltiki}
+\usepackage[pdftex]{graphicx}
+\usepackage{subfigure}
+\usepackage{booktabs}
+\usepackage{url}
+\usepackage{amsthm,amssymb}
+ \usepackage{amsmath}
+\begin{document}
+\onehalfspacing
+
+\title{Workshop 5}
+\author{Péter Ivanics}
+\date{\today}
+
+\maketitle
+
+\section{Problem 1}
+In both subproblems below, we prove that there are is no natural deduction of the formulas by presenting a valuation such that $V(A) \neq V(B)$.
+\begin{enumerate}
+	\item $p_0$ from $p_0 \vee p_1$ \\
+		Let $A = p_0$ and $B = p_0 \vee p_1$. Let us assign $V(p_0) = 0$ and $V(p_1) = 1$ . 
+		
+		In this case 
+		\begin{eqnarray*}
+		V(A) &=& 0 \\
+		V(B) &=& 0 \vee 1 = 1
+		\end{eqnarray*}
+				
+		which yields $V(A) \neq V(B)$.
+		
+	\item $\neg p_0 \wedge \neg p_1$ from $\neg (p_0 \wedge p_1)$
+	
+	Let $A = \neg p_0 \wedge \neg p_1$ and $B = \neg (p_0 \wedge p_1)$. Let us assign $V(p_0) = 0$ and $V(p_1) = 1$ . 
+		
+		In this case 
+		\begin{eqnarray*}
+			V(A) &=& \neg 0 \wedge \neg 1 = 1 \wedge 0 = 0 \\
+			V(B) &=& \neg (0 \wedge 1) = 1 \vee 0 = 1 
+		\end{eqnarray*}				
+		which yields $V(A) \neq V(B)$.
+\end{enumerate}
+
+\section{Problem 2}
+
+\section{Problem 3}
+
+\section{Problem 4}
+
+\section{Problem 5}
+
+\section{Problem 6}
+
+\lastpage
+
+\end{document}
