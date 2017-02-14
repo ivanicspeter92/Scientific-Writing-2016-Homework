@@ -41,14 +41,86 @@ In both subproblems below, we prove that there are is no natural deduction of th
 \end{enumerate}
 
 \section{Problem 2}
+First, we formulate the following sentences: 
+\begin{eqnarray*}
+	p_0 &:& The \ envelope \ contains \ a \ password. \\
+	p_1 &:& The \ green \ light \ is \ on. \\
+	p_2 &:& The \ door \ can \ be \ opened.
+\end{eqnarray*}
+
+Let $A = (p_0 \wedge p_1) \rightarrow p_2$, $B = \neg p_1$ and $C = \neg p_2 \rightarrow \neg p_0$. To prove that the inference is incorrect we have to prove that there is no natural deduction of C from A and B. To achieve this, we need to find a valuation under which $V(C) \neq V(A) = V(B)$. We do this by drawing the truth table of the truth functions $A$, $B$ and $C$, as follows.
+
+		\begin{center}
+		\begin{tabular}{c|c|c||c|c|c}
+		\toprule
+		$p_0$ & $p_1$ & $p_2$ & $A = (p_0 \wedge p_1) \rightarrow p_2$ & $B = \neg p_1$ & $C = \neg p_2 \rightarrow \neg p_0$ \\ 
+		\midrule
+		0 & 0 &  0 & 1 & 1 & 1 \\
+		0 & 0 &  1 & 1 & 1 & 1 \\
+		0 & 1 &  0 & 1 & 0 & 1 \\
+		0 & 1 &  1 & 1 & 0 & 1 \\
+		1 & 0 &  0 & 1 & 1 & 1 \\
+		1 & 0 &  1 & 1 & 1 & 1 \\
+		1 & 1 &  0 & 0 & 0 & 1 \\		
+		1 & 1 &  1 & 1 & 0 & 1 
+		\end{tabular}
+		\end{center} 
+		
+	We can see that under the valuation when $V(p_0) = 1$, $V(p_1) = 1$ and $V(p_2) = 0$, the above condition is matched. Therefore, we can conclude that the inference is incorrect.
 
 \section{Problem 3}
+This problem can be solved similarly to the previous one: by showing a valuation under which the two given formulas yield in a different truth value. To achieve this, we use the truth table technique. 
+
+		\begin{center}
+		\begin{tabular}{c|c|c||c|c}
+		\toprule
+		$p_0$ & $p_1$ & $p_2$ & $(p_0 \rightarrow p_2) \wedge (p_1 \rightarrow p_2) $ & $(p_0 \wedge p_1) \rightarrow p_2$  \\ 
+		\midrule
+		0 & 0 & 0 & 1 & 1 \\
+		0 & 0 & 1 & 1& 1 \\
+		0 & 1 & 0 & 0 & 1 \\
+		0 & 1 & 1 & 1 & 1 \\
+		1 & 0 & 0 & 0 & 1 \\
+		1 & 0 & 1 & 1 & 1 \\
+		1 & 1 & 0 & 0 & 0 \\		
+		1 & 1 & 1 & 1 &  1 
+		\end{tabular}
+		\end{center} 
+
+We can see that there are two valuations when the truth values of the formulas differ. Namely, when $V(p_0) = 0$, $V(p_1) = 1$, $V(p_2) = 0$ and $V(p_0) = 1$, $V(p_1) = 0$, $V(p_2) = 0$. Therefore, we can conclude by the soundness theorem that it is not possible to derive the formula using natural deduction.
 
 \section{Problem 4}
+To show that there is no natural deduction of $p_0$ from $p_0 \vee p_1$, we can draw the truth table of these two functions, as follows.  
+
+		\begin{center}
+		\begin{tabular}{c|c||c|c}
+		\toprule
+		$p_0$ & $p_1$ & $p_0$ & $p_0 \vee p_1$ \\ 
+		\midrule
+		0 & 0 & 0 & 0 \\
+		0 & 1 & 0 & 1  \\
+		1 & 0 & 1 & 1 \\
+		1 & 1 & 1 & 1
+		\end{tabular}
+		\end{center} 
+		
+We can see that under the valuation $v(p_0) = 0$, $v(p_1 = 1)$ the truth value of the two functions differ, which means that there is no natural deduction of $p_0$ from $p_0 \vee p_1$ by the soundness theorem. 
 
 \section{Problem 5}
+Soundness of a natural deduction means, if one formula can be deduced successfully from another formula using the rules of natural deduction, the two formulas are equivalent. In other words, truth function of the formulas have the same values under all possible valuations. 
+
+The completeness of natural deduction states that every propositional formula which is a tautology has a corresponding natural deduction. In other words, if a formula is true under every valuation, it must have a natural deduction. 
+
+One application of soundness is to prove that there is no natural deduction between two propositional formulas, ergo the formulas are not equivalent. This is done by simply seeking a valuation under which one of the formulas is true while the other one is false. 
 
 \section{Problem 6}
+To solve this problem, we use the fact that $A \rightarrow B = \neg A \vee B$. If we apply this to our formula we get
+
+\begin{eqnarray*}
+	(p_0 \vee p_1) \rightarrow (\neg p_0 \rightarrow p_1) = (p_0 \vee p_1) \rightarrow (p_0 \vee p_1).
+\end{eqnarray*}
+
+We can see that his is an $A \rightarrow A$ form of a function. If we assume $A = (p_0 \vee p_1)$, we can apply the implication introduction rule ($\rightarrow I $) on itself, which yields in $A \rightarrow A = (p_0 \vee p_1)$, of which we have proven is equal to $(p_0 \vee p_1) \rightarrow (\neg p_0 \rightarrow p_1)$. 
 
 \lastpage
 
