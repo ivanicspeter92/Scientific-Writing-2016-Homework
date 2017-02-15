@@ -1,0 +1,73 @@
+\documentclass[english]{tktltiki}
+\usepackage[pdftex]{graphicx}
+\usepackage{subfigure}
+\usepackage{booktabs}
+\usepackage{url}
+\usepackage{amsthm,amssymb}
+ \usepackage{amsmath}
+ \usepackage{enumerate}
+\begin{document}
+\onehalfspacing
+
+\title{Workshop 6}
+\author{Péter Ivanics}
+\date{\today}
+
+\maketitle
+
+\section{Problem 1}
+\begin{enumerate}[a)]
+	\item $p_0 \rightarrow p_1 = \neg p_0 \vee p_1$
+	\item $p_0 \vee (p_1 \wedge p_2)$ \\ 
+	
+		\begin{center}
+		\begin{tabular}{c|c|c||c}
+		\toprule
+		$p_0$ & $p_1$ & $p_2$ &  $p_0 \vee (p_1 \wedge p_2)$ \\ 
+		\midrule
+		0 & 0 &  0 & 0  \\
+		0 & 0 &  1 & 0 \\
+		0 & 1 &  0 & 0 \\
+		0 & 1 &  1 & 1 \\
+		1 & 0 &  0 & 1 \\
+		1 & 0 &  1 & 1 \\
+		1 & 1 &  0 & 1 \\		
+		1 & 1 &  1 & 1
+		\end{tabular}
+		\end{center}
+		
+		In CNF: 
+		\begin{eqnarray*}
+			\neg (\neg p_0 \neg p_1 \neg p_2) \wedge \neg (\neg p_0 \neg p_1 p_2) \wedge \neg(\neg p_0 p_1 \neg p_2) = \\ 
+			(p_0 \vee p_1 \vee p_2) \wedge (p_0 \vee p_1 \vee \neg p_2) \wedge (p_0 \vee \neg p_1 \vee p_2)
+		\end{eqnarray*}
+		
+	\item $\neg (p_0 \vee p_1 \vee p_2) = \neg p_0 \wedge \neg p_1 \wedge \neg p_2$
+	\item $(p_0 \rightarrow p_1) \rightarrow (p_1 \rightarrow p_2)$
+	
+			\begin{center}
+		\begin{tabular}{c|c|c||c|c||c}
+		\toprule
+		$p_0$ & $p_1$ & $p_2$ & $(p_0 \rightarrow p_1)$ & $(p_1 \rightarrow p_2)$ & $(p_0 \rightarrow p_1) \rightarrow (p_1 \rightarrow p_2)$\\ 
+		\midrule
+		0 & 0 & 0 & 1 & 1 & 1 \\
+		0 & 0 & 1 & 1 & 1 & 1 \\
+		0 & 1 & 0 & 1 & 0 & 0 \\
+		0 & 1 & 1 & 1 & 1 & 1 \\
+		1 & 0 & 0 & 0 & 1 & 1 \\
+		1 & 0 & 1 & 0 & 1 & 1 \\
+		1 & 1 & 0 & 1 & 0 & 0 \\		
+		1 & 1 & 1 & 1 & 1 & 1
+		\end{tabular}
+		\end{center}
+		
+		In CNF: 
+		\begin{eqnarray*}
+			\neg (\neg p_0 p_1 \neg p_2) \wedge \neg (p_0 p_1 \neg p_2) = \\
+			(p_0 \vee \neg p_1 \vee p_2) \wedge (\neg p_0 \vee \neg p_1 \vee p_2)
+		\end{eqnarray*}
+\end{enumerate}
+
+\lastpage
+
+\end{document}
