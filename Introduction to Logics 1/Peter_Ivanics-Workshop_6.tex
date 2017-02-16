@@ -18,6 +18,9 @@
 \section{Problem 1}
 \begin{enumerate}[a)]
 	\item $p_0 \rightarrow p_1 = \neg p_0 \vee p_1$
+	
+	Clauses: $\{\neg p_0, p_1\}$	
+	
 	\item $p_0 \vee (p_1 \wedge p_2)$ \\ 
 	
 		\begin{center}
@@ -42,7 +45,11 @@
 			(p_0 \vee p_1 \vee p_2) \wedge (p_0 \vee p_1 \vee \neg p_2) \wedge (p_0 \vee \neg p_1 \vee p_2)
 		\end{eqnarray*}
 		
+		Clauses: $\{p_0, p_1, p_2\}, \{p_0, p_1, \neg p_2\}, \{p_0, \neg p_1, p_2\}$
+		
 	\item $\neg (p_0 \vee p_1 \vee p_2) = \neg p_0 \wedge \neg p_1 \wedge \neg p_2$
+	
+	Clauses: $\{\neg p_0\}, \{\neg p_1\}, \{\neg p_2\}$
 	\item $(p_0 \rightarrow p_1) \rightarrow (p_1 \rightarrow p_2)$
 	
 			\begin{center}
@@ -66,7 +73,56 @@
 			\neg (\neg p_0 p_1 \neg p_2) \wedge \neg (p_0 p_1 \neg p_2) = \\
 			(p_0 \vee \neg p_1 \vee p_2) \wedge (\neg p_0 \vee \neg p_1 \vee p_2)
 		\end{eqnarray*}
+		
+		Clauses: $\{p_0, \neg p_1, p_2\}, \{\neg p_0, \neg p_1, p_2\}$
 \end{enumerate}
+
+\section{Problem 2}
+\begin{enumerate}[a)]
+	\item $\{p_0, p_1, \neg p_2\}$ and $\{p_2, p_3\}$:
+	\begin{enumerate}[1.]
+		\item $\{p_0, p_1, \neg p_2\}$ (assumption)
+		\item $\{p_2, p_3\}$ (assumption)
+		\item $\{p_0, p_1, p_3\}$
+	\end{enumerate}
+	\item $\{p_0, \neg p_0\}$ and $\{p_0, \neg p_0\}$:
+		\begin{enumerate}[1.]
+			\item $\{p_0, \neg p_0\}$ (assumption)
+			\item $\{p_0, \neg p_0\}$ (assumption)
+			\item $\varnothing$
+		\end{enumerate}
+	\item $\{p_0, \neg p_1, p_2\}$ and $\{\neg p_0, p_1\}$:
+		\begin{enumerate}[1.]
+			\item $\{p_0, \neg p_1, p_2\}$ (assumption)
+			\item $\{\neg p_0, p_1\}$ (assumption)
+			\item $\{\neg p_1, p_2\}$ (eliminated $p_0$)
+			\item $\{p_2\}$ (eliminated $p_1$)
+		\end{enumerate}
+	\item $\{p_0, p_1, p_2\}$ and $\{p_2, \neg p_3, \neg p_4\}$:
+		\begin{enumerate}[1.]
+			\item $\{p_0, p_1, p_2\}$ (assumption)
+			\item $\{p_2, \neg p_3, \neg p_4\}$ (assumption)
+			\item $\{p_0, p_1, p_2, \neg p_3, \neg p_4\}$
+		\end{enumerate}
+\end{enumerate}
+
+\section{Problem 3}
+First, we derive the clauses from the formulas, as follows: 
+\begin{eqnarray}
+	p_0 & \implies & \{p_0\} \\
+	p_0 \rightarrow p_1 = \neg p_0 \vee p_1 &\implies & \{\neg p_0, p_1\} \\
+	(p_0 \rightarrow p_1) \rightarrow (p_1 \rightarrow p_2) &\implies & \{p_0, \neg p_1, p_2\}, \{\neg p_0, \neg p_1, p_2\}
+\end{eqnarray}
+
+Then, we use the resolution rule to conclude the solution:
+\begin{itemize}
+	\item $\{\neg p_1, p_2\}$	 (from 3)
+	\item $\{p_1\}$ (from 1 and 2)
+	\item $\{p_2\}$	(from the intermediate conclusions above)
+\end{itemize}
+
+\section{Problem 4}
+
 
 \lastpage
 
