@@ -6,6 +6,11 @@
 \usepackage{amsthm,amssymb}
  \usepackage{amsmath}
  \usepackage{enumerate}
+ 
+ \usepackage{chngcntr}
+\counterwithin*{equation}{section}
+\counterwithin*{equation}{subsection}
+
 \begin{document}
 \onehalfspacing
 
@@ -122,7 +127,25 @@ Then, we use the resolution rule to conclude the solution:
 \end{itemize}
 
 \section{Problem 4}
+First, we transform the assumptions to conjunctive normal form and then to clauses, as follows: 
 
+\begin{eqnarray}
+	\neg p_0 \rightarrow p_1 = p_0 \vee p_1 &\implies & \{p_0, p_1\} \\
+	p_1 \rightarrow p_0 = \neg p_1 \vee p_0  & \implies & \{\neg p_1, p_0 \}\\
+	p_0 \rightarrow (p_2 \wedge p_3) = \neg p_0 \vee (p_2 \wedge p_3) & \implies & \{ \neg p_0 \}, \{p_2, p_3\} \\
+	\neg p_0 & \implies & \{\neg p_0 \}\\
+	\neg p_2 & \implies & \{\neg p_2 \}\\
+	\neg p_3 & \implies & \{\neg p_3\}
+\end{eqnarray}
+
+Note that the clause $\{ \neg p_0 \}$ is duplicated and therefore these clauses can be combined. Then, we use the resolution rule on items: 
+
+\begin{itemize}
+	\item $\{p_0\}$ (from 1 and 2)
+	\item $\varnothing$ (from the item above and 4)
+	\item $\{ p_3 \}$ (from 3 and 5)
+	\item $\varnothing$ (from the item above and 6)
+\end{itemize}
 
 \lastpage
 
