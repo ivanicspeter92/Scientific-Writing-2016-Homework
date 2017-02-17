@@ -147,6 +147,26 @@ Note that the clause $\{ \neg p_0 \}$ is duplicated and therefore these clauses 
 	\item $\varnothing$ (from the item above and 6)
 \end{itemize}
 
+\section{Problem 5}
+\section{Problem 6}
+First, let us introduce the literals, as follows: 
+\begin{enumerate}
+	\item $g_l$: The cleaning lady is guilty.
+	\item $g_e$: The embassy employee is guilty.
+	\item $g_a$: The MI6 agent is guilty.
+	\item $r_l$: The cleaning lady entered the room where the security system is.
+	\item $r_e$: The embassy employee entered the room where the security system is.
+	\item $r_a$: The MI6 agent entered the room where the security system is.
+\end{enumerate} 
+
+Next, we formulate the facts as sentences: 
+\begin{enumerate}[(1)]
+	\item The cleaning lady is not guilty and the embassy employee entered the room where the security system is: $\neg g_l \wedge r_e$
+	\item The embassy employee is not guilty and he did not enter the room where the security system is: $\neg g_e \wedge \neg r_e$
+	\item The MI6 agent is not guilty and both the cleaning lady and the embassy employee entering the room where the security system is: $\neg g_a \wedge r_l \wedge r_e$
+\end{enumerate}
+
+We can see that there is a contradiction in the sentences (1) and (2) as $r_e$ is part of both sentences in different forms. Both of these sentences cannot be satisfied currently which means either the cleaning lady or the embassy employee is lying. This means, that the MI6 agent is telling the truth. Consequently, $r_e$ has to be true, thus the embassy employee is lying about if he entered the room. 
 \lastpage
 
 \end{document}
