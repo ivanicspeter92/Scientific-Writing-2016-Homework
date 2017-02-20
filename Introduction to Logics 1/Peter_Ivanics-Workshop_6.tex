@@ -148,6 +148,10 @@ Note that the clause $\{ \neg p_0 \}$ is duplicated and therefore these clauses 
 \end{itemize}
 
 \section{Problem 5}
+Suppose that we have $m$ clauses, all with $n$ literals. If we apply the resolution rule on two arbitrarily chosen pair of clauses, we can eliminate one literal from each clause in one step. Therefore, in the "worst" case, the resolution rule can be applied on a pair of clauses at most $n$ times. To proceed with the resolution, we will have to repeat the resolution on $m - 2, m - 4, m - 6 ... 2$ clauses until we have reach a point where no more complementary literals can be eliminated from the clauses. 
+
+It is easy to see that in a setting like this, the resolution can take up to $\frac{m * n}{2}$ steps, which is the upper bound on its complexity.
+
 \section{Problem 6}
 First, let us introduce the literals, as follows: 
 \begin{enumerate}
