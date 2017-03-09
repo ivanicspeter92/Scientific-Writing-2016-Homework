@@ -63,12 +63,14 @@ Software architectures establish the basis and create a good frame for quality s
 
 For this reason, an approach to Clean Architecture is emerging \cite{cleanarchitecture} building on top of Clean Code principles. This paper summarizes the main aspects of these principles by presenting a review on relevant literature. The paper explains why such architecture is needed, why it can be meaningful for any software project independently from technology and platform. Finally, the study lists the main concepts and principles to be considered when building a Clean Architecture. 
 
-\subsection{Subsection Heading Here}
-Subsection text here.
+\section{The need for a clean design}
+Software development is collaborative work. More and more developers work in teams of various size on multiple technologies to develop their software day-by-day. Inevitably, components are getting bigger and are developed simultaneously by multiple coders. Linearly as time passes, developers tend to have difficulties understanding the code they have written, because they do not remember what the intention behind the lines were \cite{cleancoder}. Similarly, understanding decisions made and code written by fellow colleagues is even more difficult and challenging on every level of abstraction \cite{cleancoder}. As the code base grows, decisions that were previously made may need to be reconsidered and code may need to be refactored to enhance its reliability. 
 
+For this reason, considering the intent behind a decision is key even on the lowest level of components, for instance classes, objects, functions or even variable names. The usage of intention-revealing names on all parts of software projects greatly enhance the readability of their code \cite{cleancode}. This enables developers to read and understand others' code more efficiently and work on code written by others with more confidence. 
 
-\subsubsection{Subsubsection Heading Here}
-Subsubsection text here.
+Demonstrating the intent behind design decisions is a key characteristic of good design which helps developers to understand what the program code does. This is particularly important while debugging or refactoring detailed parts of the code. However, it is not limited to low-level components of the software. A well-designed system-wide architecture shares the same, meaningful separation of concerns \cite{cleancode} \cite{cleanarchitecture} \cite{onionarchitecture}. By separating responsibilities in the application, the code not only gets easier to understand but also more flexible, loosely coupled and easier to test \cite{cleancoder}. 
+
+Consequently, to allow understanding the software architecture on its highest level, clear decisions should be made on the responsibility of the components. Once the components are chosen, their name should tell right away the intent they were made for. Applying the same approach on every level of abstracting throughout the application is crucial as it usually gives a good direction for the development. 
 
 % An example of a floating figure using the graphicx package.
 % Note that \label must occur AFTER (or within) \caption.
