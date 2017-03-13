@@ -65,7 +65,8 @@ For this reason, an approach to Clean Architecture is emerging \cite{cleanarchit
 
 \begin{enumerate}
 	\item what are the main aspects of the Clean principles in terms of software architecture?
-	\item why such architecture is needed, why it can be meaningful for any software project independently from technology and platform?
+	\item why such architecture is needed?
+	\item how can any software project - independently from utilized technologies and platforms - benefit from the Clean Architecture principles?
 \end{enumerate}  
 
 The rest of this paper is structured, as follows. The next section introduces... Chapter III focuses on...
@@ -77,27 +78,33 @@ Software development is collaborative work. More and more developers work in tea
 
 For this reason, considering the intent behind a decision is key even on the lowest level of components, for instance classes, objects, functions or even variable names. The usage of intention-revealing names on all parts of software projects greatly enhance the readability of their code \cite{cleancode}. This enables developers to read and understand others' code more efficiently and work on code written by others with more confidence. 
 
-Demonstrating the intent behind design decisions is a key characteristic of good design which helps developers to understand what the program code does. This is particularly important while debugging or refactoring detailed parts of the code. However, it is not limited to low-level components of the software. A well-designed system-wide architecture shares the same, meaningful separation of concerns \cite{cleancode} \cite{cleanarchitecture} \cite{onionarchitecture}. By separating responsibilities in the application, the code not only gets easier to understand but also more flexible, loosely coupled and easier to test \cite{cleancoder}. 
+Demonstrating the intent behind design decisions is a key characteristic of good design which helps developers to understand what the program code does and how it is structured. This is particularly important while debugging or refactoring detailed parts of the code. However, it is not limited to low-level components of the software. 
 
-Consequently, to allow understanding the software architecture on its highest level, clear decisions should be made on the responsibility of the components. Once the components are chosen, their name should tell right away the intent they were made for. Applying the same approach on every level of abstracting throughout the application is crucial as it usually gives a good direction for the development.
+Naturally, a complex system is composed of multiple components on different levels. In order to understand the "big picture" of such system, one may want to look at it on the top level from different angles. If an "outsider" (i.e. a new developer or system architect to the software) looks at a complex system, they may find it inconvenient, hard to understand or confusing at first, if the components, connection points or relationships are not named properly. 
+
+As soon as higher-level components hold the property of telling their role at once in the ecosystem, it becomes much easier to understand. Clean naming conventions, for all components and their relationship strongly enhance the understandability of the system for individuals. On top of that, intent-revealing components typically easy to adapt to the other key principles of clean design that are explained in the following chapter.
 
 \section{Principles}
 Communicating the intent behind the components is a good start for a Clean Architecture. Nevertheless, there are some other principles which help developers to avoid tight coupling and complex connections between the objects. The aim should be an approach, where each component is standalone and are handled as plugins to other components \cite{cleancode} \cite{cleanarchitecture}. In other words, components should be independent, which leads to the first principle of Clean Architecture, namely, the Dependency Rule \cite{cleanarchitecture}. 
 
-\subsection{The Dependency Rule}
-The Dependency Rule dictates, that the lower level components, such as database, 
+\subsection{Architectural Layers}
 
 \begin{figure}[!t]
 \centering
 \includegraphics[width=3in]{images/cleanarchitecture.jpg}
-\caption{The Clean Architecture \cite{cleanarchitecture}.}
+\caption{The layers of the Clean Architecture and their inward-pointing dependencies \cite{cleanarchitecture}.}
 \label{fig_sim}
 \end{figure}
+
+\subsection{The Dependency Rule}
+The Dependency Rule dictates, that the lower level components, such as database, 
 
 \subsection{Testability}
 
 \subsection{Separation of concerns}
+A well-designed system-wide architecture also aims to separate concerns and to tell the responsibility and place of the components by their names \cite{cleancode} \cite{cleanarchitecture} \cite{onionarchitecture}. By separating responsibilities in the application well, the code not only gets easier to understand but also more flexible, loosely coupled and easier to test, too \cite{cleancoder}. 
 
+Consequently, to allow understanding the software architecture on its highest level, clear decisions should be made on the responsibility of the components. Once the components are chosen, their name should tell right away the intent they were made for. Applying the same approach on every level of abstracting throughout the application is crucial as it usually gives a good direction for the development.
 % An example of a floating figure using the graphicx package.
 % Note that \label must occur AFTER (or within) \caption.
 % For figures, \caption should occur after the \includegraphics.
