@@ -78,25 +78,41 @@ This paper aims to seek answers to the following research questions by discussin
 	\item how can any software project - independently from utilized technologies and platforms - benefit from the Clean Architecture principles?
 \end{enumerate}  
 
+% how is the rest of the paper structured? 
 The rest of this paper is structured, as follows. The next section introduces... Chapter III focuses on...
  Chapter IV discusses... Finally, the last chapter concludes the findings of this research and establishes the directions for any further research. 
 %TODO
 
 \section{The need for a clean design}
-Software development is collaborative work. More and more developers work in teams of various size on multiple technologies to develop their software day-by-day. Inevitably, components are getting bigger and are developed simultaneously by multiple coders. Linearly as time passes, developers tend to have difficulties understanding the code they have written, because they do not remember what the intention behind the lines were \cite{cleancoder}. Similarly, understanding decisions made and code written by fellow colleagues is even more difficult and challenging on every level of abstraction \cite{cleancoder}. As the code base grows, decisions that were previously made may need to be reconsidered and code may need to be refactored to enhance its reliability. 
+% why is software development and extending the code base difficult?
+Software development is collaborative work. More and more developers work in teams of various sizes on multiple technologies to develop their software day-by-day. Inevitably, components are developed simultaneously by multiple coders and getting bigger as by time. As time passes, developers tend to have difficulties understanding the code they have written, because they do not remember what the intention behind the lines were \cite{cleancoder}. Similarly, understanding decisions made and code written by fellow colleagues is even more difficult and challenging on every level of abstraction \cite{cleancoder}. As the code base grows, decisions that were previously made may need to be reconsidered and code may need to be refactored to enhance its reliability and to avoid technical dept. 
 
+% how can intent-driven approach help to get over this?
 For this reason, considering the intent behind a decision is key even on the lowest level of components, for instance classes, objects, functions or even variable names. The usage of intention-revealing names on all parts of software projects greatly enhance the readability of their code \cite{cleancode}. This enables developers to read and understand others' code more efficiently and work on code written by others with more confidence. 
 
 Demonstrating the intent behind design decisions is a key characteristic of good design which helps developers to understand what the program code does and how it is structured. This is particularly important while debugging or refactoring detailed parts of the code. However, it is not limited to low-level components of the software. 
 
+% why is it important to understand the intents on every level of abstracition? 
 Naturally, a complex system is composed of multiple components on different levels. In order to understand the "big picture" of such system, one may want to look at it on the top level from different angles. If an "outsider" (i.e. a new developer or system architect to the software) looks at a complex system, they may find it inconvenient, hard to understand or confusing at first, if the components, connection points or relationships are not named properly. 
 
-As soon as higher-level components hold the property of telling their role at once in the ecosystem, it becomes much easier to understand. Clean naming conventions, for all components and their relationship strongly enhance the understandability of the system for individuals. On top of that, intent-revealing components typically easy to adapt to the other key principles of clean design that are explained in the following chapter.
+As soon as higher-level components hold the property of telling their role at once in the ecosystem, it becomes much easier to understand. Clean naming conventions, for all components and their relationship strongly enhance the understandability of the system for individuals. On top of that, intent-revealing components typically easy to adapt to the other key principles of clean design that are explained in the following chapter \cite{cleancode}.
 
 \section{Principles}
-Communicating the intent behind the components is a good start for a Clean Architecture. Nevertheless, there are some other principles which help developers to avoid tight coupling and complex connections between the objects. The aim should be an approach, where each component is standalone and are handled as plugins to other components \cite{cleancode} \cite{cleanarchitecture}. In other words, components should be independent, which leads to the first principle of Clean Architecture, namely, the Dependency Rule \cite{cleanarchitecture}. 
+% what is the next step after demonstrating intent?
+Communicating the intent behind the components is a good start for a Clean Architecture. Nevertheless, there are some other principles which help developers to avoid tight coupling and complex connections between the objects. The aim should be an approach, where each component is standalone and are handled as plugins to other components \cite{cleancode} \cite{cleanarchitecture}. In other words, components should be independent, which leads to the first principle of Clean Architecture, namely, the onion-like separation of Architectural Layers \cite{cleanarchitecture}. 
 
 \subsection{Architectural Layers}
+% what is a typical problem of system architecture? 
+Many of the commonly used system-level design patterns, such as Model-View-Controller (MVC) may be easy to understand and implement, but are also hard to scale up to bigger systems. Traditionally, this approach defines three main layers, namely user interface, business logic and database for the software. MVC is widely used in the industry due to its simplicity, however it carries the risk of tight coupling between the layers of the architecture as well as the difficult separation of concerns \cite{onionarchitecture}. 
+
+% why MVC and similar patterns are not necesseraly scaleable? 
+Tight coupling of the layers immediately leads to a hardly-scalable architecture unless the software is relatively small \cite{onionarchitecture}. As time passes, components grow bigger, at the same time technology develops and requirements change. Tightly coupled systems have hard time to follow-up on such changes, which would be inevitable in case of business-critical systems \cite{onionarchitecture}. Therefore, a flexible and scalable approach to architectural layers is needed, which is robust enough to support system growth. 
+
+% what is the solution? what does the onion architecture?
+The solution to achieve a flexible, largely scalable architecture lies within the definition of the correct layers and dependencies \cite{cleanarchitecture} \cite{onionarchitecture}. For instance, the Onion Architecture \cite{onionarchitecture} suggests to define the layers from inside-out, from core entities to to infrastructure. 
+
+% what does the Onion Architecture suggest? 
+The centermost Domain Model defines the domain specific business-entities. The responsibility of this layer is strictly limited to define entities and excludes any logic, which is delegated to the layers further away from the center. The Use Case/Domain Services layer around the models is responsible to implement the business logic upon the business objects. 
 
 \begin{figure}[!t]
 \centering
