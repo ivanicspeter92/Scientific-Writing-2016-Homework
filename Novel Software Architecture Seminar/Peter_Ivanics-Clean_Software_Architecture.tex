@@ -105,6 +105,13 @@ Communicating the intent behind the components is a good start for a Clean Archi
 % what is a typical problem of system architecture? 
 Many of the commonly used system-level design patterns, such as Model-View-Controller (MVC) may be easy to understand and implement, but are also hard to scale up to bigger systems. Traditionally, this approach defines three main layers, namely user interface, business logic and database for the software. MVC is widely used in the industry due to its simplicity, however it carries the risk of tight coupling between the layers of the architecture as well as the difficult separation of concerns \cite{onionarchitecture}. 
 
+\begin{figure}[!t]
+\centering
+\includegraphics[width=3in]{images/cleanarchitecture.jpg}
+\caption{The layers of the Clean Architecture and their inward-pointing dependencies \cite{cleanarchitecture}.}
+\label{fig_sim}
+\end{figure}
+
 % why MVC and similar patterns are not necesseraly scaleable? 
 Tight coupling of the layers immediately leads to a hardly-scalable architecture unless the software is relatively small \cite{onionarchitecture}. As time passes, components grow bigger, at the same time technology develops and requirements change. Tightly coupled systems have hard time to follow-up on such changes, which would be inevitable in case of business-critical systems \cite{onionarchitecture}. Therefore, a flexible and scalable approach to architectural layers is needed, which is robust enough to support system growth. 
 
@@ -117,22 +124,18 @@ The centermost layer, the Domain Model defines the domain specific business-enti
 % why is this good? 
 Decoupling of different roles and the separation of responsibilities are key aspects in this design. Every layer has one task to cover and each holds the property of being possible to remove and replace by another component that has similar behavior but different internal logic. This kind of isolation embraces layers to be plugins to eachother and therefore easy to modify, extend or even replace during future development.
 
-\begin{figure}[!t]
-\centering
-\includegraphics[width=3in]{images/cleanarchitecture.jpg}
-\caption{The layers of the Clean Architecture and their inward-pointing dependencies \cite{cleanarchitecture}.}
-\label{fig_sim}
-\end{figure}
+\subsection{Separation of concerns}
+A well-designed system-wide architecture also aims to separate concerns. By separating responsibilities in the application well, the code not only gets easier to understand but also more flexible, loosely coupled and easier to test, too \cite{cleancoder} \cite{cleanarchitecture} \cite{onionarchitecture}. This helps to tell the responsibility and place the components by their names to the correct layers described in the previous section.
+
+Consequently, to allow understanding the software architecture on its highest level, clear decisions should be made on the responsibility of the components. Once the components are chosen, their name should tell right away the intent they were made for. Applying the same approach on every level of abstracting throughout the application is crucial as it usually gives a good direction for the development. 
 
 \subsection{The Dependency Rule}
-The Dependency Rule dictates, that the lower level components, such as database, 
+The approach to a layered architecture also requires the definition of carefully designed dependencies. Identifying the correct dependencies and keeping them minimal is key to a loosely coupled software \cite{cleancode}. The Clean Architecture explained in the previous chapters is designed in a way, that such dependencies are considered at the first place.
+
+The Dependency Rules dictates that the inner layers of the architecture do not know anything about the layers that are higher in the architecture \cite{cleanarchitecture} \cite{onionarchitecture}. As R. C. Martin points out \cite{cleanarchitecture}: \textit{"The outer circles are mechanisms. The inner circles are policies"}. This means that the business logic is defined closely on top of the entities and the high level components, such as user interface or database control the entities through the rules indirectly. This greatly helps developers to distinguish the level of abstraction for every layer. 
 
 \subsection{Testability}
 
-\subsection{Separation of concerns}
-A well-designed system-wide architecture also aims to separate concerns and to tell the responsibility and place of the components by their names \cite{cleancode} \cite{cleanarchitecture} \cite{onionarchitecture}. By separating responsibilities in the application well, the code not only gets easier to understand but also more flexible, loosely coupled and easier to test, too \cite{cleancoder}. 
-
-Consequently, to allow understanding the software architecture on its highest level, clear decisions should be made on the responsibility of the components. Once the components are chosen, their name should tell right away the intent they were made for. Applying the same approach on every level of abstracting throughout the application is crucial as it usually gives a good direction for the development.
 % An example of a floating figure using the graphicx package.
 % Note that \label must occur AFTER (or within) \caption.
 % For figures, \caption should occur after the \includegraphics.
