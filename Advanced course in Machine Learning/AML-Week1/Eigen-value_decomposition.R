@@ -3,14 +3,14 @@ reconstructionError = function(data, L, plot = FALSE) {
   eigen = eigen(X)
   
   W = eigen$vectors[,1:L]
-  reduced_data = W %*% as.matrix(data)
+  reduced_data = as.matrix(data) %*% W
   
   if(plot) {
     plot(reduced_data, xlab="X", ylab="Y", pch = 4)
     title(main = "The dataset projected to the first L=2 eigenvectors", line = 3)
   }
   
-  backwardProjection = reduced_data %*% W 
+  backwardProjection = reduced_data %*% t(W)
   error = sum((data - backwardProjection)^2)
   
   return(error)
@@ -28,7 +28,7 @@ for (i in L:ncol(data)) {
   reconstructionErrors = c(reconstructionErrors, reconstructionError(data = data, L = i))
 }
 
-plot(x = L:ncol(data), y = reconstructionErrors, type = "line", xlab="L", ylab="Reconstruction error", xaxt = "n")
+plot(x = L:ncol(data), y = reconstructionErrors, type = "line", xlab="Number of dimensions (L)", ylab="Reconstruction error", xaxt = "n")
 points(x = L:ncol(data), y = reconstructionErrors)
 axis(side = 1, at = c(1:5))
 title(main = "The reconstruction error in terms of reduced dimensions", line = 3)
