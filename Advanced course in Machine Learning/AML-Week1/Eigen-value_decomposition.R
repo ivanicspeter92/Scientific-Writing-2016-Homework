@@ -2,8 +2,8 @@ reconstructionError = function(data, L, plot = FALSE) {
   X = cov(data)
   eigen = eigen(X)
   
-  W = eigen$vectors[1:L,]
-  reduced_data = as.matrix(data) %*% t(W)
+  W = eigen$vectors[,1:L]
+  reduced_data = W %*% as.matrix(data)
   
   if(plot) {
     plot(reduced_data, xlab="X", ylab="Y", pch = 4)
@@ -17,7 +17,7 @@ reconstructionError = function(data, L, plot = FALSE) {
 }
 
 data = read.csv("ex_1_data.csv", header = F)
-sprintf("D=%d, N=%d", nrow(data), ncol(data))
+sprintf("N=%d, D=%d", nrow(data), ncol(data))
 
 L = 2
 reconstructionError(data = data, L = L, plot = TRUE)
