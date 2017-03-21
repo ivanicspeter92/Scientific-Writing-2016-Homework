@@ -65,11 +65,28 @@
 	\begin{center}
 		\includegraphics[width=1\textwidth]{images/IMG_0144.jpg}
 	\end{center}
-	\item 
+	\item Similarly to the previous item, we can derive the second derivate from the result, as follows.
+	
+	\begin{eqnarray*}
+		\frac{d}{d\theta}(x(s(\theta ^ Tx) - y))' = \\
+		= x * \frac{d}{d\theta}((s(\theta ^ T x) - y))' = \\
+		= x(\frac{e^{-\theta ^ T x}}{(1 + e ^{- \theta ^ T x})^2 } * x)
+	\end{eqnarray*}
 	\item We can use this to calculate the gradient using the result item a) with the given values (see $gradient.R$ for implementation). This yields in 
 
 	\begin{center}
-		$\nabla L ((x, y), \theta) = [-0.5, 1]$
+		$\nabla L ((x, y), \theta) = [0.2689414, -0.5378828]$
+	\end{center}
+	
+	\item Similarly, the second derivatives by $\theta$ can be obtained and used to calculate the Hessian matrix: 
+	
+	\begin{center}
+		$H (L ((x, y), \theta)) = $
+		
+		\begin{tabular}{cc}
+				0.1966119 & -0.3932239 \\
+			   -0.3932239 &  0.7864477
+		\end{tabular}
 	\end{center}
 \end{enumerate}
 
