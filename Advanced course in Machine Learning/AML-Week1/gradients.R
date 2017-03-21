@@ -3,7 +3,7 @@ sigmoid = function(x) {
 }
 
 sigmoidFirstDerivate = function(x) {
-  return(-exp(x) / (exp(x) + 1)^2)
+  return(exp(-x) / (exp(-x) + 1)^2)
 }
 
 sigmoidSecondDerivate = function(x) {
@@ -18,5 +18,5 @@ theta = c(1, 1)
 x = c(-1, 2)
 y = 1
 
-data = data.frame(x, y, theta)
-gradient = data$x * (sigmoid(t(data$theta) - y))
+gradient = x * (sigmoid(t(theta) %*% x) - y)
+hessian = (x %*% t(x)) * as.vector(sigmoidFirstDerivate(t(theta) %*% x))
