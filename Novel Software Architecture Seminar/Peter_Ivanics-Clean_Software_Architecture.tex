@@ -88,14 +88,14 @@ The rest of this paper is structured, as follows. The next section introduces...
 Software development is collaborative work. More and more developers work in teams of various sizes on multiple technologies to develop their software day-by-day. Inevitably, components are developed simultaneously by multiple coders and getting bigger as by time. As time passes, developers tend to have difficulties understanding the code they have written, because they do not remember what the intention behind the lines were \cite{cleancoder}. Similarly, understanding decisions made and code written by fellow colleagues is even more difficult and challenging on every level of abstraction \cite{cleancoder}. As the code base grows, decisions that were previously made may need to be reconsidered and code may need to be refactored to enhance its reliability and to avoid technical dept. 
 
 % how can intent-driven approach help to get over this?
-For this reason, considering the intent behind a decision is key even on the lowest level of components, for instance classes, objects, functions or even variable names. The usage of intention-revealing names on all parts of software projects greatly enhance the readability of their code \cite{cleancode}. This enables developers to read and understand others' code more efficiently and work on code written by others with more confidence. 
+For this reason, considering the intent behind a decision is key even on the deepest level of components, for instance classes, objects, functions or even variable names. The usage of intention-revealing names on all parts of software projects greatly enhance the readability of their code \cite{cleancode}. This enables developers to read and understand others' code more efficiently and work on code written by others with more confidence. 
 
 Demonstrating the intent behind design decisions is a key characteristic of good design which helps developers to understand what the program code does and how it is structured. This is particularly important while debugging or refactoring detailed parts of the code. However, it is not limited to low-level components of the software. 
 
 % why is it important to understand the intents on every level of abstracition? 
 Naturally, a complex system is composed of multiple components on different levels. In order to understand the "big picture" of such system, one may want to look at it on the top level from different angles. If an "outsider" (i.e. a new developer or system architect to the software) looks at a complex system, they may find it inconvenient, hard to understand or confusing at first, if the components, connection points or relationships are not named properly. 
 
-As soon as higher-level components hold the property of telling their role at once in the ecosystem, it becomes much easier to understand. Clean naming conventions, for all components and their relationship strongly enhance the understandability of the system for individuals. On top of that, intent-revealing components typically easy to adapt to the other key principles of clean design that are explained in the following chapter \cite{cleancode}.
+As soon as components hold the property of telling their role at once in the ecosystem, it becomes much easier to understand. Clean naming conventions, for all components and their relationship strongly enhance the understandability of the system for individuals. On top of that, intent-revealing components typically easy to adapt to the other key principles of clean design that are explained in the following chapter \cite{cleancode}.
 
 \section{Principles}
 % what is the next step after demonstrating intent?
@@ -121,6 +121,8 @@ The solution to achieve a flexible, largely scalable architecture lies within th
 % what does the Onion Architecture suggest? 
 The centermost layer, the Domain Model defines the domain specific business-entities. The responsibility of this layer is strictly limited to define entities and excludes any logic, which is delegated to the layers further away from the center. The Use Case/Domain Services layer around the models is responsible to implement the business logic upon the business objects. Interface adapters act as a facilitator between the business logic and the events happening in the user interface, external input sources and the database \cite{onionarchitecture} \cite{cleanarchitecture}. 
 
+This means that the business logic is defined closely on top of the entities and the external components, such as user interface or database control the entities through the rules indirectly. This greatly helps developers to distinguish the level of abstraction for every layer. 
+
 % why is this good? 
 Decoupling of different roles and the separation of responsibilities are key aspects in this design. Every layer has one task to cover and each holds the property of being possible to remove and replace by another component that has similar behavior but different internal logic. This kind of isolation embraces layers to be plugins to eachother and therefore easy to modify, extend or even replace during future development.
 
@@ -132,9 +134,19 @@ Consequently, to allow understanding the software architecture on its highest le
 \subsection{The Dependency Rule}
 The approach to a layered architecture also requires the definition of carefully designed dependencies. Identifying the correct dependencies and keeping them minimal is key to a loosely coupled software \cite{cleancode}. The Clean Architecture explained in the previous chapters is designed in a way, that such dependencies are considered at the first place.
 
-The Dependency Rules dictates that the inner layers of the architecture do not know anything about the layers that are higher in the architecture \cite{cleanarchitecture} \cite{onionarchitecture}. As R. C. Martin points out \cite{cleanarchitecture}: \textit{"The outer circles are mechanisms. The inner circles are policies"}. This means that the business logic is defined closely on top of the entities and the high level components, such as user interface or database control the entities through the rules indirectly. This greatly helps developers to distinguish the level of abstraction for every layer. 
+% what does the dependency rule say?
+The Dependency Rules dictates that the inner layers of the architecture do not know anything about the layers that are outer than them in the architecture \cite{cleanarchitecture} \cite{onionarchitecture}. In other words, all dependencies point towards the middle of the layered structure, towards the business logic and the entities. As R. C. Martin points out \cite{cleanarchitecture}: \textit{"The outer circles are mechanisms. The inner circles are policies"}. 
+
+% how does this help in the long run?
+Consequently, individual layers do not know about in which context they are being used, but they encapsulate the entities underneath their level. The deeper we go into the architecture, the less dependencies exist and less complications are experienced. This approach allows the layers to be plugins to eachother: in case one of the mechanisms (for instance the user interface or database) changes, it is sufficient to replace its layer and conform it to the interfaces \cite{cleanarchitecture} \cite{onionarchitecture}. As soon as correct interfaces are defined the edges of the layers, such mechanisms become immediately external. This kind of decoupling greatly lowers the maintenance cost for the lifetime of an application \cite{onionarchitecture}.
+
+% how is the two-way communication handled? 
+Crossing the boundaries from inside out may be required in certain situations. For example, if an action initiated by a Controller object has an impact on the business logic and thus on the state of the entities, the user interface or the database may need to be updated once the changes are committed. For this reason, the layers should be designed in a manner that they take inputs on one interface and produce output on another \cite{cleanarchitecture}. The mechanism which is to handle the output can respond to the received data and perform the necessary actions accordingly. 
 
 \subsection{Testability}
+The layered structure and inward-pointing dependencies have other benefits than flexibility and easy maintenance. Due to the fact that every layer has interfaces (some may call them input and output ports), they become easy to test \cite{cleanarchitecture}. 
+
+Automated testing is another great tool which can contribute to the robustness of the software, because it allows developers to have confidence in their software \cite{cleancoder}. Running automated tests does not take too much effort or time and they can be repeated at any point of time. It does not matter if existing components of the project have to be refactored, replaced or new functions are to be added, automation can always increase productivity and quality assurance in this context. 
 
 % An example of a floating figure using the graphicx package.
 % Note that \label must occur AFTER (or within) \caption.
