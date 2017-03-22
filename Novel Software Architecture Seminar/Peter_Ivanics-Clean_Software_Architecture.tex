@@ -107,16 +107,16 @@ Many of the commonly used system-level design patterns, such as Model-View-Contr
 
 \begin{figure}[!t]
 \centering
-\includegraphics[width=3in]{images/cleanarchitecture.jpg}
+\includegraphics[width=3in]{images/cleanarchitecture.png}
 \caption{The layers of the Clean Architecture and their inward-pointing dependencies \cite{cleanarchitecture}.}
-\label{fig_sim}
+\label{cleanachitecture_fig}
 \end{figure}
 
 % why MVC and similar patterns are not necesseraly scaleable? 
 Tight coupling of the layers immediately leads to a hardly-scalable architecture unless the software is relatively small \cite{onionarchitecture}. As time passes, components grow bigger, at the same time technology develops and requirements change. Tightly coupled systems have hard time to follow-up on such changes, which would be inevitable in case of business-critical systems \cite{onionarchitecture}. Therefore, a flexible and scalable approach to architectural layers is needed, which is robust enough to support system growth. 
 
 % what is the solution? what does the onion architecture?
-The solution to achieve a flexible, largely scalable architecture lies within the definition of the correct layers and dependencies \cite{cleanarchitecture} \cite{onionarchitecture}. For instance, the Onion Architecture \cite{onionarchitecture} suggests to define the layers from inside-out, from core entities to to infrastructure. 
+The solution to achieve a flexible, largely scalable architecture lies within the definition of the correct layers and dependencies \cite{cleanarchitecture} \cite{onionarchitecture}. For instance, the Onion Architecture \cite{onionarchitecture} suggests to define the layers from inside-out, from core entities to to infrastructure \ref{cleanachitecture_fig}. 
 
 % what does the Onion Architecture suggest? 
 The centermost layer, the Domain Model defines the domain specific business-entities. The responsibility of this layer is strictly limited to define entities and excludes any logic, which is delegated to the layers further away from the center. The Use Case/Domain Services layer around the models is responsible to implement the business logic upon the business objects. Interface adapters act as a facilitator between the business logic and the events happening in the user interface, external input sources and the database \cite{onionarchitecture} \cite{cleanarchitecture}. 
@@ -142,6 +142,16 @@ Consequently, individual layers do not know about in which context they are bein
 
 % how is the two-way communication handled? 
 Crossing the boundaries from inside out may be required in certain situations. For example, if an action initiated by a Controller object has an impact on the business logic and thus on the state of the entities, the user interface or the database may need to be updated once the changes are committed. For this reason, the layers should be designed in a manner that they take inputs on one interface and produce output on another \cite{cleanarchitecture}. The mechanism which is to handle the output can respond to the received data and perform the necessary actions accordingly. 
+
+\begin{figure}[!t]
+\centering
+\includegraphics[width=2.5in]{images/flowcontrol.png}
+\caption{The flow of control between neighbouring layers in the Clean Architecture \cite{cleanarchitecture}. The filled arrows represent data submission to, the unfilled arrows data retrieval from the pointed component.}
+\label{flowcontrol}
+\end{figure}
+
+% explain the figure flowcontrol
+As shown on figure \ref{flowcontrol} %TODO
 
 \subsection{Testability}
 The layered structure and inward-pointing dependencies have other benefits than flexibility and easy maintenance. Due to the fact that every layer has interfaces (some may call them input and output ports), they become easy to test \cite{cleanarchitecture}. 
