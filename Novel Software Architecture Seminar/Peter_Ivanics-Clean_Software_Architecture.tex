@@ -80,7 +80,7 @@ This paper aims to seek answers to the following research questions by discussin
 \end{enumerate}  
 
 % how is the rest of the paper structured? 
-The rest of this paper is structured, as follows. The next section explains why a clean design for software architecture is needed and who may benefit approaching software development from this scope. Chapter III lists and discusses the four main principles and benefits of using a Clean Architecture for any software project. Finally, the last chapter concludes the findings of this research and establishes the directions for further studies in the topic. 
+The rest of this paper is structured, as follows. The next section explains why a clean design for software architecture is needed and who may benefit approaching software development from this scope. Section III lists and discusses the four main principles and benefits of using a Clean Architecture for any software project. Finally, the last section concludes the findings of this research and establishes the directions for further studies in the topic. 
 
 \section{The need for a clean design}
 % why is software development and extending the code base difficult?
@@ -94,7 +94,7 @@ Demonstrating the intent behind design decisions is a key characteristic of good
 % why is it important to understand the intents on every level of abstracition? 
 Naturally, a complex system is composed of multiple components on different levels. In order to understand the "big picture" of such system, one may want to look at it on the top level from different angles. If an "outsider" (i.e. a new developer or system architect to the software) looks at a complex system, they may find it inconvenient, hard to understand or confusing at first, if the components, connection points or relationships are not named properly. 
 
-As soon as components hold the property of telling their role at once in the ecosystem, it becomes much easier to understand. Clean naming conventions, for all components and their relationship strongly enhance the understandability of the system for individuals \cite{cleancode}. On top of that, intent-revealing components typically easy to adapt to the other key principles of clean design that are explained in the following chapter.
+As soon as components hold the property of telling their role at once in the ecosystem, it becomes much easier to understand. Clean naming conventions, for all components and their relationship strongly enhance the understandability of the system for individuals \cite{cleancode}. On top of that, intent-revealing components typically easy to adapt to the other key principles of clean design that are explained in the following section.
 
 \section{Principles}
 % what is the next step after demonstrating intent?
@@ -133,7 +133,7 @@ A well-designed system-wide architecture also aims to separate concerns. By sepa
 Consequently, to allow understanding the software architecture on its highest level, clear decisions should be made on the responsibility of the components. Once the components are chosen, their name should tell right away the intent they were made for. Applying the same approach on every level of abstraction throughout the application is crucial as it keeps components minimal, and lightweight. 
 
 \subsection{The Dependency Rule}
-The approach to a layered architecture also requires the definition of carefully designed dependencies. Identifying the correct dependencies and keeping them minimal is key to a loosely coupled software \cite{cleancode}. The Clean Architecture explained in the previous chapters is designed in a way, that such dependencies are considered at the first place.
+The approach to a layered architecture also requires the definition of carefully designed dependencies. Identifying the correct dependencies and keeping them minimal is key to a loosely coupled software \cite{cleancode}. The Clean Architecture explained in the previous sections is designed in a way, that such dependencies are considered at the first place.
 
 % what does the dependency rule say?
 The Dependency Rules dictates that the inner layers of the architecture do not know anything about the layers that are outer than them in the architecture \cite{cleanarchitecture} \cite{onionarchitecture}. In other words, all dependencies point towards the middle of the layered structure, towards the business logic and the entities. 
