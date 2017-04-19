@@ -10,7 +10,8 @@
 \usepackage{amsmath}
 \usepackage{array}
 \usepackage{url}
-
+\usepackage{paralist}
+\usepackage{enumitem}
 % correct bad hyphenation here
 % \hyphenation{op-tical net-works semi-conduc-tor}
 
@@ -73,7 +74,8 @@ Software architectures lay down the basis and establish the frame for quality so
 % research questions of this paper
 This paper aims to seek answers to the following research questions by discussing relevant literature in the topic: 
 
-\begin{enumerate}
+\setdefaultleftmargin{40pt}{}{}{}{}{}
+\begin{enumerate}[label=RQ\arabic*:]
 	\item what are the main aspects of the Clean principles in terms of software architecture?
 	\item why such architecture is needed?
 	\item how can any software project - independently from utilized technologies and platforms - benefit from the Clean Architecture principles?
