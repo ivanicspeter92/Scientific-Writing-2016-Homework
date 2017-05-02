@@ -76,13 +76,13 @@ This paper aims to seek answers to the following research questions by discussin
 
 \setdefaultleftmargin{40pt}{}{}{}{}{}
 \begin{enumerate}[label=RQ\arabic*:]
+	\item why is it important to consider Clean Code principles in relation to software architecture design?
 	\item what are the main aspects of the Clean Code principles in terms of software architecture?
-	\item how can software projects benefit from applying Clean Code principles to design their software architecture?
 	\item what are the benefits of approaching software architecture design using Clean Code principles?
 \end{enumerate}  
 
 % how is the rest of the paper structured? 
-The rest of this paper is structured, as follows. The next section explains why a clean design for software architecture is needed and who may benefit approaching software development from this scope. Section III lists and discusses the four main principles and benefits of using a Clean Architecture for any software project. Finally, the last section concludes the findings of this research and establishes the directions for further studies in the topic. 
+The rest of this paper is structured, as follows. The next section explains why a clean design for software architecture is needed and who may benefit approaching software development from this scope. Section III lists and discusses the five main principles and benefits of using a Clean Architecture for any software project. Finally, the last section concludes the findings of this research and establishes the directions for further studies in the topic. 
 
 \section{The need for a clean design}
 % why is software development and extending the code base difficult?
@@ -91,12 +91,14 @@ Software development is collaborative work. More and more developers work in tea
 % how can intent-driven approach help to get over this?
 For this reason, considering the intent behind a decision is key even on the deepest level of components, for instance classes, objects, functions or even variable names. The usage of intention-revealing names on all parts of software projects greatly enhance the readability of their code \cite{cleancode}. This enables developers to read and understand others' code more efficiently and work on code written by others with more confidence. 
 
-Demonstrating the intent behind design decisions is a key characteristic of good design which helps developers to understand what the program code does and how it is structured. This is particularly important while debugging or refactoring detailed parts of the code. However, it is not limited to low-level components of the software. 
+Demonstrating the intent behind design decisions is a key characteristic of design based on Clean Code principles. Intent-driven architecture helps developers to understand what the program code does and how it is structured. This is particularly important while debugging or refactoring detailed parts of the code. However, it is not limited to low-level components of the software: applications should express the purpose of their components even on the highest level \cite{cleanarchitecture}. 
 
 % why is it important to understand the intents on every level of abstracition? 
-Naturally, a complex system is composed of multiple components on different levels. In order to understand the "big picture" of such system, one may want to look at it on the top level from different angles. If an "outsider" (i.e. a new developer or system architect to the software) looks at a complex system, they may find it inconvenient, hard to understand or confusing at first, if the components, connection points or relationships are not named properly. 
+Naturally, a complex system is composed of multiple components on different levels. In order to understand the "big picture" of such system, one may want to look at it on the top level from different angles. If an "outsider" (i.e. a new developer or system architect to the software) looks at a complex system, they may find it inconvenient, hard to understand or confusing at first, if the components, connection points or relationships are not named properly.
 
-As soon as components hold the property of telling their role at once in the ecosystem, it becomes much easier to understand. Clean naming conventions, for all components and their relationship strongly enhance the understandability of the system for individuals \cite{cleancode}. On top of that, intent-revealing components typically easy to adapt to the other key principles of clean design that are explained in the following section.
+For example, many frameworks and developers adopt the Model-View-Controller (MVC) design pattern. The MVC guidelines are particularly easy to understand first, however they tell how the pieces are made rather than telling what they do. In other words, the high level components do not express their role and purpose, but their internal structure. As a result, large-scale systems that adopt MVC may be hard to understand on a high level. 
+
+As soon as components hold the property of telling their role at once in the ecosystem, they become easier to understand \cite{cleancode}. Intent-revealing components typically easy to adapt to the other key principles of clean design that are explained in the following section.
 
 \section{Principles}
 % what is the next step after demonstrating intent?
@@ -171,10 +173,7 @@ Automated testing is another great tool which can contribute to the robustness o
 
 Making continuous changes to the software is inevitable, because software components extend, hence change and are refactored every now and then. Once automated tests are set up, developers will have confidence to change confusion, inefficient or tightly coupled parts of the application \cite{cleancoder}. Seeing the test coverage data and the green stage of automated tests gives the confidence of quality in their code base. As R.C. Martin points out, software developers  \textit{"are afraid they will break it (their code) (...) Because they do not have tests."} \cite{cleancoder}
 
-Consequently, testing the layered architecture is possible and strongly suggested on every level of detail. This property greatly contributes to continuous development, developer productivity and quality assurance. On top of that, technical dept becomes easier to manage and avoid. 
-
-%\subsection{Platform independence}
-%Due to its abstract structure, this approach to software architecture is not only robust and flexible, but also independent from platform and the the utilized tools. 
+Consequently, testing the layered architecture is possible and strongly suggested on every level of detail. This property greatly contributes to continuous development, developer productivity and quality assurance. On top of that, technical dept becomes easier to manage and avoid.
 
 \section{Conclusion}
 % restate the topic
@@ -183,9 +182,9 @@ The construction and the maintenance of software is a demanding and difficult ta
 % summarize main points
 Accordingly, there is need for a good, robust and flexible design to ensure the avoidance of technical dept and keep the code base robust as well as extensible. Many design patterns on multiple level of abstractions were suggested by researchers in the past to help developers achieve such goals. Recently, the principles of Clean Code were introduced in the industry, based on which the Clean Software Architecture is emerging. 
 
-The Clean Code suggests an intent-driven approach to software development. This means all code that is written, should clearly communicate the reason why it was written and explicitly tell what it is doing. The Clean Software Architecture adapts this rule and puts it in relationship with software architecture, where the components are expected to be placed, connected and named with intention. 
+The Clean Code suggests an intent-driven approach to software development. This means all code that is written, should clearly communicate the reason why it was written and explicitly tell what it is doing. The Clean Software Architecture adapts this rule and puts it in relationship with software architecture, where the components are expected to be placed, connected and named with intention. Intent-driven design of components greatly help any developer to understand for what purpose the system was made for. 
 
-Additionally, this approach to software architecture embraces principles, such as the separation of concerns, the dependency rule and the inward-pointing flow of control. As soon as these criterion is matched, faster deployment, more robust and flexible software architecture is guaranteed. 
+Additionally, this approach to software architecture embraces principles, such as the separation of concerns, the dependency rule and the inward-pointing flow of control. As soon as these criterion is matched, faster deployment, more robust and flexible software architecture is guaranteed. The software becomes platform-independent, because the components are designed with intent for one single purpose. Therefore the architectural framework will not dictate or violate the high-level architecture of the software in any ways. As a result loose coupling is guaranteed, pieces can be easily plugged into and out from the system. 
 
 This paper introduced the above concepts in relation to software development based review of relevant literature. It was concluded that the Clean principles can be adapted to software architecture design, which help developers to collaborate, ensure quality software and to avoid technical dept in the long run. Another finding concerning this approach to development is the decoupled and testable components it provides, which are theoretically independent from platform and easy to replace. 
 
