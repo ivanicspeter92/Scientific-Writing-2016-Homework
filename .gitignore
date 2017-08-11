@@ -9,3 +9,5 @@
 
 *.blg
 .Rproj.user
+*.fdb_latexmk
+*.fls
