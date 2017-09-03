@@ -11,8 +11,8 @@
 	% what is the potential in analyzing user data? why is it important not only to collect but also analyze data?
     Data analysis tools and methods already exist to help businesses operate on their data. However, these applications often not utilized, because companies rather focus on developing their service package than understanding the previously gathered data \cite{inmon2007tapping}. As a result, essential knowledge concerning previously collected data is neglected, which would be key for the future development of the business. Careful data analysis may reveal interesting relationships and point out facts, what human eyes would never notice otherwise. Consequently, Knowledge Discovery in Databases is important and is essential part of Business Intelligence applications \cite{zarsky2002mine}. 
     
-    % what is the focus?
-    The focus of this research is to analyze demographic data of users and frequently liked content on the Internet. More specifically, the Choicely voting/audience engagement platform is taken as a case study. Association analysis, statistical methods and computer vision are utilized to understand the online content and to reveal hidden details about the tendencies of user preferences in terms of votes spent on contest participants in the platform.
+    % what is the goal? what is this thesis about?
+    The goal of this research is to analyze demographic data of users and frequently liked content on the Internet. More specifically, the Choicely voting/audience engagement platform is taken as a case study. Association analysis, statistical methods and computer vision are utilized to understand the online content and to reveal hidden details about the tendencies of user preferences in terms of votes spent on contest participants in the platform.
     
     % why is this research conducted, what is the motivation from researcher's pov? 
     One reason behind conducting this research are the stimulating challenges about studying user data and the wide possibilities of the information that may lie around in databases. Statistical analysis on data, such as like activities, user comments, tags and image content can reveal interesting findings about user behavior. Secondly, as user demographics-related data can be retrieved easily through social network sites in the present time, it opens new possibilities to seek correlation between user segments, based on gender or location for instance. Studies conducted in this field can also be interesting from the point of view of human behavior, which is another motivation towards conducting studies in this area. 
@@ -27,19 +27,6 @@
         \item increase business value.
     \end{itemize} 
 
-\subsection{Research scope and objectives}
-    % what is the wide scope of the thesis? What will we begin with as a theoretical background?
-    Initially, the study presents an overview on the field of Data Mining as the theoretical of the study. Being a large field of science, the scope is focused only on the most important portion of Data Mining techniques and methods, namely association analysis. On top of that, the study addresses the possibilities and challenges of analyses performed on user data more specifically. % TODO: reformulate   
-
-    % in what context is this theoretical background relevant? Answer "Why?" % how does that relate to Choicely, particularly? 
-    Building on top of the theoretical framework, the study is oriented towards applying techniques for data mining purposes at Choicely. Specific topics from the field of Data Science are chosen to obtain the answers to the research questions that are listed in the next section. At the beginning of this research project, the company does not utilize any advanced data analysis tools. This thesis work is motivated in the direction to establish the basis of a data mining framework at the company and hence increase the business value of the firm.  
-
-    % what is the objective? 
-    One of the objectives of this thesis work is to develop advanced data analysis tools in order to help the company and its customers to gain a better understanding on the data at hand. In order to do that, the available data is presented and analyzed, the most interesting questions are stated and the information with the business highest value is identified. Afterwards, potential data analysis methods are discussed which are capable to retrieve such information from the given data set.  
-
-    % what is the focus?
-    More specifically, the research is oriented towards applying data mining techniques to gain a better understanding on the users and their level of engagement. Initially, the study is oriented towards utilizing statistical measures to analyze properties of the user data. In the second part of the study, association analysis techniques are utilized to retrieve the attributes of the content, which engages users. Computer vision is utilized to classify the content of the images that are uploaded to the platform, while the transactional user data is investigated using association analysis techniques. % TODO finish when clarified
-
 \subsection{Research questions and methodology}
     In this section, the research questions are presented and described. The questions are as follows:
 
@@ -52,18 +39,33 @@
     % literature review
     The research consists of theoretical and a practical part. The foundations for the theoretical basis are retrieved by reviewing relevant literature. The sources include scientific journals, articles as well as books related to the topic of this study. The two former sources are retrieved through online digital libraries, such as the ACM digital library, IEEE Xplore and Google Scholar. After finding the first papers, the snowballing technique is used to get access to further studies in the field. 
     
-    % data collection 
-    Data collection... 
+    % practical part
+    In the practical part of the study, the data repositories of the Choicely voting platform are analyzed. The analysis is fundamentally focused on two topics: the content and the users' data of the platform. The methods chosen for performing the analysis are %TODO .
+    The choice behind these techniques is the successful application of these in previous research. 
+
+    % data collection if needed % TODO add stuff if needed
+    The data for this research is provided by the case company. The chosen techniques are applied and the analysis is performed on historical data, which was gathered through contests and votes in the past by Choicely and its customers. The structure and the properties of the data at hand is explained in the Section \ref{section::data-mining-at-choicely} to follow.
+    
     \begin{enumerate}
         \item in case the currently available data is not sufficient or incomplete, data can be gathered by volunteers (e.g. students and staff from the university)
         \item the data collection can be done through the Choicely platform \url{http://choicely.com} online,
         \item if needed, multiple sessions can be organized in the Choicely office or Kumpula for the data collection,
-        \item training meterial for the participants can be provided in written form or a training session can be organized if needed,  
+        \item training material for the participants can be provided in written form or a training session can be organized if needed,  
         \item Choicely is ready to reward the participants in the study with movie tickets or some other small gifts and hence encourage more to participate.
     \end{enumerate}
 
-    % data analysis
-    Data analysis...
+\subsection{Research scope and objectives}
+    % what is the wide scope of the thesis? What will we begin with as a theoretical background?
+    Initially, the study presents an overview on the field of user data analysis in different research settings as the theoretical of the study. Being a large field of science, the scope is focused only on the most important portion of Data Mining techniques and methods, that are utilized to answer the research questions stated above. Particulary, the study addresses the possibilities and challenges of analyses performed on user data more specifically in terms of various statistical methods and asssociation analysis techniques.    
+
+    % in what context is this theoretical background relevant? Answer "Why?" % how does that relate to Choicely, particularly? 
+    Building on top of the theoretical framework, the study is oriented towards applying techniques for data mining purposes at Choicely. Specific topics from the field of Data Science are chosen to obtain the answers to the research questions that are listed in the next section. At the beginning of this research project, the company does not utilize any advanced data analysis tools. This thesis work is motivated in the direction to establish the basis of a data mining framework at the company and hence increase the business value of the firm.  
+
+    % what is the objective? 
+    One of the objectives of this thesis work is to develop advanced data analysis tools in order to help the company and its customers to gain a better understanding on the data at hand. In order to do that, the available data is presented and analyzed, the most interesting questions are stated and the information with the business highest value is identified. Afterwards, potential data analysis methods are discussed which are capable to retrieve such information from the given data set.  
+
+    % what is the focus?
+    More specifically, the research is oriented towards applying data mining techniques to gain a better understanding on the users and their level of engagement. Initially, the study is oriented towards utilizing statistical measures to analyze properties of the user data. In the second part of the study, association analysis techniques are utilized to retrieve the attributes of the content, which engages users. Computer vision is utilized to classify the content of the images that are uploaded to the platform, while the transactional user data is investigated using association analysis techniques. % TODO finish when clarified
 
 \subsection{Thesis structure}
     % how is the thesis structured? 
