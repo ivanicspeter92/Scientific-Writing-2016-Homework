@@ -1,9 +1,11 @@
 \subsection{Introduction to the Choicely voting platform}
     % what does the company do? 
-    Choicely is a voting platform that... The platform has already hosted numerous contests in various fields, such as beauty pageants, public polls, design contests, sport events among many others. The customer base of the firm consist of mainly Finnish broadcasters, publishers and advertisers. The customer and user base is constantly growing with many international companies from all around the world.
+    Choicely \footnote{\url{http://choicely.com/}} is a voting platform developed by a Finnish startup, Lovented Ltd, since 2014. The software provides the possibility for users to engage in interesting contests by voting on their favorite contender. The platform has already hosted numerous contests in various fields, such as beauty pageants, public polls, design contests, sport events among many others. The customer base of the firm consist of mainly Finnish broadcasters, publishers and advertisers. However, the last year has brought numerous users and customers from all around the world.
     
     % what are the contests like, what kind of configuration settings are available?
-    The contests in the platform are... Users may participate in arbitrary number of contests from three platforms: the two most popular mobile platforms (iOS and Android) and the web interface (Figure \ref{choicely_platforms}). 
+    % The contests in the platform are created by users or brands. 
+    Contests can be of multiple types: ... % TODO ask Kaius 
+    Users may vote and participate in their own contests if they like. Users may participate in arbitrary number of contests from three platforms: the two most popular mobile platforms (iOS and Android) and the web interface (Figure \ref{choicely_platforms}). 
 
     \begin{figure}[h] 
 		\begin{center}
@@ -11,10 +13,32 @@
 			\caption{Choicely collects data through three interfaces: iOS devices, Android devices and web.}
 			\label{choicely_platforms}
 		\end{center}
-	\end{figure}
+    \end{figure}
+    
+    % voting options
+    Various voting options are available for contests. The author of the contest has the choice of setting a limit on how many votes users can spend on individual participants or the whole contest in overall. For instance, if the maximum votes in the contest is set to 1, users can give exactly one vote on exactly one participant. Configuration settings allow infinite votes as well. Removing votes is possible, if the author has decided to enable this possibility. Votes cannot be modified after the contest has ended.
+    
+    % free-silver-gold votes
+    On top of the regular free votes, contest authors may allow users to earn more votes (called "silver votes") by sharing the contest on social media or by watching advertisements. Furthermore, authors can allow users to purchase more votes (called "star votes" or "gold votes") with exactly the same restriction settings as explained above. Note, however that the configuration for the three vote types are distinct for every contest. This means that the limitation on free/silver/star votes may differ for individual participants as well as the whole contest. 
+
+    % how can one reach a contest in the platform?
+    Contests can be accessed through multiple interfaces (Figure \ref{choicely_platforms}). Naturally, the company's webpage provides a convenient way to create, browse and participate in contests. Choicely also has free mobile applications available on Android and iOS devices, that can be installed through the Google Play \footnote{\url{https://play.google.com/store/apps/details?id=com.choicely.android}} and the iOS App Store \footnote{\url{https://itunes.apple.com/fi/app/choicely/id1158798364}} on the devices. Finally, the company offers a web widget, which can be embedded as a framework in any webpage easily. The last option is often used by many of Choicely's customers, because it provides a convenient way to embed rich content in their own web pages.
+    
+    % what do users have to do to participate? 
+    Majority of the contests require users to have a user profile in the Choicely platform. Optionally, profiles can be created through a regular sign-up process, where users register and pick a password for their authentication. When users choose this kind of registration, their e-mail addresses are confirmed through a verification link sent to their inbox, so that their identity is confirmed.      
+
+    \begin{itemize}
+        \item Full name
+        \item Profile picture
+        \item Cover image
+        \item Gender
+        \item Location (Country, state and city)
+        \item Age group
+        \item Introduction/Bio
+    \end{itemize}
 
     % what kind of data is generated?
-    The available data is two-folded: each user has a user profile, which contains basic demographic information about the user (gender and location), while contests have a number of participants with arbitrary number of votes that the users have spent on them. Depending on the configuration of contests, users may have limited number of votes to spend on every contest and participant, however there may be unlimited number of votes to spend on both. 
+    The available data is two-folded: each user has a user profile, which contains basic demographic information about the user (gender and location), while contests have a number of participants with arbitrary number of votes that the users have spent on them. The vote changes for the contests are stored as transactions. This means that the database contains not the final results of the voting, but rather the changes what users made while using the software. This way it is possible to analyze the votes over time and to look at changes individually. For instance, it is possible to tell if a user has removed his/her votes from participant A and moved them to participant B. Furthermore, this way of data representation to restore or simulate any previous state of the contest, in case it would be needed.
 
     % how does the data look like and how can it be retrieved?
     The data is structured in nature and is stored in a... The data can be accessed via...
@@ -27,7 +51,7 @@
 
 \subsection{Research setting}
     % how computer vision is going to be utilized? 
-    To model user behavior, computer vision is utilized in order to label the content of the images. Figure \ref{google_vision_labels} displays an example.  
+    To model user behavior, computer vision is utilized in order to label the content of the images. Figure \ref{google_vision_labels} displays an example.
 
     \begin{figure}[h] 
 		\begin{center}
