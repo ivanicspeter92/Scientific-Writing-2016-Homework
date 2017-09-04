@@ -5,15 +5,6 @@
     % what are the contests like, what kind of configuration settings are available?
     % The contests in the platform are created by users or brands. 
     Contests can be of multiple types: ... % TODO ask Kaius 
-    Users may vote and participate in their own contests if they like. Users may participate in arbitrary number of contests from three platforms: the two most popular mobile platforms (iOS and Android) and the web interface (Figure \ref{choicely_platforms}). 
-
-    \begin{figure}[h] 
-		\begin{center}
-			\includegraphics[width=0.6\textwidth]{images/choicely_platforms.png}
-			\caption{Choicely collects data through three interfaces: iOS devices, Android devices and web.}
-			\label{choicely_platforms}
-		\end{center}
-    \end{figure}
     
     % voting options
     Various voting options are available for contests. The author of the contest has the choice of setting a limit on how many votes users can spend on individual participants or the whole contest in overall. For instance, if the maximum votes in the contest is set to 1, users can give exactly one vote on exactly one participant. Configuration settings allow infinite votes as well. Removing votes is possible, if the author has decided to enable this possibility. Votes cannot be modified after the contest has ended.
@@ -36,6 +27,17 @@
         \item Age group
         \item Introduction/Bio
     \end{itemize}
+
+    % what is the connection between contests and users? How do the participate?
+    Users may vote and participate in their own contests if they like. Users may participate in arbitrary number of contests from three platforms: the two most popular mobile platforms (iOS and Android) and the web interface (Figure \ref{choicely_platforms}). 
+    
+    \begin{figure}[h] 
+        \begin{center}
+            \includegraphics[width=0.6\textwidth]{images/choicely_platforms.png}
+            \caption{Users can vote in contests through three interfaces: iOS devices, Android devices and web.}
+            \label{choicely_platforms}
+        \end{center}
+    \end{figure}
 
     % what kind of data is generated?
     The available data is two-folded: each user has a user profile, which contains basic demographic information about the user (gender and location), while contests have a number of participants with arbitrary number of votes that the users have spent on them. The vote changes for the contests are stored as transactions. This means that the database contains not the final results of the voting, but rather the changes what users made while using the software. This way it is possible to analyze the votes over time and to look at changes individually. For instance, it is possible to tell if a user has removed his/her votes from participant A and moved them to participant B. Furthermore, this way of data representation to restore or simulate any previous state of the contest, in case it would be needed.
