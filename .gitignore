@@ -11,3 +11,6 @@
 .Rproj.user
 *.fdb_latexmk
 *.fls
+
+.idea/
+data/
