@@ -57,15 +57,6 @@
     
     In comparison to most of the currently available social networks, voting platforms like Choicely are observed by the audience differently. On one hand, social media sites usually list posts or images on a feed, where there is theoretically no relation between the posts that follow eachother. On the other hand, contestants in the Choicely platform share similarities as they were nominated for the same contest. Accordingly, there must be some similarity among them as all are subjects of the contest's topic, rules and are competing for the best possible result. 
     
-    % so what? Why is that important from user point of view
-    This slight difference in the content makes a big change in terms of user behavior. The focus moves from "what kind of content I like" to "which piece of content I like the most in comparison to the rest". Consequently, users will scan through some (or optimally all) of the contestants and make unconscious decisions upon whether to give vote(s) on certain contest participant(s). The users express their favour and support towards a subset of contenders, and hence helping them to reach their ultimate goal: winning in the contest. 
-
-    % how can this contribute to user behavior and social media studies? 
-    This difference compared to other social networking sites offers a great possibility for research. The potential of identifying what kind of content among different contests individuals like as well as what kind of content similar group of users like, hinders in the data.    
-
-    % how computer vision is going to be utilized? 
-    One of the challenges in connecting users with topics of contests is that there is no indication on what the content on the contenders' pictures is. Contest authors only assign categories to the contests to be created, which does not necessarily describe the entrants in the contest. For this reason, computer vision is utilized to identify labels that appear on the participants' images. For instance, a beauty pageant's entry image may be labelled with meta data, such as "Beauty", "Photo Shoot", "Smile" and "Blonde". Similarly, a design contests entry might have topic labels, such as "Landmark" or "Architecture". Figure \ref{google_vision_labels} displays an example, where the Google Vision API was used as a black box to identify such labels in images, that were extracted from two of Choicely's contests.
-
     \begin{figure}[h] 
 		\begin{center}
             \includegraphics[width=0.8\textwidth]{images/google_vision_labels.png}
@@ -73,7 +64,36 @@
 			\caption{The labels identified by the Google Vision API on two of the contest participant's images.}
 			\label{google_vision_labels}
 		\end{center}
-	\end{figure}
+    \end{figure}
+
+    % so what? Why is that important from user point of view
+    This slight difference in the content makes a big change in terms of user behavior. The focus moves from "what kind of content I like" to "which piece of content I like the most in comparison to the rest". Consequently, users will scan through some (or optimally all) of the contestants and make unconscious decisions upon whether to give vote(s) on certain contest participant(s). The users express their favour and support towards a subset of contenders, and hence helping them to reach their ultimate goal: winning in the contest. 
+
+    % how can this contribute to user behavior and social media studies? 
+    This difference compared to other social networking sites offers a great possibility for research. The potential of identifying what kind of content among different contests individuals like as well as what kind of content similar group of users like, hinders in the data.    
+
+    % how computer vision is going to be utilized? 
+    One of the challenges in connecting users with topics of contests is that there is no indication on what the content on the contenders' pictures is. Contest authors only assign categories to the contests to be created, which does not necessarily describe the entrants in the contest. Other researches have successfully utilized computer vision to gather meta data for the uploaded content in image sharing communities \cite{bakhshi2014faces, hu2014we}. Deriving from the success, computer vision is utilized in this research as well to identify labels that appear on the participants' images. For instance, a beauty pageant's entry image may be labelled with meta data, such as "Beauty", "Photo Shoot", "Smile" and "Blonde". Similarly, a design contests entry might have topic labels, such as "Landmark" or "Architecture". Figure \ref{google_vision_labels} displays an example, where the Google Vision API was used as a black box to identify such labels in images, that were extracted from two of Choicely's contests.
+    
+    % architectural overview
+    The current architecture of the Choicely platform is...
+    \begin{figure}[h] 
+		\begin{center}
+            \includegraphics[width=0.8\textwidth]{Images/architecture_whiteboard.jpg}
+			\caption{The brief architectural overview of the Choicely platform.}
+			\label{choicely_architecture}
+		\end{center}
+    \end{figure}
+
+    % the structure of the data models
+    The structure of the data... 
+    \begin{figure}[h] 
+		\begin{center}
+            \includegraphics[width=0.8\textwidth]{Images/data_structure_whiteboard.jpg}
+			\caption{The structure of the data models of the Choicely platform.}
+			\label{choicely_data_models}
+		\end{center}
+    \end{figure}
 
 \subsection{Methodology}
     % what kind of methods were chosen? 
