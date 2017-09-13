@@ -7,6 +7,11 @@
 \usepackage{url}
 \usepackage{paralist}
 \usepackage{enumitem}
+\usepackage{totcount}
+
+\newtotcounter{citnum} %From the package documentation
+\def\oldbibitem{} \let\oldbibitem=\bibitem
+\def\bibitem{\stepcounter{citnum}\oldbibitem}
 
 \begin{document}
 \onehalfspacing
@@ -56,7 +61,11 @@
 	\label{section::conclusions}
 	\input{conclusions}    
 
-\pagebreak   
+\pagebreak
+
+% TODO remove the next line when the thesis is completed
+[Overall \total{citnum}\ references]
+
 \nocite{*}
 \bibliographystyle{tktl}
 \bibliography{references}
