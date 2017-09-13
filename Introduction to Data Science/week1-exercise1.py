@@ -19,7 +19,7 @@ def drop_colums(data, columns):
     return data
 
 def remove_numbers(string):
-    if string is not str:
+    if type(string) is not str:
         return string
     filtered_characters = list(filter(lambda c: not c.isdigit(), string))
 
