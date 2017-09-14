@@ -61,7 +61,7 @@ def replace_categorical_values_with_mode(data, preferred_mode_index = 0):
 # 1
 data = read_data(filename = "data/titanic/train.csv")
 # 2
-data = drop_colums(data, ["PassengerId", "Name"])
+#data = drop_colums(data, ["PassengerId", "Name"])
 # 3
 data["Deck"] = get_deck_letter(data["Cabin"])
 # 4
