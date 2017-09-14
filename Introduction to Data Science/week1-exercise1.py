@@ -73,5 +73,5 @@ data = replace_continous_values_with_average(data)
 data = replace_categorical_values_with_mode(data)
 
 # 6
-data.to_csv("data/titanic_processed/train_processed.csv", sep = "\t")
+data.to_csv("data/titanic_processed/train_processed.csv", sep = "\t", index = False)
 data.to_json("data/titanic_processed/train_processed.json", orient="records", lines = True)
