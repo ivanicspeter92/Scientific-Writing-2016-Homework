@@ -2,14 +2,8 @@ import pandas as pd
 import random
 import matplotlib.pyplot as plt
 import numpy as np
-
+from week1_exercise1 import cast_to_categorical_colums
 pd.options.mode.chained_assignment = None
-
-def cast_to_categorical_colums(data, columns):
-    for feature in columns:
-        data[feature] = data[feature].astype("category")
-
-    return data
 
 def get_modes_and_medians(data):
     ignored_colums = set(["Name", "PassengerId"])
@@ -54,8 +48,27 @@ def get_similar_passengers(specimen, data, age_threshold = 5, family_size_thresh
 
     return filtered_data
 
+def plot_family_size_over_age(data, add_noise = True, special_people = False):
+    survived_colors = {1: "black", 0 : "black"} if special_people else {1: "green", 0: "crimson"}
+    colorlist = list(data["Survived"].map(lambda x: survived_colors[x]))
+
+    male_marker = "$\u2642$"
+    female_marker = "$\u2640$"
+
+    # gender_markers = {"male": male_marker, "female": female_marker}
+    # markerlist = list(data["Sex"].map(lambda x: gender_markers[x]))
+
+    noise = np.random.normal(0, 0.1, len(data)) if add_noise else np.repeat(0, len(data))
+
+    males = data[data["Sex"] == "male"]
+    females = data[data["Sex"] == "female"]
+
+    plt.scatter(x = males["FamilySize"] + noise[:len(males)], y = males["Age"], color = colorlist, alpha = 1.0 if special_people else 0.3, s = 150 if special_people else 75, marker = male_marker)
+    plt.scatter(x=females["FamilySize"] + noise[:len(females)], y = females["Age"], color = colorlist, alpha = 1.0 if special_people else 0.3, s = 150 if special_people else 75, marker=female_marker)
+
 data = pd.read_csv("data/titanic_processed/train_processed.csv", sep = "\t")
 data["FamilySize"] = data["SibSp"] + data["Parch"]
+
 # 1
 modes_and_medians = get_modes_and_medians(data)
 print(modes_and_medians)
@@ -77,15 +90,11 @@ print(average_survivor_jane)
 print(average_non_survivor_joe)
 
 # 3
-survived_colors = { 1 : "chartreuse", 0 : "crimson" }
-noise = np.random.normal(0, 0.1, len(data))
+plot_family_size_over_age(data)
+plot_family_size_over_age(pd.concat([average_joe, average_non_survivor_joe, average_survivor_jane]), add_noise = False, special_people = True)
 
-plt.scatter(x = data["FamilySize"] + noise, y = data["Age"], color = list(data["Survived"].map(lambda x: survived_colors[x])), alpha = 0.3, s = 50, marker = "o")
-
-plt.scatter(x = average_joe["FamilySize"], y = average_joe["Age"], color = "black", s = 150, marker = "x")
-plt.scatter(x = average_non_survivor_joe["FamilySize"], y = average_non_survivor_joe["Age"], color = "grey", s = 150, marker = "x")
-plt.scatter(x = average_survivor_jane["FamilySize"], y = average_survivor_jane["Age"], color = "purple", s = 150, marker = "x")
 plt.show()
+
 #average_joe["FamilySize"] == average_non_survivor_joe["FamilySize"]
 #average_joe["Age"] == average_non_survivor_joe["Age"]
 
