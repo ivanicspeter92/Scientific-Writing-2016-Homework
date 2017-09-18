@@ -38,7 +38,7 @@ data = pd.read_json(basefolder + "/reviews_Automotive_5.json", lines = True)
 # b
 data["reviewText"] = data["reviewText"].map(lambda string: string.lower())
 # c
-stopwords = pd.read_csv(basefolder + "/stop-word-list.txt")
+stopwords = open("data/amazon_reviews/stop-word-list.txt", "r").read().split("\n")
 data["reviewText"] = remove_punctuation_and_stopwords(data = data["reviewText"], punctuation_characters = list(string.punctuation), stopwords = stopwords)
 # d
 a = stem_review(data["reviewText"][0])

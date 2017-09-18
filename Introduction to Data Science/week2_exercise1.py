@@ -3,6 +3,7 @@ import random
 import matplotlib.pyplot as plt
 import numpy as np
 from week1_exercise1 import cast_to_categorical_colums
+import random
 pd.options.mode.chained_assignment = None
 
 def get_modes_and_medians(data):
@@ -90,7 +91,9 @@ print(average_survivor_jane)
 print(average_non_survivor_joe)
 
 # 3
-plot_family_size_over_age(data)
+#plot_family_size_over_age(data)
+plot_family_size_over_age(data[data["Sex"] == "male"])
+plot_family_size_over_age(data[data["Sex"] == "female"])
 plot_family_size_over_age(pd.concat([average_joe, average_non_survivor_joe, average_survivor_jane]), add_noise = False, special_people = True)
 
 plt.show()
