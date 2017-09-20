@@ -67,6 +67,9 @@ def plot_family_size_over_age(data, add_noise = True, special_people = False):
     plt.scatter(x = males["FamilySize"] + noise[:len(males)], y = males["Age"], color = colorlist, alpha = 1.0 if special_people else 0.3, s = 150 if special_people else 75, marker = male_marker)
     plt.scatter(x=females["FamilySize"] + noise[:len(females)], y = females["Age"], color = colorlist, alpha = 1.0 if special_people else 0.3, s = 150 if special_people else 75, marker=female_marker)
 
+    plt.xlabel('Family size')
+    plt.ylabel('Age')
+
 data = pd.read_csv("data/titanic_processed/train_processed.csv", sep = "\t")
 data["FamilySize"] = data["SibSp"] + data["Parch"]
 
