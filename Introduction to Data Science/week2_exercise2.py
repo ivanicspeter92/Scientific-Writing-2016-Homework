@@ -91,7 +91,7 @@ invalid_words = get_invalid_words(unique_word_counts.keys())
 for word in invalid_words:
     unique_word_counts.pop(word, None)
 
-unique_word_counts_sorted = sort_dictionary_by_values(unique_word_counts, reverse = True)#[1:100]
+unique_word_counts_sorted = sort_dictionary_by_values(unique_word_counts, reverse = True)[1:100]
 
 positive_tfidf = get_tfidf_values(unique_word_counts_sorted, all_positive_words, [all_positive_words, all_negative_words])
 negative_tfidf = get_tfidf_values(unique_word_counts_sorted, all_negative_words, [all_positive_words, all_negative_words])
@@ -108,3 +108,5 @@ neg_max_word = matrix[matrix["negative_tfidf"] == matrix["negative_tfidf"].min()
 
 print("Most important positive word: {} {}".format(pos_max_word.to_string(), pos_max))
 print("Most important negative word: {} {}".format(neg_max_word.to_string(), neg_max))
+
+# SKLearn TFIDF vectorizer
