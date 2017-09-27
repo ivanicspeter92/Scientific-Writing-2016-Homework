@@ -60,6 +60,6 @@ plot_error_loss(number_of_trees, loss_array, label = "Test error")
 plt.legend(bbox_to_anchor=(1.05, 1), loc = 2, borderaxespad=0.)
 
 #5
-tpot = TPOTClassifier(generations=5, population_size=20, verbosity=2)
-tpot.fit(training_images, training_symbols)
-print(tpot.score(test_images, test_symbols))
+#tpot = TPOTClassifier(generations=2, population_size=2, verbosity=2)
+#tpot.fit(training_images, training_symbols)
+#print(tpot.score(test_images, test_symbols))
