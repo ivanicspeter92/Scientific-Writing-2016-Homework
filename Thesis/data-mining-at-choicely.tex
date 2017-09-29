@@ -13,7 +13,7 @@
     On top of the regular free votes, contest authors may allow users to earn more votes (called "silver votes") by sharing the contest on social media or by watching advertisements. Furthermore, authors can allow users to purchase more votes (called "star votes" or "gold votes") with exactly the same restriction settings as explained above. Note, however that the configuration for the three vote types are distinct for every contest. This means that the limitation on free/silver/star votes may differ for individual participants as well as the whole contest. 
 
     % how can one reach a contest in the platform?
-    Contests can be accessed through multiple interfaces (Figure \ref{choicely_platforms}). Naturally, the company's webpage provides a convenient way to create, browse and participate in contests. Choicely also has free mobile applications available on Android and iOS devices, that can be installed through the Google Play \footnote{\url{https://play.google.com/store/apps/details?id=com.choicely.android}} and the iOS App Store \footnote{\url{https://itunes.apple.com/fi/app/choicely/id1158798364}} on the devices. Finally, the company offers a web widget, which can be embedded as a framework in any webpage easily. The last option is often used by many of Choicely's customers, because it provides a convenient way to embed rich content in their own web pages.
+    Contests can be accessed through multiple interfaces (Figure \ref{choicely_platforms}). Naturally, the company's webpage provides a convenient way to create, browse and participate in contests. Choicely also has free mobile applications available on Android and iOS devices, that can be installed through the Google Play \footnote{\url{https://play.google.com/store/apps/details?id=com.choicely.android}} and the iOS App Store \footnote{\url{https://itunes.apple.com/fi/app/choicely/id1158798364}} on the devices. Finally, the company offers a web widget, which can be embedded as a framework in any webpage easily. The last option is often used by many of Choicely's customers, because it provides a convenient way to embed rich content in their own web pages. 
     
     % what do users have to do to participate? 
     Majority of the contests require users to have a user profile in the Choicely platform. Optionally, profiles can be created through a regular sign-up process, where users register and pick a password for their authentication. When users choose this kind of registration, their e-mail addresses are confirmed through a verification link sent to their inbox, so that their identity is confirmed.      
@@ -97,13 +97,30 @@
 
 \subsection{Methodology} % what kind of methods were chosen? 
     % Exploratory Data Analysis (EDA)
-    To grasp on the currently available data, Exploratory Data Analysis (EDA) is utilized as the first step of the research. A comprehensive overview on the data related to the most important components in the Choicely platform is performed by calculating and visualizing some of the basic statistical measures. Such components are the user profiles, the contests, contest participant and the votes performed by users on the contest participants. The findings of the EDA are then utilized to determine how to prune the data such that the acquired sample is representative, does not contain redundant nor faulty data. 
-    
+    To grasp on the currently available data, Exploratory Data Analysis (EDA) is utilized as the first step of the research. A comprehensive overview on the data related to the most important entities in the Choicely platform is performed by calculating basic statistical measures and visualizing the data. Such entities are the user profiles, the contests, contest participant and the votes performed by users on the contest participants. The findings of the EDA are then utilized to determine how to prune the data such that the acquired sample is representative, does not contain redundant nor faulty data. The results of the EDA are explained in the next section. 
+
     % check \cite{socialdiversityongithub} -> Blau index / diversity index: reflects how many different types (such as species) there are in a dataset (a community), and simultaneously takes into account how evenly the basic entities (such as individuals) are distributed among those types.
     
     % what are the decisions behind the choices? 
     % what were the alternatives and why were they rejected? 
 
 \subsection{Results}
+    % what are the takeaways of the EDA? % preprocessing
+    The EDA has highlighted multiple ways how the data should be pruned in order to ensure the relevance of the data. It was identified, that some of the data cannot be used for the purposes of this study and the results will be more representative, if some of the data is pruned. Hence, the following rules were applied to prune the data:
+
+    \begin {table}[]
+        \centering
+        \begin{tabular}{l|l}
+            \textbf{Entity}              & \textbf{Pruning rule} \\
+            \hline
+            \textbf{Contest}             & Unique voters < 100 or Unique voters == null or Contest participants < 2 \\
+            \textbf{ContestParticipant}  & Number of labels < 0 
+        \end{tabular}
+        \caption{The pruning rules used for preprocessing the data.}
+        \label{preprocessing_rules}
+    \end{table}
+
+    Entities that match any of the rules displayed in Table \ref{preprocessing_rules} are dropped from the analysis. For instance, contests with less than 100 unique voters (users) and images without labels are considered irrelevant, and may bias the results of the study. After applying the preprocessing rules, the dataset is left with 92 contests, 1625 contest participants, 282545 votes and XXX unique voters over 10 contest categories. % TODO update occasionally
+
     % neutral analysis based on the data
     % what has been done?
