@@ -1,0 +1,11 @@
+Exercise 1
+----------
+
+Exercise 2
+----------
+Article 13 and Article 15
+
+Exercise 3
+----------
+The difference between pseudonymisation and anonymisation is that the former aims to transform data based on a predefined pattern (such as encoding algorithm or hashing). Such transformation may make the data hard to understand for humans, but the original data is still reversible. Anonymisation is a similar transformation, but ensures that the steps are irreversible and the (personal) data will not be identifiable. 
+
