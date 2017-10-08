@@ -114,10 +114,52 @@
 
 \subsection{Results}
     \subsubsection{Exploratory Data Analysis}
-    % what are the takeaways of the EDA? % preprocessing
+    % what are the takeaways of the EDA? 
+    The EDA fundamentally focused on two aspects of the data at hand: the content and the user profiles and the distributions of the features of these entities. First, the findings related to the content, then the user profiles in the Choicely platform are presented in the paragraphs to follow. 
+    
+    % content
+        % number of contests in overall, by category
+        % explain the findings that there were too many "other" type of contests which were fixed manually
+        \begin{figure}[h] 
+            \begin{center}
+                \includegraphics[width=0.8\textwidth]{Images/user_engagement_in_contests.png}
+                \caption{}
+                \label{}
+            \end{center}
+        \end{figure}
+
+        \begin{figure}[h] 
+            \begin{center}
+                \includegraphics[width=0.8\textwidth]{Images/user_engagement_in_categories_bar.png}
+                \caption{}
+                \label{}
+            \end{center}
+        \end{figure}
+        
+        \begin{figure}[h] 
+            \begin{center}
+                \includegraphics[width=0.8\textwidth]{Images/user_engagement_in_categories_pie.png}
+                \caption{}
+                \label{}
+            \end{center}
+        \end{figure}
+
+    % user profiles
+        % explain the distribution of users by gender, age group and country
+        % compare to the distribution of users who have participated in more than 2 contest -> compare and elaborate   
+    
+        \begin{figure}[h] 
+            \begin{center}
+                \includegraphics[width=0.8\textwidth]{Images/user_demographics_distribution.png}
+                \caption{}
+                \label{}
+            \end{center}
+        \end{figure}
+
+    % conclusions
     The EDA has highlighted multiple ways how the data should be pruned in order to ensure the relevance of the data. 
 
-    \subsubsection{Preprocessing}
+    \subsubsection{Preprocessing and pruning}
     It was identified, that some of the data cannot be used for the purposes of this study and the results will be more representative, if some of the data is pruned. Hence, the following rules were applied to prune the data:
 
     \begin {table}[]
@@ -131,6 +173,32 @@
         \caption{The pruning rules used for preprocessing the data.}
         \label{contest_preprocessing_rules}
     \end{table}
+
+    % contests
+    \begin{figure}[h] 
+        \begin{center}
+            \includegraphics[width=0.8\textwidth]{Images/user_engagement_in_contests-pruned.png}
+            \caption{}
+            \label{}
+        \end{center}
+    \end{figure}
+
+    \begin{figure}[h] 
+        \begin{center}
+            \includegraphics[width=0.8\textwidth]{Images/user_engagement_in_categories_bar-pruned.png}
+            \caption{}
+            \label{}
+        \end{center}
+    \end{figure}
+    
+    \begin{figure}[h] 
+        \begin{center}
+            \includegraphics[width=0.8\textwidth]{Images/user_engagement_in_categories_pie-pruned.png}
+            \caption{}
+            \label{}
+        \end{center}
+    \end{figure}
+    % users
 
     Entities that match any of the rules displayed in Table \ref{preprocessing_rules} are dropped from the analysis. For instance, contests with less than 100 unique voters (users) and images without labels are considered irrelevant, and may bias the results of the study. After applying the preprocessing rules, the dataset is left with 92 contests, 1625 contest participants, 282545 votes and XXX unique voters over 10 contest categories. % TODO update occasionally
 
