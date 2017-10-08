@@ -41,3 +41,4 @@ if [ $RESULT -ne 0 ]; then
   printUsageAndExit
 fi
 
+open $FILE.pdf
