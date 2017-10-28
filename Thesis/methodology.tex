@@ -1,0 +1,29 @@
+% Exploratory Data Analysis (EDA)
+To grasp on the currently available data, Exploratory Data Analysis (EDA) is utilized as the first step of the research. A comprehensive overview on the data related to the most important entities in the Choicely platform is performed by calculating basic statistical measures and visualizing the data. Such entities are the user profiles, the contests, contest participant and the votes performed by users on the contest participants. The findings of the EDA are then utilized to determine how to prune the data such that the acquired sample is representative, does not contain redundant nor faulty data. The results of the EDA are explained in the next section. 
+
+% Preprocessing and pruning
+Based on the results from the EDA, a subset of contests is chosen for more careful analysis. The subset of the contests is limited to those, which have engaged the most users and gathered a higher enough number of votes and unique voters (users who have voted at least once in the contest). After applying the pruning rules, some part of the data is preprocessed so that the analyses can be performed easily. The pruning rules and preprocessing steps are explained in the next section. 
+
+% Association Analysis
+More importantly, Association Analysis is performed on the combined demographic, vote and the image label data in the chosen contests. The list of labels extracted from the participants in the contest are listed for each of the voters' transactions alongside with the voters' demographic data. The data retrieved from the three sources is combined as shown in Table \ref{association_analyisis_data}. Frequent Itemset Analysis is then performed on the data to identify behaviors and preferences of the different demographic groups. Association Rule Discovery is performed on the same data to understand which pair of traits can engage more of the (targeted) audience.  
+
+\begin{table}[]
+    \centering
+    \begin{tabular}{l|l|l|l|l}
+        gender & age group & country & image id & labels \\
+        \hline
+        female & 25-34 & fin & 9d33085c-... & ['fashion model', 'hair', 'model', 'beauty', '...] \\
+        female & 18-24 & fin & 9d33085c-... & ['fashion model', 'hair', 'model', 'beauty', '...] \\
+        female & 65+ & fin & 9d33085c-... & ['fashion model', 'hair', 'model', 'beauty', '...] \\
+        female & 18-24 & swe & 9d33085c-... & ['fashion model', 'hair', 'model', 'beauty', ...] \\
+        female & 18-24 & swe & 9d134a94-... & ['beauty', 'blond', 'human hair color', 'model', ...]
+    \end{tabular}
+    \caption{The format of the data used for Association Analysis.}
+    \label{association_analyisis_data}
+\end{table}
+
+% check \cite{socialdiversityongithub} -> Blau index / diversity index: reflects how many different types (such as species) there are in a dataset (a community), and simultaneously takes into account how evenly the basic entities (such as individuals) are distributed among those types.
+
+% what are the decisions behind the choices? 
+% what were the alternatives and why were they rejected? 
+% performance comparison - why was the local cache added?
