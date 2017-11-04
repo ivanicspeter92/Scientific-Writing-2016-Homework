@@ -90,7 +90,12 @@ def calculate_transitions(tokens, order):
     transitions = {}
     for i in range(len(tokens) - order):
         pred = tokens[i:i+ order]
-        pred = tuple(pred) # converting the predecessor list to an immutable hashable tuple which can be used as dict keys (list can't be because they do not have this property)
+
+        if order > 1: # converting the predecessor list to an immutable hashable tuple which can be used as dict keys (list can't be because they do not have this property)
+            pred = tuple(pred)
+        else:
+            pred = str(pred[0])
+
         succ = tokens[i + order]
 
         if pred not in transitions:
@@ -152,4 +157,4 @@ def sanitize(token_list, stopword_list = []):
     return tokens_not_in_stopwords
 
 alice = read_alice()
-probs = markov_chain(alice, sanitize_text = True, order = 2)
+probs = markov_chain(alice, sanitize_text = True, order = 1)
