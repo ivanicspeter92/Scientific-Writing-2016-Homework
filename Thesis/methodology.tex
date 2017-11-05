@@ -1,9 +1,15 @@
-% literature review
-The research consists of theoretical and a practical part. The foundations for the theoretical basis are retrieved by reviewing relevant literature. The sources include scientific journals, articles as well as books related to the topic of this study. The two former sources are retrieved through online digital libraries, such as the ACM digital library, IEEE Xplore and Google Scholar. After finding the first papers, the snowballing technique was used to retrieve further papers in the field. Furthermore, various keywords were used to obtain related literature in the research area. Keywords included, but were not limited to "data mining", "social media", "user data", "user behavior" and "demographic characteristics". 
+% introduce the two parts of the thesis
+The research consists of a theoretical and a practical part. First, an exploratory literature review is carried out to establish the basis, the relevance and the background of this study. As the research continues with the empirical part, the exploratory literature review forms the basis of understanding the background and assists to answer the research questions and the challenges at the case company. 
+
+% literature review sources
+The foundations for the theoretical basis are retrieved by reviewing relevant literature. The sources include scientific journals, articles as well as books related to the topic of this study. The two former sources are retrieved through online digital libraries, such as the ACM digital library, IEEE Xplore and Google Scholar. After finding the first papers, the snowballing technique was used to retrieve further papers in the field. Furthermore, various keywords were used to obtain related literature in the research area. Keywords included, but were not limited to "data mining", "social media", "user data", "user behavior" and "demographic characteristics". 
+
+% 'forecast' a bit on the challenges found out during the literature review % TODO
 
 % practical part
-In the practical part of the study, the data contained of the Choicely voting platform's databases is analyzed. The analysis is fundamentally focused on two topics: the content uploaded by contest organizers and the users' data during the usage of the platform. The methods chosen for performing the analysis are [Method1, Method2, Method3] %TODO
-The choice behind these techniques is the successful application of these in previous research. 
+In the practical part of the study, the data contained of the Choicely voting platform's databases is analyzed. The analysis is fundamentally focused on two topics: the content uploaded by contest organizers and the users' data during the usage of the platform. 
+
+% The methods chosen for performing the analysis are [Method1, Method2, Method3] %TODO The choice behind these techniques is the successful application of these in previous research. 
 
 % data collection if needed % TODO add stuff if needed
 The data for this research is provided by the case company. The chosen techniques are applied and the analysis is performed on historical data, which was gathered through contests and votes in the past by Choicely and its customers. The structure and the properties of the data at hand is explained in the Chapter \ref{section::data-mining-at-choicely} to follow.
@@ -23,22 +29,7 @@ To grasp on the currently available data, Exploratory Data Analysis (EDA) is uti
 Based on the results from the EDA, a subset of contests is chosen for more careful analysis. The subset of the contests is limited to those, which have engaged the most users and gathered a higher enough number of votes and unique voters (users who have voted at least once in the contest). After applying the pruning rules, some part of the data is preprocessed so that the analyses can be performed easily. The pruning rules and preprocessing steps are explained in the next chapter. 
 
 % Association Analysis
-More importantly, Association Analysis is performed on the combined demographic, vote and the image label data in the chosen contests. The list of labels extracted from the participants in the contest are listed for each of the voters' transactions alongside with the voters' demographic data. The data retrieved from the three sources is combined as shown in Table \ref{association_analyisis_data}. Frequent Itemset Analysis is then performed on the data to identify behaviors and preferences of the different demographic groups. Association Rule Discovery is performed on the same data to understand which pair of traits can engage more of the (targeted) audience.  
-
-\begin{table}[]
-    \centering
-    \begin{tabular}{l|l|l|l|l}
-        gender & age group & country & image id & labels \\
-        \hline
-        female & 25-34 & fin & 9d33085c-... & ['fashion model', 'hair', 'model', 'beauty', '...] \\
-        female & 18-24 & fin & 9d33085c-... & ['fashion model', 'hair', 'model', 'beauty', '...] \\
-        female & 65+ & fin & 9d33085c-... & ['fashion model', 'hair', 'model', 'beauty', '...] \\
-        female & 18-24 & swe & 9d33085c-... & ['fashion model', 'hair', 'model', 'beauty', ...] \\
-        female & 18-24 & swe & 9d134a94-... & ['beauty', 'blond', 'human hair color', 'model', ...]
-    \end{tabular}
-    \caption{The format of the data used for Association Analysis.}
-    \label{association_analyisis_data}
-\end{table}
+More importantly, Association Analysis is performed on the combined demographic, vote and the image label data in the chosen contests. Frequent Itemset Analysis is then performed on the data to identify behaviors and preferences of the different demographic groups. Association Rule Discovery is performed on the same data to understand which pair of traits can engage more of the (targeted) audience.  
 
 % check \cite{socialdiversityongithub} -> Blau index / diversity index: reflects how many different types (such as species) there are in a dataset (a community), and simultaneously takes into account how evenly the basic entities (such as individuals) are distributed among those types.
 
