@@ -2,9 +2,13 @@ import ex2
 import nltk
 
 def contains_noun(pos_tag_tuples):
+    return len(list(filter(lambda x: is_noun(x), pos_tag_tuples))) > 0
+
+def is_noun(pos_tag_tuple):
+    assert isinstance(pos_tag_tuple, tuple)
     noun_keys = ["NOUN", "NN"]
 
-    return len(list(filter(lambda x: x[1] in noun_keys, pos_tag_tuples))) > 0
+    return pos_tag_tuple[1] in noun_keys
 
 pos_tag_tuples = []
 
