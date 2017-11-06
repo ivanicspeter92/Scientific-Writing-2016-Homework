@@ -48,4 +48,4 @@ def generate2(probs1, probs2, length=10, start=None):
 probs1 = ex1.markov_chain(ex1.alice, sanitize_text = True, order = 1)
 probs2 = ex1.markov_chain(ex1.alice, sanitize_text = True, order = 2)
 
-generate2(probs1, probs2, 30)
+# generate2(probs1, probs2, 30) # uncomment this to test
