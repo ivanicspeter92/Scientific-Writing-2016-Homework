@@ -13,3 +13,4 @@ Lines of verses or complete verses could be defined according to such templates 
 
 Exercise 8
 ----------
+According to Boden's three types of creativity, this poem generator mainly would mainly belong the Combinatorial and Exploratory categories as is in Exercise 5. Combinatorical, because the algorithm combines existing ideas: one target noun chosen from the Alice dataset, its properties and categories retrieved from Thesaurus Rex. 
