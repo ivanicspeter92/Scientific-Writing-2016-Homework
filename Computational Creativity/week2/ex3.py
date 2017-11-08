@@ -13,6 +13,8 @@ def is_noun(pos_tag_tuple):
 pos_tag_tuples = []
 
 while contains_noun(pos_tag_tuples) == False:
-    text = ex2.generate2(ex2.probs1, ex2.probs2, 10)
-    pos_tag_tuples = nltk.pos_tag(text.split(" "))
+    sentence = ex2.generate2(ex2.probs1, ex2.probs2, 10)
+    pos_tag_tuples = nltk.pos_tag(sentence.split(" "))
 
+print(sentence)
+nouns = list(map(lambda x: x[0], filter(lambda x: is_noun(x), pos_tag_tuples)))
