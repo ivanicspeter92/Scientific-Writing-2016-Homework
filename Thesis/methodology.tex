@@ -24,13 +24,43 @@ The data for this research is provided by the case company. The chosen technique
 % \end{enumerate}
 
 % Exploratory Data Analysis (EDA)
-To grasp on the currently available data, Exploratory Data Analysis (EDA) is utilized as the first step of the research. A comprehensive overview on the data related to the most important entities in the Choicely platform is performed by calculating basic statistical measures and visualizing the data. Such entities are the user profiles, the contests, contest participant and the votes performed by users on the contest participants. The findings of the EDA are then utilized to determine how to prune the data such that the acquired sample is representative, does not contain redundant nor faulty data. The results of the EDA are explained in the next chapter. 
+To grasp on the currently available data, Exploratory Data Analysis (EDA) is utilized as the first step of the research. The underlying reasoning behind this decision is mainly that EDA performed on any dataset helps researchers to familiarize themselves with the dataset at hand, hence to choose the appropriate preprocessing and data analysis techniques \cite{introtodatamining}. 
+
+Accordingly, comprehensive overview on the data related to the most important entities in the Choicely platform is performed by calculating basic statistical measures and visualizing the data. Such entities are the user profiles, the contests, contest participant and the votes performed by users on the contest participants. The findings of the EDA are then utilized to determine how to prune the data such that the acquired sample is representative, does not contain redundant nor faulty data. The results of the EDA are explained in the next chapter. 
 
 % Preprocessing and pruning
-Based on the results from the EDA, a subset of contests is chosen for more careful analysis. The subset of the contests is limited to those, which have engaged the most users and gathered a higher enough number of votes and unique voters (users who have voted at least once in the contest). After applying the pruning rules, some part of the data is preprocessed so that the analyses can be performed easily. The pruning rules and preprocessing steps are explained in the next chapter. 
+Based on the results from the EDA, a subset of contests is chosen for more careful analysis. The subset of the contests is limited to those, which have engaged the most users and gathered a higher enough number of votes and unique voters (users who have voted at least once in the contest). After applying the pruning rules, some part of the data is preprocessed so that the analyses can be performed easily. Preprocessing in this case means joining the datasets together along the identifiers of contestants, images or users, respectively.  
+
+% computer vision
+To address the lack of meta data on the contestants images, Computer Vision is utilized. Being a widely used technique, researchers have successfully utilized this technique in similar studies for various purposes \cite{hu2014we, farseev2015harvestingmultiplesources, han2016teensarefrommars, bakhshi2014faces}. One of the areas where the technique was used with great success by Farseev et.al. \cite{farseev2015harvestingmultiplesources} is the extraction of concepts from images. In this study, the field of Computer Vision is applied through the application of Google Vision to identify the content that is on the contestants' images in the Choicely platform. 
 
 % Association Analysis
-More importantly, Association Analysis is performed on the combined demographic, vote and the image label data in the chosen contests. Frequent Itemset Analysis is then performed on the data to identify behaviors and preferences of the different demographic groups. Association Rule Discovery is performed on the same data to understand which pair of traits can engage more of the (targeted) audience.  
+More importantly, it was studied how user behavior can be modelled and how similarities between groups' preferences can be measured. Several related studies have utilized different methods, such as Text/Natural Language Processing \cite{ottoni2013ladies, farseev2015harvestingmultiplesources, jang2016teensengagemorewithfewerphotos, kabinsingha2012movie, han2016teensarefrommars}, Supervised Machine Learning \cite{chinesemobilebankingusers, saraee2004data, kabinsingha2012movie, farseev2015harvestingmultiplesources, han2016teensarefrommars, jang2015no, bakhshi2014faces} or Unsupervised Machine Learning \cite{saraee2004data, hu2014we, jang2015no} to study similar areas, such as like activities, gender differences or clustering of users. Similarly to Ottoni et.al. \cite{ottoni2013ladies}, this study utilizes Association Analysis is performed on the combined demographic, vote and the image label data in the chosen contests. Frequent Itemset Analysis \cite{introtodatamining} performed on the data to identify behaviors and preferences of the different demographic groups. 
+
+In particular, this means that the goal of the analysis is to generate frequent itemsets from the computer-vision recognized image labels and users' voting data. In other words, the vote data generated through the usage of the platform is facilitated with the list of labels on the contestants' images. The list of labels is gathered for every vote transaction and is handled as a container (or "market basket" as called by Tan, Steinbach and Kumar \cite{introtodatamining}) out of which frequently co-occurring items are extracted from. 
+
+More formally, the support count of an itemset can be defined as
+
+\begin{equation}
+    \sigma (X) = |\{ t_i | X \subseteq t_i, t_i \in T \}|
+\end{equation}
+
+where $T = {t_1, t_2, ..., t_N}$ is the set of transactions, $X$ is the itemset of discussion and $| \cdot |$ donates the number of number of elements in an itemset. A further essential constraint on the itemsets is that they have to contain at least one item \cite{introtodatamining}. In simple language, this number tells how many transactions contained the itemset $X$ in the given population.
+
+Deriving from this, the supports for each itemset can be calculated, that is the percentage of transactions in which the itemset is present. In other words, the support tells the probability of itemset $X$ to be present i na randomly chosen transaction. Formally, this can be stated as 
+
+\begin{equation}
+    s(X) = \frac{\sigma (X)}{N}
+\end{equation}
+
+where $N$ is the number of transactions. In this thesis work, vote transactions are filtered by demographic groups $G$ and the support $S(X|G)$ is calculated. For instance, by calculating $S(X|gender = male)$ one can obtain the itemset supports for males in a given list of vote transactions. 
+
+The support can be calculated for all demographic groups in a single contest or a list of contests (e.g. every contest in certain category) so that the tendencies in voting among groups can be compared. Optionally, one could take all vote transaction of a single user or a list of users and perform a similar analysis on their transactions. Due to privacy reasons, this aspect is not considered in this thesis work, however can be interesting direction for further studies in the field of recommendation systems.
+
+% how is the support by group data is going to be used? What are its purposes? 
+Based on the data, we seek significant differences and interesting similarities among the demographic groups are of interest. % TODO  
+
+% Association Rule Discovery is performed on the same data to understand which pair of traits can engage more of the (targeted) audience.
 
 % check \cite{socialdiversityongithub} -> Blau index / diversity index: reflects how many different types (such as species) there are in a dataset (a community), and simultaneously takes into account how evenly the basic entities (such as individuals) are distributed among those types.
 
