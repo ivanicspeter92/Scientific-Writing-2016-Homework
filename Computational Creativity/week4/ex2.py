@@ -23,4 +23,6 @@ def generate_poem(*args, **kwargs):
 
     return "{}\n{}".format(first_half, second_half)
 
-generate_poem("dinner", "cat", "dog", verbose=True)
+poem = generate_poem("dinner", "cat", "dog", verbose=True)
+print("-----")
+print(poem)
