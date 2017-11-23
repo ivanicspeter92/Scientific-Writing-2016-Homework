@@ -1,4 +1,4 @@
-import factgen
+from . import factgen
 import random
 
 def generate_from_lhs(lhs, all_triples, sort_result = True):

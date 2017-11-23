@@ -1,11 +1,9 @@
-import factgen
-import made_up_fact_generator
-import figurative_sentence_generator
 import random
-import tostringconverter
-import utilities
-import markov_chain_generator
-import rhyming_pair_chooser
+
+from generation import factgen, figurative_sentence_generator, made_up_fact_generator, rhyming_pair_chooser, tostringconverter, utilities
+
+from generation import markov_chain_generator
+
 
 def couplet(*args, **kwargs):
     '''
@@ -19,7 +17,7 @@ def couplet(*args, **kwargs):
         uses_reverb_triple_format: A bool indicating if the input triples should be read as reverb triples. If set to false, the input file is assumed to be in (lhs, predicate, rhs) format on every line. Defaults to true.
         min_attested: An integer indicating the min attested filter for filtering the triples in the reverb format. Has no effect if the uses_reverb_format is set to False. Defaults to 2.
         figurative_sentence_template: The template for the figurative sentences. NOTE: the string must contain the following substrings: {TARGET}, {PROP} and {SOURCE}. Defaults to "{SOURCE} is as {PROP} as {TARGET}".
-        corpus: The path to the books downloaded from Project Gutenberg which form the core of the Markov chain corpus. Must be a list of strings. Defaults to ["books/alice.txt", "books/grimms_fairy_tales.txt"].
+        corpus: The path to the books downloaded from Project Gutenberg which form the core of the Markov chain corpus. Must be a list of strings. Defaults to ["knowledge_base/books/alice.txt", "knowledge_base/books/grimms_fairy_tales.txt"].
         markov_chain_order: The order of the markov chain to be used. Must be an integer higher than 0. Defaults to 1.
         verbose: Provide more output on the screen. Defaults to False.
     :type kwargs: dict
@@ -37,11 +35,11 @@ def couplet(*args, **kwargs):
 
     max_line_length = kwargs.get("max_line_length", 100)
     assert isinstance(max_line_length, int) and max_line_length >= 100
-    triples_input_path = kwargs.get("triples_input_path", "reverb.txt")
+    triples_input_path = kwargs.get("triples_input_path", "knowledge_base/reverb.txt")
     uses_reverb_triple_format = kwargs.get("uses_reverb_triple_format", True)
     min_attested = kwargs.get("min_attested", 2)
     figurative_sentence_template = kwargs.get("figurative_sentence_template", "{SOURCE} is as {PROP} as {TARGET}")
-    corpus = kwargs.get("corpus", ["books/alice.txt", "books/grimms_fairy_tales.txt"])
+    corpus = kwargs.get("corpus", ["knowledge_base/books/alice.txt", "knowledge_base/books/grimms_fairy_tales.txt"])
     markov_chain_order = kwargs.get("markov_chain_order", 1)
 
     if verbose: print("Parameters parsed successfully")
@@ -51,7 +49,7 @@ def couplet(*args, **kwargs):
     if verbose: print("Successfully loaded {} triples".format(len(triples)))
 
     if verbose: print("Generating Markov model from {}".format(corpus))
-    markov_model = markov_chain_generator.generate_markov_model(corpus, order = markov_chain_order)
+    markov_model = markov_chain_generator.generate_markov_model(corpus, order = markov_chain_order, verbose = verbose)
     if verbose: print("Markov model loaded from {} sentences".format(len(markov_model.parsed_sentences)))
 
     if verbose: print("Generating couplet...")
@@ -82,10 +80,7 @@ def __generate_couplet(topics, triples, markov_model, figurative_sentence_templa
     if len(targets) == 0: # if no rhymes were found for the last word of the first line, fallback to the one of the originally given topics
         targets = topics
 
-    #figurative_sentences = list(map(lambda t: __gather_sentences(topic=t, template=figurative_sentence_template, verbose=verbose), topics))
-    # figurative_sentences = utilities.flatten(figurative_sentences)
     figurative_sentences = __gather_sentences(targets, template=figurative_sentence_template, verbose=verbose)
-
     figurative_sentence = random.choice(figurative_sentences)
 
     markov_text = None
@@ -126,9 +121,9 @@ def __read_triples(path, uses_reverb_triple_format, min_attested):
 
     return all_triples
 
-c = couplet("dinner", "cat", "dog", verbose=True, corpus=["books/alice.txt"])
-print("----")
-print(c)
+c = couplet("dinner", "cat", "dog", verbose=True)
+# print("----")
+# print(c)
 
 #markov_model = markov_chain_generator.generate_markov_model(["books/alice.txt", "books/grimms_fairy_tales.txt"], order = 1)
 # figurative_sentence_generator.generate_figurative_sentences("me", "{SOURCE} is as {PROP} as {TARGET}")

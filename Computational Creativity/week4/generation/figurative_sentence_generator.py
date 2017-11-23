@@ -1,4 +1,4 @@
-from therex import TheRex
+from .therex import TheRex
 import random
 
 def generate_figurative_sentences(target_noun, template):
