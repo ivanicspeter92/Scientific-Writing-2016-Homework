@@ -1,4 +1,3 @@
 ipython
 nltk
-markovify
 pronouncing
