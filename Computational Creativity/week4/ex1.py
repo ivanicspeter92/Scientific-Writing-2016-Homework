@@ -79,7 +79,10 @@ def __generate_couplet(topics, triples, markov_model, figurative_sentence_templa
     if len(targets) == 0: # if no rhymes were found for the last word of the first line, fallback to the one of the originally given topics
         targets = topics
 
-    figurative_sentences = __gather_sentences(targets, template=figurative_sentence_template, verbose=verbose)
+    try:
+        figurative_sentences = __gather_sentences(targets, template=figurative_sentence_template, verbose=verbose)
+    except:
+        figurative_sentences = __gather_sentences(topics, template=figurative_sentence_template, verbose=verbose)
     figurative_sentence = random.choice(figurative_sentences)
 
     markov_text = text_from_markov_chain_generator.generate(markov_model, length=max_line_length - len(figurative_sentence.split(" ")), start=random.choice(topics))
