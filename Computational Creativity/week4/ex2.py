@@ -29,8 +29,8 @@ def generate_or_empty_on_throw(*args, **kwargs):
     except:
         return ""
 
-poem = generate_poem("dinner", "cat", "dog", verbose=True)
-print("-----")
-print(poem)
-
-poems = list(map(lambda x: generate_or_empty_on_throw("dinner", "cat", "dog", verbose=True), range(0,50)))
+# poem = generate_poem("dinner", "cat", "dog", verbose=True)
+# print("-----")
+# print(poem)
+#
+# poems = list(map(lambda x: generate_or_empty_on_throw("dinner", "cat", "dog", verbose=True), range(0,50)))

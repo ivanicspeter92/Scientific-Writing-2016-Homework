@@ -51,3 +51,6 @@ def __calculate_score(scores_array, measure):
         return np.mean(scores_array)
     else:
         return None
+
+# evaluate(poem = 'dinner was eaten in silence fastened until he is you can do better do you\ngate the forester had surface is as hot as flue\ndog are like oh blossoms began to have had disappeared and the old man\ncarry you to a car is', verbose = True)
+# evaluate(poem = 'dinner was eaten in silence fastened until he is you can do better do you\ngate the forester had surface is as hot as flue\ndog are like oh blossoms began to have had disappeared and the old man\ncarry you to a car is as larger as minivan', verbose = True)
