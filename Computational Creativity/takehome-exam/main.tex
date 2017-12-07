@@ -9,6 +9,7 @@
     %\usepackage{subfigure}
     \usepackage{url}
     \usepackage{footnote}
+    \usepackage{enumitem}
 
     \begin{document}
     \singlespacing
@@ -80,14 +81,10 @@
     
     \section{Social creativity and artifact representations}
     
-    [Imagine a society of creative agents generating artifacts in the same domain. 
-    What are the benefits and challenges for the agents if they share the genotypic 
-    representation of the domain artifacts (see Ventura's paper "How to build a CC system")? 
-    That is, how can the agents use the genotypic representations in their interaction 
-    with other agents: what an individual agent and the society as a whole gains from it.]
-    
-    \paragraph{a. The agents create artifacts on their own (max. 0.3 pages, 3 points)}
-    
-    \paragraph{b. the agents co-create artifacts in pairs (max. 0.3 pages, 3 points)}
+    \begin{enumerate}[label=(\alph*)]
+        \item If the agents create artifacts on their own, they will be more close to the personal background of each individual agent (refer to Cs\'ikszentmih\'alyi). In terms of computing, this would mean the parameters of the generator functions used by the agents. The genotypic representations of artifacts and their scores can be used to select the most creative artifacts from the population. Weakly performing agents' parameters then can be tuned towards values that seem to create better outputs. This way weaker agents learn from the "best" agent in their society, which enhances the creativity of individuals, but not the development of the society as a whole. In other words, there is a risk that the generation gets stuck at a local maximum, which is determined by the output of the "best" agent.
+
+        \item If the agents co-create artifacts in pairs, the collaboration of the agents in the society is facilitated more. That is, the agents not only exchange information about their personal backgrounds, but combine their strengths in pairs. Theoretically, this way creates more room for new creative artifacts, if the pair of agents are not the same in every turn. This yields in a more advanced society of agents where depending on how the pairs are made, novel artifacts can be created any time and the average value of artifacts might be higher. 
+    \end{enumerate}
     
     \end{document}
