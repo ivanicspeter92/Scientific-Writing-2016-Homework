@@ -26,7 +26,7 @@
     
     \pagenumbering{arabic}
     
-    \section{Project Overview (max 1 page)}
+    \section{Project Overview}
     The main goal of the created system is to generate plot points of a fictional book, movie or a fictional story. The output is a readable, sequential list of events that happen in the story, written in English. The generated stories are comprehensive and are easily readable without technical background. 
     
     The Knowledge Base of the system can be divided into two parts: character and object database and the logic of the story simulation. The former database is constructed from The Non-Official Characterization (NOC) List\footnote{\url{https://github.com/prosecconetwork/The-NOC-List}}, which is a knowledge-base containing semantic triples about famous characters. This knowledge base is used to filter and construct the characters as well as the objects that appear in the generated stories. On top of The NOC List, the knowledge base of the created system incorporates some "hard-coded" values, which explain what kind of interactions are possible between the characters (under certain circumstances). Two characters can perform any of the following actions to eachother based on their relationship: "kill", "beat up", "insult", "converse".
@@ -40,15 +40,18 @@
     \pagebreak
     
     \section{Creativity as Search}
+    \paragraph{a.}
+    The system that we built belongs mainly to the Exploratory creativity type, but it also shows some signs of Combinatorial creativity as it can create stories with characters accross domains. The universe $\mathcal{U}$ in this project would be all sequences of plot points that are ever possible to generate. This would mean any combination of characters, events and interactions, not limited to our choices described on the previous page. 
     
-    \paragraph{a. Description of the system as search (max 0.6 pages)}
+    The rules $\mathcal{R}$ in this project are mainly formulated by the chosen list of characters for every simulation (extracted from the NOC List) and interactions that can happen between them. On top of that, the logic which simulates the changes between the relationship's value between the characters is also an essential part of $\mathcal{R}$. There are many alternatives to generate a genotypes of the stories, such as having entirely different model for the character relationships, a more extensive list of interactions between them or completely different set of characters. It would be interesting to extract these automatically from a corpus of stories automatically instead of relying on the current resources, which would make an entirely different way of generation towards the same goal. 
+
+    The evaluation function $\mathcal{E}$ is the logic that maps the creativity value on the range of $[0, 1]$ to the stories. $\mathcal{E}$ in the current implementation operates on the snapshots of the states during the stories and the events that happen during the simulation. The evaluation favors stories sequences of events, where the plot unfolds and changes significantly between the initial and the terminal states. The reason behind this scoring system is that it implies the unexpectedness and surprisingness of the story.
+
+    The search method $\mathcal{T}$ in Wiggings' classical terminology is not fully implemented, because our system does not combine $\mathcal{R}$ and $\mathcal{E}$ jointly to create artifacts. It would be possible to design a search function which experiments with the input parameters of the generator and orients their selection towards stories with higher value as assigned by $\mathcal{E}$. $\mathcal{T}$ could be also added by combining valuable pieces of multiples stories created during the generation. 
     
-    [Describe your project (or a central part of if described above) using Wiggins' framework of creativity as search. Provide a brief rationale for each choice of description; also point out obvious alternatives.]
+    \paragraph{b.} Our system is not transformationally creative. One way to make it could be, is to extend the knowledge base with a corpus of stories and dynamically change how characters behave during every simulation. $\mathcal{R}$ could be transformed in a manner that the characters' movements are not entirely random and the logic that selects actions between them changes over time, depending on what kind of events have happened. The goal-orientation of characters could be developed further, which could change over time depending on what kind of events happen in the world. 
     
-    \paragraph{b. Transformationality of the system (max 0.4 pages)}
-    
-    [Is your system transformationally creative? If yes, how? If not, describe two different ways of extending the system to be transformational with respect to $\mathcal{T}$ or $\mathcal{R}$ of Wiggins.]
-    
+    $\mathcal{T}$ could be made transformational by allowing the search function to dynamically modify tha parameters of a generator at some point of the story. For instance, $\mathcal{T}$ could merge the concepts of two valuable genotype stories in order to come up with more interesting artifacts.
     
     \pagebreak
     
@@ -81,10 +84,8 @@
     
     \section{Social creativity and artifact representations}
     
-    \begin{enumerate}[label=(\alph*)]
-        \item If the agents create artifacts on their own, they will be more close to the personal background of each individual agent (refer to Cs\'ikszentmih\'alyi). In terms of computing, this would mean the parameters of the generator functions used by the agents. The genotypic representations of artifacts and their scores can be used to select the most creative artifacts from the population. Weakly performing agents' parameters then can be tuned towards values that seem to create better outputs. This way weaker agents learn from the "best" agent in their society, which enhances the creativity of individuals, but not the development of the society as a whole. In other words, there is a risk that the generation gets stuck at a local maximum, which is determined by the output of the "best" agent.
+    \paragraph{a.} If the agents create artifacts on their own, they will be more close to the personal background of each individual agent (refer to Cs\'ikszentmih\'alyi). In terms of computing, this would mean the parameters of the generator functions used by the agents. The genotypic representations of artifacts and their scores can be used to select the most creative artifacts from the population. Weakly performing agents' parameters then can be tuned towards values that seem to create better outputs. This way weaker agents learn from the "best" agent in their society, which enhances the creativity of individuals, but not the development of the society as a whole. In other words, there is a risk that the generation gets stuck at a local maximum, which is determined by the output of the "best" agent.
 
-        \item If the agents co-create artifacts in pairs, the collaboration of the agents in the society is facilitated more. That is, the agents not only exchange information about their personal backgrounds, but combine their strengths in pairs. Theoretically, this way creates more room for new creative artifacts, if the pair of agents are not the same in every turn. This yields in a more advanced society of agents where depending on how the pairs are made, novel artifacts can be created any time and the average value of artifacts might be higher. 
-    \end{enumerate}
+    \paragraph{b.} If the agents co-create artifacts in pairs, the collaboration of the agents in the society is facilitated more. That is, the agents not only exchange information about their personal backgrounds, but combine their strengths in pairs. Theoretically, this way creates more room for new creative artifacts, if the pair of agents are not the same in every turn. This yields in a more advanced society of agents where depending on how the pairs are made, novel artifacts can be created any time and the average value of artifacts might be higher. 
     
     \end{document}
