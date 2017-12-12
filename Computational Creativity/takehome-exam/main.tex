@@ -27,7 +27,7 @@
     \pagenumbering{arabic}
     
     \section{Project Overview}
-    The main goal of the created system is to generate plot points of a fictional book, movie or a fictional story. The output is a readable, sequential list of events that happen in the story, written in English. The generated stories are comprehensive and are easily readable without technical background. 
+    The main goal of the created system is to generate plot points of a fictional book, movie or story. The output is a readable, sequential list of events that happen in the story, written in English. The generated stories are comprehensive and are easily readable without technical background. 
     
     The Knowledge Base of the system can be divided into two parts: character and object database and the logic of the story simulation. The former database is constructed from The Non-Official Characterization (NOC) List\footnote{\url{https://github.com/prosecconetwork/The-NOC-List}}, which is a knowledge-base containing semantic triples about famous characters. This knowledge base is used to filter and construct the characters as well as the objects that appear in the generated stories. On top of The NOC List, the knowledge base of the created system incorporates some "hard-coded" values, which explain what kind of interactions are possible between the characters (under certain circumstances). Two characters can perform any of the following actions to eachother based on their relationship: "kill", "beat up", "insult", "converse".
     
@@ -56,14 +56,16 @@
     \pagebreak
     
     \section{Aspects of self-awareness}
+    \paragraph{a. Generator-awareness}
+
+    Our system in its current state does not implement generator awareness. However, generator awareness could be added to the system by introducing an entity (e.g. Generator Manager), which can access the knowledge base, the generator and the evaluation functions. The manager could intuitively experiment with the input parameters of the generator, i.e. the number of characters to choose, the list of domains to choose the characters from, the number of iterations to perform during the story etc.
+
+    This experimentation could mean, for instance that the generator manager generates $\mathcal{N}$ stories using a set of parameters, then mutates the parameters in some way(s) and attempts to generate new stories. Depending on the average difference between the success score of the stories, the manager could decide to keep changing the parameters in the same way (i.e. continue searching in the same direction) or to change its strategy in tuning the parameters (i.e. changing direction in the search). 
     
-    \paragraph{a. Generator-awareness (max 0.5 pages)}
-    [Describe generator-awareness in your system.]
+    For instance, if the average score for stories with 5 characters is 0.5, while a 7-character story produces 0.55, it might be a good idea to keep increasing the number of characters further until certain point. This could be applied to all of the parameters so that the search space can be walked thoroughly. However, it is important to keep in mind that the simulation includes certain level of randomness and hence one single story with a given parameters might not be representative.
     
     \paragraph{b. Goal-awareness (max 0.5 pages)} 
     [Describe goal-awareness in your system.]
-    
-    
     
     \pagebreak
     \section{Evaluation}
