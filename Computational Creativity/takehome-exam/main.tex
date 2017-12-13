@@ -64,9 +64,19 @@
     
     For instance, if the average score for stories with 5 characters is 0.5, while a 7-character story produces 0.55, it might be a good idea to keep increasing the number of characters further until certain point. This could be applied to all of the parameters so that the search space can be walked thoroughly. However, it is important to keep in mind that the simulation includes certain level of randomness and hence one single story with a given parameters might not be representative.
     
-    \paragraph{b. Goal-awareness (max 0.5 pages)} 
-    [Describe goal-awareness in your system.]
-    
+    \paragraph{b. Goal-awareness} 
+    Our system in its current state does not implement goal awareness. The system could be enhanced to be goal aware by allowing more goal-oriented parameters or the introduction of a Goal Manager. The generator already can be parameterized in terms of how many steps the generator should take and how many characters to use, however some additions could be made, such as: 
+
+    \begin{itemize}
+        \item which characters to use specifically,
+        \item what are the initial/final relationships between the characters,
+        \item which characters (do not) survive the story,
+        \item what goals the individual characters have (this is randomized currently),
+        \item which of the characters' goals are (not) achieved.
+    \end{itemize}
+
+    These parameters could be expressed in terms of some ways and passed to the generator. The generator then should be able to figure a way out how to generate a story, where all of the goals are met. This would probably mean the limitations on some of the other parameters (e.g. number of simulation turns, in particular), the possibility that the generator runs very long or that the story cannot be generated at all.
+
     \pagebreak
     \section{Evaluation}
     
