@@ -80,9 +80,15 @@
     \pagebreak
     \section{Evaluation}
     
-    \paragraph{a. How PPPPerspectives are reflected in your system? (max 0.6 pages)}
-    
-    [Consider Jordanous' four PPPPerspectives on computational creativity in the context of your project. Describe what each P in your project consists of and provide a brief rationale for each choice.]
+    \paragraph{a. How PPPPerspectives are reflected in your system?}
+    The PPPPerspectives in our system are reflected as described below. The descriptions are slightly pointing forward than the current state of implementation.
+
+    \begin{itemize}
+        \item Person/Producer: the Producer in our project is the agent which generates the plot points. The main traits of the agent are to generate something novel, surprising and interesting to read based on the simulation logic and the list of characters. 
+        \item Process: the process how our system generates creative artifacts can be divided into four steps: gathering knowledge,simulation, evaluation and refinement. The steps are sequential and there cannot be "jumps" in between them. However, one might want to collect data during the first three's performance so that the refinement can plan the next iteration efficiently. 
+        \item Product: the properties of the generated stories are mainly novelty and surprisingness. Novelty is taken into account through stories that combine characters across multiple domains. Surprise is valued, because in stories, where relationships between characters change significantly, are scored higher compared to stories where they are stagnant. Finally, the "story flow" is appreciated by upscoring stories, which suggest conversations between characters in the beginning and more extreme actions at the end of the story.
+        \item Press: the press in our system is limited to the initial parameters of the generator - that is the number of characters, the way to choose them (randomly or sequentially), the domain to pick the characters from and the number of turns to perform during the simulation. To enhance on this, social interactions could be added that would yield in interaction awareness. For instance, readers could mark which part of the story or which characters' actions are (not) interesting to read, which could have an impact on the future artifacts. Another option in this area could be multiple agents collaboratively creating artifacts. 
+    \end{itemize}
     
     \paragraph{b. Value in each PPPPerspecive (max 0.4 pages) }
     
