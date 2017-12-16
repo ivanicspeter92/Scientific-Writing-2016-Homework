@@ -81,29 +81,32 @@
     \section{Evaluation}
     
     \paragraph{a. How PPPPerspectives are reflected in your system?}
-    The PPPPerspectives in our system are reflected as described below. The descriptions are slightly pointing forward than the current state of implementation.
 
     \begin{itemize}
-        \item Person/Producer: the Producer in our project is the agent which generates the plot points. The main traits of the agent are to generate something novel, surprising and interesting to read based on the simulation logic and the list of characters. 
+        \item Person/Producer: the Producer in our project is the agent which generates the plot points. The main traits of the agent are to generate something novel, surprising and interesting to read based on the simulation logic. 
         \item Process: the process how our system generates creative artifacts can be divided into four steps: gathering knowledge,simulation, evaluation and refinement. The steps are sequential and there cannot be "jumps" in between them. However, one might want to collect data during the first three's performance so that the refinement can plan the next iteration efficiently. 
         \item Product: the properties of the generated stories are mainly novelty and surprisingness. Novelty is taken into account through stories that combine characters across multiple domains. Surprise is valued, because in stories, where relationships between characters change significantly, are scored higher compared to stories where they are stagnant. Finally, the "story flow" is appreciated by upscoring stories, which suggest conversations between characters in the beginning and more extreme actions at the end of the story.
-        \item Press: the press in our system is limited to the initial parameters of the generator - that is the number of characters, the way to choose them (randomly or sequentially), the domain to pick the characters from and the number of turns to perform during the simulation. To enhance on this, social interactions could be added that would yield in interaction awareness. For instance, readers could mark which part of the story or which characters' actions are (not) interesting to read, which could have an impact on the future artifacts. Another option in this area could be multiple agents collaboratively creating artifacts. 
+        \item Press: the press in our system is limited to the initial parameters of the generator (number of characters, the way to choose them, the domain to pick the characters from and the number of turns to perform during the simulation). To enhance on this, social interaction could be added, for instance, readers could mark which part of the story or which characters' actions are (not) interesting to read in order to enhance future artifacts (interaction awareness). Alternatively, multiple agents could collaboratively create artifacts. 
     \end{itemize}
     
-    \paragraph{b. Value in each PPPPerspecive (max 0.4 pages) }
-    
-    [Consider the value (cf. "novelty and value" as criteria for creativity) of your system from each of the four Perspectives.]
+    \paragraph{b. Value in each PPPPerspecive}
+    \begin{itemize}
+        \item Person/Producer: the generated artifacts are novel because they create a story plot using interactions between characters across domains in a new way. However, the value of the artifacts is yet to be improved as the output contains too much items at the moment.  
+        \item Process: the process is unique and novel, because it uses the simulation approach towards moving characters in a fictional world. 
+        \item Product: the value in the product is that they can provide joy to the reader. On top of that, if writers or movie producers would need inspiration to their work, the generated plot points can facilitate their ideas. 
+        \item Press: the value for the press is to get access to plot points that have been generated in a novel way and to encounter storylines with characters across domains.
+    \end{itemize}
     
     \pagebreak
-    \section{Universality of creativity (max 0.4 pages)}
+    \section{Universality of creativity}
     Creativity is a universal concept, because it fundamentally means the seek after novel and valuable ideas/artifacts (based on Boden's definition). Novelty and value are attributes, which can be identified in practically any domain where the process of creation is present in some way. 
     
     Creativity is also subjective in many cases (e.g. art), which creates a good basis of discussion. On top of that, typically the aspects of value and novelty are easy to relate to, especially in case of "everyday" topics. Depending on the experience and the cultural background of the individual, who is evaluating, the elaboration on the creativity of an artifact may differ. Last but not least, creativity is not a trivial topic in any domains and therefore the process of creative artifact creation cannot be modelled in a straightforward manner. Hence, creativity is universally interesting topic of discussion.
     
     \section{Social creativity and artifact representations}
     
-    \paragraph{a.} If the agents create artifacts on their own, they will be more close to the personal background of each individual agent (refer to Cs\'ikszentmih\'alyi). In terms of computing, this would mean the parameters of the generator functions used by the agents. The genotypic representations of artifacts and their scores can be used to select the most creative artifacts from the population. Weakly performing agents' parameters then can be tuned towards values that seem to create better outputs. This way weaker agents learn from the "best" agent in their society, which enhances the creativity of individuals, but not the development of the society as a whole. In other words, there is a risk that the generation gets stuck at a local maximum, which is determined by the output of the "best" agent.
+    \paragraph{a. The agents create artifacts on their own} If the agents create artifacts on their own, they will be more close to the personal background of each individual agent (refer to Cs\'ikszentmih\'alyi). In terms of computing, this would mean the parameters of the generator functions used by the agents. The genotypic representations of artifacts and their scores can be used to select the most creative artifacts from the population. Weakly performing agents' parameters then can be tuned towards values that seem to create better outputs. This way weaker agents learn from the "best" agent in their society, which enhances the creativity of individuals, but not the development of the society as a whole. In other words, there is a risk that the generation gets stuck at a local maximum, which is determined by the output of the "best" agent.
 
-    \paragraph{b.} If the agents co-create artifacts in pairs, the collaboration of the agents in the society is facilitated more. That is, the agents not only exchange information about their personal backgrounds, but combine their strengths in pairs. Theoretically, this way creates more room for new creative artifacts, if the pair of agents are not the same in every turn. This yields in a more advanced society of agents where depending on how the pairs are made, novel artifacts can be created any time and the average value of artifacts might be higher. 
+    \paragraph{b. The agents co-create artifacts in pairs} If the agents co-create artifacts in pairs, the collaboration of the agents in the society is facilitated more. That is, the agents not only exchange information about their personal backgrounds, but combine their strengths in pairs. Theoretically, this way creates more room for new creative artifacts, if the pair of agents are not the same in every turn. This yields in a more advanced society of agents where depending on how the pairs are made, novel artifacts can be created any time and the average value of artifacts might be higher. 
     
     \end{document}
