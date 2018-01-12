@@ -64,12 +64,16 @@ In this chapter, the research questions, scope and objectives are presented and 
 \subsection{Introduction to the Choicely voting platform}
 \label{section::introduction-to-the-choicely-voting-platform}
     % what does the company do? 
-    Choicely\footnote{\url{http://choicely.com/}} is a voting platform developed by the Finnish Choicely Ltd (formerly known as Lovented Ltd) since 2014. The software provides the possibility for users to engage in interesting contests by voting on their favorite contender. The platform has already hosted numerous contests in various fields, such as beauty pageants, public polls, design contests, talent shows, sport events among many others. The customer base of the firm consist of mainly Finnish broadcasters, publishers and advertisers. However, the recent years have brought numerous users and customers from all around the world.
+    Choicely\footnote{\url{http://choicely.com/}} is a voting platform developed by the Finnish Choicely Ltd (formerly known as Lovented Ltd) since 2014. The software provides the possibility for users to engage in interesting contests by voting on their favorite contender. The platform has already hosted numerous contests in various fields, such as beauty pageants, public polls, design contests, talent shows, sport events among many others. The customer base of the firm consist of mainly Finnish broadcasters, publishers, advertisers and beauty pageant organizers. Despite having the core customer base in Finland, the recent years have brought numerous users and customers from all around the world. 
+    
+    The platform is able to host any kind of visual contests or poll. There can be arbitrary number of  participants in the contests. Participants must have at least one image and a name attached to them in order to enter the contest. The voting rules can limit the number of votes that users can cast in a contest as well as on individual participants.
 
     % how can one reach a contest in the platform?
-    Contests can be accessed through multiple interfaces (Figure \ref{choicely_platforms}). Naturally, the company's webpage provides a convenient way to create, browse and participate in contests. Choicely also has free mobile applications available on Android and iOS devices, that can be installed through the Google Play\footnote{\url{https://play.google.com/store/apps/details?id=com.choicely.android}} and the iOS App Store\footnote{\url{https://itunes.apple.com/fi/app/choicely/id1158798364}} on the devices. Finally, the company offers a web widget, which can be embedded as a framework in any webpage easily. The last option is often used by many of Choicely's customers, because it provides a convenient way to embed rich content in their own web pages, which users are already familiar with. Users may vote and participate in their own contests if they like. Users may participate in arbitrary number of contests from three platforms: the two most popular mobile platforms (iOS and Android) and the web interface. 
+    Users can access contests through multiple interfaces (Figure \ref{choicely_platforms}). Naturally, the company's webpage provides a convenient way to create, browse and participate in contests. Choicely also has free mobile applications available on Android and iOS devices, that can be installed through the Google Play\footnote{\url{https://play.google.com/store/apps/details?id=com.choicely.android}} and the iOS App Store\footnote{\url{https://itunes.apple.com/fi/app/choicely/id1158798364}} on the devices. Users can create and cast votes in contest on any of these platforms. Users may vote in arbitrary number of contests. Users may vote and participate in their own contests if they like.
+    
+    The company offers a web widget, which can be embedded as a framework in any webpage easily. The widget is often used by Choicely's customers, because it provides a convenient way to embed rich content in their own web pages, which users are already familiar with. Contests cannot be created through the widget, but users can cast votes the same way as they would on any other platforms.
 
-    \begin{figure}[h] 
+    \begin{figure}[h]
         \begin{center}
             \includegraphics[width=0.6\textwidth]{images/choicely_platforms.png}
             \caption{Users can vote in contests through three interfaces: iOS devices, Android devices and web.}
@@ -78,7 +82,7 @@ In this chapter, the research questions, scope and objectives are presented and 
     \end{figure} 
 
     % other contest-related data
-    Contests also have some meta data which can facilitate data analysis. Each contest belongs to at least one but up to three of the following categories: animals, beauty, danger, design, entertainment, fashion, food, games, humor, sports, travel, other. The category labels are aligned by the contest's author upon creation. Contests also have starting and an ending time, between which users can vote or participate in them. While votes arrive into a contest, the vote count value tells the number of total votes received, while the number of unique voters tells how many individual users have voted in the contest. 
+    Contests also have some meta data which can facilitate data analysis. Each contest belongs to at least one but up to three of the following categories: "animals", "beauty", "danger", "design", "entertainment", "fashion", "food", "games", "humor", "sports", "travel", "other". The category labels are aligned by the contest's author upon creation. Contests also have starting and an ending time, between which users can vote or participate in them. While votes arrive into a contest, the vote count value tells the number of total votes received, while the number of unique voters tells how many individual users have voted in the contest. 
 
     \begin{figure}[h] 
         \begin{center}
@@ -90,7 +94,7 @@ In this chapter, the research questions, scope and objectives are presented and 
     \end{figure}
 
     % other contest participant-related data
-    One important fact to highlight is, that the contestants have no meta data other than in which contest they are contending. Information about contestants is limited to the contest they contend in, their names, short descriptions, image and video. One of the limitations of the platform is to facilitate information about the contest participants and their traits. 
+    One important fact to point out is, that the contestants have no meta data other than in which contest they are contending. Information about contestants is limited to the contest they contend in, their names, short descriptions, image and video. One of the limitations of the platform is to facilitate information about the contest participants and their traits. 
     
     % state some challenges
     There is currently no way of knowing if there is a tendency in what kind of participants tend to be more engaging to the audience. Secondly, there is yet no possibility to know if there would be a similarity or difference in target groups behavior in terms of what kind of content they spend votes on. The goal of this thesis work from the company's perspective is to address these challenges by developing a data analysis framework that addresses these gaps.
