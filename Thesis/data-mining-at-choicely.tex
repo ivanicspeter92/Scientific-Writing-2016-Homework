@@ -1,6 +1,6 @@
 This chapter explains the Data Mining tasks that are introduced at Choicely through this thesis work. The first subchapter introduces setting in which this research is conducted. The reason behind this is to provide more insights over the introduction presented in Chapter \ref{section::introduction-to-the-choicely-voting-platform}. Secondly, learning about the system's core functionality related to this research provides a better understanding for the rest of this study. The second subchapter introduces relevant insights on the company's data related ot this research. Finally, the last subchapter argues for the relevance of the selected methods and explains how they are applied in this study. 
 
-\subsection{The voting mechanishm and user profiles}
+\subsection{The voting mechanism and the user profiles}
 % voting options
 Various voting options are available for Choicely contests. The author of the contest has the choice of setting a limit on how many votes users can spend on individual participants or the whole contest in overall. For instance, if the maximum votes in the contest is set to 1, users can give exactly one vote on one and only one participant. Configuration settings allow infinite votes as well. For instance, users may vote on all of the participants as many times as they like in a talent show in this case. Removing votes is possible, if the author has decided to enable this possibility. Votes cannot be modified after the contest has ended. Each contest has its own voting configuration. 
     
@@ -118,7 +118,7 @@ In sum, the user data in Choicely is two-folded: the user profiles contain demog
     On top the number of unique voters, it can be studied what percentage of the users vote in more than one contest in a category. In other words, the return rate of users over categories can be studied to identify more engaging type of content. Accordingly, the Vote records are studied from the angle of voters and categories.
 
     To answer RQ3, Association Analysis using the Apriori algorithm is performed. In order to be able to execute the analysis, some preprocessing has to be done. The list of labels extracted from the participants in the contest are listed for each transaction alongside with the voters' demographic data. In other words, the data has to be transformed such that the input contains rows of the voters' demographic attributes and the computer-vision identified labels from the participants' images. In order to achieve this, the User, Contest, ImageLabel and Vote tables are joined together. The retrieved data is combined as shown in Table \ref{association_analyisis_data}. This data structure is adequate to perform the analysis on.
-    
+
     \begin{table}[]
         \centering
         \begin{adjustbox}{width=1\textwidth}
@@ -135,28 +135,46 @@ In sum, the user data in Choicely is two-folded: the user profiles contain demog
         \caption{The format of the data used for Association Analysis (the records dispalyed in the table are only examples).}
         \label{association_analyisis_data}
     \end{table}
+
+    After transforming the data, the Apriori algorithm is applied to calculate the itemset supports. This can be done on arbitrary amount of vote transactions as long as they have been transformed to the desired format. However, there are certain cases when it makes sense to perform the analysis. For instance, the analysis can be performed 
+
+    \begin{enumerate}
+        \item on transactions extracted from the complete dataset: this way one can attempt to find patterns in how users behave on the system-level,
+        \item on transactions of a single contest: this way contest organizers get a chance to analyze their engaged audience and seek the tendencies in their behavior,
+        \item on transactions of a targeted group of users: this approach allows to understand the preferences of a desired group of people across multiple contests,
+        \item on transactions of a single user: this way the behavioral patterns of the individual user can be studied and analyzed. 
+    \end{enumerate}
+
+    It would be interesting to take a look into all of these aspects, however the scope of this thesis work limits the analysis to be performed. On top of that, items 3 and 4 might go into "too personal" directions, hence interfere with privacy issues and raise ethical concerns. In order to keep the scope of the analysis on a reasonable size, Therefore, items 1 and 2 in the above list are taken in the analysis and the rest are discarded. 
     
-    Using this approach, the support of the itemsets extracted from the labels can be calculated. The support in this case tells the percentage of votes, which were casted on a desired itemset. For instance, $S({"beauty", "blonde"}) = 0.6$ would mean that $60 \%$ of all votes were casted on participants whose images contained the ${"beauty", "blonde"}$ itemset. Likewise, if the list of vote transactions is filtered by one of the demographic attributes, the same can be said for the investigated group of users. 
-    
+    Using the approach explained above, the support of the itemsets extracted from the labels can be calculated. The support in this case tells the percentage of votes, which were casted on a desired itemset. For instance, $S({"beauty", "blonde"}) = 0.6$ would mean that $60 \%$ of all votes were casted on participants whose images contained the ${"beauty", "blonde"}$ itemset. Likewise, if the list of vote transactions is filtered by one of the demographic attributes, the same can be said for the investigated group of users. 
+
+    The result of the Apriori algorithm then can be collected into a table displayed on Table \ref{itemset_supports_format}. This table shows the itemsets as rows and the targeted group of users as columns. The values in each columns correspond to the support values of the itemsets for the given group of users in the set of transactions that was  feeded to the algorithm. 
+
+    % TODO consider if the next paragraph is needed at all
+    Note that despite the values in the rows are probabilities, their values do not have to sum up to $1.0$. This is because each value in the table tells the probability, that a randomly selected transaction will contain the itemset (row), given that the vote was casted by a person who belongs to the target group (column). In other words, the probabilities of the itemsets for the demographic groups are independent from eachother.
+
     \begin{table}[]
         \centering
         \begin{adjustbox}{width=1\textwidth}
-            \begin{tabular}{l|l|l}
-                X & $S(X|gender=male)$ & $S(X|gender=female)$ \\
+            \begin{tabular}{l|c|c|c|c}
+                X & $S(X|gender=male)$ & $S(X|gender=female)$ & $S(X|gender=other)$ & $S(X|gender=not\_specified)$ \\
                 \hline
-                $\{"beauty", "blonde"\}$ & $0.3$ & $0.8$ \\
-                $\{"bodybuilder", "muscle"\}$ & $0.6$ & $0.1$ \\
-                $\{"sea", "photo shoot", "model"\}$ & $0.0$ & $1.0$
+                $\{"beauty", "blonde"\}$ & $0.6$ & $0.8$ & $0.15$ & $0.25$ \\
+                $\{"bodybuilder", "muscle"\}$ & $0.6$ & $0.1$ & $0.5$ & $0.0$ \\
+                $\{"sea", "photo shoot", "model"\}$ & $0.0$ & $1.0$ & $0.33$ & $0.65$
             \end{tabular}
         \end{adjustbox}
         \caption{The output format of the Association Analysis comparing genders, where X is the itemset and S is the support (the records dispalyed in the table are only examples).}
         \label{itemset_supports_format}
     \end{table}
-
-    Figure \ref{association_analysis_flow} summarizes the flow of the Association Analysis. First, Computer Vision is applied on the participants images in order to automatically label the images with meta data. The demographic data from the users' profile, their vote transactions and the image labels are joined together to create the data structure presented in Table \ref{association_analyisis_data}. Next, the Apriori algorithm is applied to calculate the itemset supports (either on the full dataset or the transactions of a targeted group of users) as presented in Table \ref{itemset_supports_format}. 
     
-    % Finally, Co-Clustering is utilized on the calculated supports 
+    Depending on how many individual participants the chosen transactions target, the number of itemsets (hence the number of rows) grows rapidly. Also the number of demographic groups (hence the number of columns) may differ depending on which the property is used from the users' profile. Essentially, the number of categorical groups for genders can go up to 4, for age groups up to 7 (see Table \ref{user_profile_fields}), but many more for location-based groups. As a conclusion it can be said that despite the supports are obtained, most likely their number will be too overwhelming to look at and analyze.
 
+    % Finally, Co-Clustering is utilized on the calculated supports 
+    For this reason... % TODO
+
+    Figure \ref{association_analysis_flow} summarizes the flow of the Association Analysis. First, Computer Vision is applied on the participants images in order to automatically label the images with meta data. The demographic data from the users' profile, their vote transactions and the image labels are joined together to create the data structure presented in Table \ref{association_analyisis_data}.
     \begin{figure}[h] 
         \begin{center}
             \includegraphics[width=0.8\textwidth]{Images/association_analysis_flow.jpg}
