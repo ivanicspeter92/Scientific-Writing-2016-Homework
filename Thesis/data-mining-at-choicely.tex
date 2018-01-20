@@ -19,7 +19,7 @@ Each user profile contains the features listed in Table \ref{user_profile_fields
         Full name                   & Free text \\
         Profile picture             & Image \\ 
         Cover image                 & Image \\
-        \textcolor{blue}{Gender}    & Male/Female/Other/Not specified \\
+        \textcolor{blue}{Gender}    & Male/Female/Not chosen \\
         \textcolor{blue}{Location}  & Country, state and city \\
         Birthday                    & Datetime \\ 
         \textcolor{blue}{Age group} & 0-17/18-24/25-34/35-44/45-54/55-64/65+ \\
@@ -139,8 +139,8 @@ In sum, the user data in Choicely is two-folded: the user profiles contain demog
     After transforming the data, the Apriori algorithm is applied to calculate the itemset supports. This can be done on arbitrary amount of vote transactions as long as they have been transformed to the desired format. However, there are certain cases when it makes sense to perform the analysis. For instance, the analysis can be performed 
 
     \begin{enumerate}
-        \item on transactions extracted from the complete dataset: this way one can attempt to find patterns in how users behave on the system-level,
         \item on transactions of a single contest: this way contest organizers get a chance to analyze their engaged audience and seek the tendencies in their behavior,
+        \item on transactions extracted from the complete dataset: this way one can attempt to find patterns in how users behave on the system-level,
         \item on transactions of a targeted group of users: this approach allows to understand the preferences of a desired group of people across multiple contests,
         \item on transactions of a single user: this way the behavioral patterns of the individual user can be studied and analyzed. 
     \end{enumerate}
@@ -161,7 +161,7 @@ In sum, the user data in Choicely is two-folded: the user profiles contain demog
                 X & $S(X|gender=male)$ & $S(X|gender=female)$ & $S(X|gender=other)$ & $S(X|gender=not\_specified)$ \\
                 \hline
                 $\{"beauty", "blonde"\}$ & $0.6$ & $0.8$ & $0.15$ & $0.25$ \\
-                $\{"bodybuilder", "muscle"\}$ & $0.6$ & $0.1$ & $0.5$ & $0.0$ \\
+                $\{"cat", "fluffy", "cute" \}$ & $0.6$ & $0.1$ & $0.5$ & $0.0$ \\
                 $\{"sea", "photo shoot", "model"\}$ & $0.0$ & $1.0$ & $0.33$ & $0.65$
             \end{tabular}
         \end{adjustbox}
