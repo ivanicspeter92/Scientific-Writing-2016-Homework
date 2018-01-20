@@ -89,3 +89,62 @@ This chapter presents the results achieved by the chosen methods introduced in C
     \end{itemize}
 
 \subsection{Association analysis}
+In order to better understand the results of the Association Analysis, first a single contest (Miss Suomi 2017\footnote{\url{https://choicely.com/contest/164f52c7-9df8-11e7-b3c9-d1a0f88250ad}}) is looked at more carefully in the paragraphs to follow. By looking at a single case study, the results can be analyzed and interpreted in a smaller scope and hence be understood easier. Secondly, the results of the analysis performed on the system-level are presented and interpreted. This approach is chosen to demonstrate the capabilities and the potential of the technique in both smaller and larger datasets.
+
+The Miss Suomi 2017 contest has been hosted in the Choicely platform late September, 2017. Having engaged $26 200$ users, it is the third biggest contest in the platform at the time of performing the analysis. There are $10$ participants in the contest, who were photographed while dressed in white cocktail dresses on a shore of a lake or sea. Each photo has one and only one participant. Each participant has only one and only one photo in this contest. 
+
+The results of the analysis are presented for the 1-itemsets and 2-itemsets in order to keep the findigs easily understandable. The following figures display the results. The itemsets in the figure are ordered by the variance in the support values (however the variances are not displayed in the figures). This way the itemset with the highest variance is on the top, while the itemset with the smallest variance is on the bottom of the figure. All of figures in this chapter follow this convention of ordering.
+
+Figure \ref{itemset_supports-gender-Miss_Helsinki-1_itemset} displays the results for the 1-itemset supports in case of genders. The first finding to note in this figure are the bottommost ${beauty}$ and ${dress}$ itemsets with support values $1.0$ for all genders. The reason behind this observation is that all of the participants' images had these labels. Therefore, inevitably all of the vote transactions picked up these itemsets and every vote in the contest has full support towards them. Such values do not show any significant meaning and therefore are excluded from the rest of the figures.
+
+\begin{figure}[h] 
+    \begin{center}
+        \includegraphics[width=1.0\textwidth]{Images/itemset_supports-gender-Miss_Helsinki-1_itemset.png}
+        \caption{The 1-itemset supports in the Miss Suomi 2016 contest by genders.}
+        \label{itemset_supports-gender-Miss_Helsinki-1_itemset}
+    \end{center}
+\end{figure}
+
+It is interesting to investigate, why all of the images contained these two labels in general. As the participants' images were shot in a similar environment, with considerably similar content (e.g. the white dresses, the hair style, only one model in the image etc.), the Google Vision API assigned the same labels to the images. This gives a proof that computer vision in this case is more targeted towards getting an overall idea about the content of an image, rather than identifying its specific traits and attributes. It would be interesting to assign labels or tags manually on top of the computer's labels and compare results of a similar analysis.
+
+This visualization provides a good possibility also to compare gender differences. For instance, the support $S(X={model}|gender=female)=0.45$ is considerably high than its male counterpart ($0.26$). Similar observations can be made in case of the ${photo shoot}, {sea}, {gown}, {fashion model}$ and ${wedding}$ itemsets. This may suggest that females are more likely to vote on images, where the object (the model and the dress) is put more into focus. Interestingly, the support for the ${cloud}$ and ${summer}$ itemsets are $0.0$ for females and are higher for males. This means that no female users have voted on images with these labels (unless they belong to the $not_chosen$ gender). This allows the conclusion that males might prefer images with more light and more colorful background in their votes. The support for ${bride}$ and ${lady}$ itemsets for males are also higher, which can mean that the impact of the model being a girl has more impact on their votes than her dress or the surroundings.
+
+Figure \ref{itemset_supports-age_group-Miss_Helsinki-1_itemset} shows the 1-itemset supports for age groups. It is interesting to notice that age groups 45-54 and 65+ have considerably higher values than the rest of the groups in case of the ${bridal clothing}$, ${gown}$ and the ${wedding dress}$ itemsets. In other words it appears, that the clothing displayed on the pictures is more engaging for these groups. This may indicate that that dresses that appear on the images become influental in favouring a model in this kind of a contest. 
+
+\begin{figure}[h] 
+    \begin{center}
+        \includegraphics[width=1.0\textwidth]{Images/itemset_supports-age_group-Miss_Helsinki-1_itemset.png}
+        \caption{The 1-itemset supports in the Miss Suomi 2016 contest by age groups (first 15 only).}
+        \label{itemset_supports-age_group-Miss_Helsinki-1_itemset}
+    \end{center}
+\end{figure}
+
+Another interesting observation is that the support for some itemsets, such as ${body of water}, {beach}, {cloud}, {vacation}, {beach}$ show $0.0$ support for the groups above age of 45. At the same time, these itemsets show somewhat higher support by the age groups on the lower end. This finding may indicate that activities such as having vacation on a beach in a warm country is more in the interest of young people, which can be valuable information for travel agencies or marketing specialists. With such valuable informations at hand, tourism offices could provide more customized advisory service for customers with different background. 
+
+Finally, the 1-itemsets supports in the contest are analyzed by the location (country) of the users (Figure \ref{itemset_supports-country-Miss_Helsinki-1_itemset}). The first interesting observation is, that the support of the USA group is $1.0$ on some itemsets, while $0.0$ on the others and there are no values in between.
+
+\begin{figure}[h] 
+    \begin{center}
+        \includegraphics[width=1.0\textwidth]{Images/itemset_supports-country-Miss_Helsinki-1_itemset.png}
+        \caption{The 1-itemset supports in the Miss Suomi 2016 contest by countries.}
+        \label{itemset_supports-country-Miss_Helsinki-1_itemset}
+    \end{center}
+\end{figure}
+
+By looking at the data the reason becomes obvious: the amount of transactions, where the users' country information is set as USA, Ukraine and Hungary are considerably very low (below 5). This may not be a big surprise knowing that this contest was mainly advertised in Finland and not in other countries. As a matter of fact, there were $62$ Finnish voters and $21$ voters from the Philippines, which are still considerably low compared to the total number of voters. This finding suggests that many of the voters in this contest did not indicate their country information and hence do not display on Figure \ref{itemset_supports-country-Miss_Helsinki-1_itemset}. In other words, the amount of users, whose location information is filled is low and hence the results can get biased. 
+
+The data shows, that many voters in this contest did not give their location information, which limits the analysis. Encouraging the users in the future to provide more information would allow to derive valid results. At the present time, no strong conclusions can be drawn from the location data of the voters in the Miss Suomi 2017 contest. 
+
+Figure \ref{itemset_supports-gender-Miss_Helsinki-2_itemset} displays the support values for the 2-itemsets. To enhance the readability of the figure, only the first 15 values are shown. It can be seen from the figure that some itemsets have small, while some others have high support values. It can be seen that the itemsets with higher values, such as ${girl, wedding dress}, {girl, dress}, {girl, beauty}, {sky, gown}$ tend to also tell something more about the object of the image over the background. These itemsets also might stand out, because they appear often on the images. However, the data reveals that the abstract concepts (such as vacation or wedding) appear with less support. 
+
+\begin{figure}[h] 
+    \begin{center}
+        \includegraphics[width=1.0\textwidth]{Images/itemset_supports-gender-Miss_Helsinki-2_itemset.png}
+        \caption{The 2-itemset supports in the Miss Suomi 2016 contest by genders (only the first 15 itemsets are displayed ordered by variance).}
+        \label{itemset_supports-gender-Miss_Helsinki-2_itemset}
+    \end{center}
+\end{figure}
+
+There are $150$ 2-itemsets in the image labels of the Miss Helsinki contest, which is hard to analyze manually. This number grows further with number of items in the set. To tackle this problem, itemsets with more than 1 item are not investigated any more manually in the rest of this chapter. Instead, the Co-Clustering approach is applied on the data to identify itemsets, that appear similar to eachother in their support. The details on this analysis are explained in this chapter. The results are presented in the next chapter.
+
+\subsection{Co-Clustering}
