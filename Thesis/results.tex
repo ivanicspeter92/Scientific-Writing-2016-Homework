@@ -1,6 +1,7 @@
 This chapter presents the results achieved by the chosen methods introduced in Chapter \ref{section::methodology}. The results achieved by each method are collected under the following subchapters respectively. This chapter provides answers to RQ2 and RQ3 (Chapter \ref{section::introduction}).
 
 \subsection{Exploratory Data Analysis}
+\label{section::exploratory-data-analysis}
     % unique voters
     By the end of 2017, there is a total number of 573 contests in the platform. To identify what kind of content that is more engaging (RQ2), first let us look at the amount of unique voters over the number of contests. Figure \ref{user_engagement_in_contests} displays a histogram and a boxplot of the number of contests and the number of unique voters that they have engaged. 
     
@@ -12,7 +13,7 @@ This chapter presents the results achieved by the chosen methods introduced in C
         \end{center}
     \end{figure}
 
-    It can be easily seen that most of the contests engage very small amount of users, as the median of the unique voter count for all contests is 3. One of the reasons behind this is that the company did not establish a large user base yet. Therefore there are many users who created only one contest but never used the platform on the long run. Many of the contests serve only testing purposes, hence engage only a few users. Such records can create bias in the upcoming analyses, because their data does not represent realistic scenarios. For this reason, contests with less than $100$ unique voters are excluded in the remainder of the analysis, because such observations are not representative. For the remainder of the analyses, this filtered dataset is used.
+    It can be easily seen that most of the contests engage very small amount of users, as the median of the unique voter count for all contests is 3. One of the reasons behind this is that the company did not establish a large user base yet. Therefore there are many users who created only one contest but never used the platform on the long run. Many of the contests serve only testing purposes, hence engage only a few users. Such records can create bias in the upcoming analyses, because their data does not represent realistic scenarios. For this reason, contests with less than $100$ unique voters are excluded in the remainder of the analysis, because such observations are not representative. This dataset contains $166 808$ vote transactions by $145 000$ users over $81$ contests, $1 113$ contest participants and $432$ labels on the images recognized by Google Vision. For the remainder of the EDA, this filtered dataset is used.
 
     Figure \ref{user_engagement_in_contests-pruned} displays the same distribution for the filtered set of contests. In this figure contests with more voters are more apparent. The highest number of unique voters is close to $55 000$ in one of the contests, the mean value ($\mu = 455.43$) and the standard deviation ($\sigma = 3 017.51$). These numbers mean that there is a large variance in the amount of engaged users in contests. It cannot be clearly said which traits make a contest more attractive to users.
     
@@ -145,6 +146,34 @@ Figure \ref{itemset_supports-gender-Miss_Helsinki-2_itemset} displays the suppor
     \end{center}
 \end{figure}
 
-There are $150$ 2-itemsets in the image labels of the Miss Helsinki contest, which is hard to analyze manually. This number grows further with number of items in the set. To tackle this problem, itemsets with more than 1 item are not investigated any more manually in the rest of this chapter. Instead, the Co-Clustering approach is applied on the data to identify itemsets, that appear similar to eachother in their support. The details on this analysis are explained in this chapter. The results are presented in the next chapter.
+There is a total number of $150$ 2-itemsets in the image labels of the Miss Suomi contest, which is hard to analyze for the human eye. This number grows further with number of items in the set. To tackle this problem, itemsets with more than 1 item are not investigated the same way. Instead, the Co-Clustering approach is applied on the data to identify itemsets, that appear similar to eachother in their support. The details on this analysis are explained in this chapter. The results are presented in the next chapter.
+
+The second part of the Association Analysis studies the itemset supports on the system level. The paragraphs to follow are dedicated to explain the findings, when this method is applied to a larger set of vote transactions composed from contests, which have engaged over $100$ unique voters. This is the same dataset, which was used for the major part of the EDA in Chapter \ref{section::exploratory-data-analysis}.
+
+On the figures to follow the itemsets are ordered by the sum of the supports instead of their variance. This way the itemsets that have the highest overall support among demographic groups are extracted.
+
+The results are shown on the figures below by gender (Figure \ref{itemset_supports-gender-all_contests-1_itemset}) and age group (Figure \ref{itemset_supports-age_group-all_contests-1_itemset}) for the 1-itemsets. The itemsets on the left side of the figure reflect on the great majority of "beauty" and "fashion" contests, as it was shown on Figure \ref{contests_over_categories} in Chapter \ref{section::exploratory-data-analysis}. It can be easily seen that all of the itemsets were extracted from contests of these two category, as they clearly describe concepts that appear in such contests. This observation also supports the previous finding, that mainly contests in these categories were hosted in the platform with great success.
+
+\begin{figure}[h] 
+    \begin{center}
+        \includegraphics[width=1.0\textwidth]{Images/itemset_supports-gender-all_contests-1_itemset.png}
+        \caption{The 1-itemset supports in all contests by genders (only the first 15 itemsets are displayed ordered by sum of the support values).}
+        \label{itemset_supports-gender-all_contests-1_itemset}
+    \end{center}
+\end{figure}
+
+Gender differences can be analyzed from the 1-itemsets on the system-level as well. For instance, males appear to have higher support towards the labels ${model}, {supermodel}$ and ${muscle}$. This can mean that males tend to prefer contestants more with these traits even in multiple contests. Likewise, female voters have higher support value towards ${human hair color}, {girl}, {shoulder}$ and ${beauty}$, which can mean that for them the aesthetic and potentially artistic appearence of the contender is appreciated more. 
+
+It is interesting to observe, that the $not_chosen$ group has considerably higher support over males and females in many cases. This can be explained by the fact that many users ($49.82 \%$) did not proide their gender information. Because the amount of such users, whose gender is not known is about the same as male and female users together in the platform, the support of this group towards itemsets appear higher. While this problem did not emerge on a single-contest level, when looking at all transactions, it becomes apparent. It could be assumed, that the distribution of the two genders is equal in this group, however there is no proof on this claim. 
+
+Finally, all of the itemsets with more than 2 items are extracted from the system. The aim here is to identify itemsets with high support in pairs, which correspond to higher attractiveness when they appear on images together. Figure \ref{itemset_supports-gender-all_contests-over2_itemset} displays the results. It can be seen, that many of the itemsets are highly supported by the "not_chosen" user group. The reasons behind this are explained above, nevertheless the tendencies towards attractive itemsets can be observed based on this data as well. It can be seen that the "{model}" and the "{shoulder}" 1-itemsets often appears as a subset of various itemsets. Furthermore, contestants whose clothes are more revealing towards skin and upper body are more attractive to users. Similarly to previous findings, rather than describing the background, the itemsets on the system level are also more focused on the object of the images. 
+
+\begin{figure}[h] 
+    \begin{center}
+        \includegraphics[width=1.0\textwidth]{Images/itemset_supports-gender-all_contests-over2_itemset.png}
+        \caption{The k-itemset supports in all contests by genders, where $k \geq 2$ (only the first 15 itemsets are displayed ordered by sum of the support values).}
+        \label{itemset_supports-gender-all_contests-over2_itemset}
+    \end{center}
+\end{figure}
 
 \subsection{Co-Clustering}

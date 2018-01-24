@@ -26,7 +26,7 @@ The data for this research is provided by the case company. The chosen technique
 % \end{enumerate}
 
 % Exploratory Data Analysis (EDA)
-To grasp on the currently available data, Exploratory Data Analysis (EDA) is utilized as the first step of the research. The underlying reasoning behind this decision is mainly that EDA performed on any dataset helps researchers to familiarize themselves with the dataset at hand, hence to choose the appropriate preprocessing and data analysis techniques \cite{introtodatamining}. 
+To grasp on the currently available data, Exploratory Data Analysis (hereinafter EDA) is utilized as the first step of the research. The underlying reasoning behind this decision is mainly that EDA performed on any dataset helps researchers to familiarize themselves with the dataset at hand, hence to choose the appropriate preprocessing and data analysis techniques \cite{introtodatamining}. 
 
 Accordingly, comprehensive overview on the data related to the most important entities in the Choicely platform is performed by calculating basic statistical measures and visualizing the data. Such entities are the user profiles, the contests, contest participant and the votes performed by users on the contest participants. The findings of the EDA are then utilized to determine how to prune the data such that the acquired sample is representative, does not contain redundant nor faulty data. The results of the EDA are explained in the next chapter. 
 
@@ -65,7 +65,9 @@ There are two challenges with this approach:
     \item there is not a clear way of knowing which of the resulting itemsets will be interesting to look at from the viewpoint of a data scientist.
 \end{enumerate} 
 
-The first challenge is addressed by the Apriori Principle. The principle states that any subset of an infrequent itemset is inevitably infrequent subset as well \cite{introtodatamining}. This means that if the algorithm encounters an itemset under the desired minimal support threshold, its subsets can be safely dropped from any further analysis. This way less engaging content can be filtered out and the more interesting itemsets can be pinpointed. 
+The first challenge is addressed by the Apriori Principle. The principle states that any subset of an infrequent itemset is inevitably infrequent subset as well \cite{introtodatamining}. This means that if the algorithm encounters an itemset under the desired minimal support threshold, its subsets can be safely dropped from any further analysis. This way less engaging content can be filtered out and the more interesting itemsets can be pinpointed. According to the Association Rule Discovery \cite{introtodatamining}, all itemsets which have support values less than $minsup$ are considered as infrequent, hence not shown on the algorithm's output. As a consequence, any subsets of such itemsets are going to be infrequent as well. 
+
+% TODO second challenge
 
 % Alternatively, one could take all vote transaction of a single user or a list of users and perform analysis on their transactions. Due to privacy reasons and the limited scope, this aspect is not considered in this thesis work. Nevertheless, it can be interesting direction for further studies in the area.
 

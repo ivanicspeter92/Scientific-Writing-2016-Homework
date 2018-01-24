@@ -107,7 +107,8 @@ In sum, the user data in Choicely is two-folded: the user profiles contain demog
 	% 	\end{center}
     % \end{figure}
 
-    \subsection{Knowledge Discovery and Data Visualization}
+    %\subsection{Knowledge Discovery and Data Visualization}
+    \subsection{Applying the chosen methods}
     To answer RQ2 and RQ3 (presented in Chapter \ref{section::introduction}), the chosen methods presented in Chapter \ref{section::methodology} are applied in relation to Choicely's data. The paragraphs to follow elaborate a more in depth, what kind of data is used in case of the Choicely to answer the stated questions. On top of that it is explained, how the data was transformed in order to achieve the results. Data records collected before $1^{st}$ January, 2018 are used for the analyses. 
 
     % what is the goal of EDA? How is it used in this research? 
@@ -149,7 +150,9 @@ In sum, the user data in Choicely is two-folded: the user profiles contain demog
     
     Using the approach explained above, the support of the itemsets extracted from the labels can be calculated. The support in this case tells the percentage of votes, which were casted on a desired itemset. For instance, $S({"beauty", "blonde"}) = 0.6$ would mean that $60 \%$ of all votes were casted on participants whose images contained the ${"beauty", "blonde"}$ itemset. Likewise, if the list of vote transactions is filtered by one of the demographic attributes, the same can be said for the investigated group of users. 
 
-    The result of the Apriori algorithm then can be collected into a table displayed on Table \ref{itemset_supports_format}. This table shows the itemsets as rows and the targeted group of users as columns. The values in each columns correspond to the support values of the itemsets for the given group of users in the set of transactions that was  feeded to the algorithm. 
+    To control the algorithm's runtime is not too long, the $minsup$ value is set to $0.05$, which corresponds to $5 \%$ support. This means that all itemsets, that have smaller support than this value for all demographic groups, are pruned during the progression. On top of reducing runtime, this threshold is set to eliminate less interesting itemsets and keep only the interesting ones on the output.
+
+    The result of the Apriori algorithm then can be collected into a table displayed on Table \ref{itemset_supports_format}. This table shows the itemsets as rows and the targeted group of users as columns. The values in each columns correspond to the support values of the itemsets for the given group of users in the set of transactions that was feeded to the algorithm. 
 
     % TODO consider if the next paragraph is needed at all
     Note that despite the values in the rows are probabilities, their values do not have to sum up to $1.0$. This is because each value in the table tells the probability, that a randomly selected transaction will contain the itemset (row), given that the vote was casted by a person who belongs to the target group (column). In other words, the probabilities of the itemsets for the demographic groups are independent from eachother.
