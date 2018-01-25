@@ -57,9 +57,10 @@ Deriving from this, the supports for each itemset can be calculated, that is the
 
 where $N$ is the number of transactions. In this thesis work, vote transactions are filtered by demographic groups $G$ and the support $S(X|G)$ is calculated. For instance, by calculating $S(X|gender = male)$ one can obtain the itemset supports for males in a given list of vote transactions. The extraction of the itemset supports is achieved using the Apriori algorithm, which addresses the complexity growth of itemsets during their generation and analysis \cite{introtodatamining}. 
 
-The itemset supports can be calculated for all demographic groups in a single contest or a list of contests (e.g. every contest in certain category). The calculated support values can be studied further such that the tendencies in voting among demographic groups can be compared (RQ3). To answer RQ3, the next task is to seek significant differences or interesting similarities in the itemset support values of demographic groups. 
+The itemset supports can be calculated for all demographic groups in a single contest or a list of contests (e.g. every contest in certain category). The frequent itemsets (which exceed the $minsup$ threshold) are organized into the rows of a matrix during the analysis, with each the colums representing a demographic group which is being analyzed. The cells in the matrix contain the support values of the itemsets for the given group of discussion. 
 
-There are two challenges with this approach: 
+The calculated support values can be studied further such that the tendencies in voting among demographic groups can be compared (RQ3). To answer RQ3, the next task is to seek significant differences or interesting similarities in the itemset support values of demographic groups. There are two challenges with this approach: 
+
 \begin{enumerate}
     \item the number of potential itemsets can be large, and
     \item there is not a clear way of knowing which of the resulting itemsets will be interesting to look at from the viewpoint of a data scientist.
@@ -67,11 +68,12 @@ There are two challenges with this approach:
 
 The first challenge is addressed by the Apriori Principle. The principle states that any subset of an infrequent itemset is inevitably infrequent subset as well \cite{introtodatamining}. This means that if the algorithm encounters an itemset under the desired minimal support threshold, its subsets can be safely dropped from any further analysis. This way less engaging content can be filtered out and the more interesting itemsets can be pinpointed. According to the Association Rule Discovery \cite{introtodatamining}, all itemsets which have support values less than $minsup$ are considered as infrequent, hence not shown on the algorithm's output. As a consequence, any subsets of such itemsets are going to be infrequent as well. 
 
-% TODO second challenge
+More interestingly, it is challenging to know which itemsets or demographic groups show similarities with eachother. After collecting the image labels and extracting the itemset supports, one may want to identify patterns or the underlying structure in the data, so that interesting findings can be extracted from it. To address this problem, the Co-Clustering (often called also as biclustering or two-mode clustering) is used, which is an approach towards identifying patterns simultaneously on columns and rows of a (large) matrix of numbers \cite{coclustering}. 
+
+The reason behind choosing the Co-Clustering approach is its relevance and applicability to this problem. In their structured study, Van Mechelen, Bock and De Boeck shows the relevance and wide applicability of this approach, also explaining the mathematical details behind the different approaches \cite{coclustering}. The researchers conclude, that the large number of models already had an impact on medical field, as it provides tools for DNA sequence analysis or classifying syndromes based on patients' symptoms \cite{coclustering}. Van Mechelen, Bock and De Boeck also argues, that despites its robustness, the two-mode clustering has not reached as many applications as its "simpler" version, one-way clustering. 
+
+In this study, Co-Clustering is used on the matrix of extracted support values explained above. The aim of applying this method is to identify which demographic groups as well as itemsets show similarities to eachother. By using the Co-Clustering method, the rows and columns of the constructed matrix can be analyzed, its rows and colums are clustered. This way, the grouping of the similar entities happens, which contributes to the analysis of the data.
 
 % Alternatively, one could take all vote transaction of a single user or a list of users and perform analysis on their transactions. Due to privacy reasons and the limited scope, this aspect is not considered in this thesis work. Nevertheless, it can be interesting direction for further studies in the area.
 
-% Association Rule Discovery is performed on the same data to understand which pair of traits can engage more of the (targeted) audience.
-
-% what are the decisions behind the choices? 
 % what were the alternatives and why were they rejected? 
