@@ -175,13 +175,8 @@ In sum, the user data in Choicely is two-folded: the user profiles contain demog
     Depending on how many individual participants the chosen transactions target, the number of itemsets (hence the number of rows) grows rapidly. Also the number of demographic groups (hence the number of columns) may differ depending on which the property is used from the users' profile. Essentially, the number of categorical groups for genders can go up to 4, for age groups up to 7 (see Table \ref{user_profile_fields}), but many more for location-based groups. As a conclusion it can be said that despite the supports are obtained, most likely their number will be too overwhelming to look at and analyze.
 
     % Finally, Co-Clustering is utilized on the calculated supports 
-    For this reason, the Co-Clustering method is used to identify which itemsets or demographic groups show similarities. 
+    For this reason, the Co-Clustering method is used to identify which itemsets or demographic groups show similarities. The method is applied on the output of the Association Analysis displayed in Table \ref{itemset_supports_format} in order to explore the underlying structure behind the itemset supports and demographic groups. The implementation is done with the help of the bicluster module \cite{scikit-bicluster} of the popular scikit learn package \cite{scikit-learn}. The Spectral Co-Clustering class is used for the analysis, which proposes to pinpoint biclusters with higher values than others according to the documentation \cite{scikit-bicluster}. 
 
-    Figure \ref{association_analysis_flow} summarizes the flow of the Association Analysis. First, Computer Vision is applied on the participants images in order to automatically label the images with meta data. The demographic data from the users' profile, their vote transactions and the image labels are joined together to create the data structure presented in Table \ref{association_analyisis_data}.
-    \begin{figure}[h] 
-        \begin{center}
-            \includegraphics[width=0.8\textwidth]{Images/association_analysis_flow.jpg}
-            \caption{The flow of the association analysis of the participants' images.}
-            \label{association_analysis_flow}
-        \end{center}
-    \end{figure}
+    Using this approach, the clusters that are similar to eachother are going to be organized close to eachother. The algorithm's input requires a \textit{k} value, which corresponds to the number of clusters to seek. The cluster labels are attached to each row and column respectively, which suggests the itemsets and demographic groups that belong to the same cluster. 
+
+    By knowing the clusters, one can conclude if there are tendenies among demographic groups in terms of behavior. For instance, if the age group 65+ and 0-17 would be assigned in the same cluster by the algorithm, that would prove the similar behavior of the users in these two groups. In other words this would mean, that the certain kind of content leads to the engagement of both of these groups, but not necessarily the others. This can be valuable information to marketing professionals in the situation, when they wish to target a specific group of discussion. The demographic traits could be further combined in theory (e.g. male teenager users from Finland), however this deep analysis is out of the scope of this thesis work. 
