@@ -148,7 +148,7 @@ In sum, the user data in Choicely is two-folded: the user profiles contain demog
 
     It would be interesting to take a look into all of these aspects, however the scope of this thesis work limits the analysis to be performed. On top of that, items 3 and 4 might go into "too personal" directions, hence interfere with privacy issues and raise ethical concerns. In order to keep the scope of the analysis on a reasonable size, Therefore, items 1 and 2 in the above list are taken in the analysis and the rest are discarded. 
     
-    Using the approach explained above, the support of the itemsets extracted from the labels can be calculated. The support in this case tells the percentage of votes, which were casted on a desired itemset. For instance, $S({"beauty", "blonde"}) = 0.6$ would mean that $60 \%$ of all votes were casted on participants whose images contained the ${"beauty", "blonde"}$ itemset. Likewise, if the list of vote transactions is filtered by one of the demographic attributes, the same can be said for the investigated group of users. 
+    Using the approach explained above, the support of the itemsets extracted from the labels can be calculated. The support in this case tells the percentage of votes, which were casted on a desired itemset. For instance, $S(\{"beauty", "blonde"\}) = 0.6$ would mean that $60 \%$ of all votes were casted on participants whose images contained the $\{"beauty", "blonde"\}$ itemset. Likewise, if the list of vote transactions is filtered by one of the demographic attributes, the same can be said for the investigated group of users. 
 
     To control the algorithm's runtime is not too long, the $minsup$ value is set to $0.05$, which corresponds to $5 \%$ support. This means that all itemsets, that have smaller support than this value for all demographic groups, are pruned during the progression. On top of reducing runtime, this threshold is set to eliminate less interesting itemsets and keep only the interesting ones on the output.
 
@@ -175,7 +175,7 @@ In sum, the user data in Choicely is two-folded: the user profiles contain demog
     Depending on how many individual participants the chosen transactions target, the number of itemsets (hence the number of rows) grows rapidly. Also the number of demographic groups (hence the number of columns) may differ depending on which the property is used from the users' profile. Essentially, the number of categorical groups for genders can go up to 4, for age groups up to 7 (see Table \ref{user_profile_fields}), but many more for location-based groups. As a conclusion it can be said that despite the supports are obtained, most likely their number will be too overwhelming to look at and analyze.
 
     % Finally, Co-Clustering is utilized on the calculated supports 
-    For this reason... % TODO
+    For this reason, the Co-Clustering method is used to identify which itemsets or demographic groups show similarities. 
 
     Figure \ref{association_analysis_flow} summarizes the flow of the Association Analysis. First, Computer Vision is applied on the participants images in order to automatically label the images with meta data. The demographic data from the users' profile, their vote transactions and the image labels are joined together to create the data structure presented in Table \ref{association_analyisis_data}.
     \begin{figure}[h] 
