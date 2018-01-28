@@ -22,7 +22,7 @@ Each user profile contains the features listed in Table \ref{user_profile_fields
         \textcolor{blue}{Gender}    & Male/Female/Not chosen \\
         \textcolor{blue}{Location}  & Country, state and city \\
         Birthday                    & Datetime \\ 
-        \textcolor{blue}{Age group} & 0-17/18-24/25-34/35-44/45-54/55-64/65+ \\
+        \textcolor{blue}{Age group} & 0-17/18-24/25-34/35-44/45-54/55-64/65+/Unknown \\
         Introduction/Bio            & Free text
     \end{tabular}
     \caption{The list of fields and their types for each user profile.}
@@ -179,7 +179,9 @@ In sum, the user data in Choicely is two-folded: the user profiles contain demog
     Depending on how many individual participants the chosen transactions target, the number of itemsets (hence the number of rows) grows rapidly. Also the number of demographic groups (hence the number of columns) may differ depending on which the property is used from the users' profile. Essentially, the number of categorical groups for genders can go up to 4, for age groups up to 7 (see Table \ref{user_profile_fields}), but many more for location-based groups. As a conclusion it can be said that despite the supports are obtained, most likely their number will be too overwhelming to look at and analyze.
 
     % Finally, Co-Clustering is utilized on the calculated supports 
-    For this reason, the Co-Clustering method is used to identify which itemsets or demographic groups show similarities. The method is applied on the output of the Association Analysis displayed in Table \ref{itemset_supports_format} in order to explore the underlying structure behind the itemset supports and demographic groups. The implementation is done with the help of the bicluster module \cite{scikit-bicluster} of the popular scikit learn package \cite{scikit-learn}. The Spectral Co-Clustering class is used for the analysis, which proposes to pinpoint biclusters with higher values than others according to the documentation \cite{scikit-bicluster}. 
+    For this reason, the Co-Clustering method is used to identify which itemsets or demographic groups show similarities. The method is applied on the output of the Association Analysis displayed in Table \ref{itemset_supports_format} in order to explore the underlying structure behind the itemset supports and demographic groups. The implementation is done with the help of the bicluster module \cite{scikit-bicluster} of the popular scikit learn package \cite{scikit-learn}. 
+    
+    The Spectral Co-Clustering class is used for the analysis, which proposes to pinpoint biclusters with higher values than others according to the documentation \cite{scikit-bicluster}. The algorithm treats the input matrix as a bipartite graph, in which the rows and columns are nodes and the values in the cells are the weighted edges between them \cite{scikit-bicluster}. This logic suits the input matrix, as the higher support values in the cells represent stronger attraction between the itemsets and the demographic groups.
 
     Using this approach, the clusters that are similar to eachother are going to be organized close to eachother. The algorithm's input requires a \textit{k} value, which corresponds to the number of clusters to seek. The cluster labels are attached to each row and column respectively, which suggests the itemsets and demographic groups that belong to the same cluster. In the performed analyses, the k value of the Co-Clustering algorithm is set to $4$. 
 
