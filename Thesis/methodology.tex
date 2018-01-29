@@ -12,18 +12,7 @@ This part of the research forms a sound basis on the understanding and possible 
 % practical part
 In the practical part of the study, the data contained of the Choicely voting platform's databases is analyzed. The analysis is fundamentally focused on two topics: the content uploaded by contest organizers and the users' data during the usage of the platform. 
 
-% The methods chosen for performing the analysis are [Method1, Method2, Method3] %TODO The choice behind these techniques is the successful application of these in previous research. 
-
-% data collection if needed % TODO add stuff if needed
 The data for this research is provided by the case company. The chosen techniques are applied and the analysis is performed on historical data, which was gathered through contests and votes in the past by Choicely and its customers. The structure and the properties of the data at hand is explained in the Chapter \ref{section::data-mining-at-choicely} to follow.
-
-% \begin{enumerate}
-%     \item in case the currently available data is not sufficient or incomplete, data can be gathered by volunteers (e.g. students and staff from the university)
-%     \item the data collection can be done through the Choicely platform \url{http://choicely.com} online,
-%     \item if needed, multiple sessions can be organized in the Choicely office or Kumpula for the data collection,
-%     \item training material for the participants can be provided in written form or a training session can be organized if needed,  
-%     \item Choicely is ready to reward the participants in the study with movie tickets or some other small gifts and hence encourage more to participate.
-% \end{enumerate}
 
 % Exploratory Data Analysis (EDA)
 To grasp on the currently available data, Exploratory Data Analysis (hereinafter EDA) is utilized as the first step of the research. The underlying reasoning behind this decision is mainly that EDA performed on any dataset helps researchers to familiarize themselves with the dataset at hand, hence to choose the appropriate preprocessing and data analysis techniques \cite{introtodatamining}. 
@@ -57,7 +46,7 @@ Deriving from this, the supports for each itemset can be calculated, that is the
 
 where $N$ is the number of transactions. In this thesis work, vote transactions are filtered by demographic groups $G$ and the support $S(X|G)$ is calculated. For instance, by calculating $S(X|gender = male)$ one can obtain the itemset supports for males in a given list of vote transactions. The extraction of the itemset supports is achieved using the Apriori algorithm, which addresses the complexity growth of itemsets during their generation and analysis \cite{introtodatamining}. 
 
-The itemset supports can be calculated for all demographic groups in a single contest or a list of contests (e.g. every contest in certain category). The frequent itemsets (which exceed the $minsup$ threshold) are organized into the rows of a matrix during the analysis, with each the colums representing a demographic group which is being analyzed. The cells in the matrix contain the support values of the itemsets for the given group of discussion. 
+The itemset supports can be calculated for all demographic groups in a single contest or a list of contests (e.g. every contest in certain category). The frequent itemsets (which exceed the $minsup$ threshold) are organized into the rows of a matrix during the analysis, with each the columns representing a demographic group which is being analyzed. The cells in the matrix contain the support values of the itemsets for the given group of discussion. 
 
 The calculated support values can be studied further such that the tendencies in voting among demographic groups can be compared (RQ3). To answer RQ3, the next task is to seek significant differences or interesting similarities in the itemset support values of demographic groups. There are two challenges with this approach: 
 
@@ -70,8 +59,8 @@ The first challenge is addressed by the Apriori Principle. The principle states 
 
 More interestingly, it is challenging to know which itemsets or demographic groups show similarities with eachother. After collecting the image labels and extracting the itemset supports, one may want to identify patterns or the underlying structure in the data, so that interesting findings can be extracted from it. To address this problem, the Co-Clustering (often called also as biclustering or two-mode clustering) is used, which is an approach towards identifying patterns simultaneously on columns and rows of a (large) matrix of numbers \cite{coclustering}. Like other clustering techniques, this is a Supervised Machine Learning technique as well, because the structure of the data is not known beforehand. 
 
-The reason behind choosing the Co-Clustering approach is its relevance and applicability to this problem. In their structured study, Van Mechelen, Bock and De Boeck shows the relevance and wide applicability of this approach, also explaining the mathematical details behind the different approaches \cite{coclustering}. The researchers conclude, that the large number of models already had an impact on medical field, as it provides tools for DNA sequence analysis or classifying syndromes based on patients' symptoms \cite{coclustering}. Van Mechelen, Bock and De Boeck also argues, that despites its robustness, the two-mode clustering has not reached as many applications as its "simpler" version, one-way clustering. 
+The reason behind choosing the Co-Clustering approach is its relevance and applicability to this problem. In their structured study, Van Mechelen, Bock and De Boeck shows the relevance and wide applicability of this approach, also explaining the mathematical details behind the different approaches \cite{coclustering}. The researchers conclude, that the large number of models already had an impact on medical field, as it provides tools for DNA sequence analysis or classifying syndromes based on patients' symptoms \cite{coclustering}. Van Mechelen, Bock and De Boeck also argues, that despite its robustness, the two-mode clustering has not reached as many applications as its "simpler" version, one-way clustering. 
 
-In this study, Co-Clustering is used on the matrix of extracted support values explained above. The aim of applying this method is to identify which demographic groups as well as itemsets show similarities to eachother. By using the Co-Clustering method, the rows and columns of the constructed matrix can be analyzed, its rows and colums are clustered at the same time. This way, the grouping of the similar entities (rows, columns and cells) can be achieved, which contributes to the analysis of the data.
+In this study, Co-Clustering is used on the matrix of extracted support values explained above. The aim of applying this method is to identify which demographic groups as well as itemsets show similarities to eachother. By using the Co-Clustering method, the rows and columns of the constructed matrix can be analyzed, its rows and columns are clustered at the same time. This way, the grouping of the similar entities (rows, columns and cells) can be achieved, which contributes to the analysis of the data.
 
 % The combination of these methods is unique as none of the studied researches utilizes them in such combination with these kind of goals in mind. The data available at Choicely contains a great specimen of user data, in which a large part of the data is already available for analysis. The potential application of these methods are interesting for the case company, as their platform currently does not include any tool with this purpose, while the need from the customers' side continously rises.
