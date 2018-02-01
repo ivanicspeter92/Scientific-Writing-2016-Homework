@@ -139,7 +139,7 @@ In sum, the user data in Choicely is two-folded: the user profiles contain demog
     
     Using the approach explained above, the support of the itemsets extracted from the labels can be calculated. The support in this case tells the percentage of votes, which were casted on a desired itemset. For instance, $S(\{"beauty", "blonde"\}) = 0.6$ would mean that $60 \%$ of all votes were casted on participants whose images contained the $\{"beauty", "blonde"\}$ itemset. Likewise, if the list of vote transactions is filtered by one of the demographic attributes, the same can be said for the investigated group of users. 
 
-    To control the algorithm's runtime is not too long, the $minsup$ value is set to $0.05$, which corresponds to $5 \%$ support. This means that all itemsets, that have smaller support than this value for all demographic groups, are pruned during the progression. On top of reducing runtime, this threshold is set to eliminate less interesting itemsets and keep only the interesting ones on the output.
+    To control the algorithm's runtime is not too long, the \emph{minsup} value is set to 0.05, which corresponds to 5 \% support. This means that all itemsets, that have smaller support than this value for all demographic groups, are pruned during the progression. On top of reducing runtime, this threshold is set to eliminate less interesting itemsets and keep only the interesting ones on the output.
 
     The result of the Apriori algorithm then can be collected into a table displayed on Table \ref{itemset_supports_format}. This table shows the itemsets as rows and the targeted group of users as columns. The values in each columns correspond to the support values of the itemsets for the given group of users in the set of transactions that was fed into the algorithm. 
 
@@ -150,11 +150,11 @@ In sum, the user data in Choicely is two-folded: the user profiles contain demog
         \centering
         \begin{adjustbox}{width=1\textwidth}
             \begin{tabular}{l|c|c|c|c}
-                X & $S(X|gender=male)$ & $S(X|gender=female)$ & $S(X|gender=other)$ & $S(X|gender=not\_specified)$ \\
+                X & \emph{S(X|gender=male)} & \emph{S(X|gender=female)} & \emph{S(X|gender=other)} & \emph{S(X|gender=not\_specified)} \\
                 \hline
-                $\{"beauty", "blonde"\}$ & $0.6$ & $0.8$ & $0.15$ & $0.25$ \\
-                $\{"cat", "fluffy", "cute" \}$ & $0.6$ & $0.1$ & $0.5$ & $0.0$ \\
-                $\{"sea", "photo shoot", "model"\}$ & $0.0$ & $1.0$ & $0.33$ & $0.65$
+                \emph{\{"beauty", "blonde"\}} & 0.6 & 0.8 & 0.15 & 0.25 \\
+                \emph{\{"cat", "fluffy", "cute" \}} & 0.6 & 0.1 & 0.5 & 0.0 \\
+                \emph{\{"sea", "photo shoot", "model"\}} & 0.0 & 1.0 & 0.33 & 0.65
             \end{tabular}
         \end{adjustbox}
         \caption{The output format of the Association Analysis comparing genders, where X is the itemset and S is the support (the records dispalyed in the table are only examples).}
@@ -172,6 +172,6 @@ In sum, the user data in Choicely is two-folded: the user profiles contain demog
     
     The Spectral Co-Clustering class is used for the analysis, which proposes to pinpoint biclusters with higher values than others according to the documentation \cite{scikit-bicluster}. The algorithm treats the input matrix as a bipartite graph, in which the rows and columns are nodes and the values in the cells are the weighted edges between them \cite{scikit-bicluster}. This logic suits the input matrix, as the higher support values in the cells represent stronger attraction between the itemsets and the demographic groups.
 
-    Using this approach, the clusters that are similar are going to be organized close to eachother. The algorithm's input requires a \textit{k} value, which corresponds to the number of clusters to seek. The cluster labels are attached to each row and column respectively, which suggests the itemsets and demographic groups that belong to the same cluster. In the performed analyses, the k value of the Co-Clustering algorithm is set to $4$. 
+    Using this approach, the clusters that are similar are going to be organized close to eachother. The algorithm's input requires a \emph{k} value, which corresponds to the number of clusters to seek. The cluster labels are attached to each row and column respectively, which suggests the itemsets and demographic groups that belong to the same cluster. In the performed analyses, the k value of the Co-Clustering algorithm is set to $4$. 
 
     By knowing the clusters, one can conclude if there are tendencies among demographic groups in terms of behavior. For instance, if the age group 65+ and 0-17 would be assigned in the same cluster by the algorithm, that would prove the similar behavior of the users in these two groups. In other words this would mean, that the certain kind of content leads to the engagement of both of these groups, but not necessarily the others. This can be valuable information to marketing professionals in the situation, when they wish to target a specific group of discussion. The demographic traits could be further combined in theory (e.g. male teenager users from Finland), however this deep analysis is out of the scope of this thesis work. 
