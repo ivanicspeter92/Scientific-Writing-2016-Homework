@@ -154,7 +154,9 @@ In sum, the user data in Choicely is two-folded: the user profiles contain demog
                 \hline
                 \emph{\{"beauty", "blonde"\}} & 0.6 & 0.8 & 0.15 & 0.25 \\
                 \emph{\{"cat", "fluffy", "cute" \}} & 0.6 & 0.1 & 0.5 & 0.0 \\
-                \emph{\{"sea", "photo shoot", "model"\}} & 0.0 & 1.0 & 0.33 & 0.65
+                \emph{\{"sea", "photo shoot", "model"\}} & 0.0 & 1.0 & 0.33 & 0.65 \\
+                \emph{\{"building", "architecture"\}} & 1.0 & 0.0 & 0.25 & 0.0 \\
+                \emph{\{"building"\}} & 1.0 & 0.0 & 0.33 & 0.0
             \end{tabular}
         \end{adjustbox}
         \caption{The output format of the Association Analysis comparing genders, where X is the itemset and S is the support (the records dispalyed in the table are only examples).}
@@ -165,12 +167,31 @@ In sum, the user data in Choicely is two-folded: the user profiles contain demog
 
     The Miss Suomi 2017 contest has been hosted in the Choicely platform late September, 2017. Having engaged $26 200$ users, it is the third biggest contest in the platform at the time of performing the analysis. There are $10$ participants in the contest, who were photographed while dressed in white cocktail dresses on a shore of a lake or sea. Each photo has one and only one participant. Each participant has only one and only one photo in this contest. 
     
-    Depending on how many individual participants the chosen transactions target, the number of itemsets (hence the number of rows) grows rapidly. Also the number of demographic groups (hence the number of columns) may differ depending on which the property is used from the users' profile. Essentially, the number of categorical groups for genders can go up to 4, for age groups up to 7 (see Table \ref{user_profile_fields}), but many more for location-based groups. As a conclusion it can be said that despite the supports are obtained, most likely their number will be too overwhelming to look at and analyze.
+    Depending on how many individual participants the chosen transactions target, the number of itemsets (hence the number of rows) grows rapidly. Also the number of demographic groups (hence the number of columns) may differ depending on which the property is used from the users' profile. Essentially, the number of categorical groups for genders can go up to 4, for age groups up to 7 (see Table \ref{user_profile_fields}), but many more for location-based groups. As a conclusion it can be said that despite the supports are obtained, most likely their number will be too overwhelming to look at and analyze. Furthermore, one might assume that there patterns and structural trends in the support values, for instance some itemsets may share similarities, while others may differ from eachother in terms of their support values.
 
     % Finally, Co-Clustering is utilized on the calculated supports 
-    For this reason, the Co-Clustering method is used to identify which itemsets or demographic groups show similarities. The method is applied on the output of the Association Analysis displayed in Table \ref{itemset_supports_format} in order to explore the underlying structure behind the itemset supports and demographic groups. The implementation is done with the help of the bicluster module \cite{scikit-bicluster} of the popular scikit learn package \cite{scikit-learn}. 
+    For this reason, the Co-Clustering method is used to identify if any itemsets or demographic groups show similarities in the voting data. The method is applied on the output of the Association Analysis displayed in Table \ref{itemset_supports_format}. More precisely, only the matrix of support values is taken as the input of the Co-Clustering method, which is an matrix of real values on the range of \emph{[0.0, 1.0]}. 
     
-    The Spectral Co-Clustering class is used for the analysis, which proposes to pinpoint biclusters with higher values than others according to the documentation \cite{scikit-bicluster}. The algorithm treats the input matrix as a bipartite graph, in which the rows and columns are nodes and the values in the cells are the weighted edges between them \cite{scikit-bicluster}. This logic suits the input matrix, as the higher support values in the cells represent stronger attraction between the itemsets and the demographic groups.
+    A simplified example output of the method is shown in Table \ref{coclustering_output_format}. As shown, the support values in the cells with the same background color show similarities in their values. For instance, the support values in the green cluster are all 1.0, while the red cluster contains values that are also somewhat similar. This suggests that these itemsets and demographic groups are similar in nature. It can be seen, that this representation adds a layer on top of the output of the previous Association Analysis step (Table \ref{itemset_supports_format}) by reorganzing and clustering the rows and columns of the data matrix. By applying Co-Clustering, the closely-related itemsets and the groups are clustered together and grouped closeby, which facilitates the interpretation of the results. 
+
+    \begin{table}[]
+        \centering
+        \begin{adjustbox}{width=1\textwidth}
+            \begin{tabular}{l|c|c|c|c}
+                X & \emph{S(X|gender=male)} & \emph{S(X|gender=female)} & \emph{S(X|gender=other)} & \emph{S(X|gender=not\_specified)} \\
+                \hline
+                \emph{\{"beauty", "blonde"\}} & \cellcolor{blue!25}1.0 &  0.00 &  0.05 &  0.0 \\
+                \emph{\{"cat", "fluffy", "cute" \}} &  0.0 & \cellcolor{red!25}0.75 & \cellcolor{red!25}0.70 &  0.0 \\
+                \emph{\{"sea", "photo shoot", "model"\}} &  0.0 & \cellcolor{red!25}0.66 & \cellcolor{red!25}0.90 & \cellcolor{green!25}1.0 \\
+                \emph{\{"building", "architecture"\}} &  0.0 &  0.00 &  0.10 & \cellcolor{green!25}1.0 \\
+                \emph{\{"building"\}} &  0.5 &  0.00 &  0.00 & \cellcolor{green!25}1.0
+            \end{tabular}
+        \end{adjustbox}
+        \caption{An example output of the Co-Clustering algorithm itemset supports by comparing genders for \emph{k = 3} clusters. X is the itemset and S is the support. The clusters are highlighted with different colors (the records dispalyed in the table are only examples).}
+        \label{coclustering_output_format}
+    \end{table}
+    
+    The implementation is done with the help of the bicluster module \cite{scikit-bicluster} of the popular scikit learn package \cite{scikit-learn}. The Spectral Co-Clustering class is used for the analysis, which proposes to pinpoint biclusters with higher values than others according to the documentation \cite{scikit-bicluster}. The algorithm treats the input matrix as a bipartite graph, in which the rows and columns are nodes and the values in the cells are the weighted edges between them \cite{scikit-bicluster}. This logic suits the input matrix, as the higher support values in the cells represent stronger attraction between the itemsets and the demographic groups.
 
     Using this approach, the clusters that are similar are going to be organized close to eachother. The algorithm's input requires a \emph{k} value, which corresponds to the number of clusters to seek. The cluster labels are attached to each row and column respectively, which suggests the itemsets and demographic groups that belong to the same cluster. In the performed analyses, the k value of the Co-Clustering algorithm is set to $4$. 
 
