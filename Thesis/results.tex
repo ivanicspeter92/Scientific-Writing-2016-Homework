@@ -3,35 +3,44 @@ This chapter presents the results achieved by the chosen methods introduced in C
 \subsection{Exploratory Data Analysis}
 \label{section::exploratory-data-analysis}
     % unique voters
-    By the end of 2017, there is a total number of 573 contests in the platform. To identify what kind of content that is more engaging (RQ2), first let us look at the amount of unique voters over the number of contests. Figure \ref{user_engagement_in_contests} displays a histogram and a boxplot of the number of contests and the number of unique voters that they have engaged. 
+    By the end of 2017, there is a total number of 573 contests in the platform. To identify what kind of content that is more engaging (RQ2), first let us look at the amount of unique voters over the number of contests. Table \ref{user_engagement_in_contests} lists the key figures of the number of unique voters over contests in the platform. 
+
+    It can be easily seen that most of the contests engage very small amount of users, as the median of the unique voter count for all contests is 3. This means that at least half of the contests have had only 3 users who actually voted for any of the participants. One of the reasons behind this is that the company did not establish a large user base yet. Therefore there are many users who created only one contest but never used the platform on the long run. Many of the contests serve only testing purposes, hence engage only a few users. Such records can create bias in the upcoming analyses, because their data does not represent realistic scenarios. 
+
+    \begin{table}[H]
+        \centering
+        \begin{tabular}{l|c}
+            \textbf{Measure} & \textbf{Value} \\
+            \hline
+            Mean & 447.70 \\
+            Standard deviation & 2992.05 \\
+            Min & 0 \\
+            25th percentile & 1 \\
+            Median (50th percentile) & 3 \\
+            75th percentile & 22 \\
+            Max & 54684
+        \end{tabular}
+        \caption{The basic statistical measures of unique voters over contests.}
+        \label{user_engagement_in_contests}
+    \end{table}
     
+    For this reason, contests with less than 100 unique voters are excluded in the remainder of the analysis, because such observations are not representative. This dataset contains 166808 vote transactions by 145000 users over 81 contests, 1113 contest participants and 432 labels on the images recognized by Google Vision. For the remainder of the EDA, this filtered dataset is used.
+
+    Figure \ref{user_engagement_in_contests-pruned} displays the same distribution for the filtered set of contests. In this figure contests with more voters are more apparent. The highest number of unique voters is close to 55 000 in one of the contests, the mean value ($\mu$ = 455.43) and the standard deviation ($\sigma$ = 2992.05). These numbers mean that there is a large variance in the amount of engaged users in contests. From the data it cannot be clearly said which traits make a contest more attractive to users. Presumably the marketing activities done by the contest's organizers have strong impact on the size of the engaged audience. For instance news agencies have an established customer base already, who was supposedly targeted by these contests via the web widget (Chapter \ref{section::introduction-to-the-choicely-voting-platform}) of Choicely. 
+    
+    The boxplot on the right side of the figure uses the 95 percentile (around 5200 unique voters), above which the outliers can be seen. It can be also seen that the most of the contests engage 260-2600 unique voters (as described by the first and the third quartiles). There are 6 large contests, from which the biggest have engaged 54684 voters. 
+
     \begin{figure}[h] 
         \begin{center}
-            \includegraphics[width=0.8\textwidth]{Images/user_engagement_in_contests.png}
-            \caption{The number of unique voters over contests.}
-            \label{user_engagement_in_contests}
-        \end{center}
-    \end{figure}
-
-    It can be easily seen that most of the contests engage very small amount of users, as the median of the unique voter count for all contests is 3. One of the reasons behind this is that the company did not establish a large user base yet. Therefore there are many users who created only one contest but never used the platform on the long run. Many of the contests serve only testing purposes, hence engage only a few users. Such records can create bias in the upcoming analyses, because their data does not represent realistic scenarios. For this reason, contests with less than $100$ unique voters are excluded in the remainder of the analysis, because such observations are not representative. This dataset contains $166 808$ vote transactions by $145 000$ users over $81$ contests, $1 113$ contest participants and $432$ labels on the images recognized by Google Vision. For the remainder of the EDA, this filtered dataset is used.
-
-    Figure \ref{user_engagement_in_contests-pruned} displays the same distribution for the filtered set of contests. In this figure contests with more voters are more apparent. The highest number of unique voters is close to $55 000$ in one of the contests, the mean value ($\mu = 455.43$) and the standard deviation ($\sigma = 3 017.51$). These numbers mean that there is a large variance in the amount of engaged users in contests. It cannot be clearly said which traits make a contest more attractive to users.
-    
-    The boxplot on the right side of the figure uses the $95$ percentile (around $5 200$ unique voters), above which the outliers can be seen. It can be also seen that the most of the contests engage $260-2 600$ unique voters (as described by the first and the third quartiles). There are $6$ large contests, from which the biggest have engaged $54 684$ voters. 
-
-    \begin{figure}[h] 
-        \begin{center}
-            \includegraphics[width=0.8\textwidth]{Images/user_engagement_in_contests-pruned.png}
-            \caption{The number of unique voters over contests after filtering out contests with less than $100$ unique voters.}
+            \includegraphics[width=1\textwidth]{Images/user_engagement_in_contests-pruned.png}
+            \caption{The number of unique voters over contests after filtering out contests with less than 100 unique voters.}
             \label{user_engagement_in_contests-pruned}
         \end{center}
     \end{figure}
     
     The six large contests are worth investigating a bit more closely. Four \footnote{\url{https://choicely.com/contest/5ca98554-0f7d-11e7-9f0c-6f102a54d68d}}\footnote{\url{https://choicely.com/contest/fb112461-9000-11e6-9e28-87ebd7a21d0d}}\footnote{\url{https://choicely.com/contest/7425566e-8c8e-11e6-b8ce-2147b021362f}}\footnote{\url{https://choicely.com/contest/164f52c7-9df8-11e7-b3c9-d1a0f88250ad}}
-    out of the six large contests were beauty pageants, labeled with the categories of "beauty", "fashion" and "entertainment". The two other contests
-        \footnote{\url{https://choicely.com/contest/50819173-f838-11e6-b171-b949f18a4d21}}
-        \footnote{\url{https://choicely.com/contest/4257ea9c-3e21-11e7-84ec-5f5a9bcfd190}}
-    are listed only in the "other" category, which is certainly a mistake. By looking at the latter two contests, it can be easily seen that they would better belong to the "entertainment" and "sports" category. In each of the contests, the contest participants were people: either sportsmen, celebrities or beauty queens/kings. It is interesting that none of the large contests have had objects, places or other intangibles as contest participants, although the platform has seen many of such participants previously. The number of participant in these contests varies between $9-40$ and their correlation coefficient does not show strong relationship either way ($R = 0.53$). 
+    out of the six large contests were beauty pageants, labeled with the categories of "beauty", "fashion" and "entertainment". The two other contests\footnote{\url{https://choicely.com/contest/50819173-f838-11e6-b171-b949f18a4d21}}\footnote{\url{https://choicely.com/contest/4257ea9c-3e21-11e7-84ec-5f5a9bcfd190}}
+    are listed only in the "other" category, which is certainly a mistake. By looking at the latter two contests, it can be easily seen that they would better belong to the "entertainment" and "sports" category. In each of the contests, the contest participants were people: either sportsmen, celebrities or beauty queens/kings. It is interesting that none of the large contests have had objects, places or other intangibles as contest participants, although the platform has seen many of such participants previously. 
 
     In the next step, let us look at the distribution of contest categories in the filtered set of contests. It can be seen from the histogram on Figure \ref{contests_over_categories}, that the amount of "beauty", "entertainment", "sport" and "fashion" contests is considerably high compared to the rest of the categories. This finding is well aligned with the case company's profile at the point of conducting this study. As pointed out in Chapter \ref{section::introduction-to-the-choicely-voting-platform}, most of the company's customer base consits of Finnish broadcasters and advertisers. Hence there is no surprise in the distribution of the categories except for the "other" group. 
     
