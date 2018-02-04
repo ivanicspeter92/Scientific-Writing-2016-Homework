@@ -38,17 +38,27 @@ More formally, the support count of an itemset can be defined as
     \sigma (X) = |\{ t_i | X \subseteq t_i, t_i \in T \}|
 \end{equation}
 
-where $T = {t_1, t_2, ..., t_N}$ is the set of transactions, $X$ is the itemset of discussion and $| \cdot |$ donates the number of number of elements in an itemset. A further essential constraint on the itemsets is that they have to contain at least one item \cite{introtodatamining}. In simple language, this number tells how many transactions contained the itemset $X$ in the given population. The itemset that contains $k$ unique items is often referred to as a k-itemset. 
+where $T = {t_1, t_2, ..., t_N}$ is the set of transactions, \emph{X} is the itemset of discussion and $| \cdot |$ donates the number of number of elements in an itemset. A further essential constraint on the itemsets is that they have to contain at least one item \cite{introtodatamining}. In simple language, this number tells how many transactions contained the itemset \emph{X} in the given population. The itemset that contains \emph{k} unique items is often referred to as a k-itemset. 
 
-Deriving from this, the supports for each itemset can be calculated, that is the percentage of transactions in which the itemset is present. In other words, the support tells the probability of itemset $X$ to be present in a randomly chosen transaction. Formally, this can be stated as 
+Deriving from this, the supports for each itemset can be calculated, that is the percentage of transactions in which the itemset is present. In other words, the support tells the probability of itemset \emph{X} to be present in a randomly chosen transaction. Formally, this can be stated as 
 
 \begin{equation}
     s(X) = \frac{\sigma (X)}{N}
 \end{equation}
 
-where $N$ is the number of transactions. In this thesis work, vote transactions are filtered by demographic groups $G$ and the support $S(X|G)$ is calculated. For instance, by calculating $S(X|gender = male)$ one can obtain the itemset supports for males in a given list of vote transactions. The extraction of the itemset supports is achieved using the Apriori algorithm, which addresses the complexity growth of itemsets during their generation and analysis \cite{introtodatamining}. 
+where \emph{N} is the number of transactions. In this thesis work, vote transactions are filtered by demographic groups \emph{G} and the support \emph{S(X|G)} is calculated. For instance, by calculating \emph{S(X|gender = male)} one can obtain the itemset supports for males in a given list of vote transactions. The extraction of the itemset supports is achieved using the Apriori algorithm, which addresses the complexity growth of itemsets during their generation and analysis \cite{introtodatamining}. 
 
-The itemset supports can be calculated for all demographic groups in a single contest or a list of contests (e.g. every contest in certain category). The frequent itemsets (which exceed the $minsup$ threshold) are organized into the rows of a matrix during the analysis, with each the columns representing a demographic group which is being analyzed. The cells in the matrix contain the support values of the itemsets for the given group of discussion. 
+The itemset supports can be calculated for all demographic groups in a single contest or a list of contests (e.g. every contest in certain category). The frequent itemsets (which exceed the \emph{minsup} threshold) are organized into the rows of a matrix during the analysis, with each the columns representing a demographic group which is being analyzed. The cells in the matrix contain the support values of the itemsets for the given group of discussion. 
+
+Lift is another common measure in Association Analysis, which fits the purposes of this study very well. In his textbook Tuffery \cite{tuffery2011data} provides a great introduction to this measure and argues, why it complements association rule mining. In his terms lift also tells the improvement introduced by a rule \cite{tuffery2011data}, which can assist researchers to find out which rules are more (or less) useful for the analysis. The lift is hence a measure on the dependency between condition and the consequence of the association rule. Obtaining the lift value is a simple division between the support of the rule and the result's probability. Formally, it can be stated as
+
+\begin{equation}
+    L(X|G) = \frac{S(X|G)}{S(X)}
+\end{equation}
+
+The value of lift varies on the range of 0.0 to positive infinity. If the value of the lift is 1.0, the condition makes no impact on the result of the rule, hence is typically not considered very interesting. In case the value is less than 1.0, the rule is said to be useless, while over 1.0 is usually called as useful rule \cite{tuffery2011data}. 
+
+The aim by calculating lift values in this research is to identify how different age groups interact with the itemsets. For instance, if the itemset \emph{X} is more appealing to males than how often it appears in the complete dataset, its lift value \emph{L(X|gender=male) > 1.0}. Similarly, if the opposite can be said for females, the \emph{L(X|gender=female) < 1.0}. 
 
 The calculated support values can be studied further such that the tendencies in voting among demographic groups can be compared (RQ3). To answer RQ3, the next task is to seek significant differences or interesting similarities in the itemset support values of demographic groups. There are two challenges with this approach: 
 
