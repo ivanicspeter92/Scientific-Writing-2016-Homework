@@ -6,20 +6,27 @@
 %%
 %% tktltiki.dtx  (with options: `luokka')
 %% 
-%% IMPORTANT NOTICE:
+%% This is a generated file.
 %% 
-%% For the copyright see the source file.
+%% Copyright (C) 2002 Mikael Puolakka.
 %% 
-%% Any modified versions of this file must be renamed
-%% with new filenames distinct from tktltiki.cls.
+%% This file may be distributed and/or modified under the
+%% conditions of the LaTeX Project Public License, either
+%% version 1.2 of this license or (at your option) any later
+%% version. The latest version of this license is in
 %% 
-%% For distribution of the original source see the terms
-%% for copying and modification in the file tktltiki.dtx.
+%%    http://www.latex-project.org/lppl.txt
 %% 
-%% This generated file may be distributed as long as the
-%% original source files, as listed above, are part of the
-%% same distribution. (The sources need not necessarily be
-%% in the same archive or directory.)
+%% and version 1.2 or later is part of all distributions of
+%% LaTeX version 1999/12/01 or later.
+
+%% Modified by Veli MÃ¤kinen on 4.2.2018: 
+%% - Name of the CS Department in Finnish -> Osasto
+%% - Theses for Study Programmes rather than for the Department
+%% - Added place for supervisors in the abstract
+%% - Instructor --> Assessor 
+  
+%% 
 %% \CharacterTable
 %%  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
 %%   Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
@@ -210,7 +217,7 @@
   \hspace{1em}%
 }
 \RequirePackage{openbib}
-\addto\captionsfinnish{\def\refname{Lähteet}}
+\addto\captionsfinnish{\def\refname{L\"ahteet}}
 \addto\captionsenglish{\def\enclname{Appendices}}
 \addto\captionsswedish{\def\enclname{Bilagor}}
 \renewenvironment{thebibliography}[1]
@@ -237,7 +244,7 @@
 \level{}
 
 \addto\captionsfinnish{%
-  \def\dateofacceptance{hyväksymispäivä}%
+  \def\dateofacceptance{hyv\"aksymisp\"aiv\"a}%
   \def\grade{arvosana}%
   \def\instructor{arvostelija}%
   \def\uh{HELSINGIN YLIOPISTO}%
@@ -247,7 +254,7 @@
 \addto\captionsenglish{%
   \def\dateofacceptance{Date of acceptance}%
   \def\grade{Grade}%
-  \def\instructor{Instructor}%
+  \def\instructor{Assessor}%
   \def\uh{UNIVERSITY OF HELSINKI}%
   \def\helsinki{Helsinki}%
   \def\ccs{ACM Computing Classification System (CCS):}%
@@ -255,7 +262,7 @@
 \addto\captionsswedish{%
   \def\dateofacceptance{godk.datum}%
   \def\grade{vitsord}%
-  \def\instructor{bedömare}%
+  \def\instructor{bed\"omare}%
   \def\uh{HELSINGFORS UNIVERSITET}%
   \def\helsinki{Helsingfors}%
   \def\ccs{ACM Computing Classification System (CCS):}%
@@ -284,7 +291,7 @@
 
   \@author
 
-  \vfill
+  \vspace{75mm}
 
   \helsinki\ \@date
 
@@ -300,6 +307,8 @@
 \newcommand{\faculty}[1]{\gdef\@faculty{#1}}
 \newcommand{\department}[1]{\gdef\@department{#1}}
 \newcommand{\subject}[1]{\gdef\@subject{#1}}
+\newcommand{\program}[1]{\gdef\@program{#1}}
+\newcommand{\supervisors}[1]{\gdef\@supervisors{#1}}
 \newcommand{\depositeplace}[1]{\gdef\@depositeplace{#1}}
 \newcommand{\additionalinformation}[1]{\gdef\@additionalinformation{#1}}
 \newcommand{\numberofpagesinformation}[1]{\gdef\@numberofpagesinformation{#1}}
@@ -309,6 +318,8 @@
 \faculty{}
 \department{}
 \subject{}
+\program{}
+\supervisors{}
 \depositeplace{}
 \additionalinformation{}
 \numberofpagesinformation{}
@@ -317,18 +328,21 @@
 
 \addto\captionsfinnish{%
   \faculty{Matemaattis-luonnontieteellinen tiedekunta}
-  \department{Tietojenkäsittelytieteen laitos}%
-  \subject{Tietojenkäsittelytiede}
+  \department{Tietojenk\"asittelytieteen osasto}%
+  \subject{Tietojenk\"asittelytiede}
+  \program{Tietojenk\"asittelytiede}
 }
 \addto\captionsenglish{%
   \faculty{Faculty of Science}
   \department{Department of Computer Science}%
   \subject{Computer Science}
+  \program{Computer Science}
 }
 \addto\captionsswedish{%
   \faculty{Matematisk-naturvetenskapliga fakulteten}
-  \department{Institutionen för datavetenskap}%
+  \department{Institutionen f\"or datavetenskap}%
   \subject{Datavetenskap}
+  \program{Datavetenskap}
 }
 \newsavebox{\@abstract}
 \newenvironment{@summary}{
@@ -356,10 +370,10 @@
 \begin{picture}(580,845)(74,-64)%
 \fi
 \put(58,  784){\makebox(100, 8)[l]{\abst@small\@faculty}}
-\put(289, 784){\makebox(100, 8)[l]{\abst@small\@department}}
+\put(289, 784){\makebox(100, 8)[l]{\abst@small\@program}}
 \put(58,  761){\makebox(100, 8)[l]{\abst@small\@author}}
-\put(58,  732){\parbox[l]{450pt}{\renewcommand{\baselinestretch}{.9}\abst@small\@title}}
-\put(58,  704){\makebox(100, 8)[l]{\abst@small\@subject}}
+\put(58,  727){\makebox(200, 8)[l]{\abst@small\@title}}
+\put(58,  704){\makebox(100, 8)[l]{\abst@small\@supervisors}}
 \put(58,  681){\makebox(100, 8)[l]{\abst@small\@level}}
 \put(212, 681){\makebox(100, 8)[l]{\abst@small\@date}}
 \put(366, 681){\makebox(100, 8)[l]{\abst@small\@numberofpagesinformation}}
@@ -382,10 +396,10 @@
 \put(361,676.58){\line(0,1){22.76}}
 \put(58,809){\makebox(150,6)[l]{
 \tiny Tiedekunta --- Fakultet --- Faculty}}
-\put(289,809){\makebox(100,6)[l]{\abst@tiny Laitos --- Institution --- Department}}
+\put(289,809){\makebox(100,6)[l]{\abst@tiny Koulutusohjelma --- Studieprogram --- Study Programme}}
 \put(58,773){\makebox(100,5)[l]{\abst@tiny Tekij\"a --- F\"orfattare --- Author}}
 \put(58,750){\makebox(100,5)[l]{\abst@tiny Ty\"on nimi --- Arbetets titel --- Title}}
-\put(58,716){\makebox(100,5)[l]{\abst@tiny Oppiaine --- L\"aro\"amne --- Subject}}
+\put(58,716){\makebox(100,5)[l]{\abst@tiny Ohjaajat --- Handledare --- Supervisors}}
 \put(58,693){\makebox(100,5)[l]{\abst@tiny Ty\"on laji --- Arbetets art --- Level}}
 \put(212,693){\makebox(100,5)[l]{\abst@tiny Aika --- Datum --- Month and year }}
 \put(366,693){\makebox(100,5)[l]{\abst@tiny Sivum\"a\"ar\"a --- Sidoantal ---
