@@ -99,46 +99,58 @@ This chapter presents the results achieved by the chosen methods introduced in C
     \end{itemize}
 
 \subsection{Association Analysis}
-The results of the analysis are presented only for the 1-itemsets and 2-itemsets in order to keep the findings easily understandable. The following figures display the results. The itemsets in the figure are ordered by the variance in the support values (however the variances are not displayed in the figures). This way the itemset with the highest variance is on the top, while the itemset with the smallest variance is on the bottom of the figure. All of figures in this chapter follow this convention of ordering. First the chosen Miss Suomi 2017 contest is analyzed, followed by the analysis on the system-level analysis.
+The results of the Association Analysis are presented in this chapter are limited to the 1-itemsets and 2-itemsets in order to keep the findings easily understandable. The following figures and paragraphs display and explain the results. The itemsets in the figures are ordered by the variance of the values over the bins (however the variances are not displayed in the figures). This way the itemset with the highest variance is on the top, while the itemset with the smallest variance is on the bottom of the figure. All of figures in this chapter follow this convention of ordering. First the chosen Miss Suomi 2017 contest is analyzed, followed by the system-level analysis.
 
-Figure \ref{itemset_supports-gender-Miss_Helsinki-1_itemset} displays the 1-itemset supports and lifts for genders. The first finding to note in this figure are the \emph{\{"beauty"\}} and \emph{\{"dress"\}} itemsets with support and lift values 1.0 for all genders on the bottom of the figures. The reason behind this observation is that all of the participants' images had these labels. Therefore, inevitably all of the vote transactions picked up these itemsets and every vote in the contest has full support towards them. Such values do not show any significant meaning and therefore are excluded from the rest of the figures.
+% ---------------------------- BEGIN OF GENDER ANALYSIS ---------------------------- 
+\subsubsection{1-itemsets}
+Figure \ref{itemset_supports-gender-Miss_Helsinki-1_itemset} displays the 1-itemset supports and lifts for genders. The first finding to note is the \emph{\{"beauty"\}} and \emph{\{"dress"\}} itemsets with support and lift values 1.0 for all genders on the bottom of the figures. These values suggest that every single vote transaction in this contest has contained these itemsets. The reason behind this observation is that all of the participants' images had these labels. Therefore, inevitably all of the vote transactions picked up these itemsets and every vote in the contest has full support towards them. Such values do not show any significant meaning and therefore are excluded from the rest of the figures.
 
 \begin{figure}[]
     \begin{center}
-        \includegraphics[width=1.0\textwidth]{Images/itemset_supports-gender-Miss_Helsinki-1_itemset.png}
-        \includegraphics[width=1.0\textwidth]{Images/itemset_lifts-gender-Miss_Suomi-1_itemsets.png}
+        \includegraphics[width=1.2\textwidth,center]{Images/itemset_supports-gender-Miss_Helsinki-1_itemset.png}
+        \includegraphics[width=1.2\textwidth,center]{Images/itemset_lifts-gender-Miss_Suomi-1_itemsets.png}
         \caption{The 1-itemset supports (top) and genders (bottom) in the Miss Suomi 2017 contest by genders (all itemsets are displayed ordered by the variance of the values).}
         \label{itemset_supports-gender-Miss_Helsinki-1_itemset}
     \end{center}
 \end{figure}
 
-It is interesting to investigate, why all of the images contained these two labels in general. As the participants' images were shot in a similar environment, with considerably similar content (e.g. the white dresses, the hair style, only one model in the image etc.), the Google Vision API assigned the same labels to the images. This gives a proof that computer vision in this case is more targeted towards getting an overall idea about the content of an image, rather than identifying its specific traits and attributes. It would be interesting to assign labels or tags manually on top of the computer's labels and compare results of a similar analysis.
+It is interesting to investigate, why all of the images contained these two labels in general. As the participants' images were shot in a similar environment, with considerably similar content (e.g. the white dresses, the background, the hair styles, only one model in the image etc.), the Google Vision API assigned the same labels to the images. This gives a proof that computer vision in this case is more targeted towards getting an overall idea about the content of an image, rather than identifying its specific traits and attributes. 
 
-This visualization provides a good possibility also to compare gender differences. For instance, the support \emph{S(X=\{"model"\}|gender=female)=0.45} is considerably high than its male counterpart \emph{S(X=\{"model"\}|gender=male) = 0.26}. The lift values in this instance are \emph{L(X=\{"model"\}|gender=female) = 2.25} and \emph{L(X=\{"model"\}|gender=male) = 1.30}. Similar observation can be made for the \emph{\{"fashion model"\}} itemset, which suggests correlation between these two labels. This suggests two findings: the label "(fashion) model" appears to be more attractive to female voters compared to males and the presence of model in an image makes the participant more appealing. 
+Figure \ref{itemset_supports-age_group-Miss_Helsinki-1_itemset} provides a good possibility also to compare gender differences. For instance, the support \emph{S(X=\{"model"\}|gender=female)=0.45} is considerably high than its male counterpart \emph{S(X=\{"model"\}|gender=male) = 0.26}. The lift values in this instance are \emph{L(X=\{"model"\}|gender=female) = 2.25} and \emph{L(X=\{"model"\}|gender = male) = 1.30}. Similar observation can be made for the \emph{\{"fashion model"\}} itemset, which suggests correlation between these two labels. This suggests two findings: the label "(fashion) model" appears to be more attractive to female voters compared to males and the presence of model in an image makes participants more appealing to all genders, but especially females. 
 
-Similarly, the \emph{\{"photo shoot\}, \{"sea"\}, \{"gown"\}, \{"fashion model"\}} and \emph{\{"wedding"\}} itemsets have higher support in case of female voters. This may suggest that females are more likely to vote on images, where the object (the model and the dress) is put more into focus. The lift values of these sets however reveal, that the interest for \{"sea"\} is interestingly high for all groups, which proposes the presence of sea in the background increases the number of votes. Another curious thing to note is the lift values of the \emph{\{"summer", "cloud", "beach"\}} itemsets, which are lower than 1.0 for both males and females. This observarion may suggest that having these in the background of the image is less attractive compared to the sea as background.
+Similarly, the \emph{\{"photo shoot\}, \{"sea"\}, \{"gown"\}} and \emph{\{"wedding"\}} itemsets have higher support in case of female voters. This may suggest that females are more likely to vote on images, where the object (the model and the dress) is put more into focus. The lift values however reveal, that the interest for \emph{\{"sea"\}, \{"gown"\}} and \emph{\{"photo shoot\}} higher for all groups, which proposes the presence of sea in the background increases the number of votes. 
 
-Interestingly, the support and the lift for the \emph{\{"cloud"\}} and \emph{\{"summer"\}} itemsets are 0.0 for females, while the values of the male group are slightly higher. This means that no female users have voted on images with these labels (unless they belong to the \emph{not\_chosen} gender). This allows the conclusion that males might prefer images with more light and more colorful background in their votes. The lift and the support for \emph{\{"bride"\}} and \emph{\{"lady"\}} itemsets for males are also higher, which can mean that the impact of the model being a girl has more impact on their votes than her dress or the surroundings. However, as the lift value is not topping the charts for these itemsets, which suggests no major impact in users' behavior.
+Another curious thing to note is the lift values of the \emph{\{"summer", "cloud", "beach"\}} itemsets, which are lower than 1.0 for both males and females. This observarion may suggest that having these in the background of the image is less attractive compared to the sea as background. Furthermore, \emph{\{"wedding"\}} has lift value less than 1.0 for genders other than females, which suggests less interest for this topic.  
 
-Figure \ref{itemset_supports-age_group-Miss_Helsinki-1_itemset} shows the 1-itemset supports and lifts for age groups. It is interesting to notice that age groups 45-54 and 65+ have considerably higher support than the rest of the groups in case of the \emph{\{"bridal clothing"\}}, \emph{\{"shoulder"\}} and the \emph{\{"wedding dress"\}} itemsets. The higher lift values for these itemsets also confirm this observation. It seems, that the open-sholder clothing displayed on the pictures is more engaging for these groups. This may indicate also that dresses become influential in favoring a model in this kind of a contest for these groups. In other words, dress may be a more important aspect than the model herself.
+Interestingly, the support and the lift for the \emph{\{"cloud"\}} and \emph{\{"summer"\}} itemsets are 0.0 for females, while the values of the male group are slightly higher. This means that no female users have voted on images with these labels (unless they belong to the \emph{not\_chosen} gender). This allows the conclusion that males might prefer images with more light and more colorful background in their votes. The lift and the support for \emph{\{"bride"\}} and \emph{\{"lady"\}} itemsets for males are also higher, which can mean that the model being a girl has more impact on their votes than her dress or the surroundings. However, as the lift value is not topping the charts for these itemsets, which suggests no major impact in users' behavior.
+
+% ---------------------------- END OF GENDER ANALYSIS ---------------------------- 
+% ---------------------------- BEGIN OF AGE GROUP ANALYSIS ---------------------------- 
+
+Next, the 1-itemsets are calculated similarly in the same contest for age groups. Figure \ref{itemset_supports-age_group-Miss_Helsinki-1_itemset} displays results. It is interesting to notice that age groups 45-54 and 65+ have considerably higher support than the rest of the groups in case of the \emph{\{"shoulder"\}, \{"bridal clothing"\}} and the \emph{\{"wedding dress"\}} itemsets. The higher lift values for these itemsets are also higher for these groups which suggests its attractivenexx. It seems, that the open-sholder wedding dresses displayed on the pictures raise the engagement of these groups. This may indicate also that dresses become influential in favoring a model in this kind of a contest for these groups. In other words, dress may be a more important aspect than the model herself.
 
 \begin{figure}[] 
     \begin{center}
-        \includegraphics[width=1.0\textwidth]{Images/itemset_supports-age_group-Miss_Helsinki-1_itemset.png}
-        \includegraphics[width=1.0\textwidth]{Images/itemset_lifts-age_group-Miss_Suomi-1_itemsets.png}
+        \includegraphics[width=1.2\textwidth,center]{Images/itemset_supports-age_group-Miss_Helsinki-1_itemset.png}
+        \includegraphics[width=1.2\textwidth,center]{Images/itemset_lifts-age_group-Miss_Suomi-1_itemsets.png}
         \caption{The 1-itemset supports (top) and lifts (bottom) in the Miss Suomi 2017 contest by age groups (only the first 15 itemsets are displayed ordered by the variance of the values).}
         \label{itemset_supports-age_group-Miss_Helsinki-1_itemset}
     \end{center}
 \end{figure}
 
-Another interesting observation is that the values for some itemsets, such as \emph{\{"body of water"\}, \{"beach"\}, \{"cloud"\}, \{"vacation"\}, \{"beach"\}} show 0.0 support and lift for the groups above age of 45. At the same time, these itemsets show somewhat higher support and lift by the rest of the age groups (0-17, 18-24, 25-34, 35-44)). This finding may indicate that activities such as having vacation on a beach in a warm country is more in the interest of young people, which can be valuable information for travel agencies or marketing specialists. With such valuable information at hand, tourism offices could provide more customized advisory service for customers with different background. 
+Another interesting observation is that the values for some itemsets, such as \emph{\{"body of water"\}, \{"beach"\}, \{"cloud"\}, \{"vacation"\}, \{"beach"\}} show 0.0 support and lift for the groups above age of 45. At the same time, these itemsets show somewhat higher support and lift by the rest of the age groups (0-17, 18-24, 25-34, 35-44). This finding may indicate that activities such as having vacation on a beach in a warm country is more in the interest of young people, which can be valuable information for travel agencies or marketing specialists. With such valuable information at hand, tourism offices could provide more customized advisory service for customers with different background. 
+
+Strong difference can be observed in the lift values of \emph{\{"sea"\}} for the 65+ age group. The lift value is 0.0 in this case, while all the other groups have values over 1.0. This means that sea, as such did not engage the elderly whatsoever, while triggered the interest the rest of the groups. It can be hence said in general, that sea appears to be an attractive trait in the background for most of the age groups but does not interest voters above 65 years of age. 
+
+% ---------------------------- END OF AGE GROUP ANALYSIS ---------------------------- 
+% ---------------------------- BEGIN OF COUNTRY ANALYSIS ---------------------------- 
 
 Finally, the 1-itemsets supports in the contest are analyzed by the location (country) of the users (Figure \ref{itemset_supports-country-Miss_Helsinki-1_itemset}). The first interesting observation is, that the support and lift of the USA group are 1.0 on some itemsets, while 0.0 on the others and there are no values in between. 
 
 \begin{figure}[] 
     \begin{center}
-        \includegraphics[width=1.0\textwidth]{Images/itemset_supports-country-Miss_Helsinki-1_itemset.png}
-        \includegraphics[width=1.0\textwidth]{Images/itemset_lifts-country-Miss_Suomi-1_itemsets.png}
+        \includegraphics[width=1.2\textwidth,center]{Images/itemset_supports-country-Miss_Helsinki-1_itemset.png}
+        \includegraphics[width=1.2\textwidth,center]{Images/itemset_lifts-country-Miss_Suomi-1_itemsets.png}
         \caption{The 1-itemset supports (top) and lifts (bottom) in the Miss Suomi 2017 contest by countries.}
         \label{itemset_supports-country-Miss_Helsinki-1_itemset}
     \end{center}
@@ -146,23 +158,37 @@ Finally, the 1-itemsets supports in the contest are analyzed by the location (co
 
 By looking at the data the reason becomes obvious: the amount of transactions, where the users' country information is set as USA, Ukraine and Hungary are considerably low (below 5). When looking at the lift values this bias comes even more appealing for users in USA and Ukraine. This may not be a big surprise knowing that this contest was mainly advertised in Finland and not in other countries. As a matter of fact, there were 62 Finnish voters and 21 voters from the Philippines, which are still considerably low compared to the total number of voters. 
 
-This finding suggests that many of the voters in this contest did not indicate their country information and hence do not display on Figure \ref{itemset_supports-country-Miss_Helsinki-1_itemset}. In other words, the amount of users, whose location information is filled is low and hence the results can get biased. It can be also said that this particular contest has failed to engaged users across borders on a broad scale and therefore is not a good case for this analysis.
+This finding suggests that many of the voters in this contest did not indicate their country information and hence do not display on Figure \ref{itemset_supports-country-Miss_Helsinki-1_itemset}. In other words, the amount of users, whose location information is filled is too low. Hence, the results of these groups are only the upper and lower extremes, which means bias in the data. It can be also said that this particular contest did not engage users across borders on a broad scale and therefore is not a good case for this kind of analysis.
 
-The data shows however, that many voters in this contest did not give their location information, which limits the analysis. Also the extreme values shown on Figure \ref{itemset_supports-country-Miss_Helsinki-1_itemset} demonstrate this bias. Encouraging the users in the future to provide more information would allow to derive valid results. At the present time, no strong conclusions can be drawn from the location data of the voters in the Miss Suomi 2017 contest. To ensure the relevance of the support and lift calculations, it would be hence a good move to put a lower limit (e.g. 100 observations) on the number of voters, similarly as it was done in the EDA phase for number of unique voters in contests.
+Encouraging the users in the future to provide more information would allow to derive valid results. At the present time, no strong conclusions can be drawn from the location data of the voters in the Miss Suomi 2017 contest. To ensure the relevance of the support and lift calculations, it would be hence a good move to put a lower limit (e.g. 100 observations) on the number of voters, similarly as it was done in the EDA phase for number of unique voters in contests. For all of the above reasons, no more analysis on the country-based support and lift values is performed in the remainder of this study.
 
-Figure \ref{itemset_supports-gender-Miss_Helsinki-2_itemset} displays the support values for the 2-itemsets. To enhance the readability of the figure, only the first 15 values are shown. It can be seen from the figure that some itemsets have small, while some others have high support values. It can be seen that the itemsets with higher values, such as \emph{\{"girl, "wedding dress"\}, \{"girl", "dress"\}, \{"girl", "beauty"\}, \{"sky", "gown"\}} tend to also tell something more about the object of the image over the background. These itemsets also might stand out, because they appear often on the images. However, the data reveals that the abstract concepts (such as vacation or wedding) appear with less support. 
+% ---------------------------- END OF COUNTRY ANALYSIS ---------------------------- 
+% ---------------------------- BEGIN OF 2-ITEMSETS ---------------------------- 
+\pagebreak
+\subsubsection{2-itemsets}
+
+The next step of the Association Analysis covers the investigation on k-itemsets, where the \emph{k}-value is higher than 1. Figure \ref{itemset_supports-gender-Miss_Helsinki-2_itemset} displays the support values for the 2-itemsets by genders. To enhance the readability of the figure, only the first 15 values are shown. 
 
 \begin{figure}[h] 
     \begin{center}
-        \includegraphics[width=1.0\textwidth]{Images/itemset_supports-gender-Miss_Helsinki-2_itemset.png}
+        \includegraphics[width=1.2\textwidth,center]{Images/itemset_supports-gender-Miss_Helsinki-2_itemset.png}
         \caption{The 2-itemset supports in the Miss Suomi 2017 contest by genders (only the first 15 itemsets are displayed ordered by variance).}
         \label{itemset_supports-gender-Miss_Helsinki-2_itemset}
     \end{center}
 \end{figure}
 
-There is a total number of 150 2-itemsets in the image labels of the Miss Suomi contest, which is hard to analyze for the human eye. This number grows further with number of items in the set. To tackle this problem, itemsets with more than 1 item are not investigated the same way. Instead, the Co-Clustering approach is applied on the data to identify itemsets, that appear similar to eachother in their support. The details on this analysis are explained in this chapter. The results are presented in the next chapter.
+One point to note on Figure \ref{itemset_supports-gender-Miss_Helsinki-2_itemset} is the behavior of the 1-itemsets, which had support of 1.0 on their own (\emph{\{"beauty"\}} and \emph{\{"dress"\}}, Figure \ref{itemset_supports-gender-Miss_Helsinki-1_itemset}). When these itemsets are paired with other itemsets, the support of the union is guaranteed to be the support of the set alongside. This implies also that any 1-itemset combined together with such itemsets has no impact on the support value. Therefore, 2-itemsets which include such label (that appears on all of the images) are non-informative and should be hidden. Another possibility is to study the lift instead of the support value, which in such cases can tell more about the value of such combinations.
 
-The second part of the Association Analysis studies the itemset supports on the system level. The paragraphs to follow are dedicated to explain the findings, when this method is applied to a larger set of vote transactions composed from contests, which have engaged over $100$ unique voters. This is the same dataset, which was used for the major part of the EDA in Chapter \ref{section::exploratory-data-analysis}. 
+% closed frequent itemsets
+Another important observation to make is the identicality of the 2-itemsets, where \emph{"photograph"} is present. This is due to the fact that all of the pairing itemset \emph{Y} (i.e. \emph{\{"beauty"\}, \{"sea"\}, \{"photo shoot"\}} etc.) are always present on images, where \emph{"photograph"} is present. In other words, the confidence \emph{C("photograph"|Y) = 1.0}, where \emph{Y} is the itemset next to \emph{"photograph"}. This is also known as a Closed Fequent Itemset phenomena \cite{introtodatamining}. Closed, because the data contains no superset that has the same support value as this original itemset and frequent, because the itemset's support exceeds the \emph{minsup} threshold \cite{introtodatamining}. For this reason, when discussing 2-itemsets, this issue may arise and provide identical support values for some combinations. When the complete list of 2-itemsets is plotted, the same observation can be made for many other itemsets, such as \emph{\{"bride"\}}, \emph{\{"shoulder"\}}, \emph{\{"body of water"\}}, etc. To address this issue, such closed itemsets could be merged and analyzed together, which is done in this case. 
+
+% address the problem of closed itemsets
+
+There is a total number of 150 2-itemsets in the image labels of the Miss Suomi contest, which is hard to analyze for the human eye. This number grows further with number of items in the set. To tackle this problem, itemsets with more than 1 item are not investigated the same way. Instead, the Co-Clustering approach is applied on the data to identify itemsets, that appear similar to eachother in their support. The details on this analysis and the results are explained in the next chapter. 
+
+% ---------------------------- BEGIN OF SYSTEM-LEVEL ---------------------------- 
+
+The second part of the Association Analysis studies the itemset supports on the system level. The paragraphs to follow are dedicated to explain the findings, when this method is applied to a larger set of vote transactions composed from contests, which have engaged over 100 unique voters. This is the same dataset, which was used for the major part of the EDA in Chapter \ref{section::exploratory-data-analysis}. 
 
 On the figures to follow the itemsets are ordered by the sum of the supports instead of their variance. This way the itemsets that have the highest overall support among demographic groups are extracted.
 
@@ -170,7 +196,7 @@ The results are shown on the figures below by gender (Figure \ref{itemset_suppor
 
 \begin{figure}[h] 
     \begin{center}
-        \includegraphics[width=1.0\textwidth]{Images/itemset_supports-gender-all_contests-1_itemset.png}
+        \includegraphics[width=1.2\textwidth,center]{Images/itemset_supports-gender-all_contests-1_itemset.png}
         \caption{The 1-itemset supports in all contests by genders (only the first 15 itemsets are displayed ordered by sum of the support values).}
         \label{itemset_supports-gender-all_contests-1_itemset}
     \end{center}
@@ -186,7 +212,7 @@ Finally, all of the itemsets with more than 2 items are extracted from the syste
 
 \begin{figure}[h] 
     \begin{center}
-        \includegraphics[width=1.0\textwidth]{Images/itemset_supports-gender-all_contests-over2_itemset.png}
+        \includegraphics[width=1.2\textwidth,center]{Images/itemset_supports-gender-all_contests-over2_itemset.png}
         \caption{The k-itemset supports in all contests by genders, where $k \geq 2$ (only the first 15 itemsets are displayed ordered by sum of the support values).}
         \label{itemset_supports-gender-all_contests-over2_itemset}
     \end{center}
@@ -201,7 +227,7 @@ Next, the matrix of the itemsets is plotted on the left side of Figure \ref{cocl
 
 \begin{figure}[h] 
     \begin{center}
-        \includegraphics[width=1.0\textwidth]{Images/coclustering_miss-suomi-genders-2-itemsets-04_support.png}
+        \includegraphics[width=1.2\textwidth,center]{Images/coclustering_miss-suomi-genders-2-itemsets-04_support.png}
         \caption{The results of the Co-Clustering in the Miss Suomi 2017 contest for 2-itemsets over 0.4 support with 4 clusters by genders. Left: the itemsets before clustering; Right: the itemsets after clustering.}
         \label{coclustering_miss-suomi-genders-2-itemsets-04_support}
     \end{center}
@@ -217,7 +243,7 @@ Figure \ref{coclustering_miss-suomi-age_group-2-itemsets-04_support} displays th
 
 \begin{figure}[h] 
     \begin{center}
-        \includegraphics[width=1.0\textwidth]{Images/coclustering_miss-suomi-age_group-2-itemsets-04_support.png}
+        \includegraphics[width=1.2\textwidth,center]{Images/coclustering_miss-suomi-age_group-2-itemsets-04_support.png}
         \caption{The results of the Co-Clustering in the Miss Suomi 2017 contest for 2-itemsets over 0.4 support with 5 clusters by age groups. Left: the itemsets before clustering; Right: the itemsets after clustering.}
         \label{coclustering_miss-suomi-age_group-2-itemsets-04_support}
     \end{center}
