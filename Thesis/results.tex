@@ -102,14 +102,14 @@ This chapter presents the results achieved by the chosen methods introduced in C
 The results of the Association Analysis are presented in this chapter are limited to the 1-itemsets and 2-itemsets in order to keep the findings easily understandable. The following figures and paragraphs display and explain the results. The itemsets in the figures are ordered by the variance of the values over the bins (however the variances are not displayed in the figures). This way the itemset with the highest variance is on the top, while the itemset with the smallest variance is on the bottom of the figure. All of figures in this chapter follow this convention of ordering. First the chosen Miss Suomi 2017 contest is analyzed, followed by the system-level analysis.
 
 % ---------------------------- BEGIN OF GENDER ANALYSIS ---------------------------- 
-\subsubsection{1-itemsets}
+% \subsubsection{Single-item itemsets}
 Figure \ref{itemset_supports-gender-Miss_Helsinki-1_itemset} displays the 1-itemset supports and lifts for genders. The first finding to note is the \emph{\{"beauty"\}} and \emph{\{"dress"\}} itemsets with support and lift values 1.0 for all genders on the bottom of the figures. These values suggest that every single vote transaction in this contest has contained these itemsets. The reason behind this observation is that all of the participants' images had these labels. Therefore, inevitably all of the vote transactions picked up these itemsets and every vote in the contest has full support towards them. Such values do not show any significant meaning and therefore are excluded from the rest of the figures.
 
 \begin{figure}[]
     \begin{center}
         \includegraphics[width=1.2\textwidth,center]{Images/itemset_supports-gender-Miss_Helsinki-1_itemset.png}
         \includegraphics[width=1.2\textwidth,center]{Images/itemset_lifts-gender-Miss_Suomi-1_itemsets.png}
-        \caption{The 1-itemset supports (top) and genders (bottom) in the Miss Suomi 2017 contest by genders (all itemsets are displayed ordered by the variance of the values).}
+        \caption{The 1-itemset supports (top) and lifts (bottom) in the Miss Suomi 2017 contest by genders (all itemsets are displayed ordered by the variance of the values).}
         \label{itemset_supports-gender-Miss_Helsinki-1_itemset}
     \end{center}
 \end{figure}
@@ -165,67 +165,59 @@ Encouraging the users in the future to provide more information would allow to d
 % ---------------------------- END OF COUNTRY ANALYSIS ---------------------------- 
 % ---------------------------- BEGIN OF 2-ITEMSETS ---------------------------- 
 \pagebreak
-\subsubsection{2-itemsets}
+% \subsubsection{Multi-item itemsets}
 
 The next step of the Association Analysis covers the investigation on k-itemsets, where the \emph{k}-value is higher than 1. Figure \ref{itemset_supports-gender-Miss_Helsinki-2_itemset} displays the support values for the 2-itemsets by genders. To enhance the readability of the figure, only the first 15 values are shown. 
 
 \begin{figure}[h] 
     \begin{center}
         \includegraphics[width=1.2\textwidth,center]{Images/itemset_supports-gender-Miss_Helsinki-2_itemset.png}
-        \caption{The 2-itemset supports in the Miss Suomi 2017 contest by genders (only the first 15 itemsets are displayed ordered by variance).}
+        \caption{The 2-itemset supports in the Miss Suomi 2017 contest by genders (only the first 15 itemsets are displayed, ordered by variance).}
         \label{itemset_supports-gender-Miss_Helsinki-2_itemset}
     \end{center}
 \end{figure}
 
-One point to note on Figure \ref{itemset_supports-gender-Miss_Helsinki-2_itemset} is the behavior of the 1-itemsets, which had support of 1.0 on their own (\emph{\{"beauty"\}} and \emph{\{"dress"\}}, Figure \ref{itemset_supports-gender-Miss_Helsinki-1_itemset}). When these itemsets are paired with other itemsets, the support of the union is guaranteed to be the support of the set alongside. This implies also that any 1-itemset combined together with such itemsets has no impact on the support value. Therefore, 2-itemsets which include such label (that appears on all of the images) are non-informative and should be hidden. Another possibility is to study the lift instead of the support value, which in such cases can tell more about the value of such combinations.
-
 % closed frequent itemsets
-Another important observation to make is the identicality of the 2-itemsets, where \emph{"photograph"} is present. This is due to the fact that all of the pairing itemset \emph{Y} (i.e. \emph{\{"beauty"\}, \{"sea"\}, \{"photo shoot"\}} etc.) are always present on images, where \emph{"photograph"} is present. In other words, the confidence \emph{C("photograph"|Y) = 1.0}, where \emph{Y} is the itemset next to \emph{"photograph"}. This is also known as a Closed Fequent Itemset phenomena \cite{introtodatamining}. Closed, because the data contains no superset that has the same support value as this original itemset and frequent, because the itemset's support exceeds the \emph{minsup} threshold \cite{introtodatamining}. For this reason, when discussing 2-itemsets, this issue may arise and provide identical support values for some combinations. When the complete list of 2-itemsets is plotted, the same observation can be made for many other itemsets, such as \emph{\{"bride"\}}, \emph{\{"shoulder"\}}, \emph{\{"body of water"\}}, etc. To address this issue, such closed itemsets could be merged and analyzed together, which is done in this case. 
+An important observation to make is the identicality of the 2-itemsets, where \emph{"photograph"} is present. This is due to the fact that all of the pairing itemset \emph{Y} (i.e. \emph{\{"beauty"\}, \{"sea"\}, \{"photo shoot"\}} etc.) are always present on images, where \emph{"photograph"} is present. In other words, the confidence \emph{C("photograph"|Y) = 1.0}, where \emph{Y} is the itemset next to \emph{"photograph"}. This is known as a Closed Frequent Itemset phenomena \cite{introtodatamining}. Closed, because the data contains no superset that has the same support value as this original itemset and frequent, because the itemset's support exceeds the \emph{minsup} threshold \cite{introtodatamining}. For this reason, when discussing 2-itemsets, this issue may arise and provide identical support values for some combinations. When the complete list of 2-itemsets is plotted, the same observation can be made for many other itemsets, such as \emph{\{"bride"\}}, \emph{\{"shoulder"\}}, \emph{\{"body of water"\}}, etc. 
 
 % address the problem of closed itemsets
+To address this issue, such closed itemsets are merged and analyzed together. In the above example (Figure \ref{itemset_supports-gender-Miss_Helsinki-2_itemset}, itemsets with \emph{\{"photograph"\}}), the identical 2-itemsets are merged into a single itemset, such that it contains \emph{\{"photograph", "beauty", "photo shoot", "gown", ..., "woman"\}}. This way the combined itemset has 10 items in overall. This is done repeatedly for all Closed Frequent 2-itemsets. The support and the lift values are then calculated for the resulting itemsets. For the sake of similicity and interestingness, the support values are not displayed here. Figure \ref{itemset_lifts-gender-Miss_Suomi-multi_itemsets} displays the lift values for genders. Similar results for age groups are listed in the appendices but are not analyzed in the paragraphs to follow.
 
-There is a total number of 150 2-itemsets in the image labels of the Miss Suomi contest, which is hard to analyze for the human eye. This number grows further with number of items in the set. To tackle this problem, itemsets with more than 1 item are not investigated the same way. Instead, the Co-Clustering approach is applied on the data to identify itemsets, that appear similar to eachother in their support. The details on this analysis and the results are explained in the next chapter. 
+\begin{figure}[]
+    \begin{center}
+        \includegraphics[width=1.2\textwidth,center]{Images/itemset_lifts-gender-Miss_Suomi-multi_itemsets+markup.png}
+        \caption{The multi-item itemset lifts in the Miss Suomi 2017 contest by genders (all itemsets are displayed ordered by the variance of the values).}
+        \label{itemset_lifts-gender-Miss_Suomi-multi_itemsets}
+    \end{center}
+\end{figure}
+
+The results show that the lift values for females tend to be higher than the other groups in many cases. These suggests high interest towards the topics that appear in the itemsets compared to the rest of the groups. Such itemsets are marked with a blue * mark on the left side of the figure. As the number of items in the itemsets varies, these often share similarities, but they also describe certain topics. For instance, it can be seen that the items in the sets are telling about a lady wearing some sort of wedding/bridal dress. In other words, the items which explain the dress as such are more dominant and appear accross multiple itemsets. 
+
+Other itemsets show more attraction from male voters. These are marked with an orange \^ on the left side of the figure. In contrast, these itemsets describe not the dress as much as the model on the image and the background (sea, sky). It can be hence speculated that female voters might relate to the dress and the model (maybe think about themselves as being the models wearing the dress), while male voters might focus on the setting and the model in the image more.
+
+Another interesting observation is that male voters' lift rarely goes to extremes, but usually is around the value of 1.0 in most cases. In contrast, the lift for the female group goes to extremes in both end for many more itemsets. This may suggest that females follow more of a specialist approach than males, who are more generalists. Based on these results it seems, that females are strongly engaged towards certain topics in this contest while males are engaged accross multiple topics which appear in the contestants' images.
+
+% Another observation to be made on Figure \ref{itemset_supports-gender-Miss_Helsinki-2_itemset} is the behavior of the 1-itemsets, which had support of 1.0 on their own (\emph{\{"beauty"\}} and \emph{\{"dress"\}}, Figure \ref{itemset_supports-gender-Miss_Helsinki-1_itemset}). When these itemsets are paired with other itemsets, the support of the union is guaranteed to be the support of the set alongside. This implies also that any 1-itemset combined together with such itemsets has no impact on the support value. Therefore, 2-itemsets which include such label (that appears on all of the images) are non-informative and should be hidden. Another possibility is to study the lift instead of the support value, which in such cases can tell more about the value of such combinations.
+
+% There is a total number of 150 2-itemsets in the image labels of the Miss Suomi contest, which is hard to analyze for the human eye. This number grows further with number of items in the set. To tackle this problem, itemsets with more than 1 item are not investigated the same way. Instead, the Co-Clustering approach is applied on the data to identify itemsets, that appear similar to eachother in their support. The details on this analysis and the results are explained in the next chapter. 
 
 % ---------------------------- BEGIN OF SYSTEM-LEVEL ---------------------------- 
+The final part of the Association Analysis has taken a look at itemset supports and lifts on the system level. That is, all of the vote transactions from contests with 100 unique voters were extracted from the system. This is the same dataset, which was used for the major part of the EDA in Chapter \ref{section::exploratory-data-analysis}, containing a total of 166808 votes over 81 contests. 
 
-The second part of the Association Analysis studies the itemset supports on the system level. The paragraphs to follow are dedicated to explain the findings, when this method is applied to a larger set of vote transactions composed from contests, which have engaged over 100 unique voters. This is the same dataset, which was used for the major part of the EDA in Chapter \ref{section::exploratory-data-analysis}. 
+The biases in the data become appearent when the votes are studied on the system level. Most of the itemsets reflect on the great majority of "beauty" and "fashion" category contests, as itemsets such as \emph{\{"model"\}, \{"beauty"\}, \{"photo shoot"\}, \{"shoulder"\}} etc. From the itemset supports it seems that all of the itemsets were extracted from contests of these two category, as they clearly describe concepts that appear in such contests. This observation also supports the previous finding, that mainly contests in these categories were hosted in the platform with great success.
 
-On the figures to follow the itemsets are ordered by the sum of the supports instead of their variance. This way the itemsets that have the highest overall support among demographic groups are extracted.
+While studying the results it was identified, that the \emph{not\_chosen} group has considerably higher support over males and females in many cases. This can be explained by the fact that many users (49.82 \%) did not provide their gender information on their profile, which yields in a much higher number of observations (vote transactions) for users whose gender is unknown. 46.4 \% (77416 observations) from the the vote transactions were received from users with unknown gender. Likewise, only 27 \% (44918 observations) of the votes were received from females and 26.6 \% (44407 observations) from males. Similar observations can be made for the age group values, where 67 \% of the voters have not filled their age. 
 
-The results are shown on the figures below by gender (Figure \ref{itemset_supports-gender-all_contests-1_itemset}) for the 1-itemsets. The itemsets on the left side of the figure reflect on the great majority of "beauty" and "fashion" contests, as it was shown on Figure \ref{contests_over_categories} in Chapter \ref{section::exploratory-data-analysis}. It can be easily seen that all of the itemsets were extracted from contests of these two category, as they clearly describe concepts that appear in such contests. This observation also supports the previous finding, that mainly contests in these categories were hosted in the platform with great success.
-
-\begin{figure}[h] 
-    \begin{center}
-        \includegraphics[width=1.2\textwidth,center]{Images/itemset_supports-gender-all_contests-1_itemset.png}
-        \caption{The 1-itemset supports in all contests by genders (only the first 15 itemsets are displayed ordered by sum of the support values).}
-        \label{itemset_supports-gender-all_contests-1_itemset}
-    \end{center}
-\end{figure}
-
-Gender differences can be analyzed for the 1-itemsets on the system-level as well. For instance, males appear to have higher support towards the labels \emph{\{"model"\}, \{"supermodel"\}} and \emph{\{"muscle"\}}. This can mean that males tend to prefer contestants more with these traits even in multiple contests. Likewise, female voters have higher support value towards \emph{\{"human\:hair\:color"\}, \{"girl"\}, \{"shoulder"\}} and \emph{\{"beauty"\}}, which can mean that for them the aesthetic and potentially artistic appearance of the contender is appreciated more. 
-
-It is interesting to observe, that the \emph{not\_chosen} group has considerably higher support over males and females in many cases. This can be explained by the fact that many users (49.82 \%) did not provide their gender information on their profile, which yields in a much higher number of observations (vote transactions) for users whose gender is unknown. 
-
-In particular, 46.4 \% (77416 observations) from the the vote transactions were received from users with unknown gender. Likewise, only 27 \% (44918 observations) of the votes were received from females and 26.6 \% (44407 observations) from males. While this problem did not emerge on a single-contest level, when looking at all transactions, it becomes apparent. It could be assumed, that the distribution of the two genders is equal in this group, however there is no proof on this claim. 
-
-Finally, all of the itemsets with more than 2 items are extracted from the system. The aim here is to identify itemsets with high support in pairs, which correspond to higher attractiveness when they appear on images together. Figure \ref{itemset_supports-gender-all_contests-over2_itemset} displays the results. It can be seen, that many of the itemsets are highly supported by the \emph{not\_chosen} user group. The reasons behind this are explained above, nevertheless the tendencies towards attractive itemsets can be observed based on this data as well. It can be seen that the \emph{"{model}"} and the \emph{"{shoulder}"} 1-itemsets often appears as a subset of various itemsets. Furthermore, contestants whose clothes are more revealing towards skin and upper body are more attractive to users. Similarly to previous findings, rather than describing the background, the itemsets on the system level are also more focused on the object of the images. 
-
-\begin{figure}[h] 
-    \begin{center}
-        \includegraphics[width=1.2\textwidth,center]{Images/itemset_supports-gender-all_contests-over2_itemset.png}
-        \caption{The k-itemset supports in all contests by genders, where $k \geq 2$ (only the first 15 itemsets are displayed ordered by sum of the support values).}
-        \label{itemset_supports-gender-all_contests-over2_itemset}
-    \end{center}
-\end{figure}
+It can be therefore seen that the sample size of the \emph{not\_chosen} gender and age group is dominant in the system-wide data. This creates a bias in the support values as the data for these group is more representative than for others. While this problem did not emerge on a single-contest level, when looking at all transactions, it becomes apparent. It could be assumed, that the distribution of the two genders is equal in this group, however there is no proof on this claim. For these reasons, strong claims and concrete findings are harder to derive from this data due to the bias explained above. The system-level data is therefore not analyzed, however some of the extracted figures are displayed in the appendices. 
 
 \subsection{Co-Clustering}
-The chosen Co-Clustering algorithm (Chapter \ref{section::methodology}) first was executed on a smaller set of 2-itemsets in the Miss Suomi 2017 contest. In this analysis, the \emph{minsup} value was set to $0.4$ to focus only on the itemsets with higher support. This was done in order to first understand and demonstrate how the algorithm works in a smaller scale, similarly as it was done in the previous chapters. Then the method was applied on the Miss Suomi 2017 contest as well as on the system level for all itemset sizes in both cases with the \emph{minsup} value of $0.05$. Various number of clusters was tried out with various observations depending on the dataset size and the demographic groups being analyzed. The results are explained in the paragraphs to follow. 
+The chosen Co-Clustering algorithm (Chapter \ref{section::methodology}) first was executed on a smaller set of 2-itemsets in the Miss Suomi 2017 contest. In this analysis, the \emph{minsup} value was set to 0.4 to focus only on the itemsets with higher support. This was done in order to first understand and demonstrate how the algorithm works in a smaller scale, similarly as it was done in the previous chapters. Then the method was applied on the Miss Suomi 2017 contest as well as on the system level for all itemset sizes in both cases with the \emph{minsup} value of 0.05. Various number of clusters was tried out with various observations depending on the dataset size and the demographic groups being analyzed. The results are explained in the paragraphs to follow. 
 
 First, a smaller set of itemsets in the Miss Suomi 2017 are chosen for a more careful analysis. The filtering by support here is done by first collecting the support values of the 2-itemsets for genders and age groups (same way it was done during the Association Analysis, shown on Figure \ref{itemset_supports-gender-Miss_Helsinki-2_itemset}). Then all of the itemsets were dropped, where the highest value did not exceed the $0.4$ \emph{minsup} threshold. This way 54 instances of 2-itemsets remain in the dataset.
 
 Next, the matrix of the itemsets is plotted on the left side of Figure \ref{coclustering_miss-suomi-genders-2-itemsets-04_support}. The colors correspond to the support of the itemset: the lighter values indicate smaller, the darker blue colors indicate higher support values. It can be seen that for instance the \emph{\{"dress", "beauty"\}} has high, while the \emph{\{"sky", "sea"\}} considerably low support among the demographic groups. The left side of the figure is not organized in any way, hence there is no pattern in how the colors appear in the chart. 
 
-\begin{figure}[h] 
+\begin{figure}[] 
     \begin{center}
         \includegraphics[width=1.2\textwidth,center]{Images/coclustering_miss-suomi-genders-2-itemsets-04_support.png}
         \caption{The results of the Co-Clustering in the Miss Suomi 2017 contest for 2-itemsets over 0.4 support with 4 clusters by genders. Left: the itemsets before clustering; Right: the itemsets after clustering.}
@@ -241,7 +233,7 @@ If clusters are looked at from the aspect of the itemsets, it can be concluded w
 
 Figure \ref{coclustering_miss-suomi-age_group-2-itemsets-04_support} displays the results of the same analysis for age groups. When filtering the data this way, the amount of 2-itemsets rises to 76. As there are more transactions and demographic groups, the number of clusters was increased to 5 on this occasion. 
 
-\begin{figure}[h] 
+\begin{figure}[] 
     \begin{center}
         \includegraphics[width=1.2\textwidth,center]{Images/coclustering_miss-suomi-age_group-2-itemsets-04_support.png}
         \caption{The results of the Co-Clustering in the Miss Suomi 2017 contest for 2-itemsets over 0.4 support with 5 clusters by age groups. Left: the itemsets before clustering; Right: the itemsets after clustering.}

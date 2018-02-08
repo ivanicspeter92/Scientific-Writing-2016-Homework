@@ -11,6 +11,8 @@
 \usepackage{xcolor,colortbl}
 \usepackage[multiple]{footmisc}
 \usepackage{float}
+\usepackage{lscape}
+\usepackage{rotating}
 
 \begin{document}
 \onehalfspacing
@@ -86,4 +88,33 @@ The research papers in the field show various ways how user data can be used. Fo
 \lastpage
 \appendices
 \pagestyle{empty}
+
+\internalappendix{1}{Itemset supports over all contests}
+
+\begin{figure}[h] 
+    \begin{center}
+        \includegraphics[width=1.25\textwidth,center]{Images/itemset_supports-gender-all_contests-1_itemset.png}
+        \caption{The 1-itemset supports in all contests by genders (only the first 15 itemsets are displayed ordered by sum of the support values).}
+        % \label{itemset_supports-gender-all_contests-1_itemset}
+    \end{center}
+\end{figure}
+
+\begin{figure}[h] 
+    \begin{center}
+        \includegraphics[width=1.25\textwidth,center]{Images/itemset_supports-gender-all_contests-over2_itemset.png}
+        \caption{The k-itemset supports in all contests by genders, where $k \geq 2$ (only the first 15 itemsets are displayed ordered by sum of the support values).}
+        % \label{itemset_supports-gender-all_contests-over2_itemset}
+    \end{center}
+\end{figure}
+
+\clearpage
+\internalappendix{2}{Multi-item itemset lifts in Miss Suomi 2017 by age groups}
+\begin{figure}[h]
+    \begin{center}
+        \includegraphics[width=1.25\textwidth,center]{Images/itemset_lifts-age_groups-Miss_Suomi-multi_itemsets.png}
+        \caption{The multi-item itemset lifts in the Miss Suomi 2017 contest by age groups (the first 20 itemsets are displayed ordered by the variance of the values).}
+        % \label{itemset_lifts-age_groups-Miss_Suomi-multi_itemsets}
+    \end{center}
+\end{figure}
+
 \end{document}
