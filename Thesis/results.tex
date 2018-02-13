@@ -12,8 +12,8 @@ This chapter presents the results achieved by the chosen methods introduced in C
         \begin{tabular}{l|c}
             \textbf{Measure} & \textbf{Value} \\
             \hline
-            Mean & 447.70 \\
-            Standard deviation & 2992.05 \\
+            Mean & 447 \\
+            Standard deviation & 2992 \\
             Min & 0 \\
             25th percentile & 1 \\
             Median (50th percentile) & 3 \\
@@ -26,7 +26,7 @@ This chapter presents the results achieved by the chosen methods introduced in C
     
     For this reason, contests with less than 100 unique voters are excluded in the remainder of the analysis, because such observations are not representative. This dataset contains 166808 vote transactions by 145000 users over 81 contests, 1113 contest participants and 432 labels on the images recognized by Google Vision. For the remainder of the EDA, this filtered dataset is used.
 
-    Figure \ref{user_engagement_in_contests-pruned} displays the same distribution for the filtered set of contests. In this figure contests with more voters are more apparent. The highest number of unique voters is close to 55 000 in one of the contests, the mean value ($\mu$ = 455.43) and the standard deviation ($\sigma$ = 2992.05). These numbers mean that there is a large variance in the amount of engaged users in contests. From the data it cannot be clearly said which traits make a contest more attractive to users. Presumably the marketing activities done by the contest's organizers have strong impact on the size of the engaged audience. For instance news agencies have an established customer base already, who was supposedly targeted by these contests via the web widget (Chapter \ref{section::introduction-to-the-choicely-voting-platform}) of Choicely. 
+    Figure \ref{user_engagement_in_contests-pruned} displays the same distribution for the filtered set of contests. In this figure contests with more voters are more apparent. The highest number of unique voters is close to 55 000 in one of the contests, the mean value ($\mu$ = 2525) and the standard deviation ($\sigma$ = 6804). These numbers mean that there is a large variance in the amount of engaged users in contests. From the data it cannot be clearly said which traits make a contest more attractive to users. Presumably the marketing activities done by the contest's organizers have strong impact on the size of the engaged audience. For instance news agencies have an established customer base already, who was supposedly targeted by these contests via the web widget (Chapter \ref{section::introduction-to-the-choicely-voting-platform}) of Choicely. 
     
     The boxplot on the right side of the figure uses the 95 percentile (around 5200 unique voters), above which the outliers can be seen. It can be also seen that the most of the contests engage 260-2600 unique voters (as described by the first and the third quartiles). There are 6 large contests, from which the biggest have engaged 54684 voters. 
 
@@ -38,7 +38,7 @@ This chapter presents the results achieved by the chosen methods introduced in C
         \end{center}
     \end{figure}
     
-    The six large contests are worth investigating a bit more closely. Four \footnote{\url{https://choicely.com/contest/5ca98554-0f7d-11e7-9f0c-6f102a54d68d}}\footnote{\url{https://choicely.com/contest/fb112461-9000-11e6-9e28-87ebd7a21d0d}}\footnote{\url{https://choicely.com/contest/7425566e-8c8e-11e6-b8ce-2147b021362f}}\footnote{\url{https://choicely.com/contest/164f52c7-9df8-11e7-b3c9-d1a0f88250ad}}
+    The six large contests are worth investigating a bit more closely. Four\footnote{\url{https://choicely.com/contest/5ca98554-0f7d-11e7-9f0c-6f102a54d68d}}\footnote{\url{https://choicely.com/contest/fb112461-9000-11e6-9e28-87ebd7a21d0d}}\footnote{\url{https://choicely.com/contest/7425566e-8c8e-11e6-b8ce-2147b021362f}}\footnote{\url{https://choicely.com/contest/164f52c7-9df8-11e7-b3c9-d1a0f88250ad}}
     out of the six large contests were beauty pageants, labeled with the categories of "beauty", "fashion" and "entertainment". The two other contests\footnote{\url{https://choicely.com/contest/50819173-f838-11e6-b171-b949f18a4d21}}\footnote{\url{https://choicely.com/contest/4257ea9c-3e21-11e7-84ec-5f5a9bcfd190}}
     are listed only in the "other" category, which is certainly a mistake. By looking at the latter two contests, it can be easily seen that they would better belong to the "entertainment" and "sports" category. In each of the contests, the contest participants were people: either sportsmen, celebrities or beauty queens/kings. It is interesting that none of the large contests have had objects, places or other intangibles as contest participants, although the platform has seen many of such participants previously. 
 
@@ -66,16 +66,16 @@ This chapter presents the results achieved by the chosen methods introduced in C
             \begin{tabular}{l|c|c|c|c|c}
                 \textbf{Contest category} & \textbf{Sum of unique voters} & \textbf{Mean of unique voters} & \textbf{Median of unique voters} & \textbf{Standard deviation of unique voters} \\
                 \hline
-                beauty & 135866 & 3996.06 & 1482.00 & 9854.14 \\
-                other & 61455 & 1807.50 & 1240.50 & 1831.40 \\
-                entertainment & 161233 & 5374.43 & 1728.50 & 11772.68 \\
-                sports & 15220 & 634.17 & 299.00 & 757.83 \\
-                fashion & 75872 & 4742.00 & 874.00 & 12972.72 \\
-                travel & 4451 & 1483.67 & 409.00 & 1719.40 \\
-                humor & 1367 & 683.50 & 683.50 & 274.50 \\
-                food & 767 & 767.00 & 767.00 & 0.00 \\
-                danger & 958 & 958.00 & 958.00 & 0.00 \\
-                games & 164 & 164.00 & 164.00 & 0.00
+                beauty & 135866 & 3996 & 1482 & 9854 \\
+                other & 61455 & 1807 & 1240 & 1831 \\
+                entertainment & 161233 & 5374 & 1728 & 11772 \\
+                sports & 15220 & 634 & 299 & 757 \\
+                fashion & 75872 & 4742 & 874 & 12972 \\
+                travel & 4451 & 1483 & 409 & 1719 \\
+                humor & 1367 & 683 & 683 & 274 \\
+                food & 767 & 767 & 767 & 0 \\
+                danger & 958 & 958 & 958 & 0 \\
+                games & 164 & 164 & 164 & 0
             \end{tabular}
         \end{adjustbox}
         \caption{The basic statistical measures of unique voters for each contest category.}
@@ -118,7 +118,7 @@ It is interesting to investigate, why all of the images contained these two labe
 
 Figure \ref{itemset_supports-age_group-Miss_Helsinki-1_itemset} provides a good possibility also to compare gender differences. For instance, the support \emph{S(X=\{"model"\}|gender=female)=0.45} is considerably high than its male counterpart \emph{S(X=\{"model"\}|gender=male) = 0.26}. The lift values in this instance are \emph{L(X=\{"model"\}|gender=female) = 2.25} and \emph{L(X=\{"model"\}|gender = male) = 1.30}. Similar observation can be made for the \emph{\{"fashion model"\}} itemset, which suggests correlation between these two labels. This suggests two findings: the label "(fashion) model" appears to be more attractive to female voters compared to males and the presence of model in an image makes participants more appealing to all genders, but especially females. 
 
-Similarly, the \emph{\{"photo shoot\}, \{"sea"\}, \{"gown"\}} and \emph{\{"wedding"\}} itemsets have higher support in case of female voters. This may suggest that females are more likely to vote on images, where the object (the model and the dress) is put more into focus. The lift values however reveal, that the interest for \emph{\{"sea"\}, \{"gown"\}} and \emph{\{"photo shoot\}} higher for all groups, which proposes the presence of sea in the background increases the number of votes. 
+Similarly, the \emph{\{"photo shoot"\}, \{"sea"\}, \{"gown"\}} and \emph{\{"wedding"\}} itemsets have higher support in case of female voters. This may suggest that females are more likely to vote on images, where the object (the model and the dress) is put more into focus. The lift values however reveal, that the interest for \emph{\{"sea"\}, \{"gown"\}} and \emph{\{"photo shoot"\}} higher for all groups, which proposes the presence of sea in the background increases the number of votes. 
 
 Another curious thing to note is the lift values of the \emph{\{"summer", "cloud", "beach"\}} itemsets, which are lower than 1.0 for both males and females. This observarion may suggest that having these in the background of the image is less attractive compared to the sea as background. Furthermore, \emph{\{"wedding"\}} has lift value less than 1.0 for genders other than females, which suggests less interest for this topic.  
 
