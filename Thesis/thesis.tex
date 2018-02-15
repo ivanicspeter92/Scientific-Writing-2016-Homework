@@ -18,9 +18,6 @@
 \onehalfspacing
 
 \title{Analysis of audience engagement and expressed opinion with Data Mining}
-% \title{User data analysis with Data Mining techniques}
-% \title{Discovering the public's engagement and opinion with Data Mining}
-% \title{User data and audience engagement analysis with Data Mining - the case of the Choicely voting platform}
 \author{P\'eter Ivanics}
 
 \date{\today}
@@ -92,17 +89,15 @@ Results show that beauty, sport and entertainment contests have a long history a
 
 \begin{figure}[h] 
     \begin{center}
-        \includegraphics[width=1.25\textwidth,center]{Images/itemset_supports-gender-all_contests-1_itemset.png}
+        \includegraphics[width=1\textwidth,center]{Images/itemset_supports-gender-all_contests-1_itemset.png}
         \caption{The 1-itemset supports in all contests by genders (only the first 15 itemsets are displayed ordered by sum of the support values).}
-        % \label{itemset_supports-gender-all_contests-1_itemset}
     \end{center}
 \end{figure}
 
 \begin{figure}[h] 
     \begin{center}
-        \includegraphics[width=1.25\textwidth,center]{Images/itemset_supports-gender-all_contests-over2_itemset.png}
+        \includegraphics[width=1\textwidth,center]{Images/itemset_supports-gender-all_contests-over2_itemset.png}
         \caption{The k-itemset supports in all contests by genders, where $k \geq 2$ (only the first 15 itemsets are displayed ordered by sum of the support values).}
-        % \label{itemset_supports-gender-all_contests-over2_itemset}
     \end{center}
 \end{figure}
 
@@ -112,7 +107,6 @@ Results show that beauty, sport and entertainment contests have a long history a
     \begin{center}
         \includegraphics[width=1.25\textwidth,center]{Images/itemset_lifts-age_groups-Miss_Suomi-multi_itemsets.png}
         \caption{The multi-item itemset lifts in the Miss Suomi 2017 contest by age groups (the first 20 itemsets are displayed ordered by the variance of the values).}
-        % \label{itemset_lifts-age_groups-Miss_Suomi-multi_itemsets}
     \end{center}
 \end{figure}
 
@@ -126,39 +120,38 @@ Results show that beauty, sport and entertainment contests have a long history a
         \toprule
         \textbf{Contest title} & \textbf{\emph{L(\{"model"\}|gender=female)}} & \textbf{\emph{S(\{"model"\}|gender=male)}} & \textbf{\emph{S(\{"model"\}|gender=not\_chosen)}} \\
         \midrule
-                                  Miss Hameenlinna &  1.000000 &  1.083333 &    0.950000 \\
-                             Miss Photogenic Award &  0.892308 &  0.902564 &    1.025641 \\
-                     Garota Fitness Sao Paulo 2016 &  1.205882 &  1.367647 &    1.367647 \\
-                     Garoto Fitness Sao Paulo 2016 &  0.580000 &  0.507500 &    0.580000 \\
-                                      MISS USSR UK &  1.067586 &  1.178793 &    0.911897 \\
-                                 Miss Tampere 2017 &  1.220000 &  1.120000 &    1.020000 \\
-                                 Miss Tampere 2016 &  1.050000 &  1.350000 &    1.400000 \\
-                                   Miss Reval 2017 &  0.845714 &  0.891429 &    0.857143 \\
-                         Miss Fitness Finland 2017 &  1.000000 &  1.000000 &    1.000000 \\
-                               Miss Plus Size 2017 &  0.720000 &  0.810000 &    0.720000 \\
-                                Miss Helsinki 2018 &  1.000000 &  1.000000 &    1.000000 \\
-                                Miss Helsinki 2017 &  1.000000 &  1.000000 &    1.000000 \\
-                         Miss Helsinki 2017 Casall &  1.152000 &  1.140000 &    1.164000 \\
-                Zvezdnica z najlep?o obleko... &  3.000000 &  1.590000 &    0.990000 \\
-                                       Hippie look &  1.733333 &  0.900000 &    1.200000 \\
-                                   Miss Suomi 2016 &  1.000000 &  1.000000 &    1.000000 \\
-                                Miss Ylajarvi 2016 &  1.000000 &  1.000000 &    1.000000 \\
-                        Fitness Cover Girl Lokakuu &  0.800000 &  0.883333 &    0.666667 \\
-                                   Miss Nokia 2017 &  0.964286 &  0.900000 &    1.144286 \\
-                        Miss Universe Australia... &  0.960000 &  0.880000 &    0.720000 \\
-                         Mr. CASED 2017 Candidates &  1.080000 &  0.630000 &    0.990000 \\
-                         Ms. CASED 2017 Candidates &  0.800000 &  0.826667 &    0.400000 \\
-                       Sunny's suosikkiasukilpailu &  0.570000 &  0.960000 &    0.810000 \\
-                                Miss Helsinki 2016 &  1.271429 &  1.328571 &    1.285714 \\
-                          Miss Universe Malta 2017 &  1.000000 &  1.000000 &    1.000000 \\
+                                  Miss Hameenlinna &  1.00 &  1.08 &    0.00 \\
+                             Miss Photogenic Award &  0.89 &  0.90 &    1.41 \\
+                     Garota Fitness Sao Paulo 2016 &  1.20 &  1.36 &    1.47 \\
+                     Garoto Fitness Sao Paulo 2016 &  0.58 &  0.50 &    0.00 \\
+                                      MISS USSR UK &  1.06 &  1.17 &    0.97 \\
+                                 Miss Tampere 2017 &  1.22 &  1.12 &    1.00 \\
+                                 Miss Tampere 2016 &  1.05 &  1.35 &    1.00 \\
+                                   Miss Reval 2017 &  0.84 &  0.89 &    0.43 \\
+                         Miss Fitness Finland 2017 &  1.00 &  1.00 &    1.00 \\
+                               Miss Plus Size 2017 &  0.72 &  0.81 &    0.00 \\
+                                Miss Helsinki 2018 &  1.00 &  1.00 &    1.00 \\
+                                Miss Helsinki 2017 &  1.00 &  1.00 &    1.00 \\
+                         Miss Helsinki 2017 Casall &  1.15 &  1.14 &    1.00 \\
+                Zvezdnica z najlep?o obleko... &  3.00 &  1.59 &    0.00 \\
+                                       Hippie look &  1.73 &  0.90 &    1.00 \\
+                                   Miss Suomi 2016 &  1.00 &  1.00 &    1.00 \\
+                                Miss Ylajarvi 2016 &  1.00 &  1.00 &    1.00 \\
+                        Fitness Cover Girl Lokakuu &  0.80 &  0.88 &    0.67 \\
+                                   Miss Nokia 2017 &  0.96 &  0.90 &    1.86 \\
+                        Miss Universe Australia... &  0.96 &  0.88 &    0.00 \\
+                         Mr. CASED 2017 Candidates &  1.08 &  0.63 &    0.00 \\
+                         Ms. CASED 2017 Candidates &  0.80 &  0.82 &    0.00 \\
+                       Sunny's suosikkiasukilpailu &  0.57 &  0.96 &    0.00 \\
+                                Miss Helsinki 2016 &  1.27 &  1.32 &    1.14 \\
+                          Miss Universe Malta 2017 &  1.00 &  1.00 &    1.00 \\
         \bottomrule
-        \textbf{Mean} & 1.076502 & 1.009994 & 0.968120 \\
-        \textbf{Standard deviation} & 0.463253 & 0.232794 & 0.233759
+        \textbf{Mean} & 1.08 & 1.01 & 0.97 \\
+        \textbf{Standard deviation} & 0.46 & 0.23 & 0.23
     \end{tabular}
     \end{adjustbox}
     \caption{The lift values for the \emph{\{"model"\}} itemset over all contests of its appearance (except Miss Suomi 2017)}.
     \label{model_itemset_lift_observations}
 \end{table}
-
 
 \end{document}
