@@ -45,7 +45,7 @@ Deriving from this, the supports for each itemset can be calculated, that is the
     s(X) = \frac{\sigma (X)}{N}
 \end{equation}
 
-where \emph{N} is the number of transactions. In this thesis work, vote transactions are filtered by demographic groups \emph{G} and the support \emph{S(X|G)} is calculated. For instance, by calculating \emph{S(X|gender = male)} one can obtain the itemset supports for males in a given list of vote transactions. The extraction of the itemset supports is achieved using the Apriori algorithm, which addresses the complexity growth of itemsets during their generation \cite{introtodatamining}. 
+where \emph{N} is the number of transactions. In this thesis work, vote transactions are filtered by demographic groups \emph{G} and the support \emph{S(X|G)} is calculated. For instance, by calculating \emph{S(X|gender = male)} one can obtain the itemset supports for males in a given list of vote transactions. Note that other researches might use the term confidence for studying association rules, but the present study consistenly uses the term of support with this meaning. The extraction of the itemset supports is achieved using the Apriori algorithm, which addresses the complexity growth of itemsets during their generation \cite{introtodatamining}. 
 
 The calculated support values can be studied further such that the tendencies in voting among demographic groups can be compared (RQ3). To answer RQ3, the next task is to seek significant differences or interesting similarities in the itemset support values of demographic groups. There are two challenges with this goals: 
 
