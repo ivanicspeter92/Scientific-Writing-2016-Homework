@@ -195,7 +195,7 @@ The results show that the lift values for females tend to be higher than the oth
 
 Other itemsets show more attraction from male voters. These are marked with an orange \^ on the left side of the figure. In contrast, these itemsets describe not the dress as much as the model on the image and the background (sea, sky). It can be hence speculated that female voters might relate to the dress and the model (maybe think about themselves as being the models wearing the dress), while male voters might focus on the setting and the model in the image more.
 
-Another interesting observation is that male voters' lift rarely goes to extremes, but usually is around the value of 1.0 in most cases. In contrast, the lift for the female group goes to extremes in both end for many more itemsets. This may suggest that females follow more of a specialist approach than males, who are more generalists. Based on these results it seems, that females are strongly engaged towards certain topics in this contest while males are engaged accross multiple topics which appear in the contestants' images.
+Another interesting observation is that male voters' lift rarely goes to extremes, but usually is around the value of 1.0 in most cases. In contrast, the lift for the female group goes to extremes in both end for many more itemsets. This may suggest that females follow more of a specialist approach than males, who are more generalists. Another explanation behind this observation can be the fact that the male voters dominate the mean. This assumption is confirmed when the distribution of the genders is looked at: 66 \% (n=95) of the voters in this contest were males, while 33 \% (n=40) are females and 33 \% (n=41) did not provide gender information. Based on these results it seems, that females are strongly engaged towards certain topics in this contest while males are engaged accross multiple topics which appear in the contestants' images. 
 
 % Another observation to be made on Figure \ref{itemset_supports-gender-Miss_Helsinki-2_itemset} is the behavior of the 1-itemsets, which had support of 1.0 on their own (\emph{\{"beauty"\}} and \emph{\{"dress"\}}, Figure \ref{itemset_supports-gender-Miss_Helsinki-1_itemset}). When these itemsets are paired with other itemsets, the support of the union is guaranteed to be the support of the set alongside. This implies also that any 1-itemset combined together with such itemsets has no impact on the support value. Therefore, 2-itemsets which include such label (that appears on all of the images) are non-informative and should be hidden. Another possibility is to study the lift instead of the support value, which in such cases can tell more about the value of such combinations.
 
@@ -210,36 +210,91 @@ While studying the results it was identified, that the \emph{not\_chosen} group 
 
 It can be therefore seen that the sample size of the \emph{not\_chosen} gender and age group is dominant in the system-wide data. This creates a bias in the support values as the data for these group is more representative than for others. While this problem did not emerge on a single-contest level, when looking at all transactions, it becomes apparent. It could be assumed, that the distribution of the two genders is equal in this group, however there is no proof on this claim. For these reasons, strong claims and concrete findings are harder to derive from this data due to the bias explained above. The system-level data is therefore not analyzed, however some of the extracted figures are displayed in the appendices (Appendix 1 and Appendix 2). 
 
-\subsection{Co-Clustering}
-The chosen Co-Clustering algorithm (introduced in Chapter \ref{section::methodology}) was first executed on a smaller set of 1-itemsets in the Miss Suomi 2017 contest. The clustering is performed for the supports calculated for 22 itemsets for both genders and age groups. The results are presented in the pragraphs to follow only by age groups. The results by genders are not analyzed in this case because there were no significant findings identified from the results. This is mainly because the amount of data is smaller ($22*3=66$ values in the matrix) compared to the results by age groups ($22*8=176$ values in the matrix). 
 
-Figure \ref{coclustering_miss-suomi-age_groups-1-itemsets} displays the matrix of itemset supports before and after the Co-Clustering for 3 clusters. The records on the left side are not organized in any way, hence there is no pattern in how the colors appear on that side, while the right side shows similarities over rows closeby to eachother. Choosing the number of clusters was essentialy done by looking at the results and analyzing which k-value produces the most sensible results in this particular case. The colors correspond to the support of the itemset: the lighter values indicate smaller, the darker colors indicate higher support values. The clusters are circulated with different colors and displayed on the side and the bottom of the chart. 
+\subsection{Statistical significance}
+An important aspect of evaluating the results is the concern of statistical significance. Calculating the support and lift values in a single contest provides an idea on the engagement measures, however the differences among groups in these measures on their own do not indicate statistical relevance. Stated differently, even if the lift and support values differ for two groups of users, that may not mean that the difference is statistically representative.
 
-\begin{sidewaysfigure}[] 
+For this reason, the paragraphs to follow outline an approach towards evaluating the statistical significance in the comparison of the groups. In other words the following paragraphs present a way which can be used for the hypothesis testing on the behavioral differences of demographic groups in Choicely for itemsets. Some non-trivial challenges are also outlined as part of the discussion on this issue. 
+
+The testing approach is introduced thorugh an example from the results of the Association Analysis. The \emph{\{"model"\}} itemset is taken as an example. The values to be presented are all obtained using the data gathered in this Miss Suomi 2017 contest. The reason behind choosing this itemset as an example is that it was discussed already in the preceeding paragraphs and the demographic groups have shown interesting differences in this particular case.
+
+First the terms used and the null hypothesis are formulated. Let \emph{f(\{"model"\})} be the relative frequnecy of "model" and \emph{f(\{"model" | gender = g \})} is the relative frequency given that the voter's gender is \emph{g}. Let \emph{n} be the total number of votes, \emph{n(gender=g)} be the number of votes performed by voters in the \emph{g} gender. The number of "model" given that gender is male is binomially distributed under the null hypothesis. Using the gathered data, the above values are as follows:
+
+\begin{center}
+    $n=176$ \\
+    $n(gender=male)=95$, \\
+    $n(gender=female)=40$, \\
+    $n(gender=not\_chosen)=41$, \\
+    $f(\{"model"\})=\frac{52}{176}=0.3$, \\ % \frac{13}{44}=0.30$, \\
+    $f(\{"model"\}|gender=male)=\frac{25}{95}=0.26$, \\ % =\frac{5}{19}=0.26$, \\
+    $f(\{"model"\}|gender=female)=\frac{18}{40}=0.45$, \\ % \frac{9}{20}=0.45$, \\
+    $f(\{"model"\}|gender=not\_chosen)=\frac{9}{41}=0.21$ % =\frac{9}{41}=0.21$
+\end{center}
+
+Let the null hypothesis \emph{$H_0$} be that gender \emph{g} does not differ from others genders in terms of voting behavior, i.e. 
+
+\begin{center}
+    \emph{$H_0$: f(\{"model" | gender = g \}) = f(\{"model"\})}. 
+\end{center}
+
+Let the alternative hypothesis \emph{$H_1$} be that \emph{g} differs from other genders, i.e. 
+
+\begin{center}
+    \emph{$H_1$: f(\{"model" | gender = g \}) $\neq$ f(\{"model"\})}. 
+\end{center}
+
+Using the values above and the binomial testing method, a two-sided test is performed. The chosen significance level is set to \emph{$\alpha$ = 0.05}. The obtained p-values for all genders are as follows:
+
+\begin{center}
+    $p_{male}=0.50$, \\
+    $p_{female}=0.055$, \\
+    $p_{not\_chosen}=0.30$
+\end{center}
+
+As a conclusion it can be said, that none of the obtained p-values indicate strong enough proof to reject the null hypothesis in all cases. The studied groups in this particular case do not show statistically significant differences. The female group is however fairly close to the significance region. To provide a visual proof on this observation, Figure \ref{likelihood_distribution_females} displays the p-values over the number of votes on this itemset for females. It can be seen that the p-value at \emph{x=18} is just above the chosen level of significance.
+
+\begin{figure}[h]
     \begin{center}
-        \includegraphics[width=1.2\textwidth,center]{Images/coclustering_miss-suomi-age_groups-1-itemsets.png}
-        \caption{The results of the Co-Clustering in the Miss Suomi 2017 contest for 1-itemsets with 3 clusters by age groups. Left: the itemsets before clustering; Right: the itemsets after clustering.}
+        \includegraphics[width=0.75\textwidth]{Images/likelihood_distribution_females.png}
+        \caption{The p-values over the number of successes (votes) for the \emph{\{"model"\}} itemset in the Miss Suomi 2017 contest for the female group.}
+        \label{likelihood_distribution_females}
+    \end{center}
+\end{figure}
+
+The statistical significance evaluation faces further challenges and possibilities. It would be interesting to compare for example results of multiple contests. Due to the fact that contests may have different voting rules, this is rather difficult to compare contests to one another. On top of that, the issue of synonyms in the image labels may rise if votes over multiple contests are analyzed simultaneously. For example, a model can not be only a fashion model/beauty peagant, but also a 3-dimensional model of a building. The same labels therefore may apper over contests with different meaning, which is again not sensible to compare. Last but not least, the sample size is still too small to perform statistically significant analysis over multiple contests.
+
+\subsection{Co-Clustering}
+The chosen Co-Clustering algorithm (introduced in Chapter \ref{section::methodology}) was first executed on a smaller set of 1-itemsets in the Miss Suomi 2017 contest. The clustering is performed for the supports calculated for 22 itemsets for both genders and age groups. The results are presented in the pragraphs to follow only by age groups. The analysis on the results by genders are not presented because there were no significant findings identified. This is mainly because the amount of data is smaller (\emph{22*3=66} values in the matrix) compared to the results by age groups (\emph{22*8=176} values in the matrix). 
+
+Figure \ref{coclustering_miss-suomi-age_groups-1-itemsets} displays the matrix of itemset supports after the Co-Clustering for 3 clusters. Choosing the number of clusters was essentialy done by looking at the results and analyzing which k-value produces the most sensible results in this particular case. The colors correspond to the support of the itemset: the lighter values indicate smaller, the darker colors indicate higher support values. The clusters are circulated with different colors and displayed on the side and the bottom of the chart. 
+
+\begin{figure}[h] 
+    \begin{center}
+        \includegraphics[width=0.75\textwidth]{Images/coclustering_miss-suomi-age_groups-1-itemsets-3_clusters_cropped.png}
+        \caption{The results of the Co-Clustering in the Miss Suomi 2017 contest for 1-itemsets with 3 clusters by age groups.}
         \label{coclustering_miss-suomi-age_groups-1-itemsets}
     \end{center}
-\end{sidewaysfigure}
+\end{figure}
 
-As it can be seen from the contrast between the left and the right side of the figure, the clustering algoritm reorganized the rows of the matrix based on the patterns their values show. For instance, Cluster 3 contains the itemsets, which have high support values for most of the age groups. This cluster in particular contains the more engaging labels, which supports the findings of the Association Analysis. The itemsets are clustered together, because they have similar support values accross age groups. It can be also seen that these itemsets have similar contextual meaning, for instance lady, girl and bride. Therefore it is not much of a surprise, that their support values are similar and hence are in the same cluster.
+As it can be seen on the figure, the clustering algoritm organizes the rows of the matrix based on the patterns their values show. For instance, Cluster 3 contains the itemsets, which have high support values for most of the age groups. This cluster in particular contains the more engaging labels, which supports the findings of the Association Analysis. The itemsets are clustered together, because they have similar support values accross age groups. It can be also seen that these itemsets have similar contextual meaning, for instance lady, girl and bride. Therefore it is not much of a surprise, that their support values are similar and hence are in the same cluster.
 
 Cluster 2 in this case contains only 2 itemsets (\emph{\{"wedding"\}} and \emph{\{"model"\}}), which seemed to be the interest of the 45-54 age group. Similarly, Cluster 1 contains a list of itemsets, which show differences for the 55-64 group. These distinctions has became even more apparent when the algorithm was executed with 4 clusters: in this case the 65+ age group was grouped under its own cluster alone. Strong conclusions about these findigns cannot be made, however it seems that the clustering approach has the capability to reliably distinguish between the groups and itemsets, which show differences. The clustering may not be entirely correct and human revision might be needed, for instance the \emph{\{"bride"\}} itemset looks considerably different from the rest of the rows in Cluster 3.
 
 Figure \ref{coclustering_miss-suomi-age_groups-multi-itemsets-4_clusters} displays the results for the multi-item itemsets. These are the same itemsets, which were analyzed during Association Analysis (created by combining Frequent Closed Itemsets, Figure \ref{itemset_lifts-gender-Miss_Suomi-multi_itemsets}). For the same reasons as above, the Co-Clustering is performed on age groups rather than genders. The matrix of support values is clustered to 4 clusters. 
 
-\begin{sidewaysfigure}[] 
+\begin{figure}[] 
     \begin{center}
-        \includegraphics[width=1.2\textwidth,center]{Images/coclustering_miss-suomi-age_groups-multi-itemsets-4_clusters.png}
-        \caption{The results of the Co-Clustering in the Miss Suomi 2017 contest for multi-item itemsets with 4 clusters by age groups. Left: the itemsets before clustering; Right: the itemsets after clustering.}
+        \includegraphics[width=1\textwidth]{Images/coclustering_miss-suomi-age_groups-multi-itemsets-4_clusters_cropped.png}
+        \caption{The results of the Co-Clustering in the Miss Suomi 2017 contest for multi-item itemsets with 4 clusters by age groups.}
         \label{coclustering_miss-suomi-age_groups-multi-itemsets-4_clusters}
     \end{center}
-\end{sidewaysfigure}
+\end{figure}
 
 Cluster 2 contains most of the itemsets that are supported by all of the groups. The rest of the age groups are also assigned under cluster 2, where itemsets are generally have higher supports for all of the groups. It can be hence said that the itemsets in Cluster 2 are in the interest of generally all of the groups, while itemsets outside this are more specific to the interest of only some groups. This can be useful information to marketers, whose aim is to target one of these groups with certain content. Another useful aspect in this visualization is, that the itemsets with various supports can be distinguished easily based on the color's depth. Identifying itemsets that belong together is considerably easier on the right side of the figure as the Co-Clustering algorithm puts these close to eachother. 
 
 One of the most interesting observations in this case is that the age groups 35-44, 45-54 and 65+ are separated from the rest of the groups. This indicates that the interests of these groups are somewhat unique compared to the others. It can be also seen that the support values in groups 35-44 and 55-64 are considerably similar, not only in Cluster 3 but also outside of the clusters. It could be hence concluded, that some demographic groups follow a generalist, some others a specialist approach. In this particular case, users between the age of 0-34 are more specialists towards the itemsets in Cluster 2. Likewise, users from groups 55-64 and 65+ are unique, because some content (in clusters 1, 3 and 4) is engaging only to them. 
+
+It is interesting to see that some cells do not belong to any of the clusters according to the algorithm's outcome. This particular co-clustering method assumes a block-diagonal structure, which might not be the desired outcome in this case. Approximately half of the cells were unclustered in both cases above, which may not be the optimal solution in all cases. After seeing the results above it could be said, that this structure might not be the best solution to the problem of identifying the structure in the dataset. Some interpretations can be made intuitively, however a more sophisticated co-clustering approach could reveal more insights of the data.
 
 % It is interesting to see that there are many white "spots" in the matrix. In other words these are observations, where the support of the itemset for the particular age group is close to 0.0. For instance, there is quite many of such records in the 65+ age group. 
 
@@ -253,50 +308,3 @@ The majority of the itemsets (977 out of 1626) are assigned to the "not\_chosen"
 When the system-wide analysis is performed for age groups with the same settings, the results are as follows. Similarly to genders, the users whose age is unknown are grouped under their own specific cluster with most of the itemsets (888 out of 2332). However, it is interesting to observe that age groups 0-17, 18-24, 25-34 and 45-54 are grouped under the same cluster with 314 itemsets. Age group 35-44 has its own cluster with 578 items and the 55-65 and 65+ age groups are again clustered together with 551 itemsets. 
 
 It can be seen that there is a clear distinction between the younger and the older generation in the clustering. This finding suggests that the engaging content is different for these groups, while the middle-aged (34-54) users are somehow between them. The algorithm was executed with various number of clusters, but this behavior was always present. This observation further enhances the validity of this finding and suggests further investigation on the reasons in this area.
-
-\subsection{Statistical significance}
-An important aspect of evaluating the results is the concern of statistical significance. Naturally one sample contest from the whole dataset is not representative on its own, neither any results derived from this single case. Calculating the support values in a single contest provides an idea on the engagement measures, however because the results are tied to one sample dataset, the validity of the results can be questioned. For this reason, the paragraphs to follow outline an approach towards evaluating the statistical significance of any itemset support calculation. Some non-trivial challenges are also outlined as part of the discussion on this issue. 
-
-The proposed solution is introduced thorugh an example from the results of the Association Analysis. In the Miss Suomi 2017 contest, the following lift values were observed (shown also on Figure \ref{itemset_supports-gender-Miss_Helsinki-1_itemset}): 
-
-\begin{center}
-    $L(\{"model"\}|gender=female)=2.5$, \\
-    $L(\{"model"\}|gender=male)=1.3$, \\
-    $L(\{"model"\}|gender=not\_chosen)=1.1$
-\end{center}
-
-To evaluate the relevance of these findings, the same values are calculated in all of the other contests, where the \emph{\{"model"\}} itemset is present. That is, the vote transactions of contests, where at least one participant has "model" label are loaded and the lift values are calculated for the studied itemset and demographic groups, which yields in 25 contests overall. The exact lift values are listed in the table of Appendix 4. 
-
-Figure \ref{model_itemset_lift_distribution} displays the Kernel Density Estimate function of the observations. It can be seen that the mean of the observations is around 1.0 in every case and they follow a Gaussian-like distribution with various means: 0.46 for females, 0.23 for males and 0.23 for the not chosen gender respectively. Seeing the behavior of the data, a Student's t-test is performed agains the above values retrieved from the Miss Suomi 2017 contest. This is done to test how "well" the observed values in the contest match the rest of the sample and how likely they fit into the set of observations.
-
-\begin{figure}[H] 
-    \begin{center}
-        \includegraphics[width=1\textwidth,center]{Images/model_itemset_kde.png}
-        \caption{The Kernel Density Estimate function of the itemset lifts for the \emph{\{"model"\}} itemset by genders.}
-        \label{model_itemset_lift_distribution}
-    \end{center}
-\end{figure}
-
-To perform the t-test, let us make the null hypothesis \emph{$H_0$} that the observations from the Miss Suomi 2017 contest are statistically significant. Using the extracted datasets, the derived t-values of the observations are as follows (where \emph{DF} stands for the degrees of freedom and \emph{S} for standard deviation): 
-
-\begin{center}
-    $t_{female}=
-        \frac{\mu_{female} - L(\{"model"\}|gender=female)}{S/\sqrt{DF}} = 
-        \frac{1.08-2.5}{0.46/\sqrt{25}}=-15.43$ \\
-
-    $t_{male}=
-    \frac{\mu_{male} - L(\{"model"\}|gender=male)}{S/\sqrt{DF}} = 
-    \frac{1.00-1.3}{0.23/\sqrt{25}}=-6.18$ \\
-
-    $t_{not\_chosen}=
-    \frac{\mu_{not\_chosen} - L(\{"model"\}|gender=not\_chosen)}{S/\sqrt{DF}}=
-    \frac{0.96-1.1}{0.23/\sqrt{25}}=-3.04$
-\end{center}
-
-Challenges: 
-\begin{enumerate}
-    \item all three values under $p_{99} = 2.485$ 
-    \item different rules of contests
-    \item synonyms (e.g. model can be a physical model as well as a fashion model)
-    \item very small sample size already for 1-itemsets (less than 30 contests), even more challenges for itesmsets of higher k
-\end{enumerate}
