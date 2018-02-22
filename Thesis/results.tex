@@ -3,7 +3,7 @@ This chapter presents the results achieved by the chosen methods introduced in C
 \subsection{Exploratory Data Analysis}
 \label{section::exploratory-data-analysis}
     % unique voters
-    By the end of 2017, there is a total number of 573 contests in the platform. To identify what kind of content that is more engaging (RQ2), first let us look at the amount of unique voters over the number of contests. Table \ref{user_engagement_in_contests} lists the key figures of the number of unique voters over contests in the platform. 
+    By the end of 2017, there is a total number of 573 contests in the platform. To identify what kind of content is more engaging (RQ2), first let us look at the amount of unique voters over the number of contests. Table \ref{user_engagement_in_contests} lists the key figures of the number of unique voters over contests in the platform. 
 
     It can be easily seen that most of the contests engage very small amount of users, as the median of the unique voter count for all contests is 3. This means that at least half of the contests have had only 3 users who actually voted for any of the participants. One of the reasons behind this is that the company did not establish a large user base yet. Therefore there are many users who created only one contest but never used the platform on the long run. Many of the contests serve only testing purposes, hence engage only a few users. Such records can create bias in the upcoming analyses, because their data does not represent realistic scenarios. 
 
@@ -82,7 +82,9 @@ This chapter presents the results achieved by the chosen methods introduced in C
         \label{user_engagement_over_categories}
     \end{table}
     
-    The categories "travel", "humor", "food", "danger" and "games" have hosted only a considerably low number of contests (Figure \ref{contests_over_categories}). Due to the small amount of data, it is difficult to derive any relevant results about the attractiveness of these categories at this point. It is suggested for the company to host and advertise more of these contests so that the public's opinion and engagement can be evaluated in these areas as well.
+    The categories "travel", "humor", "food", "danger" and "games" have hosted only a considerably low number of contests (Figure \ref{contests_over_categories}). Due to the small amount of data, it is difficult to derive any relevant results about the attractiveness of these categories at this point. 
+    
+    % It is suggested for the company to host and advertise more of these contests so that the public's opinion and engagement can be evaluated in these areas as well.
 
     % As the last part of the EDA, the attributes of highly rated contestants are investigated. In other words it is studied, what kind of traits make a contest participant more attractive to users. To answer this question, the podium finishers of the six large contests explained above are taken as examples. % TODO consider if needed
 
@@ -127,7 +129,7 @@ Interestingly, the support and the lift for the \emph{\{"cloud"\}} and \emph{\{"
 % ---------------------------- END OF GENDER ANALYSIS ---------------------------- 
 % ---------------------------- BEGIN OF AGE GROUP ANALYSIS ---------------------------- 
 
-Next, the 1-itemsets are calculated similarly in the same contest for age groups. Figure \ref{itemset_supports-age_group-Miss_Helsinki-1_itemset} displays results. It is interesting to notice that age groups 45-54 and 65+ have considerably higher support than the rest of the groups in case of the \emph{\{"shoulder"\}, \{"bridal clothing"\}} and the \emph{\{"wedding dress"\}} itemsets. The higher lift values for these itemsets are also higher for these groups which suggests its attractivenexx. It seems, that the open-sholder wedding dresses displayed on the pictures raise the engagement of these groups. This may indicate also that dresses become influential in favoring a model in this kind of a contest for these groups. In other words, dress may be a more important aspect than the model herself.
+Next, the 1-itemsets are calculated similarly in the same contest for age groups. Figure \ref{itemset_supports-age_group-Miss_Helsinki-1_itemset} displays results. It is interesting to notice that age groups 45-54 and 65+ have considerably higher support than the rest of the groups in case of the \emph{\{"shoulder"\}, \{"bridal clothing"\}} and the \emph{\{"wedding dress"\}} itemsets. The higher lift values for these itemsets are also higher for these groups which suggests its attractiveness. It seems, that the open-sholder wedding dresses displayed on the pictures raise the engagement of these groups. This may indicate also that dresses become influential in favoring a model in this kind of a contest for these groups. In other words, dress may be a more important aspect than the model herself.
 
 \begin{figure}[] 
     \begin{center}
